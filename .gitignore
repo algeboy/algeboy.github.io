@@ -1,0 +1,10 @@
+.htaccess
+.aux
+.log
+.nav
+.snm
+.syntax.gz
+.toc
+
+_site/
+.sass-cache/
