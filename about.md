@@ -5,66 +5,69 @@ title: About Us
 permalink: /about/
 ---
 
+I invite you to call me James (students included).
+
+* [Contact](#contact)
+* [Connect](#connect)
+
+## Contact
+[James.Wilson@ColoState.Edu](mailto:James.Wilson@ColoState.Edu)
+
+### Office
+> Weber Building 206A
+
+### Address
+> Department of Mathematics
+> Colorado State University
+> Fort Collins, Colorado, 80523-1874, USA
 
 
-`TheTensor.Space` is group of researchers making tools to tame tensors.
-With the right tools tensors and multilinear algebra can be as natural
-as working with vectors.  With `TheTensor.Space` and all of its derived 
-packages we are dedicated to find the most efficient algorithms, 
-transparent and flexible data structures, and expressive language
-to smooth out the complexities of multilinear algebra.  As a research
-group we are willing to throw out whats working and build an entirely 
-new approach (but we cache the history so lessons don't get lost!).  
-So look for changes, and suggest any you think we should try.
+## Connect
+If you would like me to learn about **your** profession
+<a href="https://www.linkedin.com/in/james-wilson-9909b4134/">
+join me here on
+<img src="images/linkedin.png" height=20 alt="linkedin"></a>
 
-You can find the source code for our projects and a list of ongoing and future plans
-here and at our GitHub website [thetensor-space.github.io](https://thetensor-space.github.io)
+## Education
 
-# Acknowledgements
+* Ph.D. in Mathematics, University of Oregon, Eugene, June 2008.<br>
+    <blockquote>
+		  Dissertation: <i>Group decompositions, Jordan algebras, and algorithms
+		  for p-groups</i>,<br>
+		Adviser: Professor William M. Kantor.<br>
+    </blockquote>
+    <blockquote>
+    Selected Awards: D. K. Harrison award 2008 (department award generously provided 
+        by the Harrison Family to reward ``the most outstanding graduate student'').
+    </blockquote>
+ * M.S. in Mathematics, University of Oregon, Eugene, June 2004.
+ * B.S. in Mathematics, Portland State University, Portland, June 2002.<br>
+    <blockquote>
+    Selected Awards: Rempfer Scholarship Award 2002 (department award generously provided by 
+        the Rempfer Family to ``encourage promising undergraduate mathematics students'').
+    </blockquote>
 
-Portions of `TheTensor.Space` were developed and supported by the following universities and research institutions...
- 
- <div class="custom-image-row">
-  <img alt="National Security Agency" src="/uploads/images/logo_nsa.png"/>
+## Positions
 
-  <img alt="National Science Foundation USA" src="/uploads/images/nsf1.jpg"/>
+ * [Colorado State University](www.colostate.edu), Professor, Department of Mathematics, Since August 2011.
+ * Industrial Consulting: Since 2009
+ * [The Ohio State University](www.osu.edu) Zassenhaus Assistant Professor,	Department of Mathematics, September 2008 to August 2011.
+ * [University of Oregon](www.uoregon.edu) Graduate Teaching Fellow, Department of Mathematics, September 2002 to June 2008.
+ * [Intel Corporation](www.intel.com) Intel Architecture Labs, Jones Farm,  December 1997 to June 2001.
+    
+## Visiting Positions & Special Program Participation
+<ul>
+    <li><i>(Future)</i> <b>Henri Poincare Institute</b>, Sorbonne, Paris Fall 2021.</li>
+    <li><b>Isaac Newton Institute for Mathematical Sciences</b>, 
+        Cambridge U., Cambridge, Special Program: <i>Groups Representations and Applications</i>  
+        Jan. 2020.</li>
+    <li><b>Cornell</b>, Ithaca New York, April 2019.</li>
+    <li><b>University of Auckland</b>, Auckland New Zealand, Jan.-- Mar.  2019.</li>
+    <li><b>Hausdorff Institute for Mathematics</b>, Bonn Germany, 
+        Trimester Program: <i>Logic & Algorithms in Group Theory</i>Oct.-- Dec.  2018.</li>
+    <li><b>Einstein Institute for Mathematics</b>, The Hebrew University Jerusalem,
+        February - June 2013</li>
+    <li><b>Trinity University</b>, National Science Foundation	
+        Research Experience for Undergraduates in Mathematics, Summer 2001.</li>
+</ul>
 
-  <img alt="The Colorado State University" src="/uploads/images/logo_csu_ram.jpg"/>
-
-  <img alt="Kent State University" src="/uploads/images/logo_kent_state_university.jpg"/>
-
-  <img alt="The University of Auckland" src="https://cdn.auckland.ac.nz/assets/central/central-services/mediaandmarketing/uoa-logos-2015/uoa-logo-2015-reverse.png"/>
-
-  <img alt="Bucknell University" src="/uploads/images/logo_bucknell_university.png"/>
-
-  <img alt="University Bielefeld" src="/uploads/images/logo_bielefeld_university.jpg"/>
-
-  <img alt="Simons Foundation" src="/uploads/images/logo_simons_foundation.png"/>
-
-  <img alt="Hausdorff Institute For Mathematics" src="/uploads/images/logo_him.gif">
-
-  <img alt="Isaac Newton Institute" src="/uploads/images/INI-logo.png" style="background-color:green;">
-</div>
-
-We also acknowledge the partial support by the following granting organizations over the years.
- * Portions of the project sponsored by the _[National Science Foundation (USA)](https://www.nsf.gov/about/)_ 
-    - to Peter A. Brooksbank (DMS-1620454)
-    - to James B. Wilson (DMS-1620454).
-* Portions of the project sponsored by _[The Simons Foundation](https://www.simonsfoundation.org/)_ 
-    - to Peter A. Brooksbank (281435)
-    - to James B. Wilson (636189).
-* Portions of the project sponsored by the _[National Security Agency](https://www.nsa.gov/What-We-Do/Research/Math-Sciences-Program/)_ 
-    - to Peter A. Brooksbank (Grant Number H98230-11-1-0146), 
-    - to James B. Wilson (Grant Number H98230-19-1-00).
-
-## Report an issue / Contributing
-
-* [Create an issue on GitHub](https://github.com/thetensor-space/thetensor-space.github.io/issues/new) for typos, bugs, incorrect information, etc. and our contributors will get to it asap.
-* [See our contributing guide](/articles/example-post/#how-to-contribute) for instructions on how to contribute.
-* [Contact us](/contact) for any other questions.
-
-## Copyrights and Licenses 
-
-We do our best to honor copyrights, trademarks, and licenses, and we ask you do the same.  This work has been supported by an international mix of researchers, universities, and government grants.  So we see everything here has already been paid for by the public.  So we distribute our software as open source (under the MIT License) and the content of our post under Creative Commons CC-BY-2016-2020 TheTensor.Space.
-
-Individual contributors can optionally list there work under different terms but we ask that those be kept to your own private repositories to avoid confusion.  We reserve the right to remove content contributed which cannot comply with our OpenSource terms.
