@@ -5,9 +5,18 @@ hero:
     search: false
 ---
 <div class="custom-landing-section uk-container uk-container-small">
-    <img src="/uploads/images/tensor-panoply.gif" alt="The Tensor Space"/>
-    <h1>About Us</h1>
+
     <p class="uk-text-lead">
+        Looking for the book on Linear data?  
+        <a href="https://algeboy.github.io/LinearData/">Go here.</a>
+    </p>
+</div>
+
+<div class="custom-landing-section uk-container uk-container-small">
+    <img src="/uploads/images/tensor-panoply.gif" alt="The Tensor Space"/>
+    <h1>James B. Wilson</h1>
+    <p>
+    
         How can we recognize that data recorded in different ways represents the same information? Better comparisons allow for smaller data sets, improve search times and decreasing storage needs. 
         </p>
     <p class="uk-text-lead">
