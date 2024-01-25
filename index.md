@@ -7,8 +7,9 @@ hero:
 <div class="custom-landing-section uk-container uk-container-small">
 
     <p class="uk-text-lead">
-        Looking for the book on Linear data?  
+        <h1>Looking for the book on Linear data?  
         <a href="https://algeboy.github.io/LinearData/">Go here.</a>
+        </h1>
     </p>
 </div>
 
