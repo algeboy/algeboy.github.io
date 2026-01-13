@@ -51,15 +51,15 @@ authors:
 
 # Social icons displayed in footer
 social:
-    email:
-    website:
+    email:          James.Wilson@ColoState.Edu
+    website:        https://www.math.colostate.edu/~jwilson/
     facebook:       
     flickr:
     dribbble:
-    github:
+    github:         algeboy
     googleplus:
     instagram:      
-    linkedin:
+    linkedin:       james-wilson-9909b4134
     pinterest:
     twitter:        
     vimeo:          
@@ -97,7 +97,7 @@ kramdown:
 
 highlighter:        rouge
 
-gems:
+plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-gist

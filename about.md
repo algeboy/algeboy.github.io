@@ -1,7 +1,7 @@
 ---
 layout: page
 width: small
-title: About Us
+title: About
 permalink: /about/
 ---
 

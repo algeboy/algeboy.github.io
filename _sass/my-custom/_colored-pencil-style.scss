@@ -1,0 +1,587 @@
+/* Chalk on Chalkboard Style */
+
+/* Import authentic chalk-style fonts from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&family=Rock+Salt&family=Architects+Daughter:wght@400;700&family=Permanent+Marker&family=Amatic+SC:wght@400;700&family=Coming+Soon&display=swap');
+
+/* Color Palette - Chalkboard inspired */
+:root {
+  --chalkboard-dark: #1a4a3a;
+  --chalkboard-green: #2d5a4a;
+  --chalkboard-black: #1e1e1e;
+  --chalk-white: #f8f8f0;
+  --chalk-yellow: #ffeb3b;
+  --chalk-blue: #64b5f6;
+  --chalk-red: #ef5350;
+  --chalk-orange: #ff9800;
+  --chalk-pink: #e91e63;
+  --chalk-purple: #9c27b0;
+  --chalk-green: #4caf50;
+  --chalk-dust: #e0e0e0;
+  --eraser-smudge: rgba(248, 248, 240, 0.1);
+}
+
+/* Body as brick wall classroom */
+body {
+  font-family: 'Architects Daughter', cursive !important;
+  background: 
+    /* Brick wall pattern */
+    repeating-linear-gradient(
+      0deg,
+      #8B4513 0px,
+      #8B4513 8px,
+      #A0522D 8px,
+      #A0522D 16px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      #CD853F 0px,
+      #CD853F 60px,
+      #DEB887 60px,
+      #DEB887 120px,
+      #D2691E 120px,
+      #D2691E 180px,
+      #CD853F 180px,
+      #CD853F 240px
+    );
+  background-size: 100% 16px, 240px 100%;
+  background-attachment: fixed;
+  color: var(--chalk-white) !important;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* Remove old body background effects */
+
+/* Remove old body after effects */
+
+/* Headings with chalk-written style */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Permanent Marker', cursive !important;
+  font-weight: 400 !important;
+  color: var(--chalk-white) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transform: rotate(-0.5deg);
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-family: 'Rock Salt', cursive !important;
+  color: var(--chalk-yellow) !important;
+  font-size: 3em !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+h2 {
+  font-family: 'Schoolbell', cursive !important;
+  color: var(--chalk-blue) !important;
+  font-size: 2.2em !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transform: rotate(0.3deg);
+}
+
+h3 {
+  font-family: 'Amatic SC', cursive !important;
+  font-weight: 700 !important;
+  color: var(--chalk-red) !important;
+  font-size: 1.8em !important;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  transform: rotate(-0.2deg);
+}
+
+/* Content containers within the chalkboard */
+.uk-container, .uk-section, .uk-card {
+  position: relative;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  margin: 0 0 40px 0 !important;
+  padding: 30px 0 !important;
+  max-width: none;
+  box-shadow: none;
+  transform: none;
+  transition: none;
+}
+
+/* Content gets chalk-like styling */
+.uk-container > *, .uk-section > *, .uk-card > * {
+  position: relative;
+  z-index: 1;
+  color: var(--chalk-white) !important;
+}
+
+/* Remove the old container border styling */
+
+/* Classroom ABC Header Strip */
+.classroom-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: 
+    linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0px,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 2px,
+      transparent 40px
+    );
+  border-bottom: 4px solid #8B4513;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  font-family: 'Rock Salt', cursive !important;
+  color: var(--chalk-white);
+  font-size: 1.8em;
+  letter-spacing: 8px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.classroom-header::before {
+  content: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
+  opacity: 0.9;
+}
+
+/* Fixed Chalkboard Frame */
+.chalkboard-frame {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  height: calc(100vh - 164px);
+  background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=800&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: 20px solid #8B4513;
+  border-radius: 15px;
+  box-shadow: 
+    0 0 0 5px #654321,
+    0 0 0 8px #8B4513,
+    8px 8px 25px rgba(0, 0, 0, 0.6),
+    16px 16px 40px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+/* Scrollable Content Area Inside Chalkboard */
+.chalkboard-content {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 960px; /* Slightly smaller than frame */
+  height: calc(100vh - 184px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 40px;
+  z-index: 200;
+  /* Custom scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: var(--chalk-yellow) transparent;
+}
+
+.chalkboard-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chalkboard-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chalkboard-content::-webkit-scrollbar-thumb {
+  background-color: var(--chalk-yellow);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+
+/* Navigation within chalkboard content */
+.uk-navbar {
+  background: transparent !important;
+  border-bottom: 2px solid var(--chalk-yellow);
+  position: relative;
+  margin-bottom: 30px;
+  padding: 10px 0;
+}
+
+.uk-navbar::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--chalk-red) 0px,
+    var(--chalk-red) 10px,
+    var(--chalk-orange) 10px,
+    var(--chalk-orange) 20px,
+    var(--chalk-blue) 20px,
+    var(--chalk-blue) 30px
+  );
+  opacity: 0.8;
+}
+
+/* Navigation links with chalk style */
+.uk-navbar-nav > li > a {
+  color: var(--chalk-white) !important;
+  font-family: 'Coming Soon', cursive !important;
+  font-weight: 400 !important;
+  font-size: 1.3em !important;
+  text-decoration: none;
+  position: relative;
+  transform: rotate(-0.1deg);
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+}
+
+.uk-navbar-nav > li > a:hover {
+  color: var(--chalk-yellow) !important;
+  transform: rotate(0.2deg) scale(1.05);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.uk-navbar-nav > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--chalk-blue);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.uk-navbar-nav > li > a:hover::after {
+  transform: scaleX(1);
+}
+
+/* Buttons with chalk style */
+.uk-button, button, input[type="submit"] {
+  font-family: 'Schoolbell', cursive !important;
+  font-weight: 400 !important;
+  border: 3px solid var(--chalk-white) !important;
+  border-radius: 20px !important;
+  background: var(--chalk-green) !important;
+  color: var(--chalk-white) !important;
+  padding: 12px 24px !important;
+  text-transform: none !important;
+  position: relative;
+  transform: rotate(-0.3deg);
+  box-shadow: 
+    3px 3px 0 var(--chalkboard-dark), 
+    6px 6px 10px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(248, 248, 240, 0.2);
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+}
+
+.uk-button:hover, button:hover, input[type="submit"]:hover {
+  transform: rotate(0.2deg) scale(1.05);
+  background: var(--chalk-blue) !important;
+  box-shadow: 
+    3px 3px 0 var(--chalkboard-dark), 
+    6px 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Links with chalk style */
+a {
+  color: var(--chalk-blue) !important;
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--chalk-purple);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+a:hover {
+  color: var(--chalk-yellow) !important;
+  text-decoration-color: var(--chalk-orange);
+  transform: scale(1.02);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Cards and content boxes inherit chalkboard styling */
+.uk-card, .uk-article {
+  /* Inherit the chalkboard styling from container */
+  background: inherit;
+  border: none;
+  border-radius: inherit;
+  padding: 25px;
+  margin: 0;
+  position: relative;
+  transform: none;
+  box-shadow: none;
+  color: var(--chalk-white) !important;
+}
+
+/* Card content gets proper z-index to appear above chalkboard texture */
+.uk-card > *, .uk-article > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Image styling - like chalk-outlined frames */
+img {
+  border: 4px solid var(--chalk-white) !important;
+  border-radius: 15px;
+  box-shadow: 
+    0 0 0 3px var(--chalkboard-green), 
+    0 0 0 6px var(--chalk-dust), 
+    8px 8px 16px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(0, 0, 0, 0.2);
+  transform: rotate(-0.5deg);
+  transition: transform 0.3s ease;
+  filter: contrast(1.1) brightness(1.1);
+}
+
+img:hover {
+  transform: rotate(0.2deg) scale(1.02);
+  box-shadow: 
+    0 0 0 3px var(--chalkboard-green), 
+    0 0 0 6px var(--chalk-yellow), 
+    8px 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Code blocks with chalkboard style */
+pre, code {
+  font-family: 'Courier New', monospace !important;
+  background: rgba(30, 30, 30, 0.9) !important;
+  border: 2px dashed var(--chalk-orange) !important;
+  border-radius: 10px;
+  color: var(--chalk-green) !important;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  font-size: 0.95em;
+}
+
+pre::before {
+  content: '📋 Code:';
+  position: absolute;
+  top: -20px;
+  left: 10px;
+  background: var(--chalkboard-dark);
+  padding: 2px 10px;
+  font-family: 'Architects Daughter', cursive;
+  color: var(--chalk-orange);
+  font-size: 0.9em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Footer within chalkboard */
+footer {
+  background: transparent !important;
+  color: var(--chalk-white) !important;
+  border-top: 2px solid var(--chalk-yellow);
+  margin-top: 40px;
+  padding-top: 20px;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    var(--chalk-red) 0px,
+    var(--chalk-red) 20px,
+    var(--chalk-orange) 20px,
+    var(--chalk-orange) 40px,
+    var(--chalk-blue) 40px,
+    var(--chalk-blue) 60px
+  );
+  opacity: 0.8;
+}
+
+/* Responsive design for fixed chalkboard */
+@media (max-width: 768px) {
+  .classroom-header {
+    height: 50px;
+    font-size: 1.2em;
+    letter-spacing: 4px;
+  }
+  
+  .chalkboard-frame {
+    top: 54px;
+    width: 95%;
+    height: calc(100vh - 124px);
+    border-width: 15px;
+  }
+  
+  .chalkboard-content {
+    top: 54px;
+    width: 95%;
+    height: calc(100vh - 144px);
+    padding: 20px;
+  }
+  
+  .uk-navbar-nav > li > a {
+    font-size: 1em !important;
+  }
+  
+  h1 {
+    font-size: 2.2em !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .classroom-header {
+    font-size: 1em;
+    letter-spacing: 2px;
+  }
+  
+  .chalkboard-frame {
+    border-width: 10px;
+  }
+  
+  .chalkboard-content {
+    padding: 15px;
+  }
+}
+
+/* Special chalk decorative elements */
+.chalk-decoration::after {
+  content: '🖊️📝🖊️';
+  font-size: 1.5em;
+  display: block;
+  text-align: center;
+  margin: 20px 0;
+  opacity: 0.7;
+}
+
+/* Hero section special chalkboard styling */
+.section-hero {
+  background: 
+    radial-gradient(ellipse at center, var(--chalkboard-green), var(--chalkboard-dark));
+  position: relative;
+  overflow: hidden;
+}
+
+.section-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      var(--eraser-smudge) 10px,
+      var(--eraser-smudge) 20px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 15px,
+      var(--eraser-smudge) 15px,
+      var(--eraser-smudge) 30px
+    );
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Text selection with chalk effect */
+::selection {
+  background: var(--chalk-yellow);
+  color: var(--chalkboard-dark);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: var(--chalk-yellow);
+  color: var(--chalkboard-dark);
+  text-shadow: none;
+}
+
+/* Additional chalk effects */
+p, li, span {
+  color: var(--chalk-white) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-family: 'Architects Daughter', cursive !important;
+  line-height: 1.6;
+}
+
+/* Different font for different content types */
+.uk-article-title {
+  font-family: 'Rock Salt', cursive !important;
+}
+
+.uk-navbar-brand {
+  font-family: 'Permanent Marker', cursive !important;
+  font-size: 1.5em !important;
+}
+
+/* Chalk dust texture for text */
+p::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(248, 248, 240, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(248, 248, 240, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Make lists look more chalk-like */
+ul, ol {
+  font-family: 'Coming Soon', cursive !important;
+}
+
+/* Chalk smudge effects for interactive elements */
+.uk-button::before, .uk-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(ellipse, var(--eraser-smudge) 0%, transparent 60%);
+  transform: translate(-50%, -50%) rotate(45deg);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.uk-button:hover::before, .uk-card:hover::after {
+  opacity: 1;
+}
+
+/* Chalk-style emphasis */
+strong, b {
+  font-family: 'Permanent Marker', cursive !important;
+  color: var(--chalk-yellow) !important;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+em, i {
+  font-family: 'Amatic SC', cursive !important;
+  font-style: normal !important;
+  color: var(--chalk-blue) !important;
+  transform: rotate(-1deg);
+  display: inline-block;
+}

@@ -1,16 +1,31 @@
 # Boxes include navigation
 
-- title: Packages
-  desc: Get started fast with installation and setup instructions.
+- title: Research
+  desc: Explore my research in tensor analysis, computational algebra, and isomorphism problems.
+  icon: search
+  customLink: /docs/tensorSpaces/
+
+- title: Publications
+  desc: Access my academic publications, preprints, and the Linear Data book.
+  icon: bookmark
+  customLink: https://algeboy.github.io/LinearData/
+
+- title: Software Tools
+  desc: Download computational tools and packages for algebraic research.
   icon: github
   customLink: /docs/installation
 
-- title: Resources
-  desc: Learn more about The Tensor Space by reading our articles or documentation.
-  icon: folder
-  customLink: /docs/tensorSpaces/
-
-- title: Events
-  desc: Find an event near you!
+- title: Workshops & Events
+  desc: Find information about upcoming conferences, workshops, and seminars.
   icon: calendar
   customLink: /events
+
+- title: Documentation
+  desc: Learn about The Tensor Space through tutorials and technical documentation.
+  icon: folder
+  customLink: /docs/
+
+- title: Contact & Collaboration
+  desc: Get in touch for research collaboration or academic inquiries.
+  icon: mail
+  customLink: /contact

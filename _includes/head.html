@@ -2,7 +2,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% seo %}
+  <title>{{ page.title | default: site.title | escape }}</title>
+  <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}">
   <meta property="og:image" content="{% if site.logo contains 'http' %}{{ site.logo }}{% else %}{{ site.uploads | absolute_url }}{{ site.logo }}{% endif %}"/>
   <link rel="stylesheet" href="{{ "/uploads/css/main.css" | relative_url }}">
   <link rel="shortcut icon" type="image/png" href="{{ "/uploads/favicon.png" | relative_url }}" >
@@ -19,6 +20,7 @@
   });"></script>
   <!-- Custom Scripts -->
   <script src="{{ "/uploads/js/main.js" | relative_url }}"></script>
+  <script src="{{ "/uploads/js/chalkboard-scroll.js" | relative_url }}"></script>
   {% if page.hero.search or site.navbar.search %}
   {% include search-js.html %}
   {% endif %}

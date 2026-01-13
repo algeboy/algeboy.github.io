@@ -1,12 +1,18 @@
 # Navbar left menu navigation links
 
 left:
-  - title: Videos & Events
+  - title: Research
+    dropdown:
+      - title: Publications
+        url: /publications/
+      - title: Linear Data Book
+        url: https://algeboy.github.io/LinearData/
+      - title: Documentation
+        url: /docs/
+
+  - title: Events & Videos
     url: /events/
 
-  - title: Articles & Problems
-    url: /articles/
-  
   - title: Software & Tools
     url: /softwaretools
 
