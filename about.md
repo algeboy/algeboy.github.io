@@ -5,22 +5,9 @@ title: About
 permalink: /about/
 ---
 
-I invite you to call me James (students included).
-
-* [Contact](#contact)
-* [Connect](#connect)
-
-## Contact
-[James.Wilson@ColoState.Edu](mailto:James.Wilson@ColoState.Edu)
-
-### Office
-> Weber Building 206A
-
-### Address
-> Department of Mathematics
-> Colorado State University
-> Fort Collins, Colorado, 80523-1874, USA
-
+* Professor of Mathematics, Colorado State University (since 2011)
+* Associate Editor, Journal of Algebra (since 2024)
+* Age?  Yes I am aging, but I plan to see Haley's Comet twice in my life.
 
 ## Connect
 If you would like me to learn about **your** profession

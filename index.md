@@ -16,7 +16,8 @@ width: expand
             <p class="uk-text-large" align="left">
              <Strong>Proof:</strong>  
                 If $x^n=0$ then power means there's a product$(\times)$.
-                A zere $(0)$ needs a plus $(+)$. Times has to distribute $a\times (b+c)=a\times b+a\times c$.  
+                A zere $(0)$ needs a plus $(+)$. Times has to distribute 
+                $$a\times (b+c)=a\times b+a\times c.$$  
                 Distributive multiplication goes through a tensor, which is 
                 fancy speak for multiplication table.
                 What's the difference between a 
@@ -28,6 +29,19 @@ width: expand
     </div>
 </div>
 <p/>
+
+
+<div class="custom-landing-section uk-container uk-container-small">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
+        <div class="uk-margin-top">
+            <a href="#" id="algeboy-youtube-btn" class="uk-button uk-button-primary uk-margin-small-right">Algeboy YouTube</a>
+            <a href="/about/" class="uk-button uk-button-primary uk-margin-small-right">About Me</a>
+            <a href="/contact/" class="uk-button uk-button-default uk-margin-small-right">Contact</a>
+            <a href="https://algeboy.github.io/LinearData/" class="uk-button uk-button-default">Linear Data Book</a>
+        </div>
+    </div>
+</div>            
+
 <H2> References </H2>
 <div class="custom-landing-section uk-container uk-container-small">
     <div class="uk-grid-small uk-flex-middle" uk-grid>
@@ -35,12 +49,6 @@ width: expand
             <!-- Professional headshot placeholder -->
             <div class="uk-text-center">
                 <img id="profile-slideshow" src="/uploads/images/people/profile1.jpeg" alt="James B. Wilson" class="rounded uk-box-shadow-large" width="100" height="100"/>
-            </div>
-        </div>
-            <div class="uk-margin-top">
-                <a href="/about/" class="uk-button uk-button-primary uk-margin-small-right">About Me</a>
-                <a href="/contact/" class="uk-button uk-button-default uk-margin-small-right">Contact</a>
-                <a href="https://algeboy.github.io/LinearData/" class="uk-button uk-button-default">Linear Data Book</a>
             </div>
         </div>
     </div>
@@ -233,3 +241,169 @@ width: expand
 
 {% include cta.html title="Didn't find an answer?" button_text="Contact Us" button_url="/contact/" subtitle="Get in touch with us for details on setup and additional questions." %}
 
+<!-- Projector Screen Overlay -->
+<div id="projector-overlay" class="projector-overlay">
+    <div class="projector-screen">
+        <button id="close-projector" class="close-projector-btn">✕</button>
+        <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/D8Upe7RGL94?si=aJkRWnzEKZ-CkMNO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+        </iframe>
+            </iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+.projector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.projector-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.projector-screen {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 0;
+    background: linear-gradient(to bottom, #f5f5f5 0%, #ffffff 10%, #ffffff 90%, #f0f0f0 100%);
+    border: 20px solid #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 
+        0 0 0 5px #666,
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: top 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), height 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+}
+
+.projector-overlay.active .projector-screen {
+    top: 10%;
+    height: 80%;
+}
+
+.close-projector-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #C8C372;
+    color: #1a4a3a;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    line-height: 50px;
+    text-align: center;
+}
+
+.close-projector-btn:hover {
+    background: #ffeb3b;
+    transform: scale(1.15);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .projector-screen {
+        width: 95%;
+    }
+    
+    .projector-overlay.active .projector-screen {
+        top: 5%;
+        height: 70%;
+    }
+}
+</style>
+
+<script>
+(function() {
+    const youtubeBtn = document.getElementById('algeboy-youtube-btn');
+    const overlay = document.getElementById('projector-overlay');
+    const closeBtn = document.getElementById('close-projector');
+    const youtubePlayer = document.getElementById('youtube-player');
+    
+    function openProjector(e) {
+        e.preventDefault();
+        // Scroll the chalkboard content to top smoothly
+        const chalkboardContent = document.querySelector('.chalkboard-content');
+        if (chalkboardContent) {
+            chalkboardContent.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        // Show overlay after a brief delay to allow scroll
+        setTimeout(() => {
+            overlay.classList.add('active');
+            if (chalkboardContent) {
+                chalkboardContent.style.overflow = 'hidden';
+            }
+            document.body.style.overflow = 'hidden';
+        }, 1000);
+    }
+    
+    function closeProjector() {
+        overlay.classList.remove('active');
+        const chalkboardContent = document.querySelector('.chalkboard-content');
+        if (chalkboardContent) {
+            chalkboardContent.style.overflow = 'auto';
+        }
+        document.body.style.overflow = 'auto';
+        // Stop video by reloading iframe
+        const src = youtubePlayer.src;
+        youtubePlayer.src = '';
+        setTimeout(() => { youtubePlayer.src = src; }, 100);
+    }
+    
+    if (youtubeBtn) {
+        youtubeBtn.addEventListener('click', openProjector);
+    }
+    
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeProjector);
+    }
+    
+    // Close on overlay click (outside screen)
+    overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) {
+            closeProjector();
+        }
+    });
+    
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) {
+            closeProjector();
+        }
+    });
+})();
+</script>
