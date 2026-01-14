@@ -1,3 +1,5 @@
+@use "sass:color";
+
 // Docs Theme Variables
 // ========================================================================
 
@@ -42,7 +44,7 @@ $border-radius-large:                           16px;
 
 // Pre & Code
 $base-code-font-family:                         Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
-$base-code-color:                               darken($global-primary-background, 3%);
+$base-code-color:                               color.adjust($global-primary-background, $lightness: -3%);
 $base-pre-font-size:                            $global-small-font-size;
 $base-pre-line-height:                          1.65;
 $base-pre-font-family:                          $base-code-font-family;
@@ -74,9 +76,9 @@ $button-default-border:                         $global-secondary-background;
 $button-default-hover-border:                   $global-secondary-background;
 $button-default-active-border:                  $global-secondary-background;
 $button-warning-background:                     $global-warning-background;
-$button-warning-hover-background:               darken($button-warning-background, 7%);
+$button-warning-hover-background:               color.adjust($button-warning-background, $lightness: -7%);
 $button-success-background:                     $global-success-background;
-$button-success-hover-background:               darken($button-success-background, 5%);
+$button-success-hover-background:               color.adjust($button-success-background, $lightness: -5%);
 
 // Label
 $label-font-size:                               $xsmall-font-size;

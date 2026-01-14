@@ -188,8 +188,8 @@ width: expand
 }
 
 .projector-overlay.active .projector-screen {
-    top: 10%;
-    height: 80%;
+    top: 5%;
+    height: 85%;
 }
 
 .close-projector-btn {

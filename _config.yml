@@ -141,3 +141,11 @@ defaults:
 #  enabled:
 #    - categories
 #  layout: archive
+
+# Sass Configuration
+sass:
+  quiet_deps: true
+  silence_deprecations:
+    - import
+    - global-builtin
+    - color-functions
