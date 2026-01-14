@@ -5,23 +5,32 @@ width: expand
 
 <div class="custom-landing-section uk-container uk-container-small">
     <div class="uk-grid-small uk-flex-middle" uk-grid>
-            <div class="uk-width-2-3@m">
+        <div class="uk-width-2-3@m">
             <h1 class="uk-heading-medium">Call me James</h1>
             <!-- <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2> -->
             <!-- <p class="uk-text-lead">Colorado State University</p> -->
             <p class="uk-text-large" align="center">
             <h2> Theorem.  All the following are equivalent.
-             Nilpotent $\Rightarrow$ Tensors $\Rightarrow$ Data science</h2>
+             Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science</h2>
             </P>
             <p class="uk-text-large" align="left">
              <Strong>Proof:</strong>  
-                If $x^n=0$ then power means there's a $\times$, and $0$ means there's a $+$...<br/>
-                That means $a\times (b+c)=a\times b+a\times c$...<br/>
-                Distributive multiplication means there's a multiplication table.<br/>
-                Multiplication table $\Leftrightarrow$ Data table $\Box$ 
+                If $x^n=0$ then power means there's a product$(\times)$.
+                A zere $(0)$ needs a plus $(+)$. Times has to distribute $a\times (b+c)=a\times b+a\times c$.  
+                Distributive multiplication goes through a tensor, which is 
+                fancy speak for multiplication table.
+                What's the difference between a 
+                Multiplication table and a Data table?
+                Nothing really.
+                $\Box$
             </p>
+        </div>
+    </div>
 </div>
 <p/>
+<H2> References </H2>
+<div class="custom-landing-section uk-container uk-container-small">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
         <div class="uk-width-1-3@m" algin="center">
             <!-- Professional headshot placeholder -->
             <div class="uk-text-center">
