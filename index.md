@@ -1,25 +1,33 @@
 ---
 layout: page
 width: expand
-hero:
-    search: false
 ---
 
 <div class="custom-landing-section uk-container uk-container-small">
-    <div class="uk-grid-large uk-flex-middle" uk-grid>
-        <div class="uk-width-1-3@m">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
+            <div class="uk-width-2-3@m">
+            <h1 class="uk-heading-medium">Call me James</h1>
+            <!-- <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2> -->
+            <!-- <p class="uk-text-lead">Colorado State University</p> -->
+            <p class="uk-text-large" align="center">
+            <h2> Theorem.  All the following are equivalent.
+             Nilpotent $\Rightarrow$ Tensors $\Rightarrow$ Data science</h2>
+            </P>
+            <p class="uk-text-large" align="left">
+             <Strong>Proof:</strong>  
+                If $x^n=0$ then power means there's a $\times$, and $0$ means there's a $+$...<br/>
+                That means $a\times (b+c)=a\times b+a\times c$...<br/>
+                Distributive multiplication means there's a multiplication table.<br/>
+                Multiplication table $\Leftrightarrow$ Data table $\Box$ 
+            </p>
+</div>
+<p/>
+        <div class="uk-width-1-3@m" algin="center">
             <!-- Professional headshot placeholder -->
             <div class="uk-text-center">
-                <img src="/uploads/images/tensor-panoply.gif" alt="James B. Wilson" class="uk-border-circle uk-box-shadow-large" width="200" height="200"/>
+                <img id="profile-slideshow" src="/uploads/images/people/profile1.jpeg" alt="James B. Wilson" class="rounded uk-box-shadow-large" width="100" height="100"/>
             </div>
         </div>
-        <div class="uk-width-2-3@m">
-            <h1 class="uk-heading-medium">James B. Wilson</h1>
-            <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2>
-            <p class="uk-text-lead">Colorado State University</p>
-            <p class="uk-text-large">
-                Specializing in <strong>algebraic structures</strong>, <strong>tensor analysis</strong>, and <strong>computational algebra</strong>. My research focuses on isomorphism problems, linear data structures, and the mathematical foundations of machine learning.
-            </p>
             <div class="uk-margin-top">
                 <a href="/about/" class="uk-button uk-button-primary uk-margin-small-right">About Me</a>
                 <a href="/contact/" class="uk-button uk-button-default uk-margin-small-right">Contact</a>
@@ -28,6 +36,74 @@ hero:
         </div>
     </div>
 </div>
+
+<script>
+(function() {
+    const profileImages = [
+        '/uploads/images/people/profile1.jpeg',
+        '/uploads/images/people/profile2.jpeg',
+        '/uploads/images/people/profile3.jpeg',
+        '/uploads/images/people/profile4.jpeg',
+        '/uploads/images/people/friends1.jpeg',
+        '/uploads/images/people/friends2.jpeg',
+        '/uploads/images/people/friends3.jpeg',
+        '/uploads/images/people/friends4.jpeg',
+        '/uploads/images/people/friends5.jpeg',
+        '/uploads/images/people/friends6.jpeg',
+        '/uploads/images/people/friends7.jpeg',
+        '/uploads/images/people/friends8.jpeg',
+        '/uploads/images/people/friends9.jpeg',
+        '/uploads/images/people/friends10.jpeg',
+        '/uploads/images/people/friends11.jpeg',
+        '/uploads/images/people/friends12.jpeg',
+        '/uploads/images/people/friends13.jpeg',
+        '/uploads/images/people/friends14.jpeg',
+        '/uploads/images/people/friends15.jpeg',
+        '/uploads/images/people/friends16.jpeg',
+        '/uploads/images/people/friends17.jpeg',
+        '/uploads/images/people/friends18.jpeg',
+        '/uploads/images/people/friends19.jpeg',
+        '/uploads/images/people/friends20.jpeg',
+        '/uploads/images/people/friends21.jpeg',
+        '/uploads/images/people/friends22.jpeg',
+        '/uploads/images/people/friends23.jpeg',
+        '/uploads/images/people/friends24.jpeg',
+        '/uploads/images/people/friends25.jpeg',
+        '/uploads/images/people/friends26.jpeg',
+        '/uploads/images/people/firends27.jpeg',
+        '/uploads/images/people/friends28.jpeg',
+        '/uploads/images/people/friends29.jpeg',
+        '/uploads/images/people/friends30.jpeg',
+        '/uploads/images/people/friends31.jpeg',
+        '/uploads/images/people/friends32.jpeg',
+        '/uploads/images/people/friends33.jpeg'
+    ];
+    
+    let currentIndex = 0;
+    const imgElement = document.getElementById('profile-slideshow');
+    
+    function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+    
+    // Start with profile1, then shuffle the rest
+    const remainingImages = profileImages.slice(1);
+    const shuffledImages = [profileImages[0], ...shuffleArray(remainingImages)];
+    
+    function changeImage() {
+        currentIndex = (currentIndex + 1) % shuffledImages.length;
+        imgElement.src = shuffledImages[currentIndex];
+    }
+    
+    // Change image every 3 seconds
+    setInterval(changeImage, 3000);
+})();
+</script>
 
 <div class="uk-section uk-section-muted">
     <div class="uk-container uk-container-small">

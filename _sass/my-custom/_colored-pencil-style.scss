@@ -123,7 +123,7 @@ h3 {
   right: 0;
   height: 60px;
   background: 
-    linear-gradient(135deg, #2c5530 0%, #1a3d1f 100%),
+    linear-gradient(135deg, #1E4D2B 100%, #1a3d1f 100%),
     repeating-linear-gradient(
       90deg,
       transparent 0px,
@@ -135,18 +135,39 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  font-family: 'Rock Salt', cursive !important;
-  color: var(--chalk-white);
+  font-family: 'Bodoni'; 
+  color: #C8C372;
   font-size: 1.8em;
   letter-spacing: 8px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .classroom-header::before {
-  content: 'A B C D E F G H I J K L M N O P Q R S T U V W X Y Z';
+  content: 'P R O F. J A M E S  B.  W I L S O N';
   opacity: 0.9;
+  order: 2;
+}
+
+.classroom-header .uk-navbar-container {
+  background: transparent !important;
+  order: 1;
+}
+
+.classroom-header .uk-navbar-toggle {
+  color: #C8C372 !important;
+}
+
+.classroom-header .uk-navbar-toggle svg,
+.classroom-header .uk-navbar-toggle [data-uk-navbar-toggle-icon] {
+  color: #C8C372 !important;
+  stroke: #C8C372 !important;
+}
+
+.chalkboard-content .uk-navbar {
+  border-bottom: none;
 }
 
 /* Fixed Chalkboard Frame */
@@ -162,10 +183,10 @@ h3 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border: 20px solid #8B4513;
+  border: 20px solid #0e0d0c;
   border-radius: 15px;
   box-shadow: 
-    0 0 0 5px #654321,
+    0 0 0 5px #302010,
     0 0 0 8px #8B4513,
     8px 8px 25px rgba(0, 0, 0, 0.6),
     16px 16px 40px rgba(0, 0, 0, 0.3);
