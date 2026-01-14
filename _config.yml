@@ -53,17 +53,9 @@ authors:
 social:
     email:          James.Wilson@ColoState.Edu
     website:        https://www.math.colostate.edu/~jwilson/
-    facebook:       
-    flickr:
-    dribbble:
     github:         algeboy
-    googleplus:
-    instagram:      
     linkedin:       james-wilson-9909b4134
-    pinterest:
-    twitter:        
-    vimeo:          
-    youtube:
+    youtube:        algeboy
 
 # Share button
 share:
@@ -72,7 +64,7 @@ share:
 
 # Default footer image settings
 footer:
-    copyright:      Theme implemented by <a href="https://alex-cannon.github.io/portfolio/" rel="noreferer noopener">Alexander Cannon</a> and created by <a href="https://ivanchromjak.com/" rel="noreferer noopener">human</a> Ivan Chromjak.
+    copyright:      Creative Commons Attribution-ShareAlike 4.0 International License
 
 # Disqus comments shortname, requires Disqus account https://disqus.com/
 disqus:

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Name:            Spinner
 // Description:     Component to create a loading spinner
 //
@@ -11,7 +13,7 @@
 
 $spinner-size:                                   30px !default;
 $spinner-stroke-width:                           1 !default;
-$spinner-radius:                                 floor(($spinner-size - $spinner-stroke-width) / 2) !default; // Minus stroke width to prevent overflow clipping
+$spinner-radius:                                 floor(math.div($spinner-size - $spinner-stroke-width, 2)) !default; // Minus stroke width to prevent overflow clipping
 $spinner-circumference:                          round(2 * 3.141 * $spinner-radius) !default;
 $spinner-duration:                               1.4s !default;
 

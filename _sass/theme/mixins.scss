@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // Docs Theme Mixins
 // ========================================================================
 
@@ -242,8 +244,8 @@
             }
         }
         .uk-card-body{
-            padding-top: $global-medium-margin / 2;
-            padding-bottom: $global-medium-margin / 2;
+            padding-top: math.div($global-medium-margin, 2);
+            padding-bottom: math.div($global-medium-margin, 2);
         }
         .uk-card-footer{
             padding-bottom: $global-medium-margin * 0.9;
