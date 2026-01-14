@@ -29,27 +29,10 @@
 /* Body as brick wall classroom */
 body {
   font-family: 'Architects Daughter', cursive;
-  background: 
-    /* Brick wall pattern */
-    repeating-linear-gradient(
-      0deg,
-      #8B4513 0px,
-      #8B4513 8px,
-      #A0522D 8px,
-      #A0522D 16px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      #CD853F 0px,
-      #CD853F 60px,
-      #DEB887 60px,
-      #DEB887 120px,
-      #D2691E 120px,
-      #D2691E 180px,
-      #CD853F 180px,
-      #CD853F 240px
-    );
-  background-size: 100% 16px, 240px 100%;
+  background-image: url('/uploads/images/brick-wall.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
   background-attachment: fixed;
   color: var(--chalk-white);
   margin: 0;
@@ -254,9 +237,9 @@ body {
   top: 64px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 1000px;
-  height: calc(100vh - 164px);
+  width: min(90vw, calc(90vh - 64px));
+  height: min(90vw, calc(90vh - 64px));
+  max-width: none;
   background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1200&h=800&fit=crop&q=80');
   background-size: cover;
   background-position: center;
@@ -277,9 +260,9 @@ body {
   top: 64px;
   left: 50%;
   transform: translateX(-50%);
-  width: 90%;
-  max-width: 960px;
-  height: calc(100vh - 184px);
+  width: min(90vw, calc(90vh - 64px));
+  height: min(90vw, calc(90vh - 64px));
+  max-width: none;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 40px;
