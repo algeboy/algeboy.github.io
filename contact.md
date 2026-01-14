@@ -1,17 +1,16 @@
 ---
 layout: page
-width: xsmall
+width: small
+title: Contact
 permalink: /contact/
 ---
-{% include image-contributor.html
-  img="/images/avatar_james_b_wilson.jpg"
-  alt="James B. Wilson"
-  name="James B. Wilson"
-  link="https://github.com/algeboy"
-  link="https://www.linkedin.com/in/james-wilson-9909b4134/"
-  linkText="LinkedIn"
-  email="James.Wilson@ColoState.Edu"
-%}
+
+<div class="contributor-card">
+  <img src="/images/avatar_james_b_wilson.jpg" alt="James B. Wilson">
+  <h2>James B. Wilson</h2>
+  <p><a href="mailto:James.Wilson@ColoState.Edu">James.Wilson@ColoState.Edu</a></p>
+  <p><a href="https://www.linkedin.com/in/james-wilson-9909b4134/">LinkedIn</a> | <a href="https://github.com/algeboy">GitHub</a></p>
+</div>
 
 ### Office
 > Weber Building 206A

@@ -1,7 +1,6 @@
 ---
-layout: post
-title:  Software / Tools
-categories: [ Tools ]
+layout: page
+title: Software / Tools
 permalink: /softwaretools
 ---
 Learn more about our software and tools:

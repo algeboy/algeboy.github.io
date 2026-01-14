@@ -10,8 +10,8 @@ width: expand
             <!-- <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2> -->
             <!-- <p class="uk-text-lead">Colorado State University</p> -->
             <p class="uk-text-large" align="center">
-            <h2> Theorem 1.  All the following are equivalent.
-             Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science</h2>
+            <h2> Theorem 1.  All the following are equivalent.</h2>
+            <h2> Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science</h2>
             </P>
             <p class="uk-text-large" align="left">
              <Strong>Proof:</strong>  
@@ -64,7 +64,7 @@ width: expand
         <div class="uk-width-1-3@m" algin="center">
             <!-- Professional headshot placeholder -->
             <div class="uk-text-center">
-                <img id="profile-slideshow" src="/uploads/images/people/profile1.jpeg" alt="James B. Wilson" class="rounded uk-box-shadow-large" width="100" height="100"/>
+                <img id="profile-slideshow" src="/uploads/images/people/profile1.jpeg" alt="James B. Wilson" class="rounded uk-box-shadow-large"  height="150"/>
             </div>
         </div>
     </div>

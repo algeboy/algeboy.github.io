@@ -1,41 +1,146 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ site.lang | default: 'en' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
+  
+  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  
+  {% if site.favicon %}
+  <link rel="icon" href="{{ site.favicon | relative_url }}">
+  {% endif %}
+  
+  <!-- MathJax for math rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+      }
+    };
+  </script>
+  
+  {% if site.google_analytics %}
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {% endif %}
+</head>
+<body>
+  <!-- Classroom Header -->
+  <div class="classroom-header">
+    <button class="hamburger-menu" icon="fa fa-bars" id="hamburger-btn" aria-label="Menu">
+      <span></span>
+      <span><i class="fa fa-Bars"></i>   </span>
+      <span></span>
+    </button>
+  </div>
+  
+  <!-- Slide-in Navigation Menu -->
+  <nav class="slide-menu" id="slide-menu">
+    <button class="close-menu" id="close-menu" aria-label="Close Menu">✕</button>
+    <ul>
+      <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
+      <li><a href="{{ '/about/' | relative_url }}">👤 About</a></li>
+      <li><a href="{{ '/publications/' | relative_url }}">📚 Publications</a></li>
+      <li><a href="{{ '/contact/' | relative_url }}">✉️ Contact</a></li>
+      <li><a href="https://youtube.com/@{{ site.social.youtube }}" target="_blank">📺 YouTube</a></li>
+    </ul>
+  </nav>
+  
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+  
+  <!-- Chalkboard Frame -->
+  <div class="chalkboard-frame"></div>
+  
+  <!-- Scrollable Content Inside Chalkboard -->
+  <div class="chalkboard-content">
+    <header>
+      <div class="container">
+        <nav class="desktop-nav">
+          <ul>
+            <li><a href="{{ '/' | relative_url }}">Home</a></li>
+            <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+            <li><a href="{{ '/publications/' | relative_url }}">Publications</a></li>
+            <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-    {% include head.html %}
+    <main>
+      {{ content }}
+    </main>
 
-    <body>
-
-    <!-- Classroom ABC Header -->
-    <div class="classroom-header">
-            {% include navbar.html %}
-    </div>
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.name }}</p>
+            {% if site.footer.copyright %}
+            <p>{{ site.footer.copyright }}</p>
+            {% endif %}
+          </div>
+          
+          {% if site.social %}
+          <div class="social-links">
+            {% if site.social.email %}
+            <a href="mailto:{{ site.social.email }}" title="Email">✉️</a>
+            {% endif %}
+            {% if site.social.github %}
+            <a href="https://github.com/{{ site.social.github }}" title="GitHub">GitHub</a>
+            {% endif %}
+            {% if site.social.linkedin %}
+            <a href="https://linkedin.com/in/{{ site.social.linkedin }}" title="LinkedIn">LinkedIn</a>
+            {% endif %}
+            {% if site.social.youtube %}
+            <a href="https://youtube.com/@{{ site.social.youtube }}" title="YouTube">YouTube</a>
+            {% endif %}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </footer>
+  </div>
+  
+  <script>
+    // Hamburger Menu Toggle
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const slideMenu = document.getElementById('slide-menu');
+    const closeMenuBtn = document.getElementById('close-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
     
-    <!-- Fixed Chalkboard Frame -->
-    <div class="chalkboard-frame"></div>
+    function openMenu() {
+      slideMenu.classList.add('active');
+      menuOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
     
-    <!-- Scrollable Content Area -->
-    <div class="chalkboard-content">
-        {% if page.hero %}
-            {% include hero.html %}
-        {% endif %}
-
-        {{ content }}
-
-        {% include offcanvas-docs.html %}
-
-        {% include offcanvas.html %}
-
-        {% if page.layout != 'doc' %}
-            {% include footer.html %}
-        {% endif %}
-    </div>
-
-    {% if page.layout == 'doc' %}
-        {% include hook-pre-closing-body-doc.html %}
-    {% endif %}
-
-    {% include hook-pre-closing-body.html %}
-
-    </body>
-
+    function closeMenu() {
+      slideMenu.classList.remove('active');
+      menuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    hamburgerBtn.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+    
+    // Close menu when clicking on a link
+    const menuLinks = slideMenu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+  </script>
+</body>
 </html>

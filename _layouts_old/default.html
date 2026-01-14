@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+    {% include head.html %}
+
+    <body>
+
+    <!-- Classroom ABC Header -->
+    <div class="classroom-header">
+            {% include navbar.html %}
+    </div>
+    
+    <!-- Fixed Chalkboard Frame -->
+    <div class="chalkboard-frame"></div>
+    
+    <!-- Scrollable Content Area -->
+    <div class="chalkboard-content">
+        {% if page.hero %}
+            {% include hero.html %}
+        {% endif %}
+
+        {{ content }}
+
+        {% include offcanvas-docs.html %}
+
+        {% include offcanvas.html %}
+
+        {% if page.layout != 'doc' %}
+            {% include footer.html %}
+        {% endif %}
+    </div>
+
+    {% if page.layout == 'doc' %}
+        {% include hook-pre-closing-body-doc.html %}
+    {% endif %}
+
+    {% include hook-pre-closing-body.html %}
+
+    </body>
+
+</html>

@@ -1,55 +1,15 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your whole blog.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+# Jekyll Configuration for algeboy.github.io
 
-# Site title and description
+# Site settings
 title:              Please Distribute
 name:               James B. Wilson
 description:        Sharing research, software, and opinions.
-meta_description:   
 lang:               en
-
-# Site subpath, e.g. /blog
 baseurl:            ""
-
-# Permalink URLs structure, for permalink style options see: https://jekyllrb.com/docs/permalinks/
-permalink:          /articles/:title/
-
-# Site base hostname & protocol, e.g. http://example.com
 url:                "https://algeboy.github.io"
+favicon:            "favicon.ico"
 
-# Site logo # e.g. logo.png, upload logo image file to /uploads/ folder
-logo:               "favicon.png"
-
-navbar:
-    sticky:         true
-    search:         true
-  
-# Default author settings
-james:
-  name:           James B. Wilson
-  display_name:   James
-  avatar:         images/avatar_james_b_wilson.jpg
-  email:          James.Wilson@ColoState.Edu
-  web:            https://www.math.colostate.edu/~jwilson/
-  twitter:
-  description:    "Co-Author of TheTensor.Space"
-
-# Author settings, displayed on post and doc pages if front matter references author name e.g. author: peter
-# Note: avatar image directories start with "/uploads/"
-authors:
-  james:
-    name:           James B. Wilson
-    display_name:   James
-    avatar:         images/avatar_james_b_wilson.jpg
-    email:          James.Wilson@ColoState.Edu
-    web:            https://www.math.colostate.edu/~jwilson/
-    twitter:
-    description:    "Co-Author of TheTensor.Space"
-
-# Social icons displayed in footer
+# Social links
 social:
     email:          James.Wilson@ColoState.Edu
     website:        https://www.math.colostate.edu/~jwilson/
@@ -57,87 +17,20 @@ social:
     linkedin:       james-wilson-9909b4134
     youtube:        algeboy
 
-# Share button
-share:
-    post:           false # Display share buttons on a post page
-    doc:            false # Display share buttons on a doc page
-
-# Default footer image settings
+# Footer
 footer:
     copyright:      Creative Commons Attribution-ShareAlike 4.0 International License
 
-# Disqus comments shortname, requires Disqus account https://disqus.com/
-disqus:
-    shortname:      # 1234
-
-# Google analytics code, get your code here https://www.google.com/analytics/
-google_analytics:
-
-# Number of posts displayed on blog page
-paginate:           12
-
-# Blog path
-paginate_path:      "/articles/:title/"
-
-# Path to post content assets directory i.e post images, pdfs etc
-uploads:            /uploads/
-
 # Build settings
-markdown: kramdown
+markdown:           kramdown
 kramdown:
-  math_engine: mathjax
-
-highlighter:        rouge
-
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-gist
-  - jekyll-avatar
+  math_engine:      mathjax
+  
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
-
-sass:
-  style:            compressed
-
-# Set permalinks and other values per collection
-collections:
-  events:
-    output:         true
-    permalink: /:collection/:title
-  docs:
-    output:         true
-  faqs:
-    output:         false
-  changelogs:
-    output:         false
-
-# Defaults
-defaults:
-  # _posts
-  - scope:
-      path:         ""
-      type:         posts
-    values:
-      layout:       post
-  # _docs
-  - scope:
-      path:         ""
-      type:         docs
-    values:
-      layout:       doc
-
-
-# Legacy Configuration
-# Plugins
-#plugins: 
-#  - jekyll-paginate
-#  - jekyll-archives
-    
-# Archives
-#jekyll-archives:
-#  enabled:
-#    - categories
-#  layout: archive
+  - _layouts_old
+  - _includes_old
+  - _sass_old
+  - uploads/css
