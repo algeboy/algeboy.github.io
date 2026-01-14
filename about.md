@@ -1,13 +1,15 @@
 ---
 layout: page
 width: small
-title: About
+title: About James
 permalink: /about/
 ---
 
 * Professor of Mathematics, Colorado State University (since 2011)
 * Associate Editor, Journal of Algebra (since 2024)
 * Age?  Yes I am aging, but I plan to see Haley's Comet twice in my life.
+* YouTube? My channel @Algeboy gathers workshop talks on Tensors by me and my friends and videos of some of my online courses.
+* Online Courses?
 
 ## Connect
 If you would like me to learn about **your** profession

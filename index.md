@@ -10,15 +10,16 @@ width: expand
             <!-- <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2> -->
             <!-- <p class="uk-text-lead">Colorado State University</p> -->
             <p class="uk-text-large" align="center">
-            <h2> Theorem.  All the following are equivalent.
+            <h2> Theorem 1.  All the following are equivalent.
              Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science</h2>
             </P>
             <p class="uk-text-large" align="left">
              <Strong>Proof:</strong>  
-                If $x^n=0$ then power means there's a product$(\times)$.
-                A zere $(0)$ needs a plus $(+)$. Times has to distribute 
+                If $x^n=0$ then $x^n=x\times x\times\cdots$ means there's a product$(\times)$.
+                Every zero $(0)$ needs a plus $(+)$. Times  with plus should distribute 
                 $$a\times (b+c)=a\times b+a\times c.$$  
-                Distributive multiplication needs a multiplication table---a tensor.
+                Distributive multiplication is captured by a multiplication 
+                table---what posh people call a tensor.
                 What's the difference between a 
                 Multiplication table and a Data table?
                 Nothing really.
@@ -42,7 +43,10 @@ width: expand
             
             <a href="/contact/" class="uk-button uk-button-default uk-margin-small-right">
             Contact
-            
+            </a>
+
+            <a href="/publications/" class="uk-button uk-button-default uk-margin-small-right">
+            Articles
             </a>
 
             <a href="https://algeboy.github.io/LinearData/" class="uk-button uk-button-default">
