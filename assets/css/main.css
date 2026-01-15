@@ -1074,6 +1074,10 @@ footer {
 
 /* References Section Positioning */
 @media (min-width: 769px) {
+  .main-content-section {
+    max-width: 75%;
+  }
+  
   .references-section {
     position: absolute;
     top: 100px;

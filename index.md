@@ -5,7 +5,7 @@ width: expand
 
 <div class="custom-landing-section uk-container uk-container-small">
     <div class="uk-grid-small uk-flex-middle" uk-grid>
-        <div class="uk-width-2-3@m">
+        <div class="uk-width-2-3@m main-content-section">
             <h1 class="uk-heading-medium">Call me James</h1>
             <!-- <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2> -->
             <!-- <p class="uk-text-lead">Colorado State University</p> -->
