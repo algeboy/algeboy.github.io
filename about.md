@@ -7,6 +7,8 @@ permalink: /about/
 
 * Professor of Mathematics, Colorado State University (since 2011)
 * Associate Editor, Journal of Algebra (since 2024)
+
+## Random Facts
 * Age?  Yes I am aging, but I plan to see Haley's Comet twice in my life.
 * YouTube? My channel @Algeboy gathers workshop talks on Tensors by me and my friends and videos of some of my online courses.
 * Online Courses?
@@ -44,9 +46,11 @@ join me here on
  * [University of Oregon](www.uoregon.edu) Graduate Teaching Fellow, Department of Mathematics, September 2002 to June 2008.
  * [Intel Corporation](www.intel.com) Intel Architecture Labs, Jones Farm,  December 1997 to June 2001.
     
-## Visiting Positions & Special Program Participation
+## Visiting Positions & Special Program Invitations
 <ul>
-    <li><i>(Future)</i> <b>Henri Poincare Institute</b>, Sorbonne, Paris Fall 2021.</li>
+    <li> <b>Henri Poincare Institute</b>, Sorbonne, Paris 
+    <i>Post-quantum Cryptography</i> & <i>Random Tensors</i>
+    Fall 2024.</li>
     <li><b>Isaac Newton Institute for Mathematical Sciences</b>, 
         Cambridge U., Cambridge, Special Program: <i>Groups Representations and Applications</i>  
         Jan. 2020.</li>

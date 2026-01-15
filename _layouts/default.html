@@ -81,36 +81,6 @@
     <main>
       {{ content }}
     </main>
-
-    <footer>
-      <div class="container">
-        <div class="footer-content">
-          <div>
-            <p>&copy; {{ 'now' | date: "%Y" }} {{ site.name }}</p>
-            {% if site.footer.copyright %}
-            <p>{{ site.footer.copyright }}</p>
-            {% endif %}
-          </div>
-          
-          {% if site.social %}
-          <div class="social-links">
-            {% if site.social.email %}
-            <a href="mailto:{{ site.social.email }}" title="Email">✉️</a>
-            {% endif %}
-            {% if site.social.github %}
-            <a href="https://github.com/{{ site.social.github }}" title="GitHub">GitHub</a>
-            {% endif %}
-            {% if site.social.linkedin %}
-            <a href="https://linkedin.com/in/{{ site.social.linkedin }}" title="LinkedIn">LinkedIn</a>
-            {% endif %}
-            {% if site.social.youtube %}
-            <a href="https://youtube.com/@{{ site.social.youtube }}" title="YouTube">YouTube</a>
-            {% endif %}
-          </div>
-          {% endif %}
-        </div>
-      </div>
-    </footer>
   </div>
   
   <script>

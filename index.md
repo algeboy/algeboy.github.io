@@ -10,27 +10,34 @@ width: expand
             <!-- <h2 class="uk-heading-small uk-text-muted">Professor of Mathematics</h2> -->
             <!-- <p class="uk-text-lead">Colorado State University</p> -->
             <p class="uk-text-large" align="center">
-            <h2> Theorem 1.  All the following are equivalent.</h2>
+            <h2> Theorem 1.  All the following are equivalent:</h2>
             <h2> Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science</h2>
             </P>
             <p class="uk-text-large" align="left">
-             <Strong>Proof:</strong>  
-                If $x^n=0$ then $x^n=x\times x\times\cdots$ means there's a product$(\times)$.
-                Every zero $(0)$ needs a plus $(+)$. Times  with plus should distribute 
-                $$a\times (b+c)=a\times b+a\times c.$$  
-                Distributive multiplication is captured by a multiplication 
-                table---what posh people call a tensor.
+             <i>Proof:</i>  
+                <strong>Nilpotent</strong>---zero powered, well to have $0=x^n=x\cdot x\cdots x$ requires a product $(\cdot)$.
+                But every zero $(0)$ needs a plus $(+)$. 
+                For times to talk to plus means to <strong>distribute</strong>
+                $$a\cdot (b+c)=a\cdot b+a\cdot c.$$  
+                Distributive products factor through tensor products.
+                That's just posh speak for <strong>multiplication 
+                table</strong>
                 What's the difference between a 
-                Multiplication table and a Data table?
-                Nothing really.
+                <strong>Multiplication table</strong> and a <strong>data table</strong>?
+                None really.
                 $\Box$
             </p>
         </div>
     </div>
 </div>
 <p/>
+<div style="width:100%; margin: 2em 0;">
+  <svg viewBox="0 0 400 20" height="20" width="100%" style="display:block;">
+    <path d="M5 15 Q 50 5, 100 15 Q 150 25, 200 15 Q 250 5, 300 15 Q 350 25, 395 15" stroke="white" stroke-width="4" fill="none" style="filter: blur(0.5px);" />
+  </svg>
+</div>
 
-
+<span></span>
 <div class="custom-landing-section uk-container uk-container-small">
     <div class="uk-grid-small uk-flex-middle" uk-grid>
         <div class="uk-margin-top">
@@ -58,15 +65,31 @@ width: expand
     </div>
 </div>            
 
+<div class="references-section" id="references-block" style="cursor: pointer;" title="Click to view slideshow">
 <H2> References </H2>
 <div class="custom-landing-section uk-container uk-container-small">
     <div class="uk-grid-small uk-flex-middle" uk-grid>
         <div class="uk-width-1-3@m" algin="center">
             <!-- Professional headshot placeholder -->
             <div class="uk-text-center">
-                <img id="profile-slideshow" src="/uploads/images/people/profile1.jpeg" alt="James B. Wilson" class="rounded uk-box-shadow-large"  height="150"/>
+                <img id="profile-slideshow" src="/uploads/images/people/profile1.jpeg" alt="James B. Wilson" class="rounded uk-box-shadow-large"/>
             </div>
         </div>
+    </div>
+</div>
+</div>
+
+<!-- Slideshow Overlay -->
+<div id="slideshow-overlay" class="slideshow-overlay">
+    <button id="close-slideshow" class="close-slideshow-btn">✕</button>
+    <div class="slideshow-container">
+        <img id="slideshow-image" src="" alt="Slideshow">
+        <div class="slideshow-controls">
+            <button id="prev-slide" class="slide-nav prev">‹</button>
+            <button id="pause-slide" class="slide-nav pause">⏸</button>
+            <button id="next-slide" class="slide-nav next">›</button>
+        </div>
+        <div class="slide-counter" id="slide-counter">1 / 37</div>
     </div>
 </div>
 
@@ -113,7 +136,13 @@ width: expand
     ];
     
     let currentIndex = 0;
+    let isPaused = false;
+    let slideshowInterval;
     const imgElement = document.getElementById('profile-slideshow');
+    const slideshowOverlay = document.getElementById('slideshow-overlay');
+    const slideshowImage = document.getElementById('slideshow-image');
+    const slideCounter = document.getElementById('slide-counter');
+    const pauseBtn = document.getElementById('pause-slide');
     
     function shuffleArray(array) {
         const shuffled = [...array];
@@ -128,13 +157,81 @@ width: expand
     const remainingImages = profileImages.slice(1);
     const shuffledImages = [profileImages[0], ...shuffleArray(remainingImages)];
     
+    function updateCounter() {
+        slideCounter.textContent = `${currentIndex + 1} / ${shuffledImages.length}`;
+    }
+    
     function changeImage() {
         currentIndex = (currentIndex + 1) % shuffledImages.length;
         imgElement.src = shuffledImages[currentIndex];
+        if (slideshowOverlay.classList.contains('active')) {
+            slideshowImage.src = shuffledImages[currentIndex];
+            updateCounter();
+        }
     }
     
-    // Change image every 3 seconds
-    setInterval(changeImage, 3000);
+    function showSlide(index) {
+        currentIndex = index;
+        imgElement.src = shuffledImages[currentIndex];
+        slideshowImage.src = shuffledImages[currentIndex];
+        updateCounter();
+    }
+    
+    function nextSlide() {
+        showSlide((currentIndex + 1) % shuffledImages.length);
+    }
+    
+    function prevSlide() {
+        showSlide((currentIndex - 1 + shuffledImages.length) % shuffledImages.length);
+    }
+    
+    function togglePause() {
+        isPaused = !isPaused;
+        if (isPaused) {
+            clearInterval(slideshowInterval);
+            pauseBtn.textContent = '▶';
+        } else {
+            slideshowInterval = setInterval(changeImage, 3000);
+            pauseBtn.textContent = '⏸';
+        }
+    }
+    
+    function openSlideshow() {
+        slideshowOverlay.classList.add('active');
+        slideshowImage.src = shuffledImages[currentIndex];
+        updateCounter();
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeSlideshow() {
+        slideshowOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Start auto-slideshow
+    slideshowInterval = setInterval(changeImage, 3000);
+    
+    // Event listeners
+    document.getElementById('references-block').addEventListener('click', openSlideshow);
+    document.getElementById('close-slideshow').addEventListener('click', closeSlideshow);
+    document.getElementById('next-slide').addEventListener('click', nextSlide);
+    document.getElementById('prev-slide').addEventListener('click', prevSlide);
+    document.getElementById('pause-slide').addEventListener('click', togglePause);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (slideshowOverlay.classList.contains('active')) {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === 'Escape') closeSlideshow();
+            if (e.key === ' ') { e.preventDefault(); togglePause(); }
+        }
+    });
+    
+    // Close on overlay click
+    slideshowOverlay.addEventListener('click', function(e) {
+        if (e.target === slideshowOverlay) closeSlideshow();
+    });
 })();
 </script>
 <!-- Projector Screen Overlay -->
