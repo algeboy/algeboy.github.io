@@ -45,21 +45,12 @@ width: expand
             @Algeboy on YouTube
             <img src="uploads/images/Inductive-Type-cover.jpg" width="100">
             </a>
-
-            <a href="/about/" class="uk-button uk-button-primary uk-margin-small-right">About Me</a>
-            
+            <a href="/about/" class="uk-button uk-button-primary uk-margin-small-right">About Me</a>            
             <a href="/contact/" class="uk-button uk-button-default uk-margin-small-right">
             Contact
             </a>
-
             <a href="/publications/" class="uk-button uk-button-default uk-margin-small-right">
             Articles
-            </a>
-
-            <a href="https://algeboy.github.io/LinearData/" class="uk-button uk-button-default">
-            My <Strong>BOOK</strong> on Data Science Linear Algebra
-            <img src="uploads/images/Full-Cover-Art-web.png"
-            width="100"/>
             </a>
         </div>
     </div>
@@ -79,6 +70,7 @@ width: expand
 </div>
 </div>
 
+
 <!-- Slideshow Overlay -->
 <div id="slideshow-overlay" class="slideshow-overlay">
     <button id="close-slideshow" class="close-slideshow-btn">✕</button>
@@ -92,6 +84,50 @@ width: expand
         <div class="slide-counter" id="slide-counter">1 / 37</div>
     </div>
 </div>
+
+<!-- Place this after the slideshow overlay, before the closing </div> of the main container, e.g., after the references section -->
+<div class="floating-book-link">
+<H3>  My Linear Data Book! </H3>
+    <a href="https://algeboy.github.io/LinearData/">
+        <img src="uploads/images/Full-Cover-Art-web.png" alt="My Book" style="width:100%;max-width:180px;display:block;margin:auto;">
+    </a>
+</div>
+
+<style>
+/* Floating book link styles */
+.floating-book-link {
+       margin: 0;
+    text-align: center;
+    max-width: 180px;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    <!-- margin: 2em auto 0 auto;
+    text-align: center;
+    max-width: 350px; -->
+}
+
+@media (min-width: 960px) {
+    .floating-book-link {
+        position: absolute;
+        right: 3vw;
+        top: 300px;
+        z-index: 10;
+        margin: 0;
+        text-align: center;
+        <!-- background: rgba(255,255,255,0.97); -->
+        border-radius: 12px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+        padding: 1.5em 1em 1em 1em;
+        max-width: 250px;
+    }
+    /* Make sure the parent container is positioned relative */
+    .custom-landing-section.uk-container.uk-container-small {
+        position: relative;
+    }
+}
+</style>
+
 
 <script>
 (function() {
