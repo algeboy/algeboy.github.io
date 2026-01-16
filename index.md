@@ -57,7 +57,7 @@ width: expand
 </div>            
 
 <div class="references-section" id="references-block" style="cursor: pointer;" title="Click to view slideshow">
-<H2> References </H2>
+<H2> How it's done </H2>
 <div class="custom-landing-section uk-container uk-container-small">
     <div class="uk-grid-small uk-flex-middle" uk-grid>
         <div class="uk-width-1-3@m" algin="center">
