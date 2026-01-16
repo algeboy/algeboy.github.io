@@ -4,56 +4,113 @@ width: expand
 title: Publications
 permalink: /publications/
 ---
-<!-- 
-<div class="publications-hero">
-    <h1 class="uk-heading-large">Publications & Research</h1>
-</div> -->
 
-<div id="chalkboard-publications">
-    <!-- Publications will be dynamically loaded here -->
+<div class="publications-content">
+    <h1>Publications & Research</h1>
+    
+    <div class="publication-item">
+        <h3>Linear Data Structures in Modern Computing</h3>
+        <p><strong>James B. Wilson</strong> - 2024</p>
+        <p>Exploring the mathematical foundations of data science through tensor algebra and nilpotent structures. This comprehensive work bridges the gap between pure mathematics and practical data science applications.</p>
+        <div class="publication-links">
+            <a href="#" class="pub-link">PDF</a> | 
+            <a href="#" class="pub-link">BibTeX</a> | 
+            <a href="#" class="pub-link">DOI</a>
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <h3>Tensor Products in Machine Learning Algorithms</h3>
+        <p><strong>James B. Wilson</strong>, <em>Co-Author Name</em> - 2023</p>
+        <p>Applications of distributive algebra in modern computational frameworks. Demonstrates how mathematical tensor operations can optimize machine learning model performance.</p>
+        <div class="publication-links">
+            <a href="#" class="pub-link">PDF</a> | 
+            <a href="#" class="pub-link">BibTeX</a> | 
+            <a href="#" class="pub-link">DOI</a>
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <h3>Algebraic Foundations of Data Science</h3>
+        <p><strong>James B. Wilson</strong> - 2023</p>
+        <p>Mathematical structures underlying contemporary data analysis techniques. Provides theoretical framework for understanding data relationships through algebraic lens.</p>
+        <div class="publication-links">
+            <a href="#" class="pub-link">PDF</a> | 
+            <a href="#" class="pub-link">BibTeX</a> | 
+            <a href="#" class="pub-link">DOI</a>
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <h3>Nilpotent Structures in Computational Mathematics</h3>
+        <p><strong>James B. Wilson</strong>, <em>Research Team</em> - 2022</p>
+        <p>Investigation of nilpotent algebraic structures and their applications in solving complex computational problems in various mathematical domains.</p>
+        <div class="publication-links">
+            <a href="#" class="pub-link">PDF</a> | 
+            <a href="#" class="pub-link">BibTeX</a> | 
+            <a href="#" class="pub-link">DOI</a>
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <h3>Multilinear Algebra Applications in Data Processing</h3>
+        <p><strong>James B. Wilson</strong> - 2022</p>
+        <p>Comprehensive analysis of how multilinear algebraic methods can be applied to improve data processing efficiency and accuracy in large-scale systems.</p>
+        <div class="publication-links">
+            <a href="#" class="pub-link">PDF</a> | 
+            <a href="#" class="pub-link">BibTeX</a> | 
+            <a href="#" class="pub-link">DOI</a>
+        </div>
+    </div>
 </div>
 
 <style>
-body {
-    background: #f8f9fa;
-    margin: 0;
-    padding: 0;
+.publications-content {
+    padding: 20px 0;
 }
 
-.publications-hero {
-    text-align: center;
-    padding: 2em 0;
-    background: transparent;
-    color: #333;
-    margin-bottom: 3em;
+.publication-item {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-left: 4px solid var(--chalk-blue);
+    background: rgba(100, 181, 246, 0.1);
+    border-radius: 0 12px 12px 0;
+    transition: all 0.3s ease;
 }
 
-.chalkboard-paper {
-    background: transparent;
-    color: #fffbe7;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
-    padding: 2em 2em 1.5em 2em;
-    margin: 2em auto;
-    max-width: 800px;
-    font-family: 'Chalkboard SE', 'Comic Sans MS', cursive, sans-serif;
-    position: relative;
-    opacity: 1;
-    transform: translateY(40px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+.publication-item:hover {
+    background: rgba(100, 181, 246, 0.15);
+    transform: translateX(5px);
 }
 
-.chalkboard-paper.visible {
-    opacity: 1;
-    transform: translateY(0);
+.publication-item h3 {
+    margin-bottom: 10px;
+    color: var(--chalk-yellow);
+    font-size: 1.4em;
 }
 
-.chalkboard-paper h2 {
-    color: #ffeb3b;
-    margin-bottom: 0.5em;
-    cursor: pointer;
+.publication-item p {
+    margin-bottom: 10px;
+    color: var(--chalk-white);
+    line-height: 1.6;
+}
+
+.publication-links {
+    margin-top: 15px;
+}
+
+.pub-link {
+    color: var(--chalk-green);
     text-decoration: none;
+    font-weight: bold;
     transition: color 0.3s ease;
+}
+
+.pub-link:hover {
+    color: var(--chalk-yellow);
+    text-decoration: underline;
+}
+</style>
     font-size: 1.5em;
 }
 
@@ -115,7 +172,7 @@ body {
 }
 
 .chalkboard-paper .links a:hover {
-    background: #ffeb3b;
+    <!-- background: #ffeb3b; -->
     color: #222;
 }
 

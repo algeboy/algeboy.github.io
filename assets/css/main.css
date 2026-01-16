@@ -128,7 +128,7 @@ body {
   height: 100vh;
   background: linear-gradient(135deg, var(--chalkboard-green) 0%, var(--chalkboard-dark) 100%);
   box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
-  z-index: 2001;
+  z-index: 10001;
   transition: right 0.4s ease;
   padding: 80px 30px 30px 30px;
   overflow-y: auto;
@@ -1219,5 +1219,302 @@ footer {
   font-family: 'Schoolbell', cursive;
   font-size: 1.2em;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+/* Desktop Enhancements - Filing Cabinet and TV */
+.desktop-enhancements {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .desktop-enhancements {
+        display: block;
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 9998;
+        width: 200px;
+        height: 400px;
+    }
+}
+
+/* Filing Cabinet Container */
+.filing-cabinet-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* TV Styles */
+.tv-container {
+    width: 100%;
+    height: 120px;
+    margin-bottom: 0px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.tv-container:hover {
+    transform: scale(1.05);
+}
+
+.tv-frame {
+    background: linear-gradient(145deg, #e8e8e8, #c0c0c0);
+    border-radius: 3px;
+    padding: 15px;
+    border: 2px solid #999;
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 2px 4px rgba(255,255,255,0.6),
+        inset 0 -1px 2px rgba(0,0,0,0.2);
+    position: relative;
+    height: 100%;
+}
+
+.tv-screen {
+    background: linear-gradient(145deg, #000, #0a0a0a);
+    border-radius: 1px;
+    padding: 8px;
+    text-align: center;
+    box-shadow: 
+        inset 3px 3px 8px rgba(0,0,0,0.9),
+        inset -1px -1px 3px rgba(255,255,255,0.1);
+    border: 3px solid #333;
+    position: relative;
+    overflow: hidden;
+    height: calc(100% - 35px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tv-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.03) 50%, transparent 100%),
+        repeating-linear-gradient(
+            0deg,
+            transparent 0px,
+            rgba(255,255,255,0.01) 1px,
+            transparent 2px
+        );
+    pointer-events: none;
+}
+
+.tv-display {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2em;
+    color: #00ff00;
+    text-shadow: 0 0 8px #00ff00;
+    position: relative;
+    z-index: 1;
+}
+
+.tv-brand {
+    position: absolute;
+    bottom: 2px;
+    right: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 0.6em;
+    color: #666;
+    letter-spacing: 1px;
+}
+
+/* TV Base/Stand */
+.tv-base {
+    width: 80%;
+    height: 20px;
+    background: linear-gradient(145deg, #4a4a4a, #2a2a2a);
+    border-radius: 0px;
+    margin: 0 auto;
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.4),
+        inset 0 1px 2px rgba(255,255,255,0.2),
+        inset 0 -1px 1px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    position: relative;
+}
+
+.tv-base::before {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: #222;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Filing Cabinet Styles */
+.filing-cabinet {
+    width: 100%;
+    flex: 1;
+}
+
+.cabinet-body {
+    background: linear-gradient(145deg, #888888, #666666);
+    border-radius: 8px;
+    box-shadow: 
+        0 8px 20px rgba(0,0,0,0.3),
+        inset 0 1px 3px rgba(255,255,255,0.2);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 8px;
+}
+
+.drawer {
+    flex: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.drawer:hover {
+    transform: translateX(-15px);
+}
+
+.drawer-face {
+    background: linear-gradient(145deg, #999999, #777777);
+    border: 2px solid #555;
+    border-radius: 4px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+    box-shadow: 
+        0 3px 6px rgba(0,0,0,0.3),
+        inset 0 1px 2px rgba(255,255,255,0.2);
+}
+
+.drawer-handle {
+    width: 24px;
+    height: 12px;
+    background: linear-gradient(145deg, #444, #222);
+    border-radius: 12px;
+    box-shadow: 
+        inset 0 2px 4px rgba(0,0,0,0.5),
+        0 1px 2px rgba(255,255,255,0.1);
+    margin-right: 12px;
+}
+
+.drawer-label {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: #fff;
+    font-size: 0.9em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Projector Overlay Styles */
+.projector-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 9999;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.projector-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.projector-screen {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1200px;
+    height: 0;
+    background: linear-gradient(to bottom, #f5f5f5 0%, #ffffff 10%, #ffffff 90%, #f0f0f0 100%);
+    border: 20px solid #2c2c2c;
+    border-radius: 10px;
+    box-shadow: 
+        0 0 0 5px #666,
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        inset 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: top 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55), height 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    overflow: hidden;
+}
+
+.projector-overlay.active .projector-screen {
+    top: 5%;
+    height: 85%;
+}
+
+.close-projector-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #C8C372;
+    color: #1a4a3a;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10001;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    line-height: 50px;
+    text-align: center;
+}
+
+.close-projector-btn:hover {
+    background: #ffeb3b;
+    transform: scale(1.15);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* Publications content styles */
+.publications-view, .about-view {
+    padding: 20px 0;
+}
+
+.publication-item {
+    margin-bottom: 30px;
+    padding: 15px;
+    border-left: 3px solid var(--chalk-blue);
+    background: rgba(100, 181, 246, 0.1);
+    border-radius: 0 8px 8px 0;
+}
+
+.publication-item h3 {
+    margin-bottom: 10px;
+    color: var(--chalk-yellow);
 }
 
