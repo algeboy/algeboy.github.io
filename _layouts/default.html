@@ -121,7 +121,7 @@
               <div class="drawer-handle"></div>
               <div class="drawer-label">
                 <span class="drawer-icon">✏️</span>
-                Teaching
+                Posts
               </div>
             </div>
           </div>
@@ -628,18 +628,17 @@
                 console.error('Software drawer not found!');
             }
 
-            // Teaching drawer handler
-            const teachingDrawer = document.getElementById('teaching-drawer');
-            if (teachingDrawer) {
-                teachingDrawer.addEventListener('click', function(e) {
+            // Posts drawer handler (formerly Teaching)
+            const postsDrawer = document.getElementById('teaching-drawer');
+            if (postsDrawer) {
+                postsDrawer.addEventListener('click', function(e) {
                     e.preventDefault();
-                    console.log('Teaching drawer clicked!');
-                    // Could add teaching page later
-                    alert('Teaching resources coming soon!');
+                    console.log('Posts drawer clicked!');
+                    window.location.href = '/posts/';
                 });
-                console.log('Teaching drawer event listener attached');
+                console.log('Posts drawer event listener attached');
             } else {
-                console.error('Teaching drawer not found!');
+                console.error('Posts drawer not found!');
             }
 
             // Professional drawer handler
