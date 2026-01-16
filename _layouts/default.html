@@ -74,6 +74,22 @@
         <div class="tv-base" padding="0"></div>
       </div>
       
+      <!-- Projector Screen Overlay -->
+      <div class="projector-screen" id="projector-screen">
+        <div class="projector-close" id="projector-close">&times;</div>
+        <div class="projector-content">
+          <div class="youtube-container" id="youtube-container">
+            <iframe id="youtube-iframe" 
+                    src="about:blank" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+        <div class="projector-bottom"></div>
+      </div>
+      
       <!-- Filing Cabinet -->
       <div class="filing-cabinet">
         <div class="cabinet-body">
@@ -81,7 +97,32 @@
           <div class="drawer" id="articles-drawer">
             <div class="drawer-face">
               <div class="drawer-handle"></div>
-              <div class="drawer-label">Articles</div>
+              <div class="drawer-label">
+                <span class="drawer-icon">📁</span>
+                Articles
+              </div>
+            </div>
+          </div>
+          
+          <!-- Software Drawer -->
+          <div class="drawer" id="software-drawer">
+            <div class="drawer-face">
+              <div class="drawer-handle"></div>
+              <div class="drawer-label">
+                <span class="floppy-icon">💾</span>
+                Software
+              </div>
+            </div>
+          </div>
+          
+          <!-- Teaching Drawer -->
+          <div class="drawer" id="teaching-drawer">
+            <div class="drawer-face">
+              <div class="drawer-handle"></div>
+              <div class="drawer-label">
+                <span class="drawer-icon">✏️</span>
+                Teaching
+              </div>
             </div>
           </div>
           
@@ -89,7 +130,10 @@
           <div class="drawer" id="professional-drawer">
             <div class="drawer-face">
               <div class="drawer-handle"></div>
-              <div class="drawer-label">Professional</div>
+              <div class="drawer-label">
+                <span class="drawer-icon">🎓</span>
+                Professional
+              </div>
             </div>
           </div>
         </div>
@@ -121,6 +165,15 @@
   </div>
   
   <script>
+    // Header click to go home
+    const classroomHeader = document.querySelector('.classroom-header');
+    if (classroomHeader) {
+        classroomHeader.addEventListener('click', function() {
+            window.location.href = '{{ "/" | relative_url }}';
+        });
+        console.log('Header click handler attached');
+    }
+    
     // Hamburger Menu Toggle
     const hamburgerBtn = document.getElementById('hamburger-btn');
     const slideMenu = document.getElementById('slide-menu');
@@ -164,7 +217,7 @@
             bottom: 0;
             z-index: 9998;
             width: 200px;
-            height: 400px;
+            height: calc(100vh - 80px); /* Take full height minus header */
         }
     }
 
@@ -313,266 +366,295 @@
         color: #fff;
         font-size: 0.9em;
         text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .drawer-icon,
+    .floppy-icon {
+        font-size: 1.2em;
+        filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.8));
+    }
+
+    /* Projector Screen Styles */
+    .projector-screen {
+        position: fixed;
+        top: 40px; /* Moved up 20px from header base */
+        left: 50%; /* Moved further 10% to the right */
+        width: 75%; /* Slightly reduced width to ensure it fits */
+        height: 0;
+        background: #ffffff;
+        z-index: 300; /* Between chalkboard (200) and filing cabinet (9998) */
+        overflow: hidden;
+        transition: height 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        border-left: 3px solid #8B4513;
+        border-right: 3px solid #8B4513;
+        box-shadow: 
+            0 5px 20px rgba(0,0,0,0.4),
+            inset 0 -10px 20px rgba(139, 69, 19, 0.3);
+    }
+
+    .projector-screen.active {
+        height: calc(100vh - 60px - 15%); /* Adjusted for new top position */
+    }
+
+    .projector-bottom {
+        position: absolute;
+        bottom: -15px;
+        left: -3px;
+        right: -3px;
+        height: 15px;
+        background: linear-gradient(145deg, #8B4513, #654321);
+        box-shadow: 
+            0 3px 6px rgba(0,0,0,0.3),
+            inset 0 1px 2px rgba(205, 133, 63, 0.4);
+        border-radius: 0 0 4px 4px;
+    }
+
+    .projector-close {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 30px;
+        height: 30px;
+        background: rgba(0,0,0,0.7);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        font-size: 18px;
+        z-index: 301;
+        transition: background 0.3s ease;
+    }
+
+    .projector-close:hover {
+        background: rgba(0,0,0,0.9);
+    }
+
+    .projector-content {
+        padding: 60px 40px 40px 40px;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+    }
+
+    .youtube-container {
+        width: 80%;
+        max-width: 800px;
+        aspect-ratio: 16 / 9;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .youtube-container iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
     }
   </style>
 
-  <!-- Projector Screen Overlay -->
-  <div id="projector-overlay" class="projector-overlay">
-    <div class="projector-screen">
-        <button id="close-projector" class="close-projector-btn">✕</button>
-        <div class="video-container">
-            <iframe id="youtube-player" width="560" height="315" src="https://www.youtube.com/embed/D8Upe7RGL94?si=aJkRWnzEKZ-CkMNO" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        </div>
-    </div>
-  </div>
-
   <script>
     console.log('Script tag loaded!');
+    
+    // Audio context for motor sound
+    let audioContext = null;
+    let motorOscillator = null;
+    let motorGainNode = null;
+    
+    // Initialize audio context
+    function initAudio() {
+        if (!audioContext) {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+    }
+    
+    // Create motor sound effect
+    function createMotorSound() {
+        initAudio();
+        
+        // Create oscillator for motor sound
+        motorOscillator = audioContext.createOscillator();
+        motorGainNode = audioContext.createGain();
+        
+        // Set up humming sound characteristics
+        motorOscillator.type = 'sine'; // Sine wave for smooth hum
+        motorOscillator.frequency.setValueAtTime(80, audioContext.currentTime); // Higher frequency for hum
+        
+        // Add subtle frequency modulation for realistic hum effect
+        const lfo = audioContext.createOscillator();
+        const lfoGain = audioContext.createGain();
+        
+        lfo.frequency.setValueAtTime(3, audioContext.currentTime); // Slower 3Hz modulation
+        lfoGain.gain.setValueAtTime(2, audioContext.currentTime); // Very slight frequency variation
+        
+        lfo.connect(lfoGain);
+        lfoGain.connect(motorOscillator.frequency);
+        
+        // Set up gain envelope
+        motorGainNode.gain.setValueAtTime(0, audioContext.currentTime);
+        
+        // Connect audio graph
+        motorOscillator.connect(motorGainNode);
+        motorGainNode.connect(audioContext.destination);
+        
+        // Start oscillators
+        motorOscillator.start();
+        lfo.start();
+        
+        return { oscillator: motorOscillator, gain: motorGainNode, lfo: lfo };
+    }
+    
+    // Play motor sound during animation
+    function playMotorSound(duration = 800) {
+        try {
+            const motor = createMotorSound();
+            
+            // Fade in
+            motor.gain.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + 0.1);
+            
+            // Fade out near end
+            motor.gain.gain.linearRampToValueAtTime(0.1, audioContext.currentTime + (duration / 1000) - 0.2);
+            motor.gain.gain.linearRampToValueAtTime(0, audioContext.currentTime + (duration / 1000));
+            
+            // Stop after duration
+            setTimeout(() => {
+                motor.oscillator.stop();
+                motor.lfo.stop();
+            }, duration);
+            
+        } catch (error) {
+            console.log('Audio not available:', error);
+        }
+    }
     
     // Filing Cabinet and TV functionality
     document.addEventListener('DOMContentLoaded', function() {
         console.log('DOM Content Loaded event fired!');
         
         try {
-            console.log('DOM loaded, initializing filing cabinet...');
+            console.log('DOM loaded, initializing filing cabinet and projector...');
             
             // Get elements with debugging
-            const chalkboardContent = document.querySelector('.chalkboard-content');
             const articlesDrawer = document.getElementById('articles-drawer');
             const professionalDrawer = document.getElementById('professional-drawer');
             const tvContainer = document.getElementById('tv-container');
-            const projectorOverlay = document.getElementById('projector-overlay');
-            const closeProjector = document.getElementById('close-projector');
-            const youtubePlayer = document.getElementById('youtube-player');
+            const projectorScreen = document.getElementById('projector-screen');
+            const projectorClose = document.getElementById('projector-close');
+            const youtubeIframe = document.getElementById('youtube-iframe');
 
             console.log('Elements found:', {
-                chalkboardContent: !!chalkboardContent,
                 articlesDrawer: !!articlesDrawer,
                 professionalDrawer: !!professionalDrawer,
                 tvContainer: !!tvContainer,
-                projectorOverlay: !!projectorOverlay
+                projectorScreen: !!projectorScreen,
+                projectorClose: !!projectorClose,
+                youtubeIframe: !!youtubeIframe
             });
 
-            // Store original content - find the main content container
-            let originalContent = null;
-            let mainElement = null;
-            
-            if (chalkboardContent) {
-                // The main element should be directly inside chalkboard-content
-                mainElement = chalkboardContent.querySelector('main');
-                console.log('Main element found:', !!mainElement);
-                
-                if (mainElement) {
-                    originalContent = mainElement.innerHTML;
-                    console.log('Original content stored, length:', originalContent.length);
-                } else {
-                    console.warn('Main element not found inside chalkboard-content');
-                }
+            // TV Click Handler - Show Projector Screen
+            if (tvContainer && projectorScreen) {
+                tvContainer.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('TV clicked! Showing projector screen...');
+                    
+                    // Play motor sound while screen descends
+                    playMotorSound(800);
+                    
+                    // Load YouTube video
+                    if (youtubeIframe) {
+                        youtubeIframe.src = 'https://www.youtube.com/embed/D8Upe7RGL94?autoplay=1';
+                    }
+                    
+                    // Show projector screen with animation
+                    projectorScreen.classList.add('active');
+                });
+                console.log('TV click handler attached');
             } else {
-                console.error('Chalkboard content not found!');
+                console.error('TV container or projector screen not found!');
             }
-            
-            // Content for different sections
-            const publicationsContent = `
-                <div class="publications-view">
-                    <h1 style="color: var(--chalk-yellow); font-size: 2.5em; text-align: center; margin-bottom: 30px;">Publications & Articles</h1>
-                    <div class="publication-list">
-                        <div class="publication-item">
-                            <h3>Linear Data Structures</h3>
-                            <p>Exploring the mathematical foundations of data science through tensor algebra and nilpotent structures.</p>
-                        </div>
-                        <div class="publication-item">
-                            <h3>Tensor Products in Machine Learning</h3>
-                            <p>Applications of distributive algebra in modern computational frameworks.</p>
-                        </div>
-                        <div class="publication-item">
-                            <h3>Algebraic Foundations of Data Science</h3>
-                            <p>Mathematical structures underlying contemporary data analysis techniques.</p>
-                        </div>
-                        <div style="text-align: center; margin-top: 40px;">
-                            <p style="color: var(--chalk-white); font-size: 1.2em;">
-                                <a href="/publications/" style="color: var(--chalk-yellow); text-decoration: underline; font-size: 1.3em;">
-                                    View all publications →
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            const aboutContent = `
-                <div class="about-view">
-                    <h1 style="color: var(--chalk-yellow); font-size: 2.5em; text-align: center; margin-bottom: 30px;">About Me</h1>
-                    <div class="about-content">
-                        <h3 style="color: var(--chalk-blue); font-size: 2em; text-align: center; margin-bottom: 20px;">James B. Wilson</h3>
-                        <p style="color: var(--chalk-white); font-size: 1.3em; text-align: center; margin-bottom: 30px;">Professor of Mathematics specializing in algebra, linear algebra, and mathematical foundations of data science.</p>
-                        
-                        <h4 style="color: var(--chalk-blue); margin-top: 30px; font-size: 1.5em;">Research Interests:</h4>
-                        <ul style="color: var(--chalk-white); margin-left: 20px; font-size: 1.2em; line-height: 1.6;">
-                            <li>Tensor algebra and multilinear algebra</li>
-                            <li>Nilpotent structures in mathematics</li>
-                            <li>Mathematical foundations of data science</li>
-                            <li>Linear algebra applications</li>
-                        </ul>
-                        
-                        <h4 style="color: var(--chalk-blue); margin-top: 30px; font-size: 1.5em;">Current Work:</h4>
-                        <p style="color: var(--chalk-white); font-size: 1.2em; line-height: 1.6;">Exploring the deep connections between algebraic structures and modern data analysis techniques.</p>
-                        
-                        <div style="text-align: center; margin-top: 40px;">
-                            <p style="color: var(--chalk-white); font-size: 1.2em;">
-                                <a href="/about/" style="color: var(--chalk-yellow); text-decoration: underline; font-size: 1.3em;">
-                                    Learn more about my work →
-                                </a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            `;
 
-            // Function to update content safely
-            function updateContent(newContent) {
-                console.log('Updating content...');
-                if (mainElement) {
-                    mainElement.innerHTML = newContent;
-                    if (chalkboardContent) {
-                        chalkboardContent.scrollTop = 0;
+            // Close Projector Handler
+            if (projectorClose && projectorScreen) {
+                projectorClose.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Closing projector screen...');
+                    
+                    // Play motor sound while screen retracts
+                    playMotorSound(800);
+                    
+                    // Hide projector screen
+                    projectorScreen.classList.remove('active');
+                    
+                    // Stop YouTube video
+                    if (youtubeIframe) {
+                        setTimeout(() => {
+                            youtubeIframe.src = 'about:blank';
+                        }, 800); // Wait for animation to complete
                     }
-                    console.log('Content updated successfully');
-                } else {
-                    console.error('Cannot update content - mainElement not found');
-                }
+                });
+                console.log('Projector close handler attached');
             }
 
-            // Function to restore original content
-            function restoreOriginalContent() {
-                console.log('Restoring original content...');
-                if (mainElement && originalContent) {
-                    mainElement.innerHTML = originalContent;
-                    if (chalkboardContent) {
-                        chalkboardContent.scrollTop = 0;
-                    }
-                    console.log('Original content restored');
-                } else {
-                    console.error('Cannot restore content - missing mainElement or originalContent');
-                }
-            }
-
-            // Drawer click handlers with improved debugging
+            // Articles drawer handler
             if (articlesDrawer) {
                 articlesDrawer.addEventListener('click', function(e) {
                     e.preventDefault();
                     console.log('Articles drawer clicked!');
-                    updateContent(publicationsContent);
+                    window.location.href = '/publications/';
                 });
                 console.log('Articles drawer event listener attached');
             } else {
                 console.error('Articles drawer not found!');
             }
 
+            // Software drawer handler
+            const softwareDrawer = document.getElementById('software-drawer');
+            if (softwareDrawer) {
+                softwareDrawer.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Software drawer clicked!');
+                    window.location.href = '/softwareTools/';
+                });
+                console.log('Software drawer event listener attached');
+            } else {
+                console.error('Software drawer not found!');
+            }
+
+            // Teaching drawer handler
+            const teachingDrawer = document.getElementById('teaching-drawer');
+            if (teachingDrawer) {
+                teachingDrawer.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    console.log('Teaching drawer clicked!');
+                    // Could add teaching page later
+                    alert('Teaching resources coming soon!');
+                });
+                console.log('Teaching drawer event listener attached');
+            } else {
+                console.error('Teaching drawer not found!');
+            }
+
+            // Professional drawer handler
             if (professionalDrawer) {
                 professionalDrawer.addEventListener('click', function(e) {
                     e.preventDefault();
                     console.log('Professional drawer clicked!');
-                    updateContent(aboutContent);
+                    window.location.href = '/about/';
                 });
                 console.log('Professional drawer event listener attached');
             } else {
                 console.error('Professional drawer not found!');
             }
 
-            // TV click handler for projector
-            if (tvContainer && projectorOverlay) {
-                tvContainer.addEventListener('click', function() {
-                    console.log('TV clicked!');
-                    // Clear chalkboard and show projector loading message
-                    updateContent(`
-                        <div style="text-align: center; padding-top: 100px;">
-                            <h1 style="color: var(--chalk-blue); font-size: 2.5em; margin-bottom: 20px;">Projector Loading...</h1>
-                            <p style="color: var(--chalk-white); font-size: 1.3em;">Please wait while the projector screen comes down...</p>
-                        </div>
-                    `);
-                    
-                    // Show projector overlay after brief delay
-                    setTimeout(() => {
-                        projectorOverlay.classList.add('active');
-                        document.body.style.overflow = 'hidden';
-                    }, 1000);
-                });
-            }
-
-            // Close projector handler
-            if (closeProjector) {
-                closeProjector.addEventListener('click', function() {
-                    closeProjectorScreen();
-                });
-            }
-
-            // Close projector on overlay click
-            if (projectorOverlay) {
-                projectorOverlay.addEventListener('click', function(e) {
-                    if (e.target === projectorOverlay) {
-                        closeProjectorScreen();
-                    }
-                });
-            }
-
-            // Close projector on ESC key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape' && projectorOverlay.classList.contains('active')) {
-                    closeProjectorScreen();
-                }
-            });
-
-            function closeProjectorScreen() {
-                if (projectorOverlay) {
-                    projectorOverlay.classList.remove('active');
-                }
-                document.body.style.overflow = 'auto';
-                
-                // Restore original chalkboard content
-                restoreOriginalContent();
-                
-                // Stop video by reloading iframe
-                if (youtubePlayer) {
-                    const src = youtubePlayer.src;
-                    youtubePlayer.src = '';
-                    setTimeout(() => { youtubePlayer.src = src; }, 100);
-                }
-            }
-
-            // Double-click chalkboard to restore original content
-            if (chalkboardContent) {
-                chalkboardContent.addEventListener('dblclick', function() {
-                    console.log('Chalkboard double-clicked!');
-                    restoreOriginalContent();
-                });
-            }
-
-            // Final debug info
-            console.log('Filing cabinet initialization complete');
-            console.log('Window width:', window.innerWidth);
-            console.log('Window height:', window.innerHeight);
-            
-            // Check if desktop enhancements are visible
-            const desktopEnhancements = document.querySelector('.desktop-enhancements');
-            if (desktopEnhancements) {
-                const computedStyle = window.getComputedStyle(desktopEnhancements);
-                console.log('Desktop enhancements display:', computedStyle.display);
-                console.log('Desktop enhancements visibility:', computedStyle.visibility);
-            }
-            
-            // Test that we can access the elements
-            if (articlesDrawer && professionalDrawer) {
-                console.log('Both drawers are accessible and ready for clicks');
-                
-                // Check if drawers are visible
-                const articlesStyle = window.getComputedStyle(articlesDrawer);
-                const professionalStyle = window.getComputedStyle(professionalDrawer);
-                console.log('Articles drawer display:', articlesStyle.display);
-                console.log('Professional drawer display:', professionalStyle.display);
-            } else {
-                console.error('One or both drawers are missing!');
-            }
+            console.log('Filing cabinet and projector initialization complete');
             
         } catch (error) {
             console.error('Error in filing cabinet initialization:', error);

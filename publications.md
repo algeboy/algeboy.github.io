@@ -5,65 +5,6 @@ title: Publications
 permalink: /publications/
 ---
 
-<div class="publications-content">
-    <h1>Publications & Research</h1>
-    
-    <div class="publication-item">
-        <h3>Linear Data Structures in Modern Computing</h3>
-        <p><strong>James B. Wilson</strong> - 2024</p>
-        <p>Exploring the mathematical foundations of data science through tensor algebra and nilpotent structures. This comprehensive work bridges the gap between pure mathematics and practical data science applications.</p>
-        <div class="publication-links">
-            <a href="#" class="pub-link">PDF</a> | 
-            <a href="#" class="pub-link">BibTeX</a> | 
-            <a href="#" class="pub-link">DOI</a>
-        </div>
-    </div>
-
-    <div class="publication-item">
-        <h3>Tensor Products in Machine Learning Algorithms</h3>
-        <p><strong>James B. Wilson</strong>, <em>Co-Author Name</em> - 2023</p>
-        <p>Applications of distributive algebra in modern computational frameworks. Demonstrates how mathematical tensor operations can optimize machine learning model performance.</p>
-        <div class="publication-links">
-            <a href="#" class="pub-link">PDF</a> | 
-            <a href="#" class="pub-link">BibTeX</a> | 
-            <a href="#" class="pub-link">DOI</a>
-        </div>
-    </div>
-
-    <div class="publication-item">
-        <h3>Algebraic Foundations of Data Science</h3>
-        <p><strong>James B. Wilson</strong> - 2023</p>
-        <p>Mathematical structures underlying contemporary data analysis techniques. Provides theoretical framework for understanding data relationships through algebraic lens.</p>
-        <div class="publication-links">
-            <a href="#" class="pub-link">PDF</a> | 
-            <a href="#" class="pub-link">BibTeX</a> | 
-            <a href="#" class="pub-link">DOI</a>
-        </div>
-    </div>
-
-    <div class="publication-item">
-        <h3>Nilpotent Structures in Computational Mathematics</h3>
-        <p><strong>James B. Wilson</strong>, <em>Research Team</em> - 2022</p>
-        <p>Investigation of nilpotent algebraic structures and their applications in solving complex computational problems in various mathematical domains.</p>
-        <div class="publication-links">
-            <a href="#" class="pub-link">PDF</a> | 
-            <a href="#" class="pub-link">BibTeX</a> | 
-            <a href="#" class="pub-link">DOI</a>
-        </div>
-    </div>
-
-    <div class="publication-item">
-        <h3>Multilinear Algebra Applications in Data Processing</h3>
-        <p><strong>James B. Wilson</strong> - 2022</p>
-        <p>Comprehensive analysis of how multilinear algebraic methods can be applied to improve data processing efficiency and accuracy in large-scale systems.</p>
-        <div class="publication-links">
-            <a href="#" class="pub-link">PDF</a> | 
-            <a href="#" class="pub-link">BibTeX</a> | 
-            <a href="#" class="pub-link">DOI</a>
-        </div>
-    </div>
-</div>
-
 <style>
 .publications-content {
     padding: 20px 0;
@@ -73,26 +14,64 @@ permalink: /publications/
     margin-bottom: 40px;
     padding: 20px;
     border-left: 4px solid var(--chalk-blue);
-    background: rgba(100, 181, 246, 0.1);
-    border-radius: 0 12px 12px 0;
+    background: transparent;
+    border-radius: 0;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
 }
 
 .publication-item:hover {
-    background: rgba(100, 181, 246, 0.15);
+    border-left-color: var(--chalk-yellow);
     transform: translateX(5px);
 }
 
-.publication-item h3 {
-    margin-bottom: 10px;
-    color: var(--chalk-yellow);
-    font-size: 1.4em;
+.publication-content {
+    flex: 1;
 }
 
-.publication-item p {
+.publication-image {
+    width: 150px;
+    height: 100px;
+    border-radius: 8px;
+    <!-- border: 2px solid var(--chalk-blue); -->
+    <!-- background: rgba(100, 181, 246, 0.1); -->
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--chalk-blue);
+    font-size: 0.8em;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.publication-title {
+    margin-bottom: 10px;
+    color: var(--chalk-yellow);
+    font-size: 1.3em;
+    font-style: italic;
+}
+
+.publication-authors {
+    margin-bottom: 8px;
+    color: var(--chalk-blue);
+    font-weight: bold;
+}
+
+.publication-venue {
     margin-bottom: 10px;
     color: var(--chalk-white);
     line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.publication-description {
+    margin-bottom: 15px;
+    color: var(--chalk-white);
+    line-height: 1.6;
+    font-style: italic;
+    opacity: 0.9;
 }
 
 .publication-links {
@@ -104,297 +83,560 @@ permalink: /publications/
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border: 1px solid var(--chalk-green);
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 5px;
 }
 
 .pub-link:hover {
     color: var(--chalk-yellow);
-    text-decoration: underline;
-}
-</style>
-    font-size: 1.5em;
-}
-
-.chalkboard-paper h2:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.chalkboard-paper h3 {
-    color: #C8C372;
-    margin-bottom: 1em;
-    font-size: 1.2em;
-}
-
-.chalkboard-paper .content {
-    color: #b2ffb2;
-    margin-top: 1em;
-    line-height: 1.6;
-}
-
-.chalkboard-paper .authors {
-    color: #87ceeb;
-    font-style: italic;
-    margin-bottom: 0.5em;
-}
-
-.chalkboard-paper .journal {
-    color: #C8C372;
-    margin-bottom: 1em;
-    font-size: 0.9em;
-}
-
-.chalkboard-paper .research-area {
-    color: #87ceeb;
-    font-style: italic;
-    margin-bottom: 1em;
-}
-
-.chalkboard-paper .description {
-    color: #ddd;
-    margin-top: 0.5em;
-    font-size: 0.95em;
-}
-
-.chalkboard-paper .links {
-    margin-top: 1.5em;
-}
-
-.chalkboard-paper .links a {
-    color: #ffeb3b;
+    border-color: var(--chalk-yellow);
     text-decoration: none;
-    margin-right: 1em;
-    padding: 0.3em 0.8em;
-    border: 1px solid #ffeb3b;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    display: inline-block;
-    margin-bottom: 0.5em;
 }
 
-.chalkboard-paper .links a:hover {
-    <!-- background: #ffeb3b; -->
-    color: #222;
-}
-
-/* Scroll indicator */
-.scroll-indicator {
-    position: fixed;
-    right: 2em;
-    top: 50%;
-    transform: translateY(-50%);
-    writing-mode: vertical-lr;
-    color: #666;
-    font-size: 0.8em;
-    z-index: 100;
+.section-title {
+    color: var(--chalk-yellow);
+    font-size: 1.8em;
+    margin: 40px 0 20px 0;
+    border-bottom: 2px solid var(--chalk-yellow);
+    padding-bottom: 10px;
 }
 
 @media (max-width: 768px) {
-    .chalkboard-paper {
-        margin: 1em;
-        padding: 1.5em;
+    .publication-item {
+        flex-direction: column;
     }
-    .scroll-indicator {
-        display: none;
+    
+    .publication-image {
+        width: 100%;
+        height: 80px;
     }
 }
 </style>
 
-<div class="scroll-indicator">Scroll to explore</div>
-
-<script>
-(function() {
-    const publications = [
-        {
-            type: 'article',
-            title: 'The threshold for subgroup profiles to agree is log n-2',
-            journal: 'Theory of Computing, Vol. 15, pp. 1--25, 2019',
-            content: '<p><strong>Theorem</strong> There are families of groups, no two of which are the same, but having all the same proper subgroups, quotient groups, conjugacy classes, character tables and automorphism groups.  And all this with groups have the maximum number of subgroups possible.</p><p>In short, to say two groups are different is not about finding a difference in structure.</p>',
-            links: [
-                { text: 'Offprint (CC-BY)', url: 'https://theoryofcomputing.org/articles/v015a019/' }
-            ]
-        },
-        {
-            type: 'book',
-            title: 'Linear Data',
-            subtitle: 'A comprehensive treatment of linear algebraic data structures and their applications',
-            content: 'An in-depth exploration of how linear algebra provides the foundation for understanding data structures, algorithms, and computational methods in modern mathematics and computer science.',
-            links: [
-                { text: 'Read Online', url: 'https://algeboy.github.io/LinearData/' }
-            ]
-        },
-        {
-            type: 'article',
-            title: 'Tensor Isomorphism by conjugacy of Lie algebras',
-            authors: 'with Peter A. Brooksbank, Joshua Maglione',
-            journal: 'J. Algebra 604 (2022) 790-807',
-            links: [
-                { text: 'arXiv:2005.04046', url: 'https://arxiv.org/abs/2005.04046' }
-            ]
-        },
-        {
-            type: 'article',
-            title: 'Subgroups of simple groups are as diverse as possible',
-            authors: 'with Martin Kassabov, Brady Tyburski',
-            journal: 'Bulletin LMS, 54 (1) 2022',
-            links: [
-                { text: 'Offprint', url: 'https://londmathsoc.onlinelibrary.wiley.com/doi/full/10.1112/blms.12573' },
-                { text: 'arXiv:2007.10439', url: 'https://arxiv.org/abs/2007.10439' }
-            ]
-        },
-        {
-            type: 'article',
-            title: 'Group isomorphism is nearly-linear time for most orders',
-            authors: 'with Heiko Dietrich',
-            journal: 'Proc. IEEE Symp. on Found. Comp. Sci (FOCS) 2022, 457-467',
-            links: [
-                { text: 'Offprint', url: 'https://ieeexplore.ieee.org/document/9719733' }
-            ]
-        },
-        {
-            type: 'article',
-            title: 'New Lie products for groups and their automorphisms',
-            journal: 'J. Group Theory, 24 (4) 2021',
-            links: [
-                { text: 'arXiv:1501.04670', url: 'https://arxiv.org/abs/1501.04670' }
-            ]
-        },
-        {
-            type: 'article',
-            title: 'Exact sequences of inner automorphisms of tensors',
-            authors: 'with Peter A. Brooksbank, Joshua Maglione',
-            journal: 'J. Algebra 545 (2019) 43-65',
-            links: [
-                { text: 'arXiv:1812.00275', url: 'http://arxiv.org/abs/1812.00275' }
-            ]
-        },
-        {
-            type: 'article',
-            title: 'Isomorphism testing of groups of cube-free order',
-            authors: 'with Heiko Dietrich',
-            journal: 'J. Algebra 545 (2019) 174-197',
-            links: [
-                { text: 'arXiv:1810.03467', url: 'http://arxiv.org/abs/1810.03467' }
-            ]
-        },
-        {
-            type: 'preprint',
-            title: 'Isomorphism Invariant Metrics',
-            authors: 'with P. Brooksbank, J. Maglione, E.A. O\'Brien',
-            links: [
-                { text: 'arXiv:2304.00465', url: 'https://arxiv.org/abs/2304.00465' }
-            ]
-        },
-        {
-            type: 'preprint',
-            title: 'A spectral theory for transverse tensor operators',
-            authors: 'with U. First, J.Maglione',
-            links: [
-                { text: 'arXiv:1911.02518', url: 'https://arxiv.org/abs/1911.02518' }
-            ]
-        },
-        {
-            type: 'preprint',
-            title: 'Polynomial-time isomorphism testing of groups of most finite orders',
-            authors: 'with H. Dietrich',
-            links: [
-                { text: 'arXiv:1806.08872', url: 'https://arxiv.org/abs/1806.08872' }
-            ]
-        },
-        {
-            type: 'software',
-            title: 'TameGenus',
-            content: 'Software for high-speed isomorphism for tame representations',
-            authors: 'Co-written with Peter A. Brooksbank and Joshua Maglione',
-            links: [
-                { text: 'GitHub Repository', url: 'https://github.com/algeboy/TameGenus' }
-            ]
-        },
-        {
-            type: 'software',
-            title: 'Multilinear Algebra Group',
-            content: 'General purpose software developed for high-dimensional tensors',
-            authors: 'Co-written with Josh Maglione, with contributions from P.A. Brooksbank',
-            links: [
-                { text: 'GitHub Repository', url: 'https://github.com/algeboy/eMAGma' },
-                { text: 'MAGMA System', url: 'http://magma.maths.usyd.edu.au/magma/handbook/multilinear_algebra' }
-            ]
-        },
-        {
-            type: 'software',
-            title: 'StarAlgebras',
-            content: 'Software for algebras with involutions, isometry groups, and intersections of isometry groups',
-            authors: 'Co-written with Peter A. Brooksbank',
-            links: [
-                { text: 'GitHub Repository', url: 'https://github.com/algeboy/StarAlge' },
-                { text: 'MAGMA System', url: 'http://magma.maths.usyd.edu.au/magma/handbook/algebras_with_involution' }
-            ]
-        }
-    ];
-
-    function createChalkboardPaper(pub, index) {
-        const paper = document.createElement('div');
-        paper.className = 'chalkboard-paper';
-        paper.style.transitionDelay = `${index * 0.1}s`;
-
-        let linksHTML = '';
-        if (pub.links) {
-            linksHTML = '<div class="links">' + 
-                pub.links.map(link => `<a href="${link.url}" target="_blank">${link.text}</a>`).join('') +
-                '</div>';
-        }
-
-        let titleElement = '';
-        if (pub.type === 'book') {
-            titleElement = `<h2 onclick="window.open('${pub.links[0].url}', '_blank')">${pub.title}</h2>`;
-        } else {
-            titleElement = `<h2>${pub.title}</h2>`;
-        }
-
-        paper.innerHTML = `
-            ${titleElement}
-            ${pub.subtitle ? `<h3>${pub.subtitle}</h3>` : ''}
-            ${pub.authors ? `<div class="authors">${pub.authors}</div>` : ''}
-            ${pub.journal ? `<div class="journal">${pub.journal}</div>` : ''}
-            ${pub.content ? `<div class="content">${pub.content}</div>` : ''}
-            ${pub.description ? `<div class="description">${pub.description}</div>` : ''}
-            ${linksHTML}
-        `;
-
-        return paper;
-    }
-
-    function loadPublications() {
-        const container = document.getElementById('chalkboard-publications');
-        publications.forEach((pub, index) => {
-            const paper = createChalkboardPaper(pub, index);
-            container.appendChild(paper);
-        });
-        revealOnScroll(); // Check initial state
-    }
-
-    function revealOnScroll() {
-        document.querySelectorAll('.chalkboard-paper').forEach(paper => {
-            const rect = paper.getBoundingClientRect();
-            if (rect.top < window.innerHeight - 100) {
-                paper.classList.add('visible');
-            }
-        });
-    }
-
-    // Initialize
-    loadPublications();
+<div class="publications-content">
     
-    // Scroll event
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(revealOnScroll, 10);
-    });
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Detecting null patterns in tensor data</div>
+            <div class="publication-authors">with Peter A. Brooksbank, Martin D. Kassabov</div>
+            <div class="publication-venue">arXiv preprint</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/2408.17425" class="pub-link">arXiv:2408.17425</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
 
-    // Reveal first paper immediately
-    setTimeout(() => {
-        const firstPaper = document.querySelector('.chalkboard-paper');
-        if (firstPaper) firstPaper.classList.add('visible');
-    }, 500);
-})();
-</script>
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Categorification of characteristic structures</div>
+            <div class="publication-authors">with Peter A. Brooksbank, Heiko Dietrich, Joshua Maglione, E. A. O'Brien</div>
+            <div class="publication-venue">Forum of Mathematics, Sigma (to appear)</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/2502.01138" class="pub-link">arXiv:2502.01138</a>
+            </div>
+            
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+    
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Tensor Isomorphism by conjugacy of Lie algebras</div>
+            <div class="publication-authors">with Peter A. Brooksbank, Joshua Maglione</div>
+            <div class="publication-venue">J. Algebra 604 (2022) 790-807</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/2005.04046" class="pub-link">arXiv:2005.04046</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Subgroups of simple groups are as diverse as possible</div>
+            <div class="publication-authors">with Martin Kassabov, Brady Tyburski</div>
+            <div class="publication-venue">Bulletin LMS, 54 (1) 2022</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://londmathsoc.onlinelibrary.wiley.com/doi/full/10.1112/blms.12573" class="pub-link">Offprint</a>
+                <a href="https://arxiv.org/abs/2007.10439" class="pub-link">arXiv:2007.10439</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Group isomorphism is nearly-linear time for most orders</div>
+            <div class="publication-authors">with Heiko Dietrich</div>
+            <div class="publication-venue">Proc. IEEE Symp. on Found. Comp. Sci (FOCS) 2022, 457-467</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://ieeexplore.ieee.org/document/9719733" class="pub-link">Offprint</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">New Lie products for groups and their automorphisms</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">J. Group Theory, 24 (4) 2021</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/1501.04670" class="pub-link">arXiv:1501.04670</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Improved Algorithms for Alternating Matrix Space Isometry: from Theory to Practice</div>
+            <div class="publication-authors">with Peter A. Brooksbank, Yinan Li, Youming Qiao</div>
+            <div class="publication-venue">European Symposium on Algorithms (ESA2020)</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/1905.02518" class="pub-link">arXiv:1905.02518</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">The threshold for subgroup profiles to agree is log n-2</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">Theory of Computing, Vol. 15, pp. 1–25, 2019</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://theoryofcomputing.org/articles/v015a019/" class="pub-link">Offprint (CC-BY)</a>
+                <a href="https://www.math.colostate.edu/~jwilson/papers/Profiles.pdf" class="pub-link">Slides</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Exact sequences of inner automorphisms of tensors</div>
+            <div class="publication-authors">with Peter A. Brooksbank, Joshua Maglione</div>
+            <div class="publication-venue">J. Algebra 545 (2019) 43-65</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="http://arxiv.org/abs/1812.00275" class="pub-link">arXiv:1812.00275</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Isomorphism testing of groups of cube-free order</div>
+            <div class="publication-authors">with Heiko Dietrich</div>
+            <div class="publication-venue">J. Algebra 545 (2019) 174-197</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="http://arxiv.org/abs/1810.03467" class="pub-link">arXiv:1810.03467</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Isomorphism testing of Graded algebras</div>
+            <div class="publication-authors">with P.A. Brooksbank and E.A. O'Brien</div>
+            <div class="publication-venue">Trans. Amer. Math. Soc. 372 (11) 2019, 8067–8090</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="http://arxiv.org/abs/1708.08873" class="pub-link">arXiv:1708.08873</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">A fast isomorphism test for groups of genus 2</div>
+            <div class="publication-authors">with P. A. Brooksbank and J. Maglione</div>
+            <div class="publication-venue">J. Algebra, 473 (2017) 545-590</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">On automorphisms of groups, rings, and algebras</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">Comm. Algebra, 45 (2017) no. 4, 1452-1478</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <h2 class="section-title">Earlier Works</h2>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">The module isomorphism problem reconsidered</div>
+            <div class="publication-authors">with P. A. Brooksbank</div>
+            <div class="publication-venue">J. Algebra 421 (2015) 541-559</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Groups acting on tensor products</div>
+            <div class="publication-authors">with P. A. Brooksbank</div>
+            <div class="publication-venue">J. Pure Appl. Alge. 218 (2014) 405-416</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">More characteristic subgroups, Lie rings, and isomorphism tests for p-groups</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">J. Group Theory 16 6 (2013) 875-897</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Division, adjoints, and dualities of bilinear maps</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">Communications in Algebra 41 11 (2013) 3989-4008</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Optimal Gram-Schmidt type algorithms</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">Linear Algebra and Its Applications 438 (2013) 4573-4583</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Existence, algorithms, and asymptotics of direct product decompositions, I</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">Groups - Complexity - Cryptology 4 (2012), 33-72</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Isomorphism in expanding families of indistinguishable groups</div>
+            <div class="publication-authors">with M. L. Lewis</div>
+            <div class="publication-venue">Groups - Complexity - Cryptology 4 (2012) 73-110</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Intersecting two classical groups</div>
+            <div class="publication-authors">with P. A. Brooksbank</div>
+            <div class="publication-venue">J. Algebra 353 (2012) 286-297</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Computing isometry groups of Hermitian maps</div>
+            <div class="publication-authors">with P. A. Brooksbank</div>
+            <div class="publication-venue">Trans. Amer. Math. Soc. 364 (2012) 1975-1996</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Decomposing p-groups via Jordan algebras</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">J. Algebra 322 (2009) 2642-2679</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Finding central decompositions of p-groups</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">J. of Group Theory 12 (2009) 813-830</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">On linear-size reductions and completeness</div>
+            <div class="publication-authors">with T. Miyazaki</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <h2 class="section-title">Preprints & arXiv Papers</h2>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Isomorphism Invariant Metrics</div>
+            <div class="publication-authors">with P. Brooksbank, J. Maglione, E.A. O'Brien</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/2304.00465" class="pub-link">arXiv:2304.00465</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">A spectral theory for transverse tensor operators</div>
+            <div class="publication-authors">with U. First, J.Maglione</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/1911.02518" class="pub-link">arXiv:1911.02518</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">A Frobenius-Schreier-Sims Algorithm to tensor decompose algebras</div>
+            <div class="publication-authors">with Ian Holm Kessler, Henry Kvinge</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/1812.03346" class="pub-link">arXiv:1812.03346</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Polynomial-time isomorphism testing of groups of most finite orders</div>
+            <div class="publication-authors">with H. Dietrich</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/1806.08872" class="pub-link">arXiv:1806.08872</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Existence, algorithms, and asymptotics of direct product decompositions, II</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://arxiv.org/abs/1005.0548" class="pub-link">arXiv:1005.0548</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Discovering tensor structures by non-associative algebra</div>
+            <div class="publication-authors">with P. Brooksbank and M. Kassabov</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Characteristic structure as splitting categories</div>
+            <div class="publication-authors">with P. Brooksbank, J. Maglione, E.A. O'Brien</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Efficiently Computing with categories and high-order structures</div>
+            <div class="publication-authors">with P. Brooksbank, H. Dietrich, J. Maglione, E.A. O'Brien</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Isomorphism Testing through higher categories</div>
+            <div class="publication-authors">with P. Brooksbank, H. Dietrich, J. Maglione, E.A. O'Brien</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">A representation theory of bilinear maps</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <h2 class="section-title">Projects in Development</h2>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Group isomorphism is tied up in knots</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">NP-completeness as a method of counting</div>
+            <div class="publication-authors">with Takunari Miyazaki</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">On indecomposable p-groups</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Parallel algorithms for rings</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Sylow subgroups in solvable matrix groups</div>
+            <div class="publication-authors">with W. M. Kantor and E. M. Luks</div>
+            <div class="publication-description"><!-- Add description --></div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+</div>

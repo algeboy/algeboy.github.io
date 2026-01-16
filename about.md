@@ -1,17 +1,28 @@
 ---
 layout: page
-width: small
+width: expand
 title: About James
 permalink: /about/
 ---
 
-* Professor of Mathematics, Colorado State University (since 2011)
-* Associate Editor, Journal of Algebra (since 2024)
+## Key Facts
+* Professor of Mathematics, Colorado State University 
+* Co-developed <strong>Linear Data</strong> with Professor Emily J. King. A course where Data Science and Linear Algebra are equals.  Take the online course [CSU Online's Data Science Linear Algebra](https://online.colostate.edu/courses/DSCI/DSCI369.dot) [**Or get our Free Book**](https://LinearData.Space). 
+* Industry experience with Intel Corporation 1997-2001 consulting 2009-2020.
+* Gave first <strong>polynomial-time</strong> algorithms for...
+    - Direct and Central product decomposition even in black-box (thesis) [Read more.]()
+    - Intersecting classical groups (with P.A. Brooksbank) [Read more.]()
+    - Isomorphism testing of finite groups of most order (with H. Dietrich) [Read more.]()
+ * Responsible for...
+    - Continuous data clustering (with P.A. Brooksbank & M.D. Kassabov) [See it for yourself.]()
+    - Negative answer to a question of [Gowers](https://en.wikipedia.org/wiki/Timothy_Gowers) and [Babai](https://en.wikipedia.org/wiki/László_Babai) on fast group isomorphism through local-global structure. [Read the whole story.]()
+    - Generalizing Hilbert's Nullstellensatz to arbitrary tensor data. (with U. First, J. Maglione) [Powerful but takes a minute to explain here.]()
 
-## Random Facts
-* Age?  Yes I am aging, but I plan to see Haley's Comet twice in my life.
-* YouTube? My channel @Algeboy gathers workshop talks on Tensors by me and my friends and videos of some of my online courses.
-* Online Courses?
+## Random Questions
+* Age?  Yes I am aging, but I am working out now.  Trying to see Haley's Comet twice in my life.
+* YouTube? <a href="#" onclick="openVideoModal('@algeboy')"><strong>My channel @algeboy</strong></a> gathers workshop talks on Tensors by me and my friends and videos of some of my online courses. 
+* Take a Course from me?  
+ * Coming Summer 2026 is my course on <strong>Math for Computational Science</strong> with Professor Dustin Tucker.
 
 ## Connect
 If you would like me to learn about **your** profession
@@ -50,7 +61,7 @@ join me here on
 <ul>
     <li> <b>Henri Poincare Institute</b>, Sorbonne, Paris 
     <i>Post-quantum Cryptography</i> & <i>Random Tensors</i>
-    Fall 2024.</li>
+    October 2024.</li>
     <li><b>Isaac Newton Institute for Mathematical Sciences</b>, 
         Cambridge U., Cambridge, Special Program: <i>Groups Representations and Applications</i>  
         Jan. 2020.</li>
