@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Software / Tools
-permalink: /softwaretools/
+permalink: /softwareTools/
 ---
 
 <style>
