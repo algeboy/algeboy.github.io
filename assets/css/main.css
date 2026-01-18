@@ -86,7 +86,7 @@ body {
 /* Hamburger Menu Button */
 .hamburger-menu {
   position: fixed;
-  top: 0px;
+  top: 7px;
   right: 20px;
   width: 45px;
   height: 45px;
@@ -94,7 +94,7 @@ body {
   border: 2px solid #C8C372;
   border-radius: 5px;
   cursor: pointer;
-  z-index: 1001;
+  z-index: 10000;
   display: flex;
   flex-direction: column;
   justify-content: center;

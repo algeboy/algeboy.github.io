@@ -174,32 +174,40 @@
         console.log('Header click handler attached');
     }
     
-    // Hamburger Menu Toggle
-    const hamburgerBtn = document.getElementById('hamburger-btn');
-    const slideMenu = document.getElementById('slide-menu');
-    const closeMenuBtn = document.getElementById('close-menu');
-    const menuOverlay = document.getElementById('menu-overlay');
-    
-    function openMenu() {
-      slideMenu.classList.add('active');
-      menuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-    
-    function closeMenu() {
-      slideMenu.classList.remove('active');
-      menuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-    
-    hamburgerBtn.addEventListener('click', openMenu);
-    closeMenuBtn.addEventListener('click', closeMenu);
-    menuOverlay.addEventListener('click', closeMenu);
-    
-    // Close menu when clicking on a link
-    const menuLinks = slideMenu.querySelectorAll('a');
-    menuLinks.forEach(link => {
-      link.addEventListener('click', closeMenu);
+    // Hamburger Menu Toggle - Wait for DOM
+    document.addEventListener('DOMContentLoaded', function() {
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const slideMenu = document.getElementById('slide-menu');
+      const closeMenuBtn = document.getElementById('close-menu');
+      const menuOverlay = document.getElementById('menu-overlay');
+      
+      function openMenu(e) {
+        e.stopPropagation(); // Prevent click from bubbling to classroom-header
+        slideMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeMenu() {
+        slideMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      if (hamburgerBtn && slideMenu && closeMenuBtn && menuOverlay) {
+        hamburgerBtn.addEventListener('click', openMenu);
+        closeMenuBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        
+        // Close menu when clicking on a link
+        const menuLinks = slideMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+          link.addEventListener('click', closeMenu);
+        });
+        console.log('Hamburger menu initialized');
+      } else {
+        console.error('Hamburger menu elements not found');
+      }
     });
   </script>
 </head>
