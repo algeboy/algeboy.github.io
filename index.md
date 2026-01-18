@@ -1,10 +1,10 @@
 ---
+title: Call me James
 layout: page
 width: expand
 ---
 
-## Call me James
-### Theorem 1.* Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science
+## Theorem 1.* Nilpotent $\Leftrightarrow$ Tensors $\Leftrightarrow$ Data science
 
 <!-- <p class="uk-text-large" align="left"> -->
 <i>Proof:</i>  A <strong>Nilpotent</strong>---zero powered $0=x^n=x\cdot x\cdots x$ hides a product $(\cdot)$.  And every zero $(0)$ needs a plus $(+)$.  For times to talk to plus means to <strong>distribute</strong>  
