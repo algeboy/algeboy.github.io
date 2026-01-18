@@ -312,13 +312,15 @@
                     // Play motor sound while screen descends
                     playMotorSound(800);
                     
-                    // Load YouTube video
-                    if (youtubeIframe) {
-                        youtubeIframe.src = 'https://www.youtube.com/embed/D8Upe7RGL94?autoplay=1';
-                    }
-                    
                     // Show projector screen with animation
                     projectorScreen.classList.add('active');
+                    
+                    // Load YouTube video after screen descends (800ms animation + 300ms pause)
+                    if (youtubeIframe) {
+                        setTimeout(() => {
+                            youtubeIframe.src = 'https://www.youtube.com/embed/D8Upe7RGL94?autoplay=1';
+                        }, 2100);
+                    }
                 });
                 console.log('TV click handler attached');
             } else {
