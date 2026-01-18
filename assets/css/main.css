@@ -1275,7 +1275,8 @@ footer {
 .tv-container {
     width: 100%;
     height: 120px;
-    margin-bottom: 20px;
+    margin-top: 9px;
+    margin-bottom: 15px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
@@ -1285,12 +1286,12 @@ footer {
 }
 
 .tv-frame {
-    background: linear-gradient(145deg, #2c2c2c, #1a1a1a);
+    background: linear-gradient(145deg, #e8dcc0, #d4b37b);
     border-radius: 10px;
     padding: 10px;
     box-shadow: 
         0 8px 20px rgba(0,0,0,0.5),
-        inset 0 1px 3px rgba(255,255,255,0.1);
+        inset 0 1px 3px rgba(255,255,255,0.3);
     position: relative;
     height: 100%;
 }
@@ -1344,6 +1345,28 @@ footer {
     font-size: 0.6em;
     color: #666;
     letter-spacing: 1px;
+}
+
+.tv-base {
+    width: 60%;
+    height: 8px;
+    background: linear-gradient(145deg, #ae8b4f, #bf8f2e);
+    margin: 0 auto 0 auto;
+    border-radius: 4px 4px 0 0;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tv-base::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40%;
+    height: 8px;
+    background: linear-gradient(145deg, #b08122, #af7a11);
+    border-radius: 0 0 3px 3px;
 }
 
 /* Filing Cabinet Styles */
