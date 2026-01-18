@@ -28,7 +28,7 @@ permalink: /about/
 If you would like me to learn about **your** profession
 <a href="https://www.linkedin.com/in/james-wilson-9909b4134/">
 join me here on
-<img src="images/linkedin.png" height=20 alt="linkedin"></a>
+<img src="/images/icons/linkedin-chalk.svg" height=20 alt="linkedin"></a>
 
 ## Education
 
