@@ -1517,3 +1517,110 @@ footer {
     color: var(--chalk-yellow);
 }
 
+/* Posts Page Styling */
+.posts-container {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.posts-grid {
+    display: grid;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.post-preview {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--chalk-yellow);
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.post-preview:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--chalk-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.post-title {
+    color: var(--chalk-yellow);
+    font-size: 1.8em;
+    margin-bottom: 10px;
+    text-decoration: none;
+    display: block;
+    font-weight: bold;
+}
+
+.post-date {
+    color: var(--chalk-blue);
+    font-size: 1em;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.post-excerpt {
+    color: var(--chalk-white);
+    line-height: 1.6;
+    font-size: 1.1em;
+}
+
+.posts-navigation {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.nav-button {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 0 10px;
+    background: var(--chalk-blue);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.nav-button:hover {
+    background: var(--chalk-yellow);
+    color: #333;
+    border-color: var(--chalk-blue);
+    transform: translateY(-2px);
+}
+
+.nav-button:disabled,
+.nav-button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.posts-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.posts-header h1 {
+    color: var(--chalk-yellow);
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.posts-header p {
+    color: var(--chalk-white);
+    font-size: 1.3em;
+    opacity: 0.9;
+}
+
+.no-posts {
+    text-align: center;
+    color: var(--chalk-white);
+    font-size: 1.3em;
+    padding: 60px 20px;
+}
+
