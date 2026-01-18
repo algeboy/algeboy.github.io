@@ -1351,22 +1351,23 @@ footer {
     width: 60%;
     height: 8px;
     background: linear-gradient(145deg, #ae8b4f, #bf8f2e);
-    margin: 0 auto 0 auto;
-    border-radius: 4px 4px 0 0;
+    margin: 7px auto 0 auto;
+    border-radius: 0 0 4px 4px;
     position: relative;
+    z-index: -1;
     box-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
 .tv-base::before {
     content: '';
     position: absolute;
-    bottom: -8px;
+    top: -8px;
     left: 50%;
     transform: translateX(-50%);
     width: 40%;
     height: 8px;
     background: linear-gradient(145deg, #b08122, #af7a11);
-    border-radius: 0 0 3px 3px;
+    border-radius: 3px 3px 0 0;
 }
 
 /* Filing Cabinet Styles */
