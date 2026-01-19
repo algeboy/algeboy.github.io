@@ -1,0 +1,63 @@
+<div style="text-align: center; margin: 30px 0;">
+  <button class="pdf-button" data-pdf-src="{{ include.src }}" style="display: inline-block; padding: 20px 40px; background: transparent; color: white; text-decoration: none; border: 3px solid rgba(255, 255, 255, 0.8); border-radius: 255px 15px 225px 15px/15px 225px 15px 255px; font-size: 1.2em; font-weight: bold; transition: transform 0.2s; cursor: pointer; position: relative; z-index: 100; box-shadow: 0 0 3px rgba(255, 255, 255, 0.5), inset 0 0 3px rgba(255, 255, 255, 0.3);" onmouseover="this.style.transform='translateY(-3px) scale(1.05)';" onmouseout="this.style.transform='';">
+    {% if include.image %}
+    <img src="{{ include.image }}" alt="{{ include.title }}" style="max-width: 200px; max-height: 200px; display: block; margin: 0 auto 10px; border: none; border-radius: 0;">
+    {% else %}
+    <span style="font-size: 2em; display: block; margin-bottom: 10px;">📄</span>
+    {% endif %}
+    {{ include.title }}
+    {% if include.desc %}
+    <div style="font-size: 0.85em; font-weight: normal; margin-top: 8px; opacity: 0.9;">{{ include.desc }}</div>
+    {% endif %}
+  </button>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const pdfButtons = document.querySelectorAll('.pdf-button');
+  const projectorScreen = document.getElementById('projector-screen');
+  const projectorContent = document.querySelector('.projector-content');
+  const projectorClose = document.getElementById('projector-close');
+  const youtubeContainer = document.getElementById('youtube-container');
+  
+  pdfButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const pdfSrc = this.getAttribute('data-pdf-src');
+      
+      if (projectorScreen && projectorContent) {
+        // Hide YouTube container
+        if (youtubeContainer) youtubeContainer.style.display = 'none';
+        
+        // Create or update PDF iframe
+        let pdfIframe = document.getElementById('pdf-iframe');
+        if (!pdfIframe) {
+          pdfIframe = document.createElement('iframe');
+          pdfIframe.id = 'pdf-iframe';
+          pdfIframe.style.width = '100%';
+          pdfIframe.style.height = '80vh';
+          pdfIframe.style.border = 'none';
+          pdfIframe.style.borderRadius = '8px';
+          projectorContent.appendChild(pdfIframe);
+        } else {
+          pdfIframe.style.display = 'block';
+        }
+        
+        pdfIframe.src = pdfSrc;
+        
+        // Show projector screen
+        projectorScreen.classList.add('active');
+      }
+    });
+  });
+  
+  // Update close handler to also hide PDF
+  if (projectorClose) {
+    projectorClose.addEventListener('click', function() {
+      const pdfIframe = document.getElementById('pdf-iframe');
+      if (pdfIframe) pdfIframe.style.display = 'none';
+      if (youtubeContainer) youtubeContainer.style.display = 'block';
+    });
+  }
+});
+</script>
