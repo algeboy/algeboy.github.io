@@ -7,7 +7,7 @@ description:        Sharing research, software, and opinions.
 lang:               en
 baseurl:            ""
 url:                "https://algeboy.github.io"
-favicon:            "favicon.ico"
+favicon:            "favicon.png"
 
 # Social links
 social:
