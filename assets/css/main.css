@@ -1820,3 +1820,103 @@ hr::before {
     color: var(--chalk-white, #fff);
     font-size: 1.2em;
 }
+
+/* Rant Overlay Styles */
+.rant-trigger {
+    color: var(--chalk-yellow);
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    text-decoration-color: var(--chalk-yellow);
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.rant-trigger:hover {
+    color: var(--chalk-white);
+    text-decoration-color: var(--chalk-white);
+}
+
+.rant-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 30, 30, 0.85);
+    z-index: 10001;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+}
+
+.rant-overlay.active {
+    display: flex;
+}
+
+.rant-content {
+    background: linear-gradient(135deg, 
+        rgba(200, 195, 114, 0.95) 0%,
+        rgba(180, 175, 100, 0.92) 50%,
+        rgba(160, 155, 90, 0.95) 100%);
+    max-width: 600px;
+    max-height: 80vh;
+    padding: 40px;
+    border-radius: 50% 40% 45% 55% / 55% 45% 50% 40%;
+    border: 3px solid rgba(255, 255, 255, 0.6);
+    box-shadow: 
+        0 0 20px rgba(0, 0, 0, 0.5),
+        inset 0 0 30px rgba(255, 255, 255, 0.3),
+        0 0 50px rgba(200, 195, 114, 0.4);
+    position: relative;
+    overflow-y: auto;
+    color: #1E4D2B;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+}
+
+.rant-content::before {
+    content: '☁';
+    position: absolute;
+    top: -15px;
+    left: 10%;
+    font-size: 2em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.rant-content::after {
+    content: '☁';
+    position: absolute;
+    bottom: -15px;
+    right: 15%;
+    font-size: 1.5em;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.rant-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    color: #1E4D2B;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-weight: bold;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.rant-close:hover {
+    color: #fff;
+    transform: scale(1.2);
+}
+
+.rant-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #1E4D2B;
+    text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+}

@@ -415,6 +415,44 @@
         }
     });
     
+    // Rant overlay functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        // Find all rant triggers
+        const rantTriggers = document.querySelectorAll('.rant-trigger');
+        
+        rantTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                const rantId = this.getAttribute('data-rant');
+                const overlay = document.getElementById(rantId);
+                if (overlay) {
+                    overlay.classList.add('active');
+                }
+            });
+        });
+        
+        // Close rant overlays
+        const closeButtons = document.querySelectorAll('.rant-close');
+        closeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const overlay = this.closest('.rant-overlay');
+                if (overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+        
+        // Close on overlay background click
+        const overlays = document.querySelectorAll('.rant-overlay');
+        overlays.forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+    });
+    
     console.log('End of script tag reached');
   </script>
 </body>

@@ -29,6 +29,7 @@ Here is what I proved.
 **Theorem. (Wilson 2008)** Given a finite group $G$ represented feasibly there is a $f$-polynomial-time algorithm that returns a fully refined direct product decomposition 
 $$G=H_1\times \cdots \times H_{\ell}.$$
 
+
 ### Why groups?
 Groups have a history of being used which makes them a good target.  This backs the question up to "why are groups used".  I could guess about their significance in solving various mysteries and surely there are many reasons.  For my part I would say groups are special because they are a "recursive theory".  What I mean by that is every structure admits a group of automorphisms.  That means no matter what you study, you can frame some of the questions in terms of groups.  So the more you know about groups the more you know about things. 
 
