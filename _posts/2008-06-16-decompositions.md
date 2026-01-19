@@ -4,6 +4,7 @@ title: "Direct and central decompositions of groups"
 date: 2008-06-16 
 author: "Prof. James B. Wilson"
 excerpt: "Break down algebra"
+image: 
 ---
 
 Here's my story of one contribution I consider to be on the top of my list of contributions: an algorithm to efficiently break algebra into factors.  You can jump ahead if you like.
@@ -45,6 +46,11 @@ What might be infeasible is something like concatenating strings of letters subj
 $f$ heres stand for "factorization oracle" it was a term invented by Lajos Ronyai.  It acknowledges that we don't yet know if we factor all polynomials, because that would require factoring integers as well and that seems hard on conventional computers.  In fact the groups $\mathbb{Z}/n=\mathbb{Z}/a\times \mathbb{Z}/b$ whenever $n=ab$.  So that means that the direct product problem we want to solve is at least as hard as factoring.  What my theorem shows is that it is no harder than that.  
 
 It should be mentioned now that the original complexity of this problem was $2^{cn^2}$ where $n$ was the size of the input in a feasible model.  Factoring by the best methods takes $2^{\sqrt[3]{n}}$ so there was a substantial gap between these two problems.  We now know the complexity for group factorization is $\text{factor}(n)+O(n^6)$.  For example, if you can factor in polynomial time (e.g. in a quantum computer or because your numbers don't have large primes) then the whole project is polynomial time.
+
+## An Example
+
+
+{% include pdf.html src="/uploads/Short-example-direct.pdf" title="Bus Stop Data Science" desc="Click to view the full story" image="/images/Merge-3.png" %}
 
 ## Central Decompositions
 A variation on this is what is known as a **central decomposition** where you find smaller parts that are controllably put together but they may have overlaps.  This is the next best thing if you can't find a complete "direct" factorization.  I solve this problem as well.
