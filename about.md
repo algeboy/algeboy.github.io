@@ -10,7 +10,7 @@ permalink: /about/
 * Co-developed <strong>Linear Data</strong> with Professor Emily J. King. A course where Data Science and Linear Algebra are equals.  Take the online course [CSU Online's Data Science Linear Algebra](https://online.colostate.edu/courses/DSCI/DSCI369.dot) [**Or get our Free Book**](https://LinearData.Space). 
 * Industry experience with Intel Corporation 1997-2001 consulting 2009-2020.
 * Gave first <strong>polynomial-time</strong> algorithms for...
-    - Direct and Central product decomposition even in black-box (thesis) [Read more.]()
+    - Direct and Central product decomposition even in black-box (thesis) [Read more.](_posts/2008-06-16-decompositions.md)
     - Intersecting classical groups (with P.A. Brooksbank) [Read more.]()
     - Isomorphism testing of finite groups of most order (with H. Dietrich) [Read more.]()
  * Responsible for...
