@@ -157,6 +157,7 @@ permalink: /publications/
             <div class="publication-venue">J. Algebra 604 (2022) 790-807</div>
             <div class="publication-description"><!-- Add description --></div>
             <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/BMW-Lie-conj.pdf" class="pub-link">Offprint 🔒</a>
                 <a href="https://arxiv.org/abs/2005.04046" class="pub-link">arXiv:2005.04046</a>
             </div>
         </div>
@@ -249,6 +250,7 @@ permalink: /publications/
             <div class="publication-venue">J. Algebra 545 (2019) 43-65</div>
             <div class="publication-description"><!-- Add description --></div>
             <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Rihana.pdf" class="pub-link">Offprint 🔒</a>
                 <a href="http://arxiv.org/abs/1812.00275" class="pub-link">arXiv:1812.00275</a>
             </div>
         </div>
@@ -264,6 +266,7 @@ permalink: /publications/
             <div class="publication-venue">J. Algebra 545 (2019) 174-197</div>
             <div class="publication-description"><!-- Add description --></div>
             <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Cube-free.pdf" class="pub-link">Offprint 🔒</a>
                 <a href="http://arxiv.org/abs/1810.03467" class="pub-link">arXiv:1810.03467</a>
             </div>
         </div>
@@ -279,6 +282,7 @@ permalink: /publications/
             <div class="publication-venue">Trans. Amer. Math. Soc. 372 (11) 2019, 8067–8090</div>
             <div class="publication-description"><!-- Add description --></div>
             <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Graded.pdf" class="pub-link">Offprint 🔒</a>
                 <a href="http://arxiv.org/abs/1708.08873" class="pub-link">arXiv:1708.08873</a>
             </div>
         </div>
@@ -293,6 +297,9 @@ permalink: /publications/
             <div class="publication-authors">with P. A. Brooksbank and J. Maglione</div>
             <div class="publication-venue">J. Algebra, 473 (2017) 545-590</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Genus-2-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -305,6 +312,9 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">Comm. Algebra, 45 (2017) no. 4, 1452-1478</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Skolem-Noether-Nilpotent.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -319,6 +329,10 @@ permalink: /publications/
             <div class="publication-authors">with P. A. Brooksbank</div>
             <div class="publication-venue">J. Algebra 421 (2015) 541-559</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/module-iso.pdf" class="pub-link">Offprint 🔒</a>
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/module-iso-errata.pdf" class="pub-link">Erratum</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -331,6 +345,9 @@ permalink: /publications/
             <div class="publication-authors">with P. A. Brooksbank</div>
             <div class="publication-venue">J. Pure Appl. Alge. 218 (2014) 405-416</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/autotopism-JPAA.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -343,6 +360,10 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">J. Group Theory 16 6 (2013) 875-897</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/alpha-jgt-offprint.pdf" class="pub-link">Offprint 🔒</a>
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/alpha-jgt-error.pdf" class="pub-link">Erratum</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -355,6 +376,9 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">Communications in Algebra 41 11 (2013) 3989-4008</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/adjoint-cat-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -367,6 +391,9 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">Linear Algebra and Its Applications 438 (2013) 4573-4583</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Gram-Schmidt-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -379,6 +406,9 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">Groups - Complexity - Cryptology 4 (2012), 33-72</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Direct-Products-I-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -391,6 +421,9 @@ permalink: /publications/
             <div class="publication-authors">with M. L. Lewis</div>
             <div class="publication-venue">Groups - Complexity - Cryptology 4 (2012) 73-110</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Isomorphism-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -403,6 +436,9 @@ permalink: /publications/
             <div class="publication-authors">with P. A. Brooksbank</div>
             <div class="publication-venue">J. Algebra 353 (2012) 286-297</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Slope-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -415,6 +451,9 @@ permalink: /publications/
             <div class="publication-authors">with P. A. Brooksbank</div>
             <div class="publication-venue">Trans. Amer. Math. Soc. 364 (2012) 1975-1996</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Isometries-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -427,6 +466,9 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">J. Algebra 322 (2009) 2642-2679</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/Central-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->
@@ -439,6 +481,9 @@ permalink: /publications/
             <div class="publication-authors">James B. Wilson</div>
             <div class="publication-venue">J. of Group Theory 12 (2009) 813-830</div>
             <div class="publication-description"><!-- Add description --></div>
+            <div class="publication-links">
+                <a href="https://www.math.colostate.edu/~jwilson/papers/offprints/FindCentral-offprint.pdf" class="pub-link">Offprint 🔒</a>
+            </div>
         </div>
         <div class="publication-image">
             <!-- Add image here -->

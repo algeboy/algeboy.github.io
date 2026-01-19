@@ -73,11 +73,11 @@ Should some enterprising person some day wish to make the subject of a master's 
 
 ----
 
-### [KN09] Kayal, N., Nezhmetdinov, T. (2009). _Factoring Groups Efficiently._ In: Albers, S., Marchetti-Spaccamela, A., Matias, Y., Nikoletseas, S., Thomas, W. (eds) Automata, Languages and Programming. ICALP 2009. Lecture Notes in Computer Science, vol 5555. Springer, Berlin, Heidelberg. https://doi.org/10.1007/978-3-642-02927-1_49
+### [KN09] [Kayal, N., Nezhmetdinov, T. (2009). _Factoring Groups Efficiently._ In: Albers, S., Marchetti-Spaccamela, A., Matias, Y., Nikoletseas, S., Thomas, W. (eds) Automata, Languages and Programming. ICALP 2009. Lecture Notes in Computer Science, vol 5555. Springer, Berlin, Heidelberg.](https://doi.org/10.1007/978-3-642-02927-1_49)
 
 ### [W08] Wilson, James B. _Group Decompositions, Jordan Algebras, and Algorithms for p-Groups_, Dissertation, Ph.D University of Oregon, June 2008.  
 
-### [W10] Wilson, James B. _Finding direct product decompositions in polynomial time._
-https://arxiv.org/abs/1005.0548
+### [W10] [Wilson, James B. _Finding direct product decompositions in polynomial time._
+https://arxiv.org/abs/1005.0548](https://arxiv.org/abs/1005.0548)
 
-### [W12d] James B. Wilson, Existence, algorithms, and asymptotics of direct product decompositions, I Groups - Complexity - Cryptology 4 (2012), 33-72
+### [W12d] [James B. Wilson, Existence, algorithms, and asymptotics of direct product decompositions, I Groups - Complexity - Cryptology 4 (2012), 33-72]()
