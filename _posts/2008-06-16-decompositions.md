@@ -6,10 +6,34 @@ author: "Prof. James B. Wilson"
 excerpt: "Break down algebra"
 ---
 
-One way to deal with large data is to discover it is controllably built from smaller data.  The number $650=2\cdot 5^2\cdot 13$ gives us all the same information a 650 but broken down into 4 much smaller number $2,5,13$.  With algebra we can use the direct product---effectively two more more algebras $A$ and $E$ occurring independently of one another but for whatever reason gather together as combined unit $G=A\times E$.  So if we encounter a large algebra $G$ we would gain a lot of visibility if we know how to factor it into parts.  That task was one of my first results.
+Here's my story of one contribution I consider to be on the top of my list of contributions: an algorithm to efficiently break algebra into factors.  You can jump ahead if you like.
 
-**Theorem. (Wilson 2008)** Given a finite group $G$ represented feasibly^$*$ there is a $f$-polynomial-time algorithm that returns a fully refined direct product decomposition 
+## Contents
+- [Why groups?](#why-groups)
+- [What is "feasible" in computational algebra?](#what-is-feasible-in-computational-algebra)
+- [What is the $f$ in "$f$-polynomial time"?](#what-is-the-f-in-f-polynomial-time)
+- [Central Decompositions](#central-decompositions)
+- [Related work](#related-work)
+- [Was the 2nd part of your article ever published?](#was-the-2nd-part-of-your-article-ever-published)
+
+## What is factoring in algebra?
+
+One way to deal with large data is to discover it is controllably built from smaller data.  The number $650=2\cdot 5^2\cdot 13$ gives us all the same information a 650 but broken down into much smaller number $2,5,13$.  
+
+With algebra we can use the direct product.  Effectively the combines two or more algebras $H$ and $K$ occurring independently of one another combined as one $G=H\times K$.  Many problems get simpler if we are given an algebra $G$ and we manage to break it into a direct product $H\times K$ of smaller algebras.  If you want more think of $H\times K$ as ordered pairs.  Suppose you can multiply in $H$ and in $K$.  Then you can multiply in both by 
+$$(h,k)*(h',k')=(h*h', k*k')$$
+If you have an identity $1$ and inverses you can imaging extending those operations to pairs as well.  If you have properties of that multiplication, say **associative** $h_1*(h_2*h_3)=(h_1*h_2)*h_3$ then the pair has the property.  That configuration is known as a [group](https://en.wikipedia.org/wiki/Group_theory).
+
+Here is what I proved.
+
+**Theorem. (Wilson 2008)** Given a finite group $G$ represented feasibly there is a $f$-polynomial-time algorithm that returns a fully refined direct product decomposition 
 $$G=H_1\times \cdots \times H_{\ell}.$$
+
+### Why groups?
+Groups have a history of being used which makes them a good target.  This backs the question up to "why are groups used".  I could guess about their significance in solving various mysteries and surely there are many reasons.  For my part I would say groups are special because they are a "recursive theory".  What I mean by that is every structure admits a group of automorphisms.  That means no matter what you study, you can frame some of the questions in terms of groups.  So the more you know about groups the more you know about things. 
+
+There are other recursive algebraic theories: monoids and Lie algebras to name two.  For example every structure has a monoid of endomorphisms and every distributive product has a Lie algebra of derivations. Indeed these are two of the other most studied algebras.  So my answer to "why groups?"  They are a class of algebra you can always shoe-horn into your study.
+
 
 ### What is "feasible" in computational algebra?  
 Well because the data is ultimately finite you could just guess and check for a very long time and find an answer.  But that is indeed a **very long time**.  An algebra as given by a bunch of operations (the multiplications, identities, inverses etc.).  If you have functions to apply these operations then the encoding is what we call **feasible** (or black-box if you want to be completely precise).  For example, in Java, C++, and nearly any programming language we can add integers really well.  We can multiply matrices, permutations, polynomials  Those are feasible.  
