@@ -10,6 +10,11 @@ permalink: /posts/
         {% if site.posts.size > 0 %}
             {% for post in site.posts %}
                 <article class="post-preview" onclick="window.location.href='{{ post.url | relative_url }}'">
+                    {% if post.image %}
+                        <div class="post-image">
+                            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                        </div>
+                    {% endif %}
                     <h2 class="post-title">{{ post.title }}</h2>
                     <div class="post-date">{{ post.date | date: "%B %-d, %Y" }}</div>
                     <div class="post-excerpt">
