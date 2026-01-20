@@ -13,9 +13,10 @@ permalink: /publications/
 .publication-item {
     margin-bottom: 40px;
     padding: 20px;
-    border-left: 4px solid var(--chalk-blue);
-    background: transparent;
-    border-radius: 0;
+    border: 3px solid var(--chalk-blue);
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 3px rgba(100, 181, 246, 0.5), inset 0 0 3px rgba(100, 181, 246, 0.3);
     transition: all 0.3s ease;
     display: flex;
     align-items: flex-start;
@@ -23,8 +24,9 @@ permalink: /publications/
 }
 
 .publication-item:hover {
-    border-left-color: var(--chalk-yellow);
-    transform: translateX(5px);
+    border-color: var(--chalk-yellow);
+    transform: translateY(-3px);
+    box-shadow: 0 0 5px rgba(255, 235, 59, 0.6), inset 0 0 5px rgba(255, 235, 59, 0.4);
 }
 
 .publication-content {
