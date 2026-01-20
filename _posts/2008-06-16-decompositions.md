@@ -7,7 +7,7 @@ excerpt: "Breaking down algebra efficiently"
 image: images/Merge-3.png
 ---
 
-Here's my story of one contribution I consider to be on the top of my list of contributions: an algorithm to efficiently break algebra into factors.  You can jump ahead if you like.
+Here's my story of one contribution of which I am proud: an algorithm to efficiently break algebra into factors.  You can jump ahead if you like.
 
 ## Contents
 - [Why groups?](#why-groups)

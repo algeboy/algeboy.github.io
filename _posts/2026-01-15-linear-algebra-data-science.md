@@ -4,6 +4,7 @@ title: "Linear Data"
 date: 2025-06-01
 author: "Prof. James B. Wilson"
 excerpt: "Should I push the button?"
+image: uploads/Full-Cover-Art.png
 ---
 
 Humor and stories can summarize how we think.  You might be familiar with this take on Data Science.
