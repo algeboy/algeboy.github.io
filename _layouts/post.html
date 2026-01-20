@@ -11,10 +11,16 @@ layout: default
 }
 
 .post-header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 30px;
     margin-bottom: 40px;
     padding-bottom: 20px;
     border-bottom: 2px solid var(--chalk-yellow, #ffeb3b);
+}
+
+.post-header-text {
+    flex: 1;
 }
 
 .post-title {
@@ -22,12 +28,13 @@ layout: default
     font-size: 2em;
     margin-bottom: 15px;
     font-weight: bold;
+    text-align: left;
 }
 
 .post-featured-image {
-    max-width: 400px;
-    margin: 0 auto 20px;
-    display: block;
+    max-height: 150px;
+    width: auto;
+    flex-shrink: 0;
     border-radius: 8px;
 }
 
@@ -200,10 +207,12 @@ layout: default
         {% if page.image %}
         <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="post-featured-image">
         {% endif %}
-        <h2 class="post-title">{{ page.title }}</h2>
-        <div class="post-meta">
-            <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
-            {% if page.author %} • by {{ page.author }}{% endif %}
+        <div class="post-header-text">
+            <h2 class="post-title">{{ page.title }}</h2>
+            <div class="post-meta">
+                <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+                {% if page.author %} • by {{ page.author }}{% endif %}
+            </div>
         </div>
     </header>
 
