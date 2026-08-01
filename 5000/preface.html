@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title> Proofs, Programs, and Diagrams – 5000 Years of Modern Programming</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./01/Logic-Library.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="./assets/webllm-chat.css">
+<script src="./assets/mermaid.min.js"></script>
+<script type="module" src="./assets/webllm-chat.js"></script>
+<style>
+  .quarto-content img {
+    max-width: min(50%, 42rem);
+    width: auto;
+    height: auto;
+    cursor: zoom-in;
+  }
+
+  .quarto-content .quarto-figure-left,
+  .quarto-content .quarto-float-fig.quarto-float-left {
+    float: left;
+    margin: 0.15rem 0.85rem 0.55rem 0;
+    max-width: min(50%, 42rem);
+  }
+
+  .quarto-content .quarto-figure-right,
+  .quarto-content .quarto-float-fig.quarto-float-right {
+    float: right;
+    margin: 0.15rem 0 0.55rem 0.85rem;
+    max-width: min(50%, 42rem);
+  }
+
+  .quarto-content .quarto-figure-left img,
+  .quarto-content .quarto-float-fig.quarto-float-left img,
+  .quarto-content .quarto-figure-right img,
+  .quarto-content .quarto-float-fig.quarto-float-right img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .quarto-content .quarto-figure-left figcaption,
+  .quarto-content .quarto-float-fig.quarto-float-left figcaption,
+  .quarto-content .quarto-figure-right figcaption,
+  .quarto-content .quarto-float-fig.quarto-float-right figcaption {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    line-height: 1.3;
+  }
+
+  .quarto-content .clay-wrap-figure {
+    float: left;
+    margin: 0.15rem 0.85rem 0.55rem 0;
+  }
+
+  .quarto-content .clay-wrap-figure img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .quarto-content .clay-wrap-figure figcaption {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+    line-height: 1.3;
+    font-style: italic;
+  }
+
+  .quarto-content .float-clear {
+    clear: both;
+  }
+
+  figure.left {
+    float: left;
+    width: 200px;
+    margin: 0 1rem 1rem 0;
+  }
+
+  .quarto-image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 1rem;
+  }
+
+  .quarto-image-lightbox.is-open {
+    display: flex;
+  }
+
+  .quarto-image-lightbox img {
+    width: auto;
+    max-width: 96vw;
+    max-height: 96vh;
+    height: auto;
+    object-fit: contain;
+    cursor: zoom-out;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+  }
+
+  .quarto-image-lightbox__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    background: rgba(0, 0, 0, 0.08);
+    color: #111;
+    font-size: 2rem;
+    line-height: 1;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+
+  .quarto-image-lightbox__close:hover {
+    background: rgba(0, 0, 0, 0.16);
+  }
+
+  .callout-inline,
+  .blue-callout-inline,
+  .green-callout-inline {
+    display: inline-block;
+    max-width: 100%;
+    white-space: normal;
+    border-radius: 8px;
+    padding: 0.08em 0.35em;
+  }
+
+  .callout-inline--blue,
+  .blue-callout-inline {
+    background: #eaf4ff;
+    border: 1px solid #b8d9ff;
+  }
+
+  .callout-inline--green,
+  .green-callout-inline {
+    background: #e7f8ec;
+    border: 1px solid #9bd7ad;
+  }
+
+  .callout-inline--yellow,
+  .yellow-callout-inline {
+    background: #fff7d6;
+    border: 1px solid #e6cf75;
+  }
+
+  .callout-inline--red,
+  .red-callout-inline {
+    background: #fdebec;
+    border: 1px solid #e9a8ad;
+  }
+
+  /* Semantic callout modes by class family. */
+  .callout.callout-defn,
+  .callout.callout-thm,
+  .callout.callout-prop,
+  .callout.callout-lemma,
+  .callout.callout-cor,
+  .callout.callout-example,
+  .callout.callout-exercise,
+  .callout.callout-question {
+    --bs-callout-margin-top: 1rem;
+    --bs-callout-margin-bottom: 1rem;
+  }
+
+  .callout.callout-defn .callout-icon-container,
+  .callout.callout-thm .callout-icon-container,
+  .callout.callout-prop .callout-icon-container,
+  .callout.callout-lemma .callout-icon-container,
+  .callout.callout-cor .callout-icon-container,
+  .callout.callout-example .callout-icon-container,
+  .callout.callout-exercise .callout-icon-container,
+  .callout.callout-question .callout-icon-container {
+    display: none !important;
+  }
+
+  .callout.callout-defn {
+    border-left: 0.36rem solid #1f3a68 !important;
+    border-color: #9eb8df !important;
+    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
+  }
+
+  .callout.callout-defn .callout-title {
+    color: #18345f;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .callout.callout-thm,
+  .callout.callout-prop,
+  .callout.callout-lemma,
+  .callout.callout-cor {
+    border-left: 0.36rem solid #0a6a43 !important;
+    border-color: #96d7bb !important;
+    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
+  }
+
+  .callout.callout-thm .callout-title,
+  .callout.callout-prop .callout-title,
+  .callout.callout-lemma .callout-title,
+  .callout.callout-cor .callout-title {
+    color: #0b5a3a;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .callout.callout-example {
+    border-left: 0.36rem solid #8a4f00 !important;
+    border-color: #f0cb91 !important;
+    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
+  }
+
+  .callout.callout-example .callout-title {
+    color: #7a4700;
+    font-weight: 700;
+  }
+
+  .callout.callout-exercise {
+    border-left: 0.36rem solid #6a1f3b !important;
+    border-color: #e5a8c1 !important;
+    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
+  }
+
+  .callout.callout-exercise .callout-title {
+    color: #61203a;
+    font-weight: 700;
+  }
+
+  .callout.callout-question {
+    border-left: 0.36rem solid #005f73 !important;
+    border-color: #9fd6de !important;
+    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
+  }
+
+  .callout.callout-question .callout-title {
+    color: #0b4f61;
+    font-weight: 700;
+  }
+
+  .mermaid,
+  .mermaid svg {
+    direction: ltr;
+  }
+  .mermaid .node rect,
+  .mermaid .node circle,
+  .mermaid .node ellipse,
+  .mermaid .node polygon,
+  .mermaid .cluster rect,
+  .mermaid .label,
+  .mermaid foreignObject {
+    filter: none !important;
+    box-shadow: none !important;
+  }
+
+  .mermaid g.stopNode rect,
+  .mermaid .stopNode rect {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  }
+
+  .mermaid-auto-tabset {
+    margin: 1rem 0;
+  }
+
+  .mermaid-auto-tabset .nav-tabs {
+    margin-bottom: 0.65rem;
+  }
+
+  .mermaid-auto-tabset .tab-pane pre {
+    margin-top: 0;
+  }
+
+  .glossary-link {
+    text-decoration-style: dotted;
+    text-underline-offset: 0.15em;
+    cursor: help;
+  }
+
+  .reading-stats {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #d7dde2;
+    font-size: 0.92rem;
+    color: #5b6670;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+
+  body {
+    counter-reset: definition-counter theorem-counter example-counter exercise-counter question-counter;
+  }
+
+  .callout.callout-defn {
+    counter-increment: definition-counter;
+  }
+
+  .callout.callout-thm,
+  .callout.callout-prop,
+  .callout.callout-lemma,
+  .callout.callout-cor {
+    counter-increment: theorem-counter;
+  }
+
+  .callout.callout-example {
+    counter-increment: example-counter;
+  }
+
+  .callout.callout-exercise {
+    counter-increment: exercise-counter;
+  }
+
+  .callout.callout-question {
+    counter-increment: question-counter;
+  }
+
+  .callout.callout-defn .callout-title-container::before {
+    content: "📘 Definition " counter(definition-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-thm .callout-title-container::before {
+    content: "★ Theorem " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-prop .callout-title-container::before {
+    content: "★ Proposition " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-lemma .callout-title-container::before {
+    content: "★ Lemma " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-cor .callout-title-container::before {
+    content: "★ Corollary " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-example .callout-title-container::before {
+    content: "🧪 Example " counter(example-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-exercise .callout-title-container::before {
+    content: "✎ Exercise " counter(exercise-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout.callout-question .callout-title-container::before {
+    content: "❓ Question " counter(question-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  /* Support custom callout families authored without a base callout class. */
+  .callout[data-callout-family="defn"],
+  .callout[data-callout-family="thm"],
+  .callout[data-callout-family="prop"],
+  .callout[data-callout-family="lemma"],
+  .callout[data-callout-family="cor"],
+  .callout[data-callout-family="example"],
+  .callout[data-callout-family="exercise"],
+  .callout[data-callout-family="question"] {
+    --bs-callout-margin-top: 1rem;
+    --bs-callout-margin-bottom: 1rem;
+  }
+
+  .callout[data-callout-family="defn"] .callout-icon-container,
+  .callout[data-callout-family="thm"] .callout-icon-container,
+  .callout[data-callout-family="prop"] .callout-icon-container,
+  .callout[data-callout-family="lemma"] .callout-icon-container,
+  .callout[data-callout-family="cor"] .callout-icon-container,
+  .callout[data-callout-family="example"] .callout-icon-container,
+  .callout[data-callout-family="exercise"] .callout-icon-container,
+  .callout[data-callout-family="question"] .callout-icon-container {
+    display: none !important;
+  }
+
+  .callout[data-callout-family="defn"] {
+    border-left: 0.36rem solid #1f3a68 !important;
+    border-color: #9eb8df !important;
+    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
+    counter-increment: definition-counter;
+  }
+
+  .callout[data-callout-family="defn"] .callout-title {
+    color: #18345f;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .callout[data-callout-family="thm"],
+  .callout[data-callout-family="prop"],
+  .callout[data-callout-family="lemma"],
+  .callout[data-callout-family="cor"] {
+    border-left: 0.36rem solid #0a6a43 !important;
+    border-color: #96d7bb !important;
+    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
+    counter-increment: theorem-counter;
+  }
+
+  .callout[data-callout-family="thm"] .callout-title,
+  .callout[data-callout-family="prop"] .callout-title,
+  .callout[data-callout-family="lemma"] .callout-title,
+  .callout[data-callout-family="cor"] .callout-title {
+    color: #0b5a3a;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+  }
+
+  .callout[data-callout-family="example"] {
+    border-left: 0.36rem solid #8a4f00 !important;
+    border-color: #f0cb91 !important;
+    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
+    counter-increment: example-counter;
+  }
+
+  .callout[data-callout-family="example"] .callout-title {
+    color: #7a4700;
+    font-weight: 700;
+  }
+
+  .callout[data-callout-family="exercise"] {
+    border-left: 0.36rem solid #6a1f3b !important;
+    border-color: #e5a8c1 !important;
+    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
+    counter-increment: exercise-counter;
+  }
+
+  .callout[data-callout-family="exercise"] .callout-title {
+    color: #61203a;
+    font-weight: 700;
+  }
+
+  .callout[data-callout-family="question"] {
+    border-left: 0.36rem solid #005f73 !important;
+    border-color: #9fd6de !important;
+    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
+    counter-increment: question-counter;
+  }
+
+  .callout[data-callout-family="question"] .callout-title {
+    color: #0b4f61;
+    font-weight: 700;
+  }
+
+  .callout[data-callout-family="defn"] .callout-title-container::before {
+    content: "📘 Definition " counter(definition-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="thm"] .callout-title-container::before {
+    content: "★ Theorem " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="prop"] .callout-title-container::before {
+    content: "★ Proposition " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="lemma"] .callout-title-container::before {
+    content: "★ Lemma " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="cor"] .callout-title-container::before {
+    content: "★ Corollary " counter(theorem-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="example"] .callout-title-container::before {
+    content: "🧪 Example " counter(example-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="exercise"] .callout-title-container::before {
+    content: "✎ Exercise " counter(exercise-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  .callout[data-callout-family="question"] .callout-title-container::before {
+    content: "❓ Question " counter(question-counter) ": ";
+    font-weight: 700;
+    margin-right: 0.15rem;
+  }
+
+  /* Fallback rendering for custom family blocks authored without native callout syntax. */
+  .callout-defn:not(.callout),
+  .callout-thm:not(.callout),
+  .callout-prop:not(.callout),
+  .callout-lemma:not(.callout),
+  .callout-cor:not(.callout),
+  .callout-example:not(.callout),
+  .callout-exercise:not(.callout),
+  .callout-question:not(.callout) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem 1rem;
+    border: 1px solid transparent;
+    border-left-width: 0.36rem;
+    border-radius: 0.375rem;
+  }
+
+  .callout-defn:not(.callout) {
+    border-left-color: #1f3a68;
+    border-color: #9eb8df;
+    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
+    counter-increment: definition-counter;
+  }
+
+  .callout-thm:not(.callout),
+  .callout-prop:not(.callout),
+  .callout-lemma:not(.callout),
+  .callout-cor:not(.callout) {
+    border-left-color: #0a6a43;
+    border-color: #96d7bb;
+    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
+    counter-increment: theorem-counter;
+  }
+
+  .callout-example:not(.callout) {
+    border-left-color: #8a4f00;
+    border-color: #f0cb91;
+    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
+    counter-increment: example-counter;
+  }
+
+  .callout-exercise:not(.callout) {
+    border-left-color: #6a1f3b;
+    border-color: #e5a8c1;
+    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
+    counter-increment: exercise-counter;
+  }
+
+  .callout-question:not(.callout) {
+    border-left-color: #005f73;
+    border-color: #9fd6de;
+    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
+    counter-increment: question-counter;
+  }
+
+  .callout-defn:not(.callout)::before,
+  .callout-thm:not(.callout)::before,
+  .callout-prop:not(.callout)::before,
+  .callout-lemma:not(.callout)::before,
+  .callout-cor:not(.callout)::before,
+  .callout-example:not(.callout)::before,
+  .callout-exercise:not(.callout)::before,
+  .callout-question:not(.callout)::before {
+    display: block;
+    margin-bottom: 0.35rem;
+    font-weight: 700;
+  }
+
+  .callout-defn:not(.callout)::before {
+    content: "📘 Definition " counter(definition-counter) ": " attr(title);
+    color: #18345f;
+  }
+
+  .callout-thm:not(.callout)::before {
+    content: "★ Theorem " counter(theorem-counter) ": " attr(title);
+    color: #0b5a3a;
+  }
+
+  .callout-prop:not(.callout)::before {
+    content: "★ Proposition " counter(theorem-counter) ": " attr(title);
+    color: #0b5a3a;
+  }
+
+  .callout-lemma:not(.callout)::before {
+    content: "★ Lemma " counter(theorem-counter) ": " attr(title);
+    color: #0b5a3a;
+  }
+
+  .callout-cor:not(.callout)::before {
+    content: "★ Corollary " counter(theorem-counter) ": " attr(title);
+    color: #0b5a3a;
+  }
+
+  .callout-example:not(.callout)::before {
+    content: "🧪 Example " counter(example-counter) ": " attr(title);
+    color: #7a4700;
+  }
+
+  .callout-exercise:not(.callout)::before {
+    content: "✎ Exercise " counter(exercise-counter) ": " attr(title);
+    color: #61203a;
+  }
+
+  .callout-question:not(.callout)::before {
+    content: "❓ Question " counter(question-counter) ": " attr(title);
+    color: #0b4f61;
+  }
+
+  pre[data-lang],
+  .mermaid[data-lang] {
+    position: relative;
+    padding-bottom: 1.5rem;
+  }
+
+  pre[data-lang]::after,
+  .mermaid[data-lang]::after {
+    content: attr(data-lang);
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.35rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #666;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 0.2rem;
+    padding: 0 0.3rem;
+    pointer-events: none;
+  }
+</style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const applyCodeWatermarks = function(root) {
+      if (!root) {
+        return;
+      }
+
+      const generic = new Set([
+        'sourcecode', 'number-lines', 'numbersource', 'code-with-copy',
+        'code-copy-outer-scaffold', 'code-annotation-code'
+      ]);
+
+      const aliases = {
+        commonlisp: 'lisp',
+        py: 'python',
+        shell: 'bash',
+        sh: 'bash',
+        zsh: 'bash',
+        yml: 'yaml',
+        tex: 'latex'
+      };
+
+      const known = new Set([
+        'python', 'lisp', 'scheme', 'clojure', 'bash', 'sh', 'zsh', 'powershell',
+        'javascript', 'js', 'typescript', 'ts', 'java', 'c', 'cpp', 'c++',
+        'go', 'rust', 'ruby', 'php', 'julia', 'r', 'lua', 'haskell',
+        'html', 'css', 'json', 'yaml', 'yml', 'xml', 'sql', 'tex', 'latex',
+        'mermaid', 'commonlisp'
+      ]);
+
+      const normalize = function(lang) {
+        if (!lang) {
+          return '';
+        }
+        const lowered = lang.toLowerCase();
+        return aliases[lowered] || lowered;
+      };
+
+      const detectLanguage = function(classes) {
+        let lang = '';
+
+        const languagePrefixed = classes.find(function(className) {
+          return className.startsWith('language-');
+        });
+        if (languagePrefixed) {
+          lang = languagePrefixed.replace('language-', '');
+        }
+
+        if (!lang) {
+          const plain = classes.find(function(className) {
+            return known.has(className);
+          });
+          if (plain) {
+            lang = plain;
+          }
+        }
+
+        if (!lang) {
+          const fallback = classes.find(function(className) {
+            return !generic.has(className) && /^[a-z][a-z0-9_+\-]*$/.test(className);
+          });
+          if (fallback) {
+            lang = fallback;
+          }
+        }
+
+        return normalize(lang);
+      };
+
+      root.querySelectorAll('pre > code[class]').forEach(function(code) {
+        const pre = code.closest('pre');
+        if (!pre || pre.dataset.lang) {
+          return;
+        }
+
+        const classes = Array.from(new Set(
+          Array.from(code.classList).concat(Array.from(pre.classList))
+        )).map(function(className) {
+          return className.toLowerCase();
+        });
+
+        const lang = detectLanguage(classes);
+
+        if (lang) {
+          pre.dataset.lang = lang;
+        }
+      });
+
+      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
+        if (!block.dataset.lang) {
+          block.dataset.lang = 'mermaid';
+        }
+      });
+    };
+
+    const emojiAliases = {
+      eye_roll: '🙄',
+      face_palm: '🤦',
+      shrug: '🤷',
+      warning: '⚠️',
+      light_bulb: '💡',
+      check_mark: '✅',
+      x_mark: '❌'
+    };
+
+    const applyEmojiAliases = function(root) {
+      if (!root) {
+        return;
+      }
+
+      const aliasPattern = /:([a-z0-9_+-]+):/gi;
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const parent = node.parentElement;
+
+        if (!parent) {
+          continue;
+        }
+        if (['CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG'].includes(parent.tagName)) {
+          continue;
+        }
+        if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
+          continue;
+        }
+        if (!node.nodeValue || node.nodeValue.indexOf(':') === -1) {
+          continue;
+        }
+
+        textNodes.push(node);
+      }
+
+      textNodes.forEach(function(node) {
+        if (!aliasPattern.test(node.nodeValue)) {
+          aliasPattern.lastIndex = 0;
+          return;
+        }
+        aliasPattern.lastIndex = 0;
+
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        let match = aliasPattern.exec(node.nodeValue);
+        let changed = false;
+
+        while (match) {
+          const start = match.index;
+          const end = start + match[0].length;
+          const aliasKey = match[1].toLowerCase();
+          const icon = emojiAliases[aliasKey];
+
+          if (!icon) {
+            match = aliasPattern.exec(node.nodeValue);
+            continue;
+          }
+
+          if (start > lastIndex) {
+            fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, start)));
+          }
+
+          fragment.appendChild(document.createTextNode(icon));
+          lastIndex = end;
+          changed = true;
+          match = aliasPattern.exec(node.nodeValue);
+        }
+
+        if (!changed) {
+          return;
+        }
+
+        if (lastIndex < node.nodeValue.length) {
+          fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
+        }
+
+        node.parentNode.replaceChild(fragment, node);
+      });
+    };
+
+    const glossaryEntries = [
+      {
+        term: 'memoization',
+        href: 'https://en.wikipedia.org/wiki/Memoization',
+        tooltip: 'Memoization caches results so repeated calls with the same inputs can return faster.'
+      },
+      {
+        term: 'recursion',
+        href: 'https://en.wikipedia.org/wiki/Recursion_(computer_science)',
+        tooltip: 'Recursion solves a problem by calling the same function on smaller inputs until a base case.'
+      },
+      {
+        term: 'induction',
+        href: 'https://en.wikipedia.org/wiki/Mathematical_induction',
+        tooltip: 'Mathematical induction proves a statement for all natural numbers using a base case and an inductive step.'
+      },
+      {
+        term: 'division algorithm',
+        href: 'https://en.wikipedia.org/wiki/Euclidean_division',
+        tooltip: 'For integers m and n > 0, there exist unique q and r with m = qn + r and 0 <= r < n.'
+      },
+      {
+        term: 'quotient',
+        href: 'https://en.wikipedia.org/wiki/Quotient',
+        tooltip: 'In division, the quotient is the whole-number count of how many times the divisor fits.'
+      },
+      {
+        term: 'remainder',
+        href: 'https://en.wikipedia.org/wiki/Remainder',
+        tooltip: 'The remainder is what is left after dividing when equal groups can no longer be formed.'
+      },
+      {
+        term: 'commutative diagram',
+        href: 'https://en.wikipedia.org/wiki/Commutative_diagram',
+        tooltip: 'A commutative diagram shows that different paths of composed steps lead to the same result.'
+      },
+      {
+        term: 'proof',
+        href: 'https://en.wikipedia.org/wiki/Mathematical_proof',
+        tooltip: 'A proof is a logically valid argument that establishes a mathematical claim.'
+      },
+      {
+        term: 'algorithm',
+        href: 'https://en.wikipedia.org/wiki/Algorithm',
+        tooltip: 'An algorithm is a finite, precise sequence of steps for solving a class of problems.'
+      },
+      {
+        term: 'curry-howard-lambek correspondence',
+        href: 'https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence',
+        tooltip: 'This correspondence links proofs, programs, and categorical structure as different views of the same logic.'
+      }
+    ];
+
+    // Exported for future expansion (e.g., adding terms in one place).
+    window.bookGlossary = glossaryEntries;
+
+    const applyGlossaryLinks = function(root) {
+      if (!root || !glossaryEntries.length) {
+        return;
+      }
+
+      const skipTags = new Set(['A', 'CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG']);
+      const terms = glossaryEntries
+        .map(function(entry) { return entry.term; })
+        .filter(Boolean)
+        .sort(function(a, b) { return b.length - a.length; });
+
+      if (!terms.length) {
+        return;
+      }
+
+      const escapeRegex = function(text) {
+        return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      };
+
+      const glossaryMap = new Map(
+        glossaryEntries.map(function(entry) {
+          return [entry.term.toLowerCase(), entry];
+        })
+      );
+
+      const linkedTerms = new Set();
+      const termRegex = new RegExp('\\b(' + terms.map(escapeRegex).join('|') + ')\\b', 'gi');
+      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      const textNodes = [];
+
+      while (walker.nextNode()) {
+        const node = walker.currentNode;
+        const parent = node.parentElement;
+
+        if (!parent) {
+          continue;
+        }
+        if (skipTags.has(parent.tagName)) {
+          continue;
+        }
+        if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
+          continue;
+        }
+        if (!node.nodeValue || !node.nodeValue.trim()) {
+          continue;
+        }
+
+        textNodes.push(node);
+      }
+
+      textNodes.forEach(function(node) {
+        if (!termRegex.test(node.nodeValue)) {
+          termRegex.lastIndex = 0;
+          return;
+        }
+        termRegex.lastIndex = 0;
+
+        const fragment = document.createDocumentFragment();
+        let lastIndex = 0;
+        let match = termRegex.exec(node.nodeValue);
+        let changed = false;
+
+        while (match) {
+          const matchedText = match[0];
+          const lowerTerm = matchedText.toLowerCase();
+          const entry = glossaryMap.get(lowerTerm);
+          const start = match.index;
+          const end = start + matchedText.length;
+
+          if (!entry || linkedTerms.has(lowerTerm)) {
+            match = termRegex.exec(node.nodeValue);
+            continue;
+          }
+
+          if (start > lastIndex) {
+            fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, start)));
+          }
+
+          const link = document.createElement('a');
+          link.href = entry.href;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.className = 'glossary-link';
+          link.textContent = matchedText;
+          link.title = entry.tooltip;
+          link.setAttribute('aria-label', matchedText + ': ' + entry.tooltip);
+
+          fragment.appendChild(link);
+          linkedTerms.add(lowerTerm);
+          lastIndex = end;
+          changed = true;
+          match = termRegex.exec(node.nodeValue);
+        }
+
+        if (!changed) {
+          return;
+        }
+
+        if (lastIndex < node.nodeValue.length) {
+          fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
+        }
+
+        node.parentNode.replaceChild(fragment, node);
+      });
+    };
+
+    const applyReadingStats = function(root) {
+      const statsNode = root.querySelector('[data-reading-stats]');
+      if (!statsNode) {
+        return;
+      }
+
+      const clone = root.cloneNode(true);
+      clone.querySelectorAll('[data-reading-stats], script, style, pre, code').forEach(function(node) {
+        node.remove();
+      });
+
+      const text = (clone.textContent || '')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      const wordCount = text ? text.split(' ').filter(Boolean).length : 0;
+      const minutes = Math.max(1, Math.ceil(wordCount / 120));
+      const minuteLabel = minutes === 1 ? 'minute' : 'minutes';
+
+      statsNode.textContent = wordCount.toLocaleString() + ' words • ' + minutes + ' ' + minuteLabel + ' to read';
+    };
+
+    const lightbox = document.createElement('div');
+    lightbox.className = 'quarto-image-lightbox';
+    lightbox.innerHTML = '<button type="button" class="quarto-image-lightbox__close" aria-label="Close image">&times;</button><img alt="">';
+    document.body.appendChild(lightbox);
+
+    const lightboxImage = lightbox.querySelector('img');
+    const closeLightbox = function() {
+      lightbox.classList.remove('is-open');
+      lightboxImage.removeAttribute('src');
+      lightboxImage.removeAttribute('alt');
+    };
+
+    lightbox.addEventListener('click', function(event) {
+      if (event.target === lightbox || event.target.classList.contains('quarto-image-lightbox__close')) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener('click', function(event) {
+      const image = event.target.closest('#quarto-content img, .quarto-content img, #quarto-document-content img');
+      if (!image) {
+        return;
+      }
+
+      event.preventDefault();
+      lightboxImage.src = image.currentSrc || image.src;
+      lightboxImage.alt = image.alt || '';
+      lightbox.classList.add('is-open');
+    });
+
+    const getMermaidSource = function(block) {
+      if (!block) {
+        return '';
+      }
+
+      const directCode = block.querySelector(':scope > code');
+      if (directCode) {
+        return directCode.textContent || '';
+      }
+
+      return block.textContent || '';
+    };
+
+    const normalizeMermaidBlocks = function(root) {
+      root.querySelectorAll('pre.sourceCode.mermaid, pre.mermaid').forEach(function(preBlock) {
+        const source = getMermaidSource(preBlock).trim();
+        const normalized = document.createElement('pre');
+        normalized.className = 'mermaid';
+        normalized.textContent = source;
+
+        let replaceTarget = preBlock;
+        const sourceContainer = preBlock.closest('.sourceCode');
+        const copyScaffold = preBlock.closest('.code-copy-outer-scaffold');
+
+        if (copyScaffold && copyScaffold.querySelector('pre') === preBlock) {
+          replaceTarget = copyScaffold;
+        } else if (sourceContainer && sourceContainer.querySelector('pre') === preBlock) {
+          replaceTarget = sourceContainer;
+        }
+
+        replaceTarget.replaceWith(normalized);
+      });
+    };
+
+    const buildMermaidTabs = function(root) {
+      let mermaidCounter = 0;
+      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
+        if (!block || block.closest('.panel-tabset') || block.closest('.mermaid-auto-tabset')) {
+          return;
+        }
+
+        const source = getMermaidSource(block).trim();
+        if (!source) {
+          return;
+        }
+
+        mermaidCounter += 1;
+        const instanceId = 'mermaid-auto-' + mermaidCounter;
+
+        const wrapper = document.createElement('div');
+        wrapper.className = 'panel-tabset nav-pills mermaid-auto-tabset';
+
+        const tabs = document.createElement('ul');
+        tabs.className = 'nav nav-tabs';
+        tabs.setAttribute('role', 'tablist');
+
+        const diagramTabItem = document.createElement('li');
+        diagramTabItem.className = 'nav-item';
+        diagramTabItem.setAttribute('role', 'presentation');
+
+        const diagramTab = document.createElement('a');
+        diagramTab.className = 'nav-link active';
+        diagramTab.id = instanceId + '-diagram-tab';
+        diagramTab.setAttribute('data-bs-toggle', 'tab');
+        diagramTab.setAttribute('data-bs-target', '#' + instanceId + '-diagram');
+        diagramTab.setAttribute('role', 'tab');
+        diagramTab.setAttribute('aria-controls', instanceId + '-diagram');
+        diagramTab.setAttribute('aria-selected', 'true');
+        diagramTab.href = '';
+        diagramTab.textContent = 'Diagram';
+        diagramTabItem.appendChild(diagramTab);
+
+        const sourceTabItem = document.createElement('li');
+        sourceTabItem.className = 'nav-item';
+        sourceTabItem.setAttribute('role', 'presentation');
+
+        const sourceTab = document.createElement('a');
+        sourceTab.className = 'nav-link';
+        sourceTab.id = instanceId + '-source-tab';
+        sourceTab.setAttribute('data-bs-toggle', 'tab');
+        sourceTab.setAttribute('data-bs-target', '#' + instanceId + '-source');
+        sourceTab.setAttribute('role', 'tab');
+        sourceTab.setAttribute('aria-controls', instanceId + '-source');
+        sourceTab.setAttribute('aria-selected', 'false');
+        sourceTab.href = '';
+        sourceTab.textContent = 'Source';
+        sourceTabItem.appendChild(sourceTab);
+
+        tabs.appendChild(diagramTabItem);
+        tabs.appendChild(sourceTabItem);
+
+        const tabContent = document.createElement('div');
+        tabContent.className = 'tab-content nav-pills';
+
+        const diagramPane = document.createElement('div');
+        diagramPane.className = 'tab-pane active';
+        diagramPane.id = instanceId + '-diagram';
+        diagramPane.setAttribute('role', 'tabpanel');
+        diagramPane.setAttribute('aria-labelledby', instanceId + '-diagram-tab');
+
+        const diagramBlock = document.createElement('pre');
+        diagramBlock.className = 'mermaid';
+        diagramBlock.textContent = source;
+        diagramPane.appendChild(diagramBlock);
+
+        const sourcePane = document.createElement('div');
+        sourcePane.className = 'tab-pane';
+        sourcePane.id = instanceId + '-source';
+        sourcePane.setAttribute('role', 'tabpanel');
+        sourcePane.setAttribute('aria-labelledby', instanceId + '-source-tab');
+
+        const sourcePre = document.createElement('pre');
+        const sourceCode = document.createElement('code');
+        sourceCode.className = 'language-mermaid';
+        sourceCode.textContent = source;
+        sourcePre.appendChild(sourceCode);
+        sourcePane.appendChild(sourcePre);
+
+        tabContent.appendChild(diagramPane);
+        tabContent.appendChild(sourcePane);
+
+        wrapper.appendChild(tabs);
+        wrapper.appendChild(tabContent);
+
+        block.replaceWith(wrapper);
+      });
+    };
+
+    const cacheMermaidSource = function(root) {
+      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
+        if (!block.dataset.mermaidSource) {
+          block.dataset.mermaidSource = block.textContent;
+        }
+      });
+    };
+
+    const resetMermaidBlocks = function(root) {
+      root.querySelectorAll('pre.mermaid[data-mermaid-source], div.mermaid[data-mermaid-source]').forEach(function(block) {
+        block.removeAttribute('data-processed');
+        block.textContent = block.dataset.mermaidSource;
+      });
+    };
+
+    const prepareMermaidBlocks = function(root) {
+      normalizeMermaidBlocks(root);
+      buildMermaidTabs(root);
+      cacheMermaidSource(root);
+    };
+
+    const renderMermaid = function(root) {
+      prepareMermaidBlocks(root);
+      if (!window.mermaid || typeof window.mermaid.run !== 'function') {
+        return;
+      }
+      const nodes = root.querySelectorAll('pre.mermaid:not([data-processed]), div.mermaid:not([data-processed])');
+      if (nodes.length === 0) {
+        return;
+      }
+      window.mermaid.run({ nodes: Array.from(nodes), suppressErrors: true });
+    };
+
+    const collapseSidebarToCurrentPart = function() {
+      const sidebar = document.querySelector('#quarto-sidebar');
+      if (!sidebar) {
+        return;
+      }
+
+      const partSections = Array.from(sidebar.querySelectorAll('ul.sidebar-section.depth1.collapse'));
+      if (!partSections.length) {
+        return;
+      }
+
+      const activeLink = sidebar.querySelector('a.sidebar-link.active');
+      const activeSection = activeLink ? activeLink.closest('ul.sidebar-section.depth1.collapse') : null;
+
+      partSections.forEach(function(section) {
+        const isCurrentPart = activeSection === section;
+        if (isCurrentPart) {
+          section.classList.add('show');
+        } else {
+          section.classList.remove('show');
+        }
+
+        const sectionTarget = '#' + section.id;
+        sidebar.querySelectorAll('[data-bs-target]').forEach(function(toggle) {
+          if (toggle.getAttribute('data-bs-target') === sectionTarget) {
+            toggle.setAttribute('aria-expanded', isCurrentPart ? 'true' : 'false');
+          }
+        });
+      });
+    };
+
+    const contentRoot = document.querySelector('#quarto-content, .quarto-content, #quarto-document-content, main.content') || document.body;
+
+    applyCodeWatermarks(contentRoot);
+    applyEmojiAliases(contentRoot);
+    applyGlossaryLinks(contentRoot);
+    applyReadingStats(contentRoot);
+    prepareMermaidBlocks(document);
+
+    // Initialize mermaid when available. If loading fails,
+    // source tabs still work for accessibility.
+    if (window.mermaid && typeof window.mermaid.initialize === 'function') {
+      window.mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
+    }
+    renderMermaid(document);
+    collapseSidebarToCurrentPart();
+
+    // Mermaid blocks inside hidden tab panels may need rendering
+    // when the tab becomes visible.
+    document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]').forEach(function(tab) {
+      tab.addEventListener('shown.bs.tab', function(event) {
+        const targetSelector = event.target.getAttribute('data-bs-target');
+        if (!targetSelector) {
+          renderMermaid(document);
+          return;
+        }
+
+        const pane = document.querySelector(targetSelector);
+        if (pane) {
+          resetMermaidBlocks(pane);
+          renderMermaid(pane);
+        }
+      });
+    });
+  });
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./preface.html"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">5000 Years of Modern Programming</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01/Logic-Library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01/Writing-down-a-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01/Sub-Var-Func.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02/LIE-AND.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02/Quantifiers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quantifiers <span class="math inline">\(\forall\)</span>, <span class="math inline">\(\exists\)</span>, <span class="math inline">\(=\)</span>, and <span class="math inline">\(!^n\)</span></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02/Qualifiers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-screwdriver-wrench fa-la"></i> III. Types of Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./QUATRO/module_03/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">(Week 3) LOGICS: Types of data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-id-card fa-la"></i> IV. Subset and Partitions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./QUATRO/module_04/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">(Week 4) LOGICS: Subsets &amp; Partitions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-folder fa-la"></i> V. Pattern Matching</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/derivative-patterns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">math156 Derivative Patterns</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-users fa-la"></i> VI. Relations</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/bijective-when-slash-y=f-x-slash-has-exactly-one-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Math 156 When (y=f(x)) has exactly one solution</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-kiwi-bird fa-la"></i> VII. Default and Adaptive Logic</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/bijective.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">math156 Bijective</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/w-orders-and-transitivity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">w-orders-and-transitivity.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/relations-and-orders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Week 7</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/describing-relations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/minimums-maximums-and-well-founded-orders.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">minimums-maximums-and-well-founded-orders.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/should-you-modify-your-priors-or-your-reasoning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 8 Day 1 Should you Modify your Priors or Your Reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-dice fa-la"></i> VIII. Probability</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Week 9 Day 1 Proportions towards Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/explaining-most-of-the-evidence-with-limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">*Week 11 Explaining most of the evidence with Limits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/overview-when-reasons-beyond-evidence-are-wrong.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Overview When Reasons beyond evidence are Wrong</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-taxi fa-la"></i> IX. Approximation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/approximation-and-errors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">approximation-and-errors.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">math156 Limits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/sequences.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">sequences.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">series.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/1-finite-and-infinite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">1-finite-and-infinite.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/part-1-cauchys-limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-ruler-combined fa-la"></i> X. Creating Measurements</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/distributive-qualities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">math156 Distributive Qualities</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/fundamental-theorem-of-calculus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">math156 Fundamental Theorem of Calculus</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/integrals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">math156 Integrals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/measurement-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/part-1-dot-a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/part-1-dot-b-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/geometry-of-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">geometry-of-data.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/overview-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">overview-11.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/shape-of-space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">shape-of-space.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Math156-SP26/wiki_content_qmd/topology-of-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">topology-of-data.html</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-bullseye fa-la"></i> XII. Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12/12-dot-1-b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12/12-dot-2-b-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12/12-dot-2-c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12/12-dot-3-calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12/12-dot-s-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#division-by-repeated-tiling" id="toc-division-by-repeated-tiling" class="nav-link active" data-scroll-target="#division-by-repeated-tiling">Division by repeated tiling</a>
+  <ul class="collapse">
+  <li><a href="#are-flow-charts-pictures" id="toc-are-flow-charts-pictures" class="nav-link" data-scroll-target="#are-flow-charts-pictures">Are flow-charts pictures?</a></li>
+  <li><a href="#what-was-on-the-clay-tablets" id="toc-what-was-on-the-clay-tablets" class="nav-link" data-scroll-target="#what-was-on-the-clay-tablets">What was on the clay tablets?</a></li>
+  </ul></li>
+  <li><a href="#division-was-never-the-point-the-curry-howard-lambeck-correspondence-was." id="toc-division-was-never-the-point-the-curry-howard-lambeck-correspondence-was." class="nav-link" data-scroll-target="#division-was-never-the-point-the-curry-howard-lambeck-correspondence-was.">Division was never the point, the Curry-Howard-Lambeck correspondence was.</a></li>
+  <li><a href="#angle-trisection-and-the-limits-of-avoiding-technology" id="toc-angle-trisection-and-the-limits-of-avoiding-technology" class="nav-link" data-scroll-target="#angle-trisection-and-the-limits-of-avoiding-technology">Angle Trisection and the limits of avoiding technology</a></li>
+  <li><a href="#archetypes-and-why-i-tell-stories" id="toc-archetypes-and-why-i-tell-stories" class="nav-link" data-scroll-target="#archetypes-and-why-i-tell-stories">Archetypes and why I tell stories</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+5000 year old clay tablets from Babylon (modern day Iraq) give methods for <a href="https://en.wikipedia.org/wiki/Babylonian_mathematics#Arithmetic">division</a>. It seems it was a chore to divide back then just as much as it is today.
+<figure class="left figure" style="width:50%;max-width:50%;">
+<img src="Clay_tablet_mathematical_geometric-algebraic_similar_to_the_Euclidean_geometry_From_Tell_Harmal_Iraq._2003-1595_BCE_Iraq_Museum.jpg" alt="Clay table with arithmetic, Photo Osama Shukir Muhammed Amin FRCP(Glasg) - Own work, CC BY-SA 4.0, Wikimedia Commons" width="50%" style="border:1px solid #888; border-radius: 6px;" class="figure-img">
+<figcaption>
+By Osama Shukir Muhammed Amin FRCP(Glasg) - Own work, CC BY-SA 4.0, Wikimedia Commons
+</figcaption>
+</figure>
+<p>Of course today we have apps and devices that do all this for us and increasingly Artificial Intelligence (AI) is taking on many more complex chores. Looking back at something this old and familiar gives a predictable occurrence of a pattern that underpins why AI is not only possible, but inevitable, and on the whole not that mysterious. It is the start of the Curry-Howard-Lambek correspondence that links mathematical proofs, computer programs, and the linguistics of diagrams.</p>
+<p>Math, computation, and language play very different roles in our lives. Math gives us guarantees. Computation accesses answers our minds are too slow and imprecise to ever achieve. Language, well that’s what we use to spread our questions and answers, communication. So if they are interchangeable then perhaps it is no longer a surprise that a machine can talk to us like we talk to people while also providing certainty and efficiency. It is not all of language that is equal to computation, just the small sliver that relates to diagrams. Humans appear to have a substantial extension of language beyond diagrams so we probably have more to say than computation ever will. Yet, the power to relate these three achievements of our species surprises many to the point of seeming unbelievable. To see how it came to be known we can start with the story of division.</p>
+<section id="division-by-repeated-tiling" class="level2">
+<h2 class="anchored" data-anchor-id="division-by-repeated-tiling">Division by repeated tiling</h2>
+<p>Suppose we have <span class="math inline">\(541\)</span> tiles and we need to make a wall that is <span class="math inline">\(60\)</span> tiles wide. The problem is that 2-3 tiles per row break or do not match and cannot be used. How many rows can we expect to tile?</p>
+<p>You could answer this by putting down your first <span class="math inline">\(60\)</span> tiles leaving <span class="math inline">\(541-60=481\)</span> tiles.</p>
+<p><img src="01/tiles-row-1.png" class="img-fluid" style="width:100.0%"></p>
+<p>Then we repeat until there are fewer than <span class="math inline">\(60\)</span> tiles. The steps would be <img src="01/tiles-row-2.png" class="img-fluid" style="width:100.0%"> <img src="01/tiles-row-3.png" class="img-fluid" style="width:100.0%"> Wait a moment! This is getting repetitive and tedious. But then you remember that yesterday you had the same problem but instead of <span class="math inline">\(541\)</span> tiles you had <span class="math inline">\(361\)</span> tiles. So you can skip repeating your work and just look up the work you did yesterday. <span class="math inline">\(361\)</span> tiles over rows of <span class="math inline">\(60\)</span> gave you 6 rows with 1 tile left over. That is, <span class="math display">\[
+361 = 6\cdot 60 + 1\text{ and } 1 &lt; 60
+\]</span> Or to use common terminology, <span class="math inline">\(361/60=6\text{ remainder }1\)</span> which in fraction form is: <span class="math display">\[
+\frac{361}{60} = 6 + \frac{1}{60}\text{ i.e.: `` }6\text{ and }\frac{1}{60}\text{ ''}.
+\]</span> Since you got to this number by subtracting 60 away 3 times, you can just add 60 back in 3 times. <span class="math display">\[
+541 = 3\cdot 60 + 361 = 3\cdot 60 + 6\cdot 60 + 1= 9\cdot 60 + 1.
+\]</span> In other words, <span class="math display">\[
+\frac{541}{60} = 9 + \frac{1}{60}\text{ i.e.: `` }9\text{ and }\frac{1}{60}\text{ ''}.
+\]</span> Assuming we reject 3 tiles per row for a total of <span class="math inline">\(9\cdot 3=27\not\leq 1\)</span> we likely will not have a enough remaining tiles to make all 9 rows. We should get a few extra tiles or stop at 8 rows.</p>
+<hr>
+<p>Probably you can imagine this working with <span class="math inline">\(m\)</span> tiles spread out <span class="math inline">\(n\)</span> tiles wide. The goal would be to predict the number of rows <span class="math inline">\(q\)</span> and the number of tiles <span class="math inline">\(r\)</span> left over such that <span class="math display">\[
+m = q\cdot n + r \text{ and } 0 \le r &lt; n.
+\]</span> Despite the low-tech brick-layer story, a surprising amount of mathematics and programming has occurred here which might be better expressed by diagramming the stages. Think of the diagram as a system of pipes with filters. Material or data can flow from one shape to the next along the direction of the arrow so long as it matches the conditions of the label. Once we arrive at a shape we follow the instruction of the shape’s label before continuing. If you are unable to see the diagram you can select the source option which reads out the shapes and arrows and their labels.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>---</span>
+<span id="cb1-2"><a href="#cb1-2"></a>title: Dividing m tiles into n tiles per row.</span>
+<span id="cb1-3"><a href="#cb1-3"></a>---</span>
+<span id="cb1-4"><a href="#cb1-4"></a>flowchart TD </span>
+<span id="cb1-5"><a href="#cb1-5"></a>    %% Nodes</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    Start[q=0, r=m]</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    First_Question{Is r less than n?}</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    First_Yes[Stop]</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    First_No_Second_Question{Already know r = q' n + r' with r' &lt; n?}</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    Second_Yes[Set q to q+q', r to r']</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    Stop[Stop]</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    Second_No[Replace r with r-n]</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    Update[Increase q by 1]</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    %% Arrows</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    Start --&gt; First_Question</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    First_Question --&gt;|True| First_Yes</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    First_Question --&gt;|False| First_No_Second_Question</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    First_No_Second_Question --&gt;|True| Second_Yes</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    First_No_Second_Question --&gt;|False| Second_No</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    Second_No --&gt; Update</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    Update --&gt; First_Question</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    Second_Yes --&gt; Stop</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    %% Optional colors and shapes</span>
+<span id="cb1-24"><a href="#cb1-24"></a>    classDef stopNode fill:FireBrick,stroke:DarkRed,color:white,stroke-width:2px</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    class First_Yes,Stop stopNode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="are-flow-charts-pictures" class="level3">
+<h3 class="anchored" data-anchor-id="are-flow-charts-pictures">Are flow-charts pictures?</h3>
+<p>A flow-chart need not be thought of as picture. In fact the picture is intentionally meant to allow for a lot of variability. You can move a node in a flow-chart to another location without interrupting the flow. So the flow-chart is actually the collection of relationships and their labels. So it is a language which might be written in words, spoken allowed, or drawn in pictures.</p>
+<p>In fact, in our example we gave two ways to record the information in the flow-chart. The first was as a visualization of nodes and arrows. The second option just writes in words what the relationships are. For instance <code>Start[q=0, r=m]</code> represents a starting node with label “q=0, r=m”. In another line <code>First_Question --&gt;|True| First_Yes</code> represents an arrow from the the first question node to the the first yes answer if the the first question was found to be true.</p>
+<p>Our example source includes a few technical terms like <code>flowchart TD</code> and is wrapped by the symbols <code>```</code>. That allowed our computer to interpret our diagram language and create the picture shown in the first tab. The specific technology we chose was <a href="mermaid.js.org">Mermaid</a> for <a href="https://www.markdownguide.org/">Markdown</a>. Learning a graphical language like this can be useful when changing designs as well as in sharing concepts with anyone who cannot see your screen. It is also enormously helpful when inputting a diagram to a chatbot or AI assistant.</p>
+<hr>
+<div class="callout callout-style-default callout-important callout-titled" title="Diagrams are not pictures">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Diagrams are not pictures
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In these articles the word “diagram” will be meant in the broad sense of a chart, plan, or scheme. So while many diagrams can be given as visualizations, all our concepts of diagrams will be completely accurate when presented as words or programs.</p>
+</div>
+</div>
+</section>
+<section id="what-was-on-the-clay-tablets" class="level3">
+<h3 class="anchored" data-anchor-id="what-was-on-the-clay-tablets">What was on the clay tablets?</h3>
+<p>Instead of remembering the work we did yesterday we could leave a memo to ourselves and anyone else of all the previous days’ divisions. This is essentially what was recorded on the clay tablets. The process of division was then to reduce the problem until we could find a memo which matched. If we never found a previous day’s division to match, well then the algorithm would continue reducing the remaining tiles until there were not enough tiles for a new row. The type of process is known as <strong>memoization</strong> (not to be confused with <strong>memorization</strong> which is the human process of recalling information).</p>
+</section>
+</section>
+<section id="division-was-never-the-point-the-curry-howard-lambeck-correspondence-was." class="level2">
+<h2 class="anchored" data-anchor-id="division-was-never-the-point-the-curry-howard-lambeck-correspondence-was.">Division was never the point, the Curry-Howard-Lambeck correspondence was.</h2>
+<p>Now pause, ignore the task, and ask yourself what exactly did we just write down in our division task?</p>
+<p>One perspective is that we gave a list of steps to follow, a <strong>program</strong> for tiling, which results in writing down two numbers which we name quotient (number of rows) and remainder. Another perspective might argue that we started out being asked for a quotient and remainder, and we simply wrote down a <strong>proof</strong> that we could find them. Another reader might argue that the <strong>diagrams</strong> (either the progression of tiling or the flow-chart) were the main communication tool. The interchangeable perspective of proofs, programs, and diagrams when properly labeled and explained turn out to be a condition that is always present.</p>
+<blockquote class="blockquote">
+<p><strong>Curry-Howard-Lambek Correspondence.</strong> Proofs of mathematical claims, programs to compute results, and diagrams of relationships between data are interchangeable.</p>
+</blockquote>
+<p>These articles are an exploitation and exploration of this correspondence. This discovery mergers mathematics, computation, and language. In some form this idea goes back to pre-history, but modern day credit is given to those who made it precise and clear. Haskell Curry (1900-1982) was a mathematician and computer scientist, William Howard (1926-2026) was a logician, and Joachim Lambek (1922-2014) a mathematician-linguist. By making this precise we now know that programs have the benefit of 5000 years of civilization’s progress. There is a very real sense that a talented programmer is doing the same work as a great mathematician, and that a carefully sketched business model is a type of computation and mathematics. To master even one of these areas is to master them all, a fact that should humble the arrogant and embolden the timid.</p>
+<p>Taken seriously, the Curry-Howard-Lambek correspondence means that programming is not a recent invention of the digital age. Since proofs count as programs, all of <a href="https://en.wikipedia.org/wiki/Euclid%27s_Elements">Euclid’s Elements</a> could be seen as programs. That is a much richer history than you might have expected if you looked simply at the programming section of a library. This fact is reinforced by other recent observations. Famously Alan Turing clarified that all computations behave by fixed <a href="https://en.wikipedia.org/wiki/Turing_completeness">rules of computation</a>, the rules of what today we call a <em>Universal Turing Machine</em> in his honor. Armed with that insight, Minsky, Malzek, and Lambek were able to show that those rules were already true of the simple <a href="https://en.wikipedia.org/wiki/Counter-machine_model">abacus</a>! Truthfully, computers in some form have existed for as long as we have recorded human writing. We just have faster ones today.<br>
+<!-- Yet we should acknowledge that the period before the 1900's emphasize mathematics, and the period since has emphasize computation.     --></p>
+<p>One of the places we are seeing the swiftest impact of this correspondence between math, computation, and language is in the field of Artificial Intelligence (AI), specifically Large Language Models (LLMs). Many of the major advance in AI are owed to <em>Program Synthesis</em> where a prompt in natural language gets converted into a mix of programs to run in a conventional programming environment and their results fed to mathematical proofs to test and verify. The Curry-Howard-Lambek correspondence not only explains why this was possible, but predicts it was inevitable. These are three sides of the same triangle.</p>
+<hr>
+<p>At the moment our statement of the Curry-Howard-Lambek correspondence is too vaguely stated and runs the risk of being misrepresented in mystical terms. It is not a free lunch. It takes work to use all these concepts interchangeably without distorting the original intent. It reminds me of a conversation I once had on the topic with a fellow mathematician who replied:</p>
+<blockquote class="blockquote">
+<p>
+This is either profound or wrong!
+</p>
+<p>–Anonymous colleague of the Hausdorff Institute for Mathematics.</p>
+</blockquote>
+<p>In the coming articles more details will be added to ensure that what we exploit is factual. Yet, I warn you now that it wont be my purpose to defend this correspondence to the extent that the three named authors have. You can take that up in followup studies. These articles will focus instead on the impacts of the correspondence in improving day-to-day problem solving with computation as a support.</p>
+</section>
+<section id="angle-trisection-and-the-limits-of-avoiding-technology" class="level2">
+<h2 class="anchored" data-anchor-id="angle-trisection-and-the-limits-of-avoiding-technology">Angle Trisection and the limits of avoiding technology</h2>
+<p>Having brought up AI and the inter-operability of proofs, programs, and diagrams; there may be some fears about how to compete with the speed and scale of a machine. To offer some perspective, let us close with a story where mathematics could not have been done without new technology. I don’t mean something with huge numbers and minute details where our life spans and fragile bodies are the problem. I mean problems which eventually humans managed to show <em>could never be done no mater how long we or machines work</em>. Perhaps you have heard of some of these “impossible” problems, such as</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Angle_trisection">Trisecting angle</a>: can you use a ruler and compass to divide any angle into thirds?</li>
+<li><a href="https://en.wikipedia.org/wiki/Squaring_the_circle">Squaring the circle</a>: can you start with a circle and construct a square with the same area using only a ruler and compass.</li>
+<li><a href="https://en.wikipedia.org/wiki/Quintic_function#Solvability">Solving quintic equations</a>: can you find a general solution for polynomial equations of degree five using radicals like <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\sqrt[3]{x}\)</span>, etc.?</li>
+</ul>
+<p>At different stages in history these and many problems like them were brought up and found no solution. Only in the last 200 years have we found that the mathematics necessary to explain why they were not solvable. They were “unsolvable”. It is a beautiful story in human achievement to dream up problems that cannot be solved and to be able to prove that they cannot be solved. But that is not the story I want to tell.</p>
+<p>Instead I want to point out that life did not require that we only use a ruler and compass, nor that we limit ourselves to formulas that only involve <span class="math inline">\(n\)</span>-th roots and arithmetic. We are far more creative species. And with that creativity we invented other tools. It turns out that if you draw an angle on paper there are simple rules to <em>fold</em> the angle into thirds! The limitation was the ruler and compass.</p>
+<p>See for yourself and try it on your own angles.</p>
+<iframe width="100%" height="560" src="https://www.youtube.com/embed/SL2lYcggGpc" title="YouTube demonstration: Angle Trisection (Origami)" style="border:1px solid #888; border-radius: 6px;" allowfullscreen="">
+</iframe>
+<p>And here is an interactive proof for why it works.</p>
+<p><strong>Angle Trisection with Origami</strong> (Tim Brzezinski’s GeoGebra demonstration of Hisashi Abe’s angle trisection fold.)</p>
+<iframe src="https://www.geogebra.org/material/iframe/id/YJZw6Asv/width/900/height/560/border/888888/sfsb/true/smb/false/stb/false/stbh/true/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="100%" height="560" style="border:1px solid #888; border-radius: 6px;" allowfullscreen="">
+</iframe>
+<p>In fact, Archimedes had found a method to trisect an angle using a <em>marked</em> ruler and compass already in 200 BC. A similar fate befell the other “unsolvable” problems of antiquity. They were not actually “unsolvable” as problems so much as they were lessons that if you limit your toolbox you might get stuck.</p>
+<p>Technology is not just about making things faster, cheaper, and more precise. Sometimes it is the switch between the impossible and the possible.</p>
+</section>
+<section id="archetypes-and-why-i-tell-stories" class="level2">
+<h2 class="anchored" data-anchor-id="archetypes-and-why-i-tell-stories">Archetypes and why I tell stories</h2>
+<p>You must be asking yourself how reading about division using a tiles is going to prepare you to work with Artificial Intelligence, Data Science, or anything else modern. After all, almost every programming language already lets you divide by typing <code>m/n</code> or <code>m div n</code> or with a button <span class="math inline">\(\div\)</span>. In fact an operation this basic would be etched into the silicon of modern micro-processors “chips”. So why even discuss division?</p>
+<p>Firstly, the Babylonians built giant pyramids called ziggurats, fountains, gardens, predicted eclipses well into the future, and yes laid tile-bricks like those in marvelous Ishtar gates still on display thousands of years later. So having division on the mind is not a sign of intellectual weakness.<br>
+<img src="Berlin_Museo_de_Pergamo_05.jpg" class="img-fluid" alt="Ishtar Gate, Photo by LBM1948 - Own work, CC BY-SA 4.0, Wikimedia commons"></p>
+<p>Secondly, be assured that these articles focus on many state-of-the-art topics in mathematics, computation, and data science. Examples like division are chosen as enduring examples, known as <em>archetypes</em>, which use stories of events that are so familiar they are easily personalized. Think for a moment about the same story but where we replace tiles with eggs in cartons, or the products manufactured in an assembly line. Production will be successful if it can fill the packaging with a remainder large enough to cover the expected number of rejects. Want a computer related story? Shift to discussing the transmission of a file in fixed-size packets with an expected error rate in the transmissions. The story of tiling is not one story, but a skeleton to retell your own way.</p>
+<p>Always be prepared to give an account of what you know in the language your audience wants to know it. The first time might be in an interview that lands you the job. Later you can use that skill to get the trust of a boss or client. You may become a mentor or teacher. And finally we should not forget those friends and family who just want to connect with what we do. Surely it is up to the person who understands to make the larger effort to be understood. These stories are for others. Use them, personalize them, and you might find your own understanding deepened as well.</p>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>Division is a fact about integers, a program, and scheme relating addition and multiplication.</li>
+<li>The Curry-Howard-Lambek correspondence shows the division example is true of all proofs, programs, and diagrams.</li>
+<li>This correspondence is a part prediction and part explanation for artificial intelligence.</li>
+</ul>
+<div class="reading-stats" data-reading-stats="" aria-label="Reading statistics">
+
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Home">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Home</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./01/Logic-Library.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-gamepad fa-la&quot;></i> Choosing a Logic">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

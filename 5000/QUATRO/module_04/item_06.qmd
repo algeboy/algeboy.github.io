@@ -1,0 +1,33 @@
+---
+title: "Monday Video"
+subtitle: "Module 4, Item 6"
+format: 
+  html: default
+  pdf: default
+---
+
+## Monday Video
+
+**Type:** WikiPage
+
+**Status:** Content to be added
+
+### Description
+
+This section is seeded from the Canvas export. Please add your content here.
+
+### Key Points
+
+- Point 1
+- Point 2
+- Point 3
+
+### Activities
+
+Add activities and exercises here.
+
+### Resources
+
+- Link to resource 1
+- Link to resource 2
+
