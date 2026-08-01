@@ -11,6 +11,8 @@ width: expand
 <center> $$a\cdot (b+c)=a\cdot b+a\cdot c.$$  </center>
 Distributive products factor through tensor products. That's just posh speak for <strong>multiplication table</strong> What's the difference between a <strong>Multiplication table</strong> and a <strong>data table</strong>? None really. $\Box$
 
+<p>The new e-book <a href="{{ '/5000/' | relative_url }}"><strong>5000 Years of Modern Programming</strong></a> is published here automatically once the book repo updates this site.</p>
+
 ---
 <small>
 *This is website not a journal; so, don't take me literally.

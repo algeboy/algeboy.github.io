@@ -7,7 +7,7 @@ permalink: /publications/
 
 <style>
 .publications-content {
-    padding: 20px 0;
+    padding: 20px 0 180px;
 }
 
 .publication-item {
@@ -108,6 +108,10 @@ permalink: /publications/
 }
 
 @media (max-width: 768px) {
+    .publications-content {
+        padding-bottom: 20px;
+    }
+
     .publication-item {
         flex-direction: column;
     }
@@ -116,10 +120,43 @@ permalink: /publications/
         width: 100%;
         height: 80px;
     }
+
+    .publications-bookshelf-desktop {
+        display: none;
+    }
 }
 </style>
 
 <div class="publications-content">
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">5000 Years of Modern Programming</div>
+            <div class="publication-authors">James B. Wilson</div>
+            <div class="publication-venue">Online book</div>
+            <div class="publication-description">A Quarto e-book on the Curry-Howard-Lambek correspondence, logic, programs, and diagrams.</div>
+            <div class="publication-links">
+                <a href="{{ '/5000/' | relative_url }}" class="pub-link">Read the book</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
+
+    <div class="publication-item">
+        <div class="publication-content">
+            <div class="publication-title">Linear Data</div>
+            <div class="publication-authors">with Emily J. King</div>
+            <div class="publication-venue">Online book</div>
+            <div class="publication-description">A free online textbook and course connecting linear algebra and data science.</div>
+            <div class="publication-links">
+                <a href="https://lineardata.space" class="pub-link" target="_blank" rel="noopener noreferrer">Read the book</a>
+            </div>
+        </div>
+        <div class="publication-image">
+            <!-- Add image here -->
+        </div>
+    </div>
     
     <div class="publication-item">
         <div class="publication-content">
@@ -686,4 +723,25 @@ permalink: /publications/
             <!-- Add image here -->
         </div>
     </div>
+</div>
+
+<div class="publications-bookshelf-desktop" aria-label="Bookshelf links">
+    <a class="bookshelf-chalk-box" href="https://www.ten-spc.co.jp/en/" target="_blank" rel="noopener noreferrer" title="Hagoromo official website" aria-label="Visit Hagoromo official website"></a>
+
+    <div class="bookshelf-squeegee" title="Squeegee" aria-hidden="true">
+        <div class="bookshelf-squeegee-handle"></div>
+        <div class="bookshelf-squeegee-head"></div>
+    </div>
+
+    <div class="bookshelf-spray-bottle" title="Spray bottle" aria-hidden="true">
+        <div class="bookshelf-spray-cap"></div>
+        <div class="bookshelf-spray-nozzle"></div>
+    </div>
+
+    <div class="bookshelf-books">
+        <a class="bookshelf-book-spine bookshelf-book-5000" href="{{ '/5000/' | relative_url }}">5000 Years of Modern Programming</a>
+        <a class="bookshelf-book-spine bookshelf-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data</a>
+    </div>
+
+    <div class="bookshelf-plank" aria-hidden="true"></div>
 </div>
