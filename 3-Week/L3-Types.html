@@ -1,0 +1,351 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lab 3: Types and Flowcharts</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/white.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/monokai.css">
+
+    <!-- Load KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body, { delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}, {left: '\\(', right: '\\)', display: false}, {left: '\\[', right: '\\]', display: true}] });"></script>
+
+    <style>
+      body { 
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive; 
+        color: limegreen;
+      }
+      .reveal { 
+        text-align: left; 
+        background-image: url('../blank.jpg') !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-attachment: fixed !important;
+        color: limegreen !important;
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive !important;
+      }
+      .reveal * { 
+        text-align: left; 
+        color: limegreen !important;
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive !important;
+      }
+      .reveal pre { 
+        width: 100%; 
+        font-size: 0.55em; 
+        text-align: left; 
+        font-family: 'Courier New', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace !important;
+        background: #2d3748 !important;
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+        margin: 20px 0 !important;
+        position: relative !important;
+        padding: 45px 20px 20px 20px !important;
+      }
+      .reveal pre code,
+      .reveal pre code * {
+        font-family: 'Courier New', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace !important;
+      }
+      
+      /* Ensure syntax highlighting works properly */
+      .reveal pre code {
+        color: inherit !important;
+      }
+      
+      /* Allow highlight.js to style syntax elements */
+      .reveal pre .hljs-keyword { color: #f92672 !important; }
+      .reveal pre .hljs-string { color: #a6e22e !important; }
+      .reveal pre .hljs-comment { color: #75715e !important; }
+      .reveal pre .hljs-type { color: #66d9ef !important; }
+      .reveal pre .hljs-number { color: #ae81ff !important; }
+      .reveal pre .hljs-function { color: #a6e22e !important; }
+      .reveal pre .hljs-class { color: #a6e22e !important; }
+      .reveal pre .hljs-title { color: #a6e22e !important; }
+      .reveal pre .hljs-variable { color: #f8f8f2 !important; }
+      .reveal pre .hljs-operator { color: #f92672 !important; }
+      .reveal pre .hljs-punctuation { color: #f8f8f2 !important; }
+      .reveal pre::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 35px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 8px 8px 0 0;
+        border-bottom: 1px solid #4a5568;
+      }
+      .reveal pre::after {
+        content: '';
+        position: absolute;
+        top: 12px;
+        left: 15px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff5f57;
+        box-shadow: 20px 0 0 #ffbd2e, 40px 0 0 #28ca42;
+      }
+      .reveal code { 
+        padding: 2px 5px; 
+        font-family: 'Courier New', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace !important;
+        background: #2d3748 !important;
+        border-radius: 4px !important;
+      }
+      .reveal code * {
+        font-family: 'Courier New', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace !important;
+      }
+      .reveal h1, .reveal h2, .reveal h3, .reveal p { 
+        text-align: left; 
+        color: limegreen !important;
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive !important;
+      }
+      .reveal blockquote { 
+        text-align: left; 
+        width: 90%;
+        background-color: rgba(240, 240, 240, 0.2);
+        padding: 15px 20px;
+        border-left: 4px solid limegreen;
+        margin: 15px 0;
+        color: limegreen !important;
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive !important;
+      }
+      
+      /* Mermaid diagram styling */
+      .mermaid {
+        transform: scale(1.5) !important;
+        transform-origin: center !important;
+        margin: 40px auto !important;
+        display: block !important;
+        text-align: center !important;
+      }
+      
+      .mermaid .node rect,
+      .mermaid .node circle,
+      .mermaid .node ellipse,
+      .mermaid .node polygon {
+        fill: transparent !important;
+        stroke: white !important;
+        stroke-width: 2px !important;
+      }
+      
+      .mermaid .node .label {
+        color: limegreen !important;
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive !important;
+      }
+      
+      .mermaid .edgePath path {
+        stroke: white !important;
+        stroke-width: 2px !important;
+      }
+      
+      .mermaid .arrowheadPath {
+        fill: white !important;
+        stroke: white !important;
+      }
+      
+      /* Additional Mermaid selectors to ensure arrows are white */
+      .mermaid svg .edgePath path,
+      .mermaid svg path.path {
+        stroke: white !important;
+      }
+      
+      .mermaid svg .arrowheadPath,
+      .mermaid svg defs marker path,
+      .mermaid svg marker polygon,
+      .mermaid svg marker path,
+      .mermaid svg .arrowhead,
+      .mermaid svg [id*="arrowhead"] path,
+      .mermaid svg [id*="arrowhead"] polygon {
+        fill: white !important;
+        stroke: white !important;
+      }
+      
+      .mermaid svg .flowchart-link {
+        stroke: white !important;
+      }
+      
+      .mermaid .edgeLabel {
+        color: limegreen !important;
+        background-color: transparent !important;
+        font-family: 'Chalkboard', 'Chalkboard SE', 'Marker Felt', 'Comic Sans MS', cursive !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section data-markdown data-separator="^---$" data-separator-vertical="^--$" data-background="../blank.jpg" data-background-size="cover" data-background-position="center">
+          <textarea data-template>
+
+# Lab 3: Types & Flowcharts
+
+Chris Liu, Dustin Tucker, James B. Wilson
+
+February, 2026
+
+---
+
+Your software team has been hard at work making code to support Bill and Sally's big store merger.  The engineering team presents their design and needs you to review it and ok the logic with the client.
+
+---
+
+## 1. Engineering progress report
+
+Eugene the engineer tells us the following function fetchs points from clients at Billy's Bats-&-Balls, and also one for Sally's Shoes-&-Socks.
+```scala
+def points(client:BillyClient):Int
+def tier(client:SallyClient):Color
+```
+
+> 1. Write the possible logic of this function using $A\overset{f}{\longrightarrow} B$ notation (like a flowchart) and then in words.
+
+---
+
+## 2. Engineering proposal
+
+The engineering team suggests this interface for joining the two loyalty programs.
+```scala
+def loyalty(client:(BillyClient | SallyClient )) : (Int | Color)
+```
+Realizing everyone is scared of this code he quickly says `(A|B)` just means "data from A or B".
+
+---
+
+> 2 Starting from the input, draw a commutative diagram (flow chart) of the information in and out.  Remember the logic of OR tells you the introductions (constructor/"setters") and elimination rules "getter(s)" you should exepct.  [Here is a start.]
+
+```mermaid
+flowchart LR
+   B["Billy's Client"]
+   S["Sally's Client"]
+   C["Color"]
+   P["Int"]
+   BS["(Billy's|Sally's)"]
+   PC["(Int|Color)"]
+   B -.->|points| P
+   S -.->|from_Sally| BS
+   P -.->|left| PC
+   BS -.->|loyalty| PC
+   S -.->|tier| C
+```
+
+---
+
+## 3. Filling in the missing pieces.
+
+> 3. In the syntax given, write the signatures of the functions which are missing from the engineering proposal. [Here is a start]
+```scala
+def left(x:Int) : (Int | Color) = x
+def from_Sally( c:SallyClient) : (BillyClient | SallyClient) = c
+``` 
+
+> 4. Write a test you can do of this design that leverages the fact that composing two paths should be equal ("commutative diagram").
+
+
+---
+
+## 4. Revamp.
+
+> 5. With this interface can a customer form Billy's use loyatly at Sally's?  Explain why not.
+
+Realizing there are gaps, Eugene remarks there is a data type `(A,B)` which means "a pair of data from $A$ and $B$".
+
+> 6. Redesign your program so that `loyalty` outputs `(Int,Color)` where a client from a different store is automatically given a comparable value to the other store.
+
+---
+
+## 5. A demo.
+
+```scala
+
+class BillyClient(points: Int) 
+def points(client: BillyClient) : Int = client.points
+
+type Color = Blue | Red
+class SallyClient(color: Color)
+def tier(client: SallyClient) : Color = client.color
+
+def loyalty( client : BillyClient | SallyClient ) : (Int,Color) = 
+    client match
+        BillyClient => {
+            p = points(client) 
+            if p > 5 
+                (p, Red ) 
+            else 
+                (p, Blue )
+        }
+        SallyClient => {
+            c = tier(client)
+            if c == Blue 
+                (5,c)
+            else
+                (10,c)
+        }
+
+val bclient = BillyClient(8)
+val sclient = SallyClient(Red)
+val l1 = loyalty(bclient)
+val l2 = loyalty(sclient)
+println(l1) // (8,Red)
+println(l2) // (10,Red) 
+```
+
+          </textarea>
+        </section>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/markdown/markdown.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/highlight/highlight.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/plugin/notes/notes.js"></script>
+    
+    <!-- Mermaid -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+      mermaid.initialize({ 
+        startOnLoad: true,
+        theme: 'default',
+        securityLevel: 'loose'
+      });
+    </script>
+
+    <script>
+      function convertMermaidBlocks() {
+        // Find all pre/code blocks that contain mermaid syntax
+        document.querySelectorAll('pre code').forEach(function(block) {
+          var text = block.textContent.trim();
+          // Check if this looks like a mermaid diagram
+          if (text.startsWith('flowchart') || text.startsWith('graph') || text.includes('-->')) {
+            var div = document.createElement('div');
+            div.className = 'mermaid';
+            div.textContent = text;
+            block.parentElement.replaceWith(div);
+          }
+        });
+        
+        // Re-run mermaid to render
+        if (window.mermaid) {
+          mermaid.contentLoaded();
+        }
+      }
+      
+      Reveal.initialize({
+        hash: true,
+        width: 1280,
+        height: 720,
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+      }).then(function() {
+        convertMermaidBlocks();
+        
+        // Also convert on slide change
+        Reveal.on('slidechanged', convertMermaidBlocks);
+      });
+    </script>
+  </body>
+</html>

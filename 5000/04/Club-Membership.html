@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -79,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -230,14 +227,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../01/Chp-Start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A Library of logic.</span></span></a>
+  <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -248,8 +245,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
+  <a href="../01/Context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Context</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -839,9 +836,9 @@ window.Quarto = {
 <section id="quick-check-1" class="level3">
 <h3 class="anchored" data-anchor-id="quick-check-1">* Quick Check</h3>
 <p>You read the following code. Are you likely to be using higher-order logic?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="kw">def</span> convert(<span class="bu">file</span>, <span class="bu">format</span>):</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>s <span class="op">=</span> read(<span class="bu">file</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="cf">return</span> save(s,<span class="bu">format</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">def</span> convert(<span class="bu">file</span>, <span class="bu">format</span>):</span>
+<span id="cb1-2"><a href="#cb1-2"></a>s <span class="op">=</span> read(<span class="bu">file</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="cf">return</span> save(s,<span class="bu">format</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Yes</li>
 <li></li>
@@ -852,9 +849,9 @@ window.Quarto = {
 <section id="quick-check-2" class="level3">
 <h3 class="anchored" data-anchor-id="quick-check-2">* Quick Check</h3>
 <p>Later you get a pull-request with an update to the code that reads like this. Are the modification suggestive of higher-order logic?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="kw">def</span> convert(<span class="bu">file</span>:File, <span class="bu">format</span>:Extension):File</span>
-<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>var s:String <span class="op">=</span> read(<span class="bu">file</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="cf">return</span> save(s,<span class="bu">format</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> convert(<span class="bu">file</span>:File, <span class="bu">format</span>:Extension):File</span>
+<span id="cb2-2"><a href="#cb2-2"></a>var s:String <span class="op">=</span> read(<span class="bu">file</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="cf">return</span> save(s,<span class="bu">format</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>Yes</li>
 <li></li>

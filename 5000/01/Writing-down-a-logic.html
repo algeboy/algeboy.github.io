@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -72,17 +69,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../01/Sub-Var-Func.html" rel="next">
-<link href="../01/Deduct-Induct-Abduct.html" rel="prev">
+<link href="../01/Context.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -133,7 +130,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -177,7 +174,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Chp-Start.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Writing-down-a-logic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Logic-Library.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Writing-down-a-logic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -231,14 +228,14 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../01/Chp-Start.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A Library of logic.</span></span></a>
+  <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -249,8 +246,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
+  <a href="../01/Context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Context</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -741,25 +738,19 @@ window.Quarto = {
    
   <ul>
   <li><a href="#grammar-school" id="toc-grammar-school" class="nav-link active" data-scroll-target="#grammar-school"><span class="header-section-number">7.1</span> Grammar school</a></li>
-  <li><a href="#context-free-grammars-and-trees" id="toc-context-free-grammars-and-trees" class="nav-link" data-scroll-target="#context-free-grammars-and-trees"><span class="header-section-number">7.2</span> Context-Free Grammars and Trees</a>
+  <li><a href="#context-free-grammars" id="toc-context-free-grammars" class="nav-link" data-scroll-target="#context-free-grammars"><span class="header-section-number">7.2</span> Context-Free Grammars</a>
   <ul class="collapse">
   <li><a href="#productions-and-backus-naur-form" id="toc-productions-and-backus-naur-form" class="nav-link" data-scroll-target="#productions-and-backus-naur-form">Productions and Backus-Naur Form</a></li>
   <li><a href="#mathematical-grammars-and-latex" id="toc-mathematical-grammars-and-latex" class="nav-link" data-scroll-target="#mathematical-grammars-and-latex">Mathematical grammars and <span class="math inline">\(\LaTeX\)</span></a></li>
   </ul></li>
-  <li><a href="#trees-a-source-of-unambiguous-reasoning" id="toc-trees-a-source-of-unambiguous-reasoning" class="nav-link" data-scroll-target="#trees-a-source-of-unambiguous-reasoning"><span class="header-section-number">7.3</span> Trees: a source of unambiguous reasoning</a></li>
-  <li><a href="#proof-trees-natural-deduction" id="toc-proof-trees-natural-deduction" class="nav-link" data-scroll-target="#proof-trees-natural-deduction"><span class="header-section-number">7.4</span> Proof Trees &amp; Natural Deduction</a>
-  <ul class="collapse">
-  <li><a href="#classical-logic-proofs-may-be-given-as-dags" id="toc-classical-logic-proofs-may-be-given-as-dags" class="nav-link" data-scroll-target="#classical-logic-proofs-may-be-given-as-dags">Classical Logic Proofs may be given as DAGs</a></li>
-  <li><a href="#when-a-proof-becomes-a-maze" id="toc-when-a-proof-becomes-a-maze" class="nav-link" data-scroll-target="#when-a-proof-becomes-a-maze">When a proof becomes a maze</a></li>
-  </ul></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.5</span> Summary</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.3</span> Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Chp-Start.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Writing-down-a-logic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Logic-Library.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Writing-down-a-logic.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></h1>
 </div>
@@ -787,14 +778,14 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p>The students of algebra love or hate grammar.</p>
 </blockquote>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    Students --&gt; Love</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    Students --&gt; Hate</span>
-<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    Love --&gt; Grammar</span>
-<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    Hate --&gt; Grammar</span>
-<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    Algebra --&gt;|of| Students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart LR</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    Students --&gt; Love</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    Students --&gt; Hate</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>    Love --&gt; Grammar</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    Hate --&gt; Grammar</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a>    Algebra --&gt;|of| Students</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The diagram shows there are two paths from student to grammar, one through love and the other through hate. It is possible that to some readers the diagram explains the relationship better than the sentence.</p>
 </div>
 <div class="{.callout=defn}">
@@ -803,29 +794,29 @@ window.Quarto = {
 <p>Whether consciously or not, when you read mathematics you follow a grammar as well.</p>
 <div class="callout-tip example callout-example" title="Algebraic Grammar" data-callout-family="example">
 <p>Consider the formula <span class="math inline">\(8(7+3)^2\)</span>. We can diagram it as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    Add --&gt;|left| 7</span>
-<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    Add --&gt;|right| 3</span>
-<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    Square --&gt;|base| Add</span>
-<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    Multiply --&gt;|left| 8</span>
-<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    Multiply --&gt;|right| Square</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>flowchart LR</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    Add --&gt;|left| 7</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    Add --&gt;|right| 3</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    Square --&gt;|base| Add</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    Multiply --&gt;|left| 8</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    Multiply --&gt;|right| Square</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To perform the algebra you can follow the paths in the diagram: combine 7 and 3, then square the result, and finally multiply by 8. The diagram shows the grammar of the formula and how to evaluate it.</p>
 </div>
 <p>Programs are also written in a grammar.</p>
 <div class="callout-tip example callout-example" title="Programming Grammar" data-callout-family="example">
 <p>The statistics programming language R has a grammar that makes it easy to pass data through a series of operations using the <strong>pipe operator</strong> <code>|&gt;</code>. For example, the following code reads a data file and filters the rows where <span class="math inline">\(x&gt;0\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>result <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>  <span class="fu">filter</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>result <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>When we diagram the <em>grammar</em> of this code we see a flow of that data that matches the intent of the program.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    data["data.csv"] --&gt;|read| Filter </span>
-<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    Positive["x &gt; 0"] --&gt;|condition| Filter</span>
-<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    Filter --&gt;|copy| Result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>flowchart LR</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    data["data.csv"] --&gt;|read| Filter </span>
+<span id="cb4-3"><a href="#cb4-3"></a>    Positive["x &gt; 0"] --&gt;|condition| Filter</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    Filter --&gt;|copy| Result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>At this point we ought to be convinced that grammar is at least capable of explaining the order in which we reason or compute. But there are some oddities possible in natural language that fight the idea of grammar as a reliable tool for reasoning. So we will work to exclude those oddities first.</p>
 </section>
-<section id="context-free-grammars-and-trees" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="context-free-grammars-and-trees"><span class="header-section-number">7.2</span> Context-Free Grammars and Trees</h2>
+<section id="context-free-grammars" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="context-free-grammars"><span class="header-section-number">7.2</span> Context-Free Grammars</h2>
 <p>Let us first draw out a difficulty with natural language grammar that we do not have to worry about in most mathematics. It is the notion of making local changes to a sentence that break the grammar of the rest of the sentence. Let us return to our example sentence.</p>
 <div class="callout-tip example callout-example" title="Natural Grammar" data-callout-family="example">
 <p>Begin with the sentence</p>
@@ -841,25 +832,25 @@ window.Quarto = {
 <p>If we compare a similar alteration to an algebraic formula changing the 7 to a 9 in <span class="math inline">\(8(7+3)^2\)</span>, then the grammar seems completely unaffected. Likewise local changes in programs do not alter the grammar. Keep in mind those changes certainly may alter the meaning and outcome of the formula or program!</p>
 <div class="callout-tip example callout-example" title="Algebraic Grammar" data-callout-family="example">
 <p>Compared with the original formula <span class="math inline">\(8(7+3)^2\)</span>, the altered formula <span class="math inline">\(8(9+3)^2\)</span> can use the same diagram with <span class="math inline">\(9\)</span> replacing <span class="math inline">\(7\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    Add --&gt;|left| 9</span>
-<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>    Add --&gt;|right| 3</span>
-<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    Square --&gt;|base| Add</span>
-<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    Multiply --&gt;|left| 8</span>
-<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    Multiply --&gt;|right| Square</span>
-<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>    style 9 fill:#ffdddd,stroke:#cc0000,stroke-width:2px,color:#660000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>flowchart LR</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    Add --&gt;|left| 9</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    Add --&gt;|right| 3</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    Square --&gt;|base| Add</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    Multiply --&gt;|left| 8</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    Multiply --&gt;|right| Square</span>
+<span id="cb5-7"><a href="#cb5-7"></a>    style 9 fill:#ffdddd,stroke:#cc0000,stroke-width:2px,color:#660000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The code</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>result <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>  <span class="fu">filter</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>result <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>changed to</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>result <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  <span class="fu">filter</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>result <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"data.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">filter</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>also uses the same diagram.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    data["data.csv"] --&gt;|read| Filter </span>
-<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    Negative["x &lt; 0"] --&gt;|condition| Filter</span>
-<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    Filter --&gt;|copy| Result</span>
-<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    style Negative fill:#ffdddd,stroke:#cc0000,stroke-width:2px,color:#660000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>flowchart LR</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    data["data.csv"] --&gt;|read| Filter </span>
+<span id="cb8-3"><a href="#cb8-3"></a>    Negative["x &lt; 0"] --&gt;|condition| Filter</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    Filter --&gt;|copy| Result</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    style Negative fill:#ffdddd,stroke:#cc0000,stroke-width:2px,color:#660000</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="productions-and-backus-naur-form" class="level3">
 <h3 class="anchored" data-anchor-id="productions-and-backus-naur-form">Productions and Backus-Naur Form</h3>
@@ -874,24 +865,24 @@ window.Quarto = {
 <p>A string of characters and variables is said to be <strong>accepted by the grammar</strong> if it can be generated by a finite sequence of productions beginning from the first production rule. The accepted strings are called <strong>sentences</strong> of the grammar.</p>
 </div>
 <p>Historically these pairs are called <strong>productions</strong> and they are written in a form called <strong>Backus-Naur Form</strong> (BNF) as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>&lt;Name&gt; ::= Expression</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="#cb9-1"></a>&lt;Name&gt; ::= Expression</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Variables in BNF are those things we surround with <code>&lt;...&gt;</code>. Because a name can be reused we often find multiple productions with the same name</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>&lt;Name&gt; ::= &lt;Expression1&gt;</span>
-<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>&lt;Name&gt; ::= &lt;Expression2&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a href="#cb10-1"></a>&lt;Name&gt; ::= &lt;Expression1&gt;</span>
+<span id="cb10-2"><a href="#cb10-2"></a>&lt;Name&gt; ::= &lt;Expression2&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It can be convenient to combine these into a single production using the vertical bar <code>|</code> as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>&lt;Name&gt; ::= &lt;Expression1&gt; | &lt;Expression2&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb11-1"><a href="#cb11-1"></a>&lt;Name&gt; ::= &lt;Expression1&gt; | &lt;Expression2&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The vertical bar is read as “or”. If you plan to use <code>|</code> as part of you own grammar then just repeat your productions rules and avoid this abbreviation.</p>
 <div class="callout-tip example callout-example" title="Natural numbers" data-callout-family="example">
 <p>The natural numbers are whatever we use to count. That means we need some symbol to reset the count, I will use <code>_</code> (the nothing character, like a cleared chalkboard upon which to write), and a symbol to advance the current count, I will use <code>▶</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>&lt;Reset&gt; ::= _ </span>
-<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>&lt;Advance&gt; ::= ▶</span>
-<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>&lt;Nat&gt; ::= &lt;Reset&gt;</span>
-<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a>&lt;Nat&gt; ::= &lt;Nat&gt; &lt;Advance&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb12-1"><a href="#cb12-1"></a>&lt;Reset&gt; ::= _ </span>
+<span id="cb12-2"><a href="#cb12-2"></a>&lt;Advance&gt; ::= ▶</span>
+<span id="cb12-3"><a href="#cb12-3"></a>&lt;Nat&gt; ::= &lt;Reset&gt;</span>
+<span id="cb12-4"><a href="#cb12-4"></a>&lt;Nat&gt; ::= &lt;Nat&gt; &lt;Advance&gt;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This grammar accepts the strings <code>_</code>, <code>▶</code>, <code>▶▶</code>.</p>
 <p>Notice we can compress this grammar into a single line using the vertical bar <code>|</code> to distinguish options and putting the constants inline.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>&lt;Nat&gt; ::= _ | &lt;Nat&gt; ▶</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb13-1"><a href="#cb13-1"></a>&lt;Nat&gt; ::= _ | &lt;Nat&gt; ▶</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In modern notation we would write this as</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a>ℕ ::= 0 | (++ℕ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb14-1"><a href="#cb14-1"></a>ℕ ::= 0 | (++ℕ)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This grammar accepts <code>0</code>, <code>1:=(++0)</code>, <code>2:=(++(++0))</code>, and so on. The symbol <code>++</code> is called <strong>successor</strong> in mathematics and <strong>incrementor</strong> in computation.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Grammar vs. Language">
@@ -910,35 +901,35 @@ window.Quarto = {
 </div>
 <div class="callout-tip example callout-example" title="Boolean Grammar" data-callout-family="example">
 <p>The constants are <code>True</code> and <code>False</code> and we can write a grammar for them as follows:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a>&lt;Boolean&gt; ::= True </span>
-<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a>&lt;Boolean&gt; ::= False</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb15-1"><a href="#cb15-1"></a>&lt;Boolean&gt; ::= True </span>
+<span id="cb15-2"><a href="#cb15-2"></a>&lt;Boolean&gt; ::= False</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This accepts the strings <code>True</code> and <code>False</code> and nothing else. We can annotate these with the name of the rule that accepted it, here <code>True:Boolean</code> and <code>False:Boolean</code>. To add a conjunction operator <code>AND</code> we can write</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a>&lt;Conj&gt; ::= &lt;Boolean&gt;</span>
-<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>&lt;Conj&gt; ::= (&lt;Conj&gt; AND &lt;Conj&gt;)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb16-1"><a href="#cb16-1"></a>&lt;Conj&gt; ::= &lt;Boolean&gt;</span>
+<span id="cb16-2"><a href="#cb16-2"></a>&lt;Conj&gt; ::= (&lt;Conj&gt; AND &lt;Conj&gt;)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 This grammar now accepts the strings
 <center>
 <code>(True AND False):Conj</code>, <code>(True AND (True AND False)):Conj</code>
 </center>
 <p>and so on. Their parse diagrams are</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a>    True --&gt;|left| Conj</span>
-<span id="cb17-3"><a href="#cb17-3" aria-label="3"></a>    False --&gt;|right| Conj</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a>    t1[True] --&gt;|left| c1[Conj]</span>
-<span id="cb18-3"><a href="#cb18-3" aria-label="3"></a>    f1[False] --&gt;|right| c1</span>
-<span id="cb18-4"><a href="#cb18-4" aria-label="4"></a>    t2[True] --&gt;|left| c2[Conj]</span>
-<span id="cb18-5"><a href="#cb18-5" aria-label="5"></a>    c1 --&gt;|right| c2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb17-1"><a href="#cb17-1"></a>flowchart LR</span>
+<span id="cb17-2"><a href="#cb17-2"></a>    True --&gt;|left| Conj</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    False --&gt;|right| Conj</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb18-1"><a href="#cb18-1"></a>flowchart LR</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    t1[True] --&gt;|left| c1[Conj]</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    f1[False] --&gt;|right| c1</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    t2[True] --&gt;|left| c2[Conj]</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    c1 --&gt;|right| c2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
 <p>Add a disjunction operator <code>OR</code> to the Boolean grammar above and a negation operator <code>NOT</code>. Then explain why <code>NOT(True OR False)</code> is accepted by your grammar and give its parse diagram.</p>
 </div>
 <div class="callout-tip example callout-example" title="Arithmetic as a Grammar" data-callout-family="example">
 <p>In the grammar:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a>&lt;Expr&gt; ::= &lt;Term&gt; | &lt;Term&gt; + &lt;Expr&gt;</span>
-<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a>&lt;Term&gt; ::= &lt;Factor&gt; | &lt;Factor&gt; * &lt;Term&gt;</span>
-<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a>&lt;Factor&gt; ::= &lt;Number&gt; | (&lt;Expr&gt;)</span>
-<span id="cb19-4"><a href="#cb19-4" aria-label="4"></a>&lt;Number&gt; ::= 0 | 1 | 2 | 3 | 4 | 5 </span>
-<span id="cb19-5"><a href="#cb19-5" aria-label="5"></a>           | 6 | 7 | 8 | 9</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource bnf number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1"></a>&lt;Expr&gt; ::= &lt;Term&gt; | &lt;Term&gt; + &lt;Expr&gt;</span>
+<span id="cb19-2"><a href="#cb19-2"></a>&lt;Term&gt; ::= &lt;Factor&gt; | &lt;Factor&gt; * &lt;Term&gt;</span>
+<span id="cb19-3"><a href="#cb19-3"></a>&lt;Factor&gt; ::= &lt;Number&gt; | (&lt;Expr&gt;)</span>
+<span id="cb19-4"><a href="#cb19-4"></a>&lt;Number&gt; ::= 0 | 1 | 2 | 3 | 4 | 5 </span>
+<span id="cb19-5"><a href="#cb19-5"></a>           | 6 | 7 | 8 | 9</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This grammar accepts the strings <code>1</code>, <code>2+3</code>, <code>4*5</code>, <code>(6+7)*8</code>, and so on.</p>
 </div>
 <div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
@@ -1003,154 +994,19 @@ Note
 <li>In Python: <code>2**3 + 4 * 5</code>. Note that <code>**</code> is the exponent operator in Python.</li>
 <li>In C++:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a><span class="cf">if</span> <span class="op">(</span>passing<span class="op">)</span> <span class="op">{</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Works!"</span><span class="op">;</span> </span>
-<span id="cb20-3"><a href="#cb20-3" aria-label="3"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> </span>
-<span id="cb20-4"><a href="#cb20-4" aria-label="4"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Failing."</span><span class="op">;</span> </span>
-<span id="cb20-5"><a href="#cb20-5" aria-label="5"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource cpp number-lines code-with-copy"><code class="sourceCode cpp"><span id="cb20-1"><a href="#cb20-1"></a><span class="cf">if</span> <span class="op">(</span>passing<span class="op">)</span> <span class="op">{</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Works!"</span><span class="op">;</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span> </span>
+<span id="cb20-4"><a href="#cb20-4"></a>    cout <span class="op">&lt;&lt;</span> <span class="st">"Failing."</span><span class="op">;</span> </span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In C++ the <code>&lt;&lt;</code> operator is similar to R’s pipe but reads right-to-left so the strings are piped to the <code>cout</code> which is what appears as output.</p>
 </div>
 </section>
 </section>
-<section id="trees-a-source-of-unambiguous-reasoning" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="trees-a-source-of-unambiguous-reasoning"><span class="header-section-number">7.3</span> Trees: a source of unambiguous reasoning</h2>
-<p>Now look at the examples of math and program parse diagrams and you will notice a difference to parsing of many natural languages: the graphs have only one path between any two nodes. This is such an important property that it has a name.</p>
-<div class="callout-note defn callout-defn" title="Tree" data-callout-family="defn">
-<p>A <strong>tree</strong> is a diagram of nodes and edges in which between any two nodes there is exactly one path that does not revisit a node.</p>
-<p>A <strong>directed acyclic graph</strong> (DAG) is a diagram of nodes and oriented edges in which we cannot go in circles following the direction of any arrows.</p>
-</div>
-<div class="callout-tip example callout-example" data-callout-family="example">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb21-2"><a href="#cb21-2" aria-label="2"></a>    A --- B</span>
-<span id="cb21-3"><a href="#cb21-3" aria-label="3"></a>    A --- C</span>
-<span id="cb21-4"><a href="#cb21-4" aria-label="4"></a>    B --- D</span>
-<span id="cb21-5"><a href="#cb21-5" aria-label="5"></a>    B --- E</span>
-<span id="cb21-6"><a href="#cb21-6" aria-label="6"></a>    E --- C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In the graph above there are two different paths from A to E, the first through B and the second through C. So this is not a tree. But if we remove even one edge on one of these two paths then we get a tree. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a>    A --- B</span>
-<span id="cb22-3"><a href="#cb22-3" aria-label="3"></a>    A --- C</span>
-<span id="cb22-4"><a href="#cb22-4" aria-label="4"></a>    B --- D</span>
-<span id="cb22-5"><a href="#cb22-5" aria-label="5"></a>    B --- E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout-tip example callout-example" data-callout-family="example">
-<p>When we add direction to the edges of a graph we can consider paths that only follow the arrows and so a graph which is not a tree can nevertheless become a directed acyclic graph (DAG) that is not a tree. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb23-2"><a href="#cb23-2" aria-label="2"></a>    A --&gt; B</span>
-<span id="cb23-3"><a href="#cb23-3" aria-label="3"></a>    A --&gt; C</span>
-<span id="cb23-4"><a href="#cb23-4" aria-label="4"></a>    B --&gt; D</span>
-<span id="cb23-5"><a href="#cb23-5" aria-label="5"></a>    B --&gt; E</span>
-<span id="cb23-6"><a href="#cb23-6" aria-label="6"></a>    E --&gt; C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div class="callout-tip example callout-example" data-callout-family="example">
-<p>The non-redundant paths in a proper maze (one in which there are no alternate paths) form a tree.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="maze.png" class="img-fluid figure-img"></p>
-<figcaption>Start to A, option to turn left or continue straight. From left curve around a wall to trap 1. Continuing straight to B. Option to turn right or continue straight. If right reach trap 2. Continue straight weaves around a corner to the exit.</figcaption>
-</figure>
-</div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb24-2"><a href="#cb24-2" aria-label="2"></a>    Start --- a</span>
-<span id="cb24-3"><a href="#cb24-3" aria-label="3"></a>    a --- Trap1["Trap 1"]</span>
-<span id="cb24-4"><a href="#cb24-4" aria-label="4"></a>    a --- b</span>
-<span id="cb24-5"><a href="#cb24-5" aria-label="5"></a>    b --- Trap2["Trap 2"]</span>
-<span id="cb24-6"><a href="#cb24-6" aria-label="6"></a>    b --- End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note that the non-redundant paths in an improper maze (one in which there can be alternate paths) form a DAG.</p>
-</div>
-<p>The point of trees is that they have unique paths so when we given instructions between two nodes these cannot be misinterpreted. So when it comes to understanding logic, if we can organize the grammar to only build trees then we are guaranteed that everyone who reads the logic in that grammar understands it the exact same way we meant it. No double meanings and no ambiguity can exist. This is a perfect property to have if we can get it. Fortunately context-free grammars do exactly that. The only missing element is to know where to begin reading nodes of the tree. So let us choose one node as the start.</p>
-<div class="callout-note defn callout-defn" data-callout-family="defn">
-<p>A tree is <strong>rooted</strong> if we designate one node as the root and all edges are oriented away from the root. The root is the starting point of the tree and all other nodes are its descendants. The nodes furthest from the root are called <strong>leaves</strong>.</p>
-</div>
-<div class="callout-tip thm callout-thm" data-callout-family="thm">
-<p>The parse diagram of a context-free grammar is a rooted tree. In particular when we parse a sentence in the language of a context-free grammar we always get the exact same diagram.</p>
-<p>We call this now the <strong>parse tree</strong> or the <strong>abstract syntax tree (AST)</strong>.</p>
-</div>
-<div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
-<p>Draw the path tree of the following maze. Make sure to reach each deadend.</p>
-<p><img src="maze2.png" class="img-fluid"></p>
-</div>
-</section>
-<section id="proof-trees-natural-deduction" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="proof-trees-natural-deduction"><span class="header-section-number">7.4</span> Proof Trees &amp; Natural Deduction</h2>
-<p>Trees have been so successful at organizing our intension with programs that they ought to be useful in organizing other forms of reasoning, including proofs of judgments. In fact, the Curry-Howard-Lambek correspondence seems to make this a requirement. So what we do now is replace “parse trees” with “proof trees”. This process today goes by <strong>Natural Deduction</strong> and it is the backbone of most of modern mathematical logic.</p>
-<p>Recall our earlier proof of the proposition</p>
-<blockquote class="blockquote">
-<p><strong>Theorem:</strong> If <span class="math inline">\(n\)</span> is even then <span class="math inline">\(n^2\)</span> is even.</p>
-</blockquote>
-<div class="callout callout-style-default callout-note callout-titled" title="Proof">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Proof
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>To be even means we have evidence <span class="math inline">\(k\)</span>, a natural number, where <span class="math inline">\(n=2k\)</span>. From that we derive <span class="math display">\[
-n^2=(2k)^2=2(k\cdot 2\cdot k)
-\]</span> So we produced evidence <span class="math inline">\(j=k\cdot 2\cdot k\)</span> that <span class="math inline">\(n^2\)</span> is even. So from a truth, <span class="math inline">\(n=2k\)</span>, we derived another truth <span class="math inline">\(P:\)</span> <span class="math inline">\(n^2\)</span> is even.</p>
-</div>
-</div>
-<p>As a diagram this proof is the following tree:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb25-2"><a href="#cb25-2" aria-label="2"></a>    Premise1["n is even"] ---|evidence k| Result1["n=2k"]</span>
-<span id="cb25-3"><a href="#cb25-3" aria-label="3"></a>    Premise2["m=ab"] ---|"Associative x(yz)=(xy)z"| Result2["m^2=a(bab)"]</span>
-<span id="cb25-4"><a href="#cb25-4" aria-label="4"></a>    Result1 ---|sub m=n, a=2,b=k| Result3["n^2 = 2j"]</span>
-<span id="cb25-5"><a href="#cb25-5" aria-label="5"></a>    Result2 ---|sub j=bab| Result3</span>
-<span id="cb25-6"><a href="#cb25-6" aria-label="6"></a>    Result3 ---|definition| Result4["n^2 is even"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>By writing the proof as a tree we start to notice that we got information from context of natural numbers, such as the associative property of multiplication. The combination of events ends with the claim we want.</p>
-<div class="callout-note defn callout-defn" data-callout-family="defn">
-<p>A proof by <strong>Natural Deduction</strong> is a whose diagram is a tree rooted at the conclusion. The leaves of the proof tree are called the <strong>premises</strong> and the internal nodes are called <strong>deductions</strong>.</p>
-</div>
-<section id="classical-logic-proofs-may-be-given-as-dags" class="level3">
-<h3 class="anchored" data-anchor-id="classical-logic-proofs-may-be-given-as-dags">Classical Logic Proofs may be given as DAGs</h3>
-<p>In many forms of logic we are permitted to reuse a premise multiple times in a proof. You saw that in our earlier example of the properties of administrators who can both add and remove users. Yet it was not always true as we saw with resources like a USB port which can only be used by one device. Now when a judgment style is allowed to reuse a premise we often do not bother to track how many uses we make. The effect can be that within the writing of a proof we simply state the premise we use once and extract from it multiple facts. Strictly speaking this does not diagram as a tree. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a>    Premise["P"] --&gt;|use 1| Result1["Q"]</span>
-<span id="cb26-3"><a href="#cb26-3" aria-label="3"></a>    Premise --&gt;|use 2| Result2["R"]</span>
-<span id="cb26-4"><a href="#cb26-4" aria-label="4"></a>    Result1 --&gt;|combine| Result3["S"]</span>
-<span id="cb26-5"><a href="#cb26-5" aria-label="5"></a>    Result2 --&gt;|combine| Result3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This is however a directed acyclic graph (DAG) since there is no cycle in the diagram. So the implicit assumption maid by the author is that we are permitted to copy a premise for reuse. Doing so separates the DAG into a proof tree as required. Here’s the above DAG converted into a tree by copying the premise:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb27-1"><a href="#cb27-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb27-2"><a href="#cb27-2" aria-label="2"></a>    Premise1["P"] --&gt;|use 1| Result1["Q"]</span>
-<span id="cb27-3"><a href="#cb27-3" aria-label="3"></a>    Premise1Copy["P"] --&gt;|use 2| Result2["R"]</span>
-<span id="cb27-4"><a href="#cb27-4" aria-label="4"></a>    Result1 --&gt;|combine| Result3["S"]</span>
-<span id="cb27-5"><a href="#cb27-5" aria-label="5"></a>    Result2 --&gt;|combine| Result3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This brings up the question of how important it is to insist on only one conclusion to a list of premises. If we have a lot of facts that follow why not simply list them all?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb28-1"><a href="#cb28-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb28-2"><a href="#cb28-2" aria-label="2"></a>    Premise["P"] --&gt;|use 1| Result1["Q"]</span>
-<span id="cb28-3"><a href="#cb28-3" aria-label="3"></a>    Premise --&gt;|use 2| Result2["R"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In reality this is a perfectly standard form of proof. Mathematics often follows a proof in natural deduction with “Corollaries” or “scholia” which are just terms meant to say that we extract a different consequence form the existing argument. Since the interpretation of DAG verses tree is immaterial to many systems of judgment this causes relatively little harm to clarity. Yet be on the look out for those judgments that consider the total number of uses of our premise. Some things do not last forever and there the reuse of a premise can be highly illogical.</p>
-<div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
-<p>Below is a proof of the Division Algorithm we created in our first topic <a href="01/5000.html#division-algorithm">here</a>. Draw the proof tree for this proof.</p>
-<blockquote class="blockquote">
-<p><strong>Theorem (Division Algorithm):</strong> For natural numbers <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> with <span class="math inline">\(n&gt;0\)</span> there exist unique integers <span class="math inline">\(q\)</span> and <span class="math inline">\(r\)</span> such that <span class="math inline">\(m=q\cdot n+r\)</span> and <span class="math inline">\(0\le r&lt;n\)</span>.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><strong>Proof:</strong> If <span class="math inline">\(m&lt; n\)</span> then take <span class="math inline">\(q=0\)</span> and <span class="math inline">\(r=m\)</span> so that <span class="math inline">\(m=0\cdot n+r\)</span>. Otherwise <span class="math inline">\(-n+m\)</span> is smaller than <span class="math inline">\(m\)</span> and there is a some memoized (previously found) <span class="math inline">\(q\)</span> and <span class="math inline">\(r&lt;n\)</span> where <span class="math inline">\(-n+m=n\cdot q+r\)</span>. Add <span class="math inline">\(n\)</span> to both sides so that <span class="math display">\[
-m=n+-n+m-n=n+n\cdot q+r=n\cdot (1+q)+r
-\]</span> So <span class="math inline">\(m=n\cdot q'+r\)</span> with <span class="math inline">\(r&lt; n\)</span>. <span class="math inline">\(\Box\)</span></p>
-</blockquote>
-<p>If some step appears to use some fact you know from the context of natural numbers, e.g.&nbsp;<span class="math inline">\(n+n\cdot q=n\cdot (1+q)\)</span>, you may state it as a premise. These will indicate what hidden assumption this proof depends on. Often these offer clues for future inventions, such as inventing division of polynomials.</p>
-<p><strong>Warning</strong> If you involve support online you may fine a far more complicated answer than you are expected to use here. For example you make see <span class="math inline">\(\exists\)</span> (“There exists”) and <span class="math inline">\(\wedge\)</span> (“and”). While it is ok to use, consider replacing the symbols with words and seek an explanation that would make sense to your Babylonian tile setter as well.</p>
-</div>
-</section>
-<section id="when-a-proof-becomes-a-maze" class="level3">
-<h3 class="anchored" data-anchor-id="when-a-proof-becomes-a-maze">When a proof becomes a maze</h3>
-<p>It is not always obvious how to take a proof in words and turn it into a tree or DAG. You can remind yourself why this must by asking: what sense is there in going in circles in your proof? Unfortunately, even seasoned mathematicians are not always conscious that proof are trees. Making things worse is the goal of many authors to introduce a flare to their writing of proofs reorganizing sentences, inserting digressions, and changing words just for variety. A surprisingly problematic unnecessary rule by many authors is to never start a sentence with a symbol. In implementing this rule many authors take to reordering the information of a proof, giving the conclusion before the premise or using a variable before telling readers it is a variable. It is not entirely whims of authors to blame. Proofs are written often a lines of text and if we consider a tree or DAG described row by row top to bottom we can see we are forced to fold information into pockets of our text not unlike the build of a maze.</p>
-<p>The issues notwithstanding, knowing that proofs exist as trees suggests strategies to reorganize a proof once we have constructed it. We can diagram the tree and then organize the layout so that nearby connections remain together whenever possible. We can give diagrams as part of the proof when the connections get complicated. We can prune branches and give them as individual smaller trees (“refactoring”). So while flattening a tree into a linear discussion is is never a clean job, avoid being a lazy author so that your proofs do not become a maze.</p>
-</section>
-</section>
-<section id="summary" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.5</span> Summary</h2>
+<section id="summary" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.3</span> Summary</h2>
 <ul>
 <li>Grammar converts sentences into diagrams through a process called <strong>parsing</strong> resulting a <strong>parse diagram</strong>.</li>
-<li><strong>Trees</strong> are diagrams in which any two nodes have a unique path between them. They give unambiguous instructions.</li>
-<li><strong>Context-free grammars</strong> parse as trees while remaining capable of expressing formulas and programs.</li>
-<li>Proofs, when organized by <strong>Natural Deduction</strong> are trees rooted in the conclusion and whose leaves are the premises.<br>
-</li>
 <li>Mathematical grammar involves spacial notation such as subscripts and superscripts, groupings, fractions etc. The <span class="math inline">\(\LaTeX\)</span> system is a grammar that flattens these into a left-to-right string of characters. It is widely used in mathematics, logic, computer science, and data science.</li>
 </ul>
 
@@ -1560,8 +1416,8 @@ m=n+-n+m-n=n+n\cdot q+r=n\cdot (1+q)+r
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../01/Deduct-Induct-Abduct.html" class="pagination-link" aria-label="Deductive, Inductive, and Abductive reasoning">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span>
+      <a href="../01/Context.html" class="pagination-link" aria-label="Context">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Context</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
