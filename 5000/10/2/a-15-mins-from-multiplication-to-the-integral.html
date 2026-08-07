@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>39&nbsp; * 12.2 “Area” &amp; “Slope” Working together – 5000 Years of Modern Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../10/2/b-changing-measures-the-derivative.html" rel="next">
+<link href="../../10/1/learning-materials-and-resources.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/book-enhancements.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../../quarto-runtime/styles/Homepage.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../10/overview-10.html"><i class="fa-solid fa-ruler-combined fa-la"></i> X. Creating Measurements</a></li><li class="breadcrumb-item"><a href="../../10/2/a-15-mins-from-multiplication-to-the-integral.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">5000 Years of Modern Computing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00/preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../00/Acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Chp-Start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A Library of logic.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Judgment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gavel"></i> Logical Judgments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Writing-down-a-logic.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Sub-Var-Func.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Combinators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-microchip"></i> Gates, Combinators, and Turing and Kleene</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../01/Chp-Summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-clipboard-list"></i> Logical Library summary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02/LIE-AND.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02/Quantifiers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quantifiers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../02/Qualifiers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-screwdriver-wrench fa-la"></i> III. Types of Data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../03/overview-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Types of data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-id-card fa-la"></i> IV. Subset and Partitions</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/1-Boubaki-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Solving <span class="math inline">\(y=f(x)\)</span> needs new types of data: subsets and partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/injective.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Injective</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/surjective-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">math156 surjective Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/Club-Membership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-id-card fa-la"></i> Subsets and Partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/partitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">math156 Partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/what-is-a-subset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What is a subset?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../04/Summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Subset <span class="math inline">\(\subset\)</span> and Partition <span class="math inline">\(/\)</span> Summary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-folder-tree fa-la"></i> V. Pattern Matching</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../05/pattern-making-and-its-co-operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Week 6 Day 2  Pattern Making &amp; its Co-operators</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-users fa-la"></i> VI. Relations</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../06/describing-relations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-kiwi-bird fa-la"></i> VII. Default and Adaptive Logic</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../07/overview-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Week 6 Inductive Reasoning</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-dice fa-la"></i> VIII. Probability</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../08/1-proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Proportions towards Probability</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../08/3-probabilistic-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Probabilistic Data Types</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-taxi fa-la"></i> IX. Approximation</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../09/overview-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">overview-9.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../09/a/limits-and-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Name ## Assessment 11</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../09/l/getting-close-is-not-enough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lab 11 Getting Close is not Enough</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../09/1/cauchys-limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../09/2/asymptotics-and-long-term-behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">*Part  2   Asymptotics &amp; Long term behavior</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../09/3/functions-as-limits-of-sums-taylor-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Part 3 Functions as Limits of Sums (Taylor Series)</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text"><i class="fa-solid fa-ruler-combined fa-la"></i> X. Creating Measurements</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/overview-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">overview-10.html</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/0/measurement-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/l/features-in-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Lab 12 Features in Signals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/1/a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/1/b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/1/learning-materials-and-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Lesson 10.1 | Title/Topic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/2/a-15-mins-from-multiplication-to-the-integral.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/2/b-changing-measures-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">* 12.2.b Changing Measure: The Derivative</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/2/b-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/2/c-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/2/c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/3/calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/3/calculus-with-sums-products-and-powers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">12.2.b Some practical Integrals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../10/s/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/0/overview-what-is-a-feature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/a/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Name ## Assessment 13</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/l/features-in-audio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Lab 13 Features in audio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/1/linear-features-are-integrals-riesz-representation-theorem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">* Part 1 Why Most Features are Integrals (Riesz Representation Theorem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/2/moving-averages-and-mean-value-theorems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Day 2  Moving Averages &amp; Mean Value Theorems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/2linear/features-are-integrals-riesz-representation-theorem-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Part 1 All Features are Integrals (Riesz Representation Theorem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../11/3/critical-points-increases-and-decreases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Day 3  Critical Points, Increases &amp; Decreases</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-bullseye fa-la"></i> XII. Machine Learning</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/0/overview-machine-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Name ## Overview Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/a/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Name ## Assessment 14</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/l/learning-from-trades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Lab 14 Learning from trades</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/1/chain-rule-for-change-upon-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Day 1 Chain Rule for change upon change</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/12-dot-1-b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/12-dot-2-b-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/12-dot-2-c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/12-dot-3-calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/12-dot-s-summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/2/back-propogation-for-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Day 2 Back propogation for learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../12/3/equations-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Day 3 Equations of change</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../AA/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#simple-functions" id="toc-simple-functions" class="nav-link active" data-scroll-target="#simple-functions">Simple functions</a></li>
+  <li><a href="#new-measurements-from-old-ones" id="toc-new-measurements-from-old-ones" class="nav-link" data-scroll-target="#new-measurements-from-old-ones">New Measurements from Old Ones</a></li>
+  <li><a href="#products-of-measures-the-integral" id="toc-products-of-measures-the-integral" class="nav-link" data-scroll-target="#products-of-measures-the-integral">Products of measures: the integral</a></li>
+  <li><a href="#a-rectangles-area-x-and-y" id="toc-a-rectangles-area-x-and-y" class="nav-link" data-scroll-target="#a-rectangles-area-x-and-y">A “rectangle’s area” (x) and (y)</a></li>
+  <li><a href="#approximating-complicated-areas-with-rectangle-areas" id="toc-approximating-complicated-areas-with-rectangle-areas" class="nav-link" data-scroll-target="#approximating-complicated-areas-with-rectangle-areas">Approximating complicated “Areas” with “Rectangle areas”</a></li>
+  <li><a href="#the-integral-_-f-d-as-the-best-approximation.-lebesgues-method." id="toc-the-integral-_-f-d-as-the-best-approximation.-lebesgues-method." class="nav-link" data-scroll-target="#the-integral-_-f-d-as-the-best-approximation.-lebesgues-method.">The integral (_{} f d) as the best approximation. Lebesgue’s Method.</a></li>
+  <li><a href="#riemanns-alternative-for-continuous-data-optional" id="toc-riemanns-alternative-for-continuous-data-optional" class="nav-link" data-scroll-target="#riemanns-alternative-for-continuous-data-optional">Riemann’s alternative for continuous data (Optional)</a></li>
+  <li><a href="#run-an-interactive-demo" id="toc-run-an-interactive-demo" class="nav-link" data-scroll-target="#run-an-interactive-demo">Run an interactive Demo</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../10/overview-10.html"><i class="fa-solid fa-ruler-combined fa-la"></i> X. Creating Measurements</a></li><li class="breadcrumb-item"><a href="../../10/2/a-15-mins-from-multiplication-to-the-integral.html"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">* 12.2 “Area” &amp; “Slope” Working together</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>10.2.a (15 mins) From multiplication to the Integral</p>
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/10-Measurement-Distributes.png" class="img-fluid" alt="A measuring stick."> Many measurements you will encounter are accumulations of smaller measurements. If we learn to compute those measurements the rest is data collection and physical scanners.</p>
+<section id="simple-functions" class="level3">
+<h3 class="anchored" data-anchor-id="simple-functions">Simple functions</h3>
+<p>Suppose we know how to measure disjoint subsets (A_1,, A_n). Then we can measure them together because the whole is the sum of its parts:</p>
+<p>((A_1A_n) = (A_1)++(A_n))</p>
+<p>Now what if we discover along the way that we would like to create a new measure by simply re-weighting each individual term.</p>
+<section id="example-course-grading" class="level4">
+<h4 class="anchored" data-anchor-id="example-course-grading">Example: course grading</h4>
+<p>Let us suppose () represents all graded assessments in a course, each graded as a percentage. To hold on to a specific example here is a possible grade list for our fictitious student.</p>
+<p><strong>StudentHomework 1Lab 1Homework 2Lab 2Exam 1 Homework 3Lab 3Exam 2Raw Average <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257B%255Cmu(A)%257D%257B8%257D?scale=1.png" class="img-fluid" alt="LaTeX: ">Weighted Average <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257B%255Cnu(A)%257D%257B8%257D?scale=1.png" class="img-fluid" alt="LaTeX: "></strong></p>
+<p>Ralphie T. Buffalo****75%80%72%0%74%81%85%83%69%</p>
+<p>Cam T. Ram 92% 85%75%82%87%88%95%91%87%</p>
+<p>The score for a subset (A) is to add up all the scores in (A) and divide them by the total number of scores, i.e.&nbsp;an average :</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cmu(A)%253D%255Csum_%257Ba%255Cin%2520A%257D%2520a?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: (A)=_{aA} a</figcaption>
+</figure>
+</div>
+<p>(We included a column for the measure ((Ralphie)) in row 2 and ((Cam)) in row 3.)</p>
+<p><strong>Revisiting the grades.</strong> Now suppose we decide it would be better to weight scores based on categories. For example homeworks (H) should count for 40% of the grade, labs (L) for 30%, and exams (E) for 30%. Because these categories are disjoint we could adapt our existing measure to include this weighting as follows.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cnu(A)%2520%253D%25200.40%255Ccdot%2520%255Cmu(A%255Ccap%2520H)%2520%252B%25200.30%2520%255Ccdot%2520%2520%255Cmu(A%255Ccap%2520L)%2520%252B%25200.30%255Ccdot%2520%255Cmu(A%255Ccap%2520E)?scale=1" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: (A) = 0.40(AH) + 0.30 (AL) + 0.30(AE)</figcaption>
+</figure>
+</div>
+<p>In our table above example we have to gather the homework columns to get (AH), the lab columns to get (AL) and the exam columns to get (AE) for a combined score of</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Cnu(%255Ctext%257BRalphi%257D)%2520%2526%2520%253D%25200.40%255Cmu(%255C%257B75%255C%2525%252C%252072%255C%2525%252C81%255C%2525%255C%257D)%2520%252B%25200.30%255Cmu(%255C%257B80%255C%2525%252C0%255C%2525%252C85%255C%2525%255C%257D)%252B0.30%255Cmu(%255C%257B74%255C%2525%252C83%255C%2525%255C%257D)%255C%255C%250A%2526%2520%253D%25200.40%255Cfrac%257B0.75%252B0.72%252B0.81%257D%257B8%257D%2520%252B%25200.30%255Cfrac%257B0.80%252B0.00%252B0.85%257D%257B8%257D%252B0.30%255Cfrac%257B0.74%252B0.83%257D%257B8%257D%255C%255C%250A%2526%2520%253D%2520%250A%255Cend%257Baligned%257D?scale=1" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+<p>(We included this new measure ((Cam)) for Cam</p>
+<p>for that () takes the sum of all grades in subset (A) of graded work with () the set of all graded work for a course. For example if (A_{homework}) was homework and (A_{lab}) lab, and (A_{exam}) exam scores, perhaps we would want homework to count for 40%, quizzes and exams for 30% each. The new wait</p>
+</section>
+</section>
+<section id="new-measurements-from-old-ones" class="level3">
+<h3 class="anchored" data-anchor-id="new-measurements-from-old-ones">New Measurements from Old Ones</h3>
+<p>The following table lists a number of measurements built from existing measurements. There are many more not listed here that arise across science, industry, and business.</p>
+<section id="measurement" class="level4">
+<h4 class="anchored" data-anchor-id="measurement">Measurement</h4>
+</section>
+<section id="operator" class="level4">
+<h4 class="anchored" data-anchor-id="operator">Operator</h4>
+<p>Velocity = meters / second Ratio ()</p>
+<p>Acceleration = velocity / hour Ratio ()</p>
+<p>Area = square miles, meters squared, Product ()</p>
+<p>Torque = foot-pounds Product ()</p>
+<p>inflation = supply / demand Ratio ()</p>
+<p>P.E. = Price / Earning Ratio ()</p>
+<p>Market Cap. = Share Price * Volume Product ()</p>
+<p>Work = CPUs * Hours Product ()</p>
+<p>The unifying aspect of these measures is that they combine 2 measurements using either multiplication or division. So it matters to develop these two measurements.</p>
+</section>
+</section>
+<section id="products-of-measures-the-integral" class="level3">
+<h3 class="anchored" data-anchor-id="products-of-measures-the-integral">Products of measures: the integral</h3>
+<p>To explore the product of two measures let’s call them collectively as “Area”. In a rectangle this is length of the best times the length of the height. Yet concepts like length and area do not mean anything to topics like Market Capitalization, Torque or many other product related measurements. Yet it helps us often to recycle the language of shapes so we are guided towards tools that will help us work with those topics. So throughout we put quotation marks around these words that are metaphorical abstractions, e.g.&nbsp;“Area” and “Length”.</p>
+<section id="an-area-from-the-stock-market" class="level4">
+<h4 class="anchored" data-anchor-id="an-area-from-the-stock-market">An “area” from the stock market</h4>
+<p>The “Cumulative Stock Price” of a company is the sum of changing stock prices in some time window. This may not sound like an area, but we attach that vocabulary by plotting a diagram of the stock. Below is a chart from MorningStar.Com (a stock-market data broker) that charts the Cumulative Stock Price of Nvidia as a shaded area under the curve of individual daily pricing.<img src="$IMS-CC-FILEBASE$/Uploaded Media 2/chart.jpg" class="img-fluid" alt="MorningStar.com’s cumulative stock price for Nvidia, 2021-2026."></p>
+</section>
+<section id="building-the-integral" class="level4">
+<h4 class="anchored" data-anchor-id="building-the-integral">Building the Integral</h4>
+</section>
+</section>
+<section id="a-rectangles-area-x-and-y" class="level3">
+<h3 class="anchored" data-anchor-id="a-rectangles-area-x-and-y">A “rectangle’s area” (x) and (y)</h3>
+<p>To kick off the measurement let us put some names and symbols to the parameters.</p>
+<ul>
+<li>(x) will be mean the (signed or unsigned) measurement on the x-axis of our “rectangle”. This could be a distance measure, a probability measure or some unknown measure, signed or unsigned. However, the images we plot to explain this will all be visualizations of the distance measure.</li>
+<li>(y) will be mean the (signed or unsigned) measurement on the y-axis of our “rectangle”.</li>
+<li>(xy) the measure of the “rectangle” with sides (y) and (x).</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Screenshot 2026-04-08 at 1.21.39 AM.png" class="img-fluid figure-img"></p>
+<figcaption>Area of a rectangle labeled by change measurement in the x and y axes.</figcaption>
+</figure>
+</div>
+<p>Keep in mind these are metaphorical concepts. The pictures are therefore not necessary, but they are helpful to many.</p>
+</section>
+<section id="approximating-complicated-areas-with-rectangle-areas" class="level3">
+<h3 class="anchored" data-anchor-id="approximating-complicated-areas-with-rectangle-areas">Approximating complicated “Areas” with “Rectangle areas”</h3>
+<p>It would be difficult to guess the precise area in something as complicated as the Nvidia stock prices. However we know that whatever a graphical “area” is meant to be it should 2-dimensional and have a 1-dimensional boundary. So if we are to produce that concept in other applications we need to declare upfront what is our boundary. We can do this with a combination of boundaries, (think bottom, sides, top). For example, in our Cumulative Stock Price</p>
+<ul>
+<li>the bottom () was the x-axis (because stock prices cannot go negative).</li>
+<li>The sides were the window time, say 2021 on the left and 2026 on the right.</li>
+<li>The top is the interesting bit, it is the daily stock prices, some crazy graph (f).</li>
+</ul>
+<p>Now for an approximation we can use the Stock prices at several places to set up how high our rectangle goes. And we can widen or shrink our rectangles by taking points further or closer apart. In the end we have a mix of over and under estimates of the area.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Screenshot 2026-04-08 at 1.25.20 AM.png" class="img-fluid figure-img"></p>
+<figcaption>Approximate area of a curved shape make by placing rectangle near the shape of the curve.</figcaption>
+</figure>
+</div>
+<p>Let us label each rectangle by the pair of intervals (X=[x_j,x_{j+1}]) and (Y=[y_j,y_{j+1}]) that define each rectangles dimensions (X) and (Y) respectively. All the rectangles collectively are (). So if (A) is the target area, our approximation by rectangles is trying to approximate () as a disjoint union.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520A%255Capprox%2520%255Cbigsqcup_%257B(X%252CY)%255Cin%2520%255Cmathcal%257BP%257D%257D%2520(X%255Ctimes%2520Y)?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: A_{(X,Y)} (XY)</figcaption>
+</figure>
+</div>
+<p>Thus we can use the fact that for measures, <a href="#dpPopup0tooltip">the whole is the sum of its parts</a>((AB)=(A)+(B)). We have finite number of parts so we distribute the measurement as sum of each rectangle measurement.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Cmu(A)%2520%2526%2520%255Capprox%2520%255Cmu%255Cleft(%255Cbigsqcup_%257B(Y%252CX)%255Cin%2520%255Cmathcal%257BP%257D%257D%2520(Y%255Ctimes%2520X)%255Cright)%255C%255C%250A%2520%2526%2520%255Capprox%2520%255Csum_%257B(Y%252CX)%255Cin%2520%255Cmathcal%257BP%257D%257D%2520%255Cmu(Y%255Ctimes%2520X)%255C%255C%250A%2520%2526%2520%255Capprox%2520%255Csum_%257B(Y%252CX)%255Cin%2520%255Cmathcal%257BP%257D%257D%2520%255CDelta%2520Y%255Ctimes%2520%255CDelta%2520X%250A%255Cend%257Baligned%257D?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+</section>
+<section id="the-integral-_-f-d-as-the-best-approximation.-lebesgues-method." class="level3">
+<h3 class="anchored" data-anchor-id="the-integral-_-f-d-as-the-best-approximation.-lebesgues-method.">The integral (_{} f d) as the best approximation. Lebesgue’s Method.</h3>
+<p>Now to make the best estimate suppose insist that our approximations are all from below the graph, written</p>
+<p>(f) the rectangles in (mathcal{P}) are entirely below the graph of (f)</p>
+<p>Now define the integral as the <a href="$WIKI_REFERENCE$/pages/gb10bd4079e898707eb534eeb87486d60">least upper bound / supremum</a> of all approximations.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255COmega%257D%2520f%2520d%255Cmu%2520%253D%255Csup_%257B%255Cmathcal%257BP%257D%255Cleq%2520f%257D%2520%255Csum_%257B(X%252CY)%255Cin%2520%255Cmathcal%257BP%257D%257D%2520%255CDelta%2520Y%2520%255Ctimes%2520%255CDelta%2520X?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: <em>{} f d=</em>{f} _{(X,Y)} Y X</figcaption>
+</figure>
+</div>
+<p>This integral was created by Lebesgue (le-bay-guh) and it is the integral that you will need in data science, probability, mathematics and science.</p>
+<hr>
+<p>Technical Glitch. While this description is the right concept, sometimes no single () reaches the exact area. So there is no max. Instead there might be gradually improving max. So we should take the limit of this growing approximation.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Screenshot 2026-04-09 at 10.18.22 AM.png" class="img-fluid figure-img"></p>
+<figcaption>Values steadily increasing from 2 to just above 2.5</figcaption>
+</figure>
+</div>
+<p>Mathematicians have given the limit of maximum values a name. We call it a <strong>supremum</strong> instead of max.</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Csup_%257Bx%257D%2520A%2520%253D%2520%255Clim_%257BB%255Csubset%2520A%257D%2520%255Cmax%2520B?scale=1.png" class="img-fluid" alt="LaTeX: {x} A = {BA} B"> the limit of all subsets that have a maximum.</p>
+<p>So the actual statement should use supremum not max.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255COmega%257D%2520f%2520d%255Cmu%2520%253D%255Csup_%257B%255Cmathcal%257BP%257D%255Cleq%2520f%257D%2520%255Csum_%257B(X%252CY)%255Cin%2520%255Cmathcal%257BP%257D%257D%2520%255CDelta%2520Y%2520%255Ctimes%2520%255CDelta%2520X?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: <em>{} f d=</em>{f} _{(X,Y)} Y X</figcaption>
+</figure>
+</div>
+<p>You can probably get by confusing maximum with supremum but at least you have been warned that eventually you could need to know the difference.</p>
+</section>
+<section id="riemanns-alternative-for-continuous-data-optional" class="level3">
+<h3 class="anchored" data-anchor-id="riemanns-alternative-for-continuous-data-optional">Riemann’s alternative for continuous data (Optional)</h3>
+<p>Sometimes it is nice to have more than one way to think or compute and the integral is not exception. One strategy that has had enormous success for geometry and physics problem has concerned the situations where the domain of integration is uniform (compact is the mathematician’s term). of our area are all connected by continuous lines. (Unlike our weighted stock model). more than it is not necessary to have more than one way to compute integrals, the integral we have defined works for all measurements, there is a popular alternative designed specifically for geometry. If you have seen calculus then chances are the this is the integral you were taught.</p>
+<p>We should think of the change in the x-axis as striding between (a) and (b), so it is sequence (a=x_0&lt;x_1&lt;&lt; x_n=b).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Screenshot 2026-04-08 at 1.25.20 AM.png" class="img-fluid figure-img"></p>
+<figcaption>Approximate area of a curved shape make by placing rectangle near the shape of the curve.</figcaption>
+</figure>
+</div>
+<p>Each change in x is the measure of that stride:</p>
+<p>(x_j = x_{j+1}-x_j)</p>
+<p>Since we measure the height from the x-axis, a height of 0, and we stop when we reach the curve (f), the change in y is</p>
+<p>(y_j=f(x_j)-0)</p>
+<p>Take as a sum we have the formula at any one approximation. Taking all the approximations together we can ask for the limit (if it exists) and give that a similar name. The giant S () to invoke the growing size of the sums over increasing numbers of boxes, and the lower case d (dx) to invoke the shrinking measure of each stride in the x axis.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Cint_a%255Eb%2520f%255C%252C%2520dx%2520%2526%2520%253D%255Clim_%257Bn%255Cto%2520%255Cinfty%257D%2520%255Csum_%257Bj%253D0%257D%255E%257Bn-1%257D%2520%255CDelta%2520y_j%2520%255CDelta%2520x_j%252C%2520%250A%2526%2520%255CDelta%2520y_j%2520%2526%2520%253D%2520f(x_j)-0%2520%2526%2520%255CDelta%2520x_j%2520%2526%2520%253D%2520x_%257Bj%252B1%257D-x_j%255C%255C%250A%2520%2520%2526%2520%253D%255Clim_%257Bn%255Cto%2520%255Cinfty%257D%2520%255Csum_%257Bj%253D0%257D%255E%257Bn-1%257D%2520f(x_j)%2520(x_%257Bj%252B1%257D-x_j).%250A%255Cend%257Baligned%257D?scale=1" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+<p>This integral is credited to Riemann though it appeared in various forms in earlier work. While some people find this model easier to learn, it does not work with many of the important applications of measurement, including probability and data science applications. So it is best to invest in our first integral.</p>
+</section>
+<section id="run-an-interactive-demo" class="level3">
+<h3 class="anchored" data-anchor-id="run-an-interactive-demo">Run an interactive Demo</h3>
+<p>The best way to gain intuition is to try this with your own shapes and boxes. The GeoGebra project offers some incredible demonstrations. Below are two, but you should poke around and find more that answer your questions. Book mark this website. It will be a go-to tool in much of your scientific training.</p>
+<ul>
+<li><a href="https://www.geogebra.org/m/myqgeegt">Approximating a definite integral from a graph, Dr.&nbsp;Jack L. Jackson II</a></li>
+<li><a href="https://www.geogebra.org/m/ya2X7MAJ">Area Between Curves, Mike May</a></li>
+</ul>
+<p>Icon Progress Bar (browser only)</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../10/1/learning-materials-and-resources.html" class="pagination-link" aria-label="Lesson 10.1 | Title/Topic">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Lesson 10.1 | Title/Topic</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../10/2/b-changing-measures-the-derivative.html" class="pagination-link" aria-label="* 12.2.b  Changing Measure: The Derivative">
+        <span class="nav-page-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">* 12.2.b Changing Measure: The Derivative</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

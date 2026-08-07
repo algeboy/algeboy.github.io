@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Substitution, Variables, and Functions – 5000 Years of Modern Programming</title>
+<title>8&nbsp;  Substitution, Variables, and Functions – 5000 Years of Modern Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -68,7 +71,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../02/LIE-AND.html" rel="next">
+<link href="../01/Combinators.html" rel="next">
 <link href="../01/Writing-down-a-logic.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -108,1267 +111,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="../assets/webllm-chat.css">
-<script src="../assets/mermaid.min.js"></script>
-<script type="module" src="../assets/webllm-chat.js"></script>
-<style>
-  .quarto-content img {
-    max-width: min(50%, 42rem);
-    width: auto;
-    height: auto;
-    cursor: zoom-in;
-  }
-
-  .quarto-content .quarto-figure-left,
-  .quarto-content .quarto-float-fig.quarto-float-left {
-    float: left;
-    margin: 0.15rem 0.85rem 0.55rem 0;
-    max-width: min(50%, 42rem);
-  }
-
-  .quarto-content .quarto-figure-right,
-  .quarto-content .quarto-float-fig.quarto-float-right {
-    float: right;
-    margin: 0.15rem 0 0.55rem 0.85rem;
-    max-width: min(50%, 42rem);
-  }
-
-  .quarto-content .quarto-figure-left img,
-  .quarto-content .quarto-float-fig.quarto-float-left img,
-  .quarto-content .quarto-figure-right img,
-  .quarto-content .quarto-float-fig.quarto-float-right img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-  }
-
-  .quarto-content .quarto-figure-left figcaption,
-  .quarto-content .quarto-float-fig.quarto-float-left figcaption,
-  .quarto-content .quarto-figure-right figcaption,
-  .quarto-content .quarto-float-fig.quarto-float-right figcaption {
-    display: block;
-    margin-top: 0.35rem;
-    font-size: 0.9rem;
-    line-height: 1.3;
-  }
-
-  .quarto-content .clay-wrap-figure {
-    float: left;
-    margin: 0.15rem 0.85rem 0.55rem 0;
-  }
-
-  .quarto-content .clay-wrap-figure img {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .quarto-content .clay-wrap-figure figcaption {
-    display: block;
-    margin-top: 0.35rem;
-    font-size: 0.9rem;
-    line-height: 1.3;
-    font-style: italic;
-  }
-
-  .quarto-content .float-clear {
-    clear: both;
-  }
-
-  figure.left {
-    float: left;
-    width: 200px;
-    margin: 0 1rem 1rem 0;
-  }
-
-  .quarto-image-lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.96);
-    padding: 1rem;
-  }
-
-  .quarto-image-lightbox.is-open {
-    display: flex;
-  }
-
-  .quarto-image-lightbox img {
-    width: auto;
-    max-width: 96vw;
-    max-height: 96vh;
-    height: auto;
-    object-fit: contain;
-    cursor: zoom-out;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-  }
-
-  .quarto-image-lightbox__close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    border: 0;
-    background: rgba(0, 0, 0, 0.08);
-    color: #111;
-    font-size: 2rem;
-    line-height: 1;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 999px;
-    cursor: pointer;
-  }
-
-  .quarto-image-lightbox__close:hover {
-    background: rgba(0, 0, 0, 0.16);
-  }
-
-  .callout-inline,
-  .blue-callout-inline,
-  .green-callout-inline {
-    display: inline-block;
-    max-width: 100%;
-    white-space: normal;
-    border-radius: 8px;
-    padding: 0.08em 0.35em;
-  }
-
-  .callout-inline--blue,
-  .blue-callout-inline {
-    background: #eaf4ff;
-    border: 1px solid #b8d9ff;
-  }
-
-  .callout-inline--green,
-  .green-callout-inline {
-    background: #e7f8ec;
-    border: 1px solid #9bd7ad;
-  }
-
-  .callout-inline--yellow,
-  .yellow-callout-inline {
-    background: #fff7d6;
-    border: 1px solid #e6cf75;
-  }
-
-  .callout-inline--red,
-  .red-callout-inline {
-    background: #fdebec;
-    border: 1px solid #e9a8ad;
-  }
-
-  /* Semantic callout modes by class family. */
-  .callout.callout-defn,
-  .callout.callout-thm,
-  .callout.callout-prop,
-  .callout.callout-lemma,
-  .callout.callout-cor,
-  .callout.callout-example,
-  .callout.callout-exercise,
-  .callout.callout-question {
-    --bs-callout-margin-top: 1rem;
-    --bs-callout-margin-bottom: 1rem;
-  }
-
-  .callout.callout-defn .callout-icon-container,
-  .callout.callout-thm .callout-icon-container,
-  .callout.callout-prop .callout-icon-container,
-  .callout.callout-lemma .callout-icon-container,
-  .callout.callout-cor .callout-icon-container,
-  .callout.callout-example .callout-icon-container,
-  .callout.callout-exercise .callout-icon-container,
-  .callout.callout-question .callout-icon-container {
-    display: none !important;
-  }
-
-  .callout.callout-defn {
-    border-left: 0.36rem solid #1f3a68 !important;
-    border-color: #9eb8df !important;
-    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
-  }
-
-  .callout.callout-defn .callout-title {
-    color: #18345f;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout.callout-thm,
-  .callout.callout-prop,
-  .callout.callout-lemma,
-  .callout.callout-cor {
-    border-left: 0.36rem solid #0a6a43 !important;
-    border-color: #96d7bb !important;
-    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
-  }
-
-  .callout.callout-thm .callout-title,
-  .callout.callout-prop .callout-title,
-  .callout.callout-lemma .callout-title,
-  .callout.callout-cor .callout-title {
-    color: #0b5a3a;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout.callout-example {
-    border-left: 0.36rem solid #8a4f00 !important;
-    border-color: #f0cb91 !important;
-    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
-  }
-
-  .callout.callout-example .callout-title {
-    color: #7a4700;
-    font-weight: 700;
-  }
-
-  .callout.callout-exercise {
-    border-left: 0.36rem solid #6a1f3b !important;
-    border-color: #e5a8c1 !important;
-    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
-  }
-
-  .callout.callout-exercise .callout-title {
-    color: #61203a;
-    font-weight: 700;
-  }
-
-  .callout.callout-question {
-    border-left: 0.36rem solid #005f73 !important;
-    border-color: #9fd6de !important;
-    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
-  }
-
-  .callout.callout-question .callout-title {
-    color: #0b4f61;
-    font-weight: 700;
-  }
-
-  .mermaid,
-  .mermaid svg {
-    direction: ltr;
-  }
-  .mermaid .node rect,
-  .mermaid .node circle,
-  .mermaid .node ellipse,
-  .mermaid .node polygon,
-  .mermaid .cluster rect,
-  .mermaid .label,
-  .mermaid foreignObject {
-    filter: none !important;
-    box-shadow: none !important;
-  }
-
-  .mermaid g.stopNode rect,
-  .mermaid .stopNode rect {
-    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-  }
-
-  .mermaid-auto-tabset {
-    margin: 1rem 0;
-  }
-
-  .mermaid-auto-tabset .nav-tabs {
-    margin-bottom: 0.65rem;
-  }
-
-  .mermaid-auto-tabset .tab-pane pre {
-    margin-top: 0;
-  }
-
-  .glossary-link {
-    text-decoration-style: dotted;
-    text-underline-offset: 0.15em;
-    cursor: help;
-  }
-
-  .reading-stats {
-    margin-top: 3rem;
-    padding-top: 1rem;
-    border-top: 1px solid #d7dde2;
-    font-size: 0.92rem;
-    color: #5b6670;
-    text-align: center;
-    letter-spacing: 0.02em;
-  }
-
-  body {
-    counter-reset: definition-counter theorem-counter example-counter exercise-counter question-counter;
-  }
-
-  .callout.callout-defn {
-    counter-increment: definition-counter;
-  }
-
-  .callout.callout-thm,
-  .callout.callout-prop,
-  .callout.callout-lemma,
-  .callout.callout-cor {
-    counter-increment: theorem-counter;
-  }
-
-  .callout.callout-example {
-    counter-increment: example-counter;
-  }
-
-  .callout.callout-exercise {
-    counter-increment: exercise-counter;
-  }
-
-  .callout.callout-question {
-    counter-increment: question-counter;
-  }
-
-  .callout.callout-defn .callout-title-container::before {
-    content: "📘 Definition " counter(definition-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-thm .callout-title-container::before {
-    content: "★ Theorem " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-prop .callout-title-container::before {
-    content: "★ Proposition " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-lemma .callout-title-container::before {
-    content: "★ Lemma " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-cor .callout-title-container::before {
-    content: "★ Corollary " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-example .callout-title-container::before {
-    content: "🧪 Example " counter(example-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-exercise .callout-title-container::before {
-    content: "✎ Exercise " counter(exercise-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-question .callout-title-container::before {
-    content: "❓ Question " counter(question-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  /* Support custom callout families authored without a base callout class. */
-  .callout[data-callout-family="defn"],
-  .callout[data-callout-family="thm"],
-  .callout[data-callout-family="prop"],
-  .callout[data-callout-family="lemma"],
-  .callout[data-callout-family="cor"],
-  .callout[data-callout-family="example"],
-  .callout[data-callout-family="exercise"],
-  .callout[data-callout-family="question"] {
-    --bs-callout-margin-top: 1rem;
-    --bs-callout-margin-bottom: 1rem;
-  }
-
-  .callout[data-callout-family="defn"] .callout-icon-container,
-  .callout[data-callout-family="thm"] .callout-icon-container,
-  .callout[data-callout-family="prop"] .callout-icon-container,
-  .callout[data-callout-family="lemma"] .callout-icon-container,
-  .callout[data-callout-family="cor"] .callout-icon-container,
-  .callout[data-callout-family="example"] .callout-icon-container,
-  .callout[data-callout-family="exercise"] .callout-icon-container,
-  .callout[data-callout-family="question"] .callout-icon-container {
-    display: none !important;
-  }
-
-  .callout[data-callout-family="defn"] {
-    border-left: 0.36rem solid #1f3a68 !important;
-    border-color: #9eb8df !important;
-    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
-    counter-increment: definition-counter;
-  }
-
-  .callout[data-callout-family="defn"] .callout-title {
-    color: #18345f;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout[data-callout-family="thm"],
-  .callout[data-callout-family="prop"],
-  .callout[data-callout-family="lemma"],
-  .callout[data-callout-family="cor"] {
-    border-left: 0.36rem solid #0a6a43 !important;
-    border-color: #96d7bb !important;
-    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
-    counter-increment: theorem-counter;
-  }
-
-  .callout[data-callout-family="thm"] .callout-title,
-  .callout[data-callout-family="prop"] .callout-title,
-  .callout[data-callout-family="lemma"] .callout-title,
-  .callout[data-callout-family="cor"] .callout-title {
-    color: #0b5a3a;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout[data-callout-family="example"] {
-    border-left: 0.36rem solid #8a4f00 !important;
-    border-color: #f0cb91 !important;
-    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
-    counter-increment: example-counter;
-  }
-
-  .callout[data-callout-family="example"] .callout-title {
-    color: #7a4700;
-    font-weight: 700;
-  }
-
-  .callout[data-callout-family="exercise"] {
-    border-left: 0.36rem solid #6a1f3b !important;
-    border-color: #e5a8c1 !important;
-    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
-    counter-increment: exercise-counter;
-  }
-
-  .callout[data-callout-family="exercise"] .callout-title {
-    color: #61203a;
-    font-weight: 700;
-  }
-
-  .callout[data-callout-family="question"] {
-    border-left: 0.36rem solid #005f73 !important;
-    border-color: #9fd6de !important;
-    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
-    counter-increment: question-counter;
-  }
-
-  .callout[data-callout-family="question"] .callout-title {
-    color: #0b4f61;
-    font-weight: 700;
-  }
-
-  .callout[data-callout-family="defn"] .callout-title-container::before {
-    content: "📘 Definition " counter(definition-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="thm"] .callout-title-container::before {
-    content: "★ Theorem " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="prop"] .callout-title-container::before {
-    content: "★ Proposition " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="lemma"] .callout-title-container::before {
-    content: "★ Lemma " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="cor"] .callout-title-container::before {
-    content: "★ Corollary " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="example"] .callout-title-container::before {
-    content: "🧪 Example " counter(example-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="exercise"] .callout-title-container::before {
-    content: "✎ Exercise " counter(exercise-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="question"] .callout-title-container::before {
-    content: "❓ Question " counter(question-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  /* Fallback rendering for custom family blocks authored without native callout syntax. */
-  .callout-defn:not(.callout),
-  .callout-thm:not(.callout),
-  .callout-prop:not(.callout),
-  .callout-lemma:not(.callout),
-  .callout-cor:not(.callout),
-  .callout-example:not(.callout),
-  .callout-exercise:not(.callout),
-  .callout-question:not(.callout) {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 0.8rem 1rem;
-    border: 1px solid transparent;
-    border-left-width: 0.36rem;
-    border-radius: 0.375rem;
-  }
-
-  .callout-defn:not(.callout) {
-    border-left-color: #1f3a68;
-    border-color: #9eb8df;
-    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
-    counter-increment: definition-counter;
-  }
-
-  .callout-thm:not(.callout),
-  .callout-prop:not(.callout),
-  .callout-lemma:not(.callout),
-  .callout-cor:not(.callout) {
-    border-left-color: #0a6a43;
-    border-color: #96d7bb;
-    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
-    counter-increment: theorem-counter;
-  }
-
-  .callout-example:not(.callout) {
-    border-left-color: #8a4f00;
-    border-color: #f0cb91;
-    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
-    counter-increment: example-counter;
-  }
-
-  .callout-exercise:not(.callout) {
-    border-left-color: #6a1f3b;
-    border-color: #e5a8c1;
-    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
-    counter-increment: exercise-counter;
-  }
-
-  .callout-question:not(.callout) {
-    border-left-color: #005f73;
-    border-color: #9fd6de;
-    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
-    counter-increment: question-counter;
-  }
-
-  .callout-defn:not(.callout)::before,
-  .callout-thm:not(.callout)::before,
-  .callout-prop:not(.callout)::before,
-  .callout-lemma:not(.callout)::before,
-  .callout-cor:not(.callout)::before,
-  .callout-example:not(.callout)::before,
-  .callout-exercise:not(.callout)::before,
-  .callout-question:not(.callout)::before {
-    display: block;
-    margin-bottom: 0.35rem;
-    font-weight: 700;
-  }
-
-  .callout-defn:not(.callout)::before {
-    content: "📘 Definition " counter(definition-counter) ": " attr(title);
-    color: #18345f;
-  }
-
-  .callout-thm:not(.callout)::before {
-    content: "★ Theorem " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-prop:not(.callout)::before {
-    content: "★ Proposition " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-lemma:not(.callout)::before {
-    content: "★ Lemma " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-cor:not(.callout)::before {
-    content: "★ Corollary " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-example:not(.callout)::before {
-    content: "🧪 Example " counter(example-counter) ": " attr(title);
-    color: #7a4700;
-  }
-
-  .callout-exercise:not(.callout)::before {
-    content: "✎ Exercise " counter(exercise-counter) ": " attr(title);
-    color: #61203a;
-  }
-
-  .callout-question:not(.callout)::before {
-    content: "❓ Question " counter(question-counter) ": " attr(title);
-    color: #0b4f61;
-  }
-
-  pre[data-lang],
-  .mermaid[data-lang] {
-    position: relative;
-    padding-bottom: 1.5rem;
-  }
-
-  pre[data-lang]::after,
-  .mermaid[data-lang]::after {
-    content: attr(data-lang);
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.35rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #666;
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 0.2rem;
-    padding: 0 0.3rem;
-    pointer-events: none;
-  }
-</style>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const applyCodeWatermarks = function(root) {
-      if (!root) {
-        return;
-      }
-
-      const generic = new Set([
-        'sourcecode', 'number-lines', 'numbersource', 'code-with-copy',
-        'code-copy-outer-scaffold', 'code-annotation-code'
-      ]);
-
-      const aliases = {
-        commonlisp: 'lisp',
-        py: 'python',
-        shell: 'bash',
-        sh: 'bash',
-        zsh: 'bash',
-        yml: 'yaml',
-        tex: 'latex'
-      };
-
-      const known = new Set([
-        'python', 'lisp', 'scheme', 'clojure', 'bash', 'sh', 'zsh', 'powershell',
-        'javascript', 'js', 'typescript', 'ts', 'java', 'c', 'cpp', 'c++',
-        'go', 'rust', 'ruby', 'php', 'julia', 'r', 'lua', 'haskell',
-        'html', 'css', 'json', 'yaml', 'yml', 'xml', 'sql', 'tex', 'latex',
-        'mermaid', 'commonlisp'
-      ]);
-
-      const normalize = function(lang) {
-        if (!lang) {
-          return '';
-        }
-        const lowered = lang.toLowerCase();
-        return aliases[lowered] || lowered;
-      };
-
-      const detectLanguage = function(classes) {
-        let lang = '';
-
-        const languagePrefixed = classes.find(function(className) {
-          return className.startsWith('language-');
-        });
-        if (languagePrefixed) {
-          lang = languagePrefixed.replace('language-', '');
-        }
-
-        if (!lang) {
-          const plain = classes.find(function(className) {
-            return known.has(className);
-          });
-          if (plain) {
-            lang = plain;
-          }
-        }
-
-        if (!lang) {
-          const fallback = classes.find(function(className) {
-            return !generic.has(className) && /^[a-z][a-z0-9_+\-]*$/.test(className);
-          });
-          if (fallback) {
-            lang = fallback;
-          }
-        }
-
-        return normalize(lang);
-      };
-
-      root.querySelectorAll('pre > code[class]').forEach(function(code) {
-        const pre = code.closest('pre');
-        if (!pre || pre.dataset.lang) {
-          return;
-        }
-
-        const classes = Array.from(new Set(
-          Array.from(code.classList).concat(Array.from(pre.classList))
-        )).map(function(className) {
-          return className.toLowerCase();
-        });
-
-        const lang = detectLanguage(classes);
-
-        if (lang) {
-          pre.dataset.lang = lang;
-        }
-      });
-
-      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
-        if (!block.dataset.lang) {
-          block.dataset.lang = 'mermaid';
-        }
-      });
-    };
-
-    const emojiAliases = {
-      eye_roll: '🙄',
-      face_palm: '🤦',
-      shrug: '🤷',
-      warning: '⚠️',
-      light_bulb: '💡',
-      check_mark: '✅',
-      x_mark: '❌'
-    };
-
-    const applyEmojiAliases = function(root) {
-      if (!root) {
-        return;
-      }
-
-      const aliasPattern = /:([a-z0-9_+-]+):/gi;
-      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-      const textNodes = [];
-
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        const parent = node.parentElement;
-
-        if (!parent) {
-          continue;
-        }
-        if (['CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG'].includes(parent.tagName)) {
-          continue;
-        }
-        if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
-          continue;
-        }
-        if (!node.nodeValue || node.nodeValue.indexOf(':') === -1) {
-          continue;
-        }
-
-        textNodes.push(node);
-      }
-
-      textNodes.forEach(function(node) {
-        if (!aliasPattern.test(node.nodeValue)) {
-          aliasPattern.lastIndex = 0;
-          return;
-        }
-        aliasPattern.lastIndex = 0;
-
-        const fragment = document.createDocumentFragment();
-        let lastIndex = 0;
-        let match = aliasPattern.exec(node.nodeValue);
-        let changed = false;
-
-        while (match) {
-          const start = match.index;
-          const end = start + match[0].length;
-          const aliasKey = match[1].toLowerCase();
-          const icon = emojiAliases[aliasKey];
-
-          if (!icon) {
-            match = aliasPattern.exec(node.nodeValue);
-            continue;
-          }
-
-          if (start > lastIndex) {
-            fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, start)));
-          }
-
-          fragment.appendChild(document.createTextNode(icon));
-          lastIndex = end;
-          changed = true;
-          match = aliasPattern.exec(node.nodeValue);
-        }
-
-        if (!changed) {
-          return;
-        }
-
-        if (lastIndex < node.nodeValue.length) {
-          fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
-        }
-
-        node.parentNode.replaceChild(fragment, node);
-      });
-    };
-
-    const glossaryEntries = [
-      {
-        term: 'memoization',
-        href: 'https://en.wikipedia.org/wiki/Memoization',
-        tooltip: 'Memoization caches results so repeated calls with the same inputs can return faster.'
-      },
-      {
-        term: 'recursion',
-        href: 'https://en.wikipedia.org/wiki/Recursion_(computer_science)',
-        tooltip: 'Recursion solves a problem by calling the same function on smaller inputs until a base case.'
-      },
-      {
-        term: 'induction',
-        href: 'https://en.wikipedia.org/wiki/Mathematical_induction',
-        tooltip: 'Mathematical induction proves a statement for all natural numbers using a base case and an inductive step.'
-      },
-      {
-        term: 'division algorithm',
-        href: 'https://en.wikipedia.org/wiki/Euclidean_division',
-        tooltip: 'For integers m and n > 0, there exist unique q and r with m = qn + r and 0 <= r < n.'
-      },
-      {
-        term: 'quotient',
-        href: 'https://en.wikipedia.org/wiki/Quotient',
-        tooltip: 'In division, the quotient is the whole-number count of how many times the divisor fits.'
-      },
-      {
-        term: 'remainder',
-        href: 'https://en.wikipedia.org/wiki/Remainder',
-        tooltip: 'The remainder is what is left after dividing when equal groups can no longer be formed.'
-      },
-      {
-        term: 'commutative diagram',
-        href: 'https://en.wikipedia.org/wiki/Commutative_diagram',
-        tooltip: 'A commutative diagram shows that different paths of composed steps lead to the same result.'
-      },
-      {
-        term: 'proof',
-        href: 'https://en.wikipedia.org/wiki/Mathematical_proof',
-        tooltip: 'A proof is a logically valid argument that establishes a mathematical claim.'
-      },
-      {
-        term: 'algorithm',
-        href: 'https://en.wikipedia.org/wiki/Algorithm',
-        tooltip: 'An algorithm is a finite, precise sequence of steps for solving a class of problems.'
-      },
-      {
-        term: 'curry-howard-lambek correspondence',
-        href: 'https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence',
-        tooltip: 'This correspondence links proofs, programs, and categorical structure as different views of the same logic.'
-      }
-    ];
-
-    // Exported for future expansion (e.g., adding terms in one place).
-    window.bookGlossary = glossaryEntries;
-
-    const applyGlossaryLinks = function(root) {
-      if (!root || !glossaryEntries.length) {
-        return;
-      }
-
-      const skipTags = new Set(['A', 'CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG']);
-      const terms = glossaryEntries
-        .map(function(entry) { return entry.term; })
-        .filter(Boolean)
-        .sort(function(a, b) { return b.length - a.length; });
-
-      if (!terms.length) {
-        return;
-      }
-
-      const escapeRegex = function(text) {
-        return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      };
-
-      const glossaryMap = new Map(
-        glossaryEntries.map(function(entry) {
-          return [entry.term.toLowerCase(), entry];
-        })
-      );
-
-      const linkedTerms = new Set();
-      const termRegex = new RegExp('\\b(' + terms.map(escapeRegex).join('|') + ')\\b', 'gi');
-      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-      const textNodes = [];
-
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        const parent = node.parentElement;
-
-        if (!parent) {
-          continue;
-        }
-        if (skipTags.has(parent.tagName)) {
-          continue;
-        }
-        if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
-          continue;
-        }
-        if (!node.nodeValue || !node.nodeValue.trim()) {
-          continue;
-        }
-
-        textNodes.push(node);
-      }
-
-      textNodes.forEach(function(node) {
-        if (!termRegex.test(node.nodeValue)) {
-          termRegex.lastIndex = 0;
-          return;
-        }
-        termRegex.lastIndex = 0;
-
-        const fragment = document.createDocumentFragment();
-        let lastIndex = 0;
-        let match = termRegex.exec(node.nodeValue);
-        let changed = false;
-
-        while (match) {
-          const matchedText = match[0];
-          const lowerTerm = matchedText.toLowerCase();
-          const entry = glossaryMap.get(lowerTerm);
-          const start = match.index;
-          const end = start + matchedText.length;
-
-          if (!entry || linkedTerms.has(lowerTerm)) {
-            match = termRegex.exec(node.nodeValue);
-            continue;
-          }
-
-          if (start > lastIndex) {
-            fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, start)));
-          }
-
-          const link = document.createElement('a');
-          link.href = entry.href;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.className = 'glossary-link';
-          link.textContent = matchedText;
-          link.title = entry.tooltip;
-          link.setAttribute('aria-label', matchedText + ': ' + entry.tooltip);
-
-          fragment.appendChild(link);
-          linkedTerms.add(lowerTerm);
-          lastIndex = end;
-          changed = true;
-          match = termRegex.exec(node.nodeValue);
-        }
-
-        if (!changed) {
-          return;
-        }
-
-        if (lastIndex < node.nodeValue.length) {
-          fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
-        }
-
-        node.parentNode.replaceChild(fragment, node);
-      });
-    };
-
-    const applyReadingStats = function(root) {
-      const statsNode = root.querySelector('[data-reading-stats]');
-      if (!statsNode) {
-        return;
-      }
-
-      const clone = root.cloneNode(true);
-      clone.querySelectorAll('[data-reading-stats], script, style, pre, code').forEach(function(node) {
-        node.remove();
-      });
-
-      const text = (clone.textContent || '')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-      const wordCount = text ? text.split(' ').filter(Boolean).length : 0;
-      const minutes = Math.max(1, Math.ceil(wordCount / 120));
-      const minuteLabel = minutes === 1 ? 'minute' : 'minutes';
-
-      statsNode.textContent = wordCount.toLocaleString() + ' words • ' + minutes + ' ' + minuteLabel + ' to read';
-    };
-
-    const lightbox = document.createElement('div');
-    lightbox.className = 'quarto-image-lightbox';
-    lightbox.innerHTML = '<button type="button" class="quarto-image-lightbox__close" aria-label="Close image">&times;</button><img alt="">';
-    document.body.appendChild(lightbox);
-
-    const lightboxImage = lightbox.querySelector('img');
-    const closeLightbox = function() {
-      lightbox.classList.remove('is-open');
-      lightboxImage.removeAttribute('src');
-      lightboxImage.removeAttribute('alt');
-    };
-
-    lightbox.addEventListener('click', function(event) {
-      if (event.target === lightbox || event.target.classList.contains('quarto-image-lightbox__close')) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('click', function(event) {
-      const image = event.target.closest('#quarto-content img, .quarto-content img, #quarto-document-content img');
-      if (!image) {
-        return;
-      }
-
-      event.preventDefault();
-      lightboxImage.src = image.currentSrc || image.src;
-      lightboxImage.alt = image.alt || '';
-      lightbox.classList.add('is-open');
-    });
-
-    const getMermaidSource = function(block) {
-      if (!block) {
-        return '';
-      }
-
-      const directCode = block.querySelector(':scope > code');
-      if (directCode) {
-        return directCode.textContent || '';
-      }
-
-      return block.textContent || '';
-    };
-
-    const normalizeMermaidBlocks = function(root) {
-      root.querySelectorAll('pre.sourceCode.mermaid, pre.mermaid').forEach(function(preBlock) {
-        const source = getMermaidSource(preBlock).trim();
-        const normalized = document.createElement('pre');
-        normalized.className = 'mermaid';
-        normalized.textContent = source;
-
-        let replaceTarget = preBlock;
-        const sourceContainer = preBlock.closest('.sourceCode');
-        const copyScaffold = preBlock.closest('.code-copy-outer-scaffold');
-
-        if (copyScaffold && copyScaffold.querySelector('pre') === preBlock) {
-          replaceTarget = copyScaffold;
-        } else if (sourceContainer && sourceContainer.querySelector('pre') === preBlock) {
-          replaceTarget = sourceContainer;
-        }
-
-        replaceTarget.replaceWith(normalized);
-      });
-    };
-
-    const buildMermaidTabs = function(root) {
-      let mermaidCounter = 0;
-      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
-        if (!block || block.closest('.panel-tabset') || block.closest('.mermaid-auto-tabset')) {
-          return;
-        }
-
-        const source = getMermaidSource(block).trim();
-        if (!source) {
-          return;
-        }
-
-        mermaidCounter += 1;
-        const instanceId = 'mermaid-auto-' + mermaidCounter;
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'panel-tabset nav-pills mermaid-auto-tabset';
-
-        const tabs = document.createElement('ul');
-        tabs.className = 'nav nav-tabs';
-        tabs.setAttribute('role', 'tablist');
-
-        const diagramTabItem = document.createElement('li');
-        diagramTabItem.className = 'nav-item';
-        diagramTabItem.setAttribute('role', 'presentation');
-
-        const diagramTab = document.createElement('a');
-        diagramTab.className = 'nav-link active';
-        diagramTab.id = instanceId + '-diagram-tab';
-        diagramTab.setAttribute('data-bs-toggle', 'tab');
-        diagramTab.setAttribute('data-bs-target', '#' + instanceId + '-diagram');
-        diagramTab.setAttribute('role', 'tab');
-        diagramTab.setAttribute('aria-controls', instanceId + '-diagram');
-        diagramTab.setAttribute('aria-selected', 'true');
-        diagramTab.href = '';
-        diagramTab.textContent = 'Diagram';
-        diagramTabItem.appendChild(diagramTab);
-
-        const sourceTabItem = document.createElement('li');
-        sourceTabItem.className = 'nav-item';
-        sourceTabItem.setAttribute('role', 'presentation');
-
-        const sourceTab = document.createElement('a');
-        sourceTab.className = 'nav-link';
-        sourceTab.id = instanceId + '-source-tab';
-        sourceTab.setAttribute('data-bs-toggle', 'tab');
-        sourceTab.setAttribute('data-bs-target', '#' + instanceId + '-source');
-        sourceTab.setAttribute('role', 'tab');
-        sourceTab.setAttribute('aria-controls', instanceId + '-source');
-        sourceTab.setAttribute('aria-selected', 'false');
-        sourceTab.href = '';
-        sourceTab.textContent = 'Source';
-        sourceTabItem.appendChild(sourceTab);
-
-        tabs.appendChild(diagramTabItem);
-        tabs.appendChild(sourceTabItem);
-
-        const tabContent = document.createElement('div');
-        tabContent.className = 'tab-content nav-pills';
-
-        const diagramPane = document.createElement('div');
-        diagramPane.className = 'tab-pane active';
-        diagramPane.id = instanceId + '-diagram';
-        diagramPane.setAttribute('role', 'tabpanel');
-        diagramPane.setAttribute('aria-labelledby', instanceId + '-diagram-tab');
-
-        const diagramBlock = document.createElement('pre');
-        diagramBlock.className = 'mermaid';
-        diagramBlock.textContent = source;
-        diagramPane.appendChild(diagramBlock);
-
-        const sourcePane = document.createElement('div');
-        sourcePane.className = 'tab-pane';
-        sourcePane.id = instanceId + '-source';
-        sourcePane.setAttribute('role', 'tabpanel');
-        sourcePane.setAttribute('aria-labelledby', instanceId + '-source-tab');
-
-        const sourcePre = document.createElement('pre');
-        const sourceCode = document.createElement('code');
-        sourceCode.className = 'language-mermaid';
-        sourceCode.textContent = source;
-        sourcePre.appendChild(sourceCode);
-        sourcePane.appendChild(sourcePre);
-
-        tabContent.appendChild(diagramPane);
-        tabContent.appendChild(sourcePane);
-
-        wrapper.appendChild(tabs);
-        wrapper.appendChild(tabContent);
-
-        block.replaceWith(wrapper);
-      });
-    };
-
-    const cacheMermaidSource = function(root) {
-      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
-        if (!block.dataset.mermaidSource) {
-          block.dataset.mermaidSource = block.textContent;
-        }
-      });
-    };
-
-    const resetMermaidBlocks = function(root) {
-      root.querySelectorAll('pre.mermaid[data-mermaid-source], div.mermaid[data-mermaid-source]').forEach(function(block) {
-        block.removeAttribute('data-processed');
-        block.textContent = block.dataset.mermaidSource;
-      });
-    };
-
-    const prepareMermaidBlocks = function(root) {
-      normalizeMermaidBlocks(root);
-      buildMermaidTabs(root);
-      cacheMermaidSource(root);
-    };
-
-    const renderMermaid = function(root) {
-      prepareMermaidBlocks(root);
-      if (!window.mermaid || typeof window.mermaid.run !== 'function') {
-        return;
-      }
-      const nodes = root.querySelectorAll('pre.mermaid:not([data-processed]), div.mermaid:not([data-processed])');
-      if (nodes.length === 0) {
-        return;
-      }
-      window.mermaid.run({ nodes: Array.from(nodes), suppressErrors: true });
-    };
-
-    const collapseSidebarToCurrentPart = function() {
-      const sidebar = document.querySelector('#quarto-sidebar');
-      if (!sidebar) {
-        return;
-      }
-
-      const partSections = Array.from(sidebar.querySelectorAll('ul.sidebar-section.depth1.collapse'));
-      if (!partSections.length) {
-        return;
-      }
-
-      const activeLink = sidebar.querySelector('a.sidebar-link.active');
-      const activeSection = activeLink ? activeLink.closest('ul.sidebar-section.depth1.collapse') : null;
-
-      partSections.forEach(function(section) {
-        const isCurrentPart = activeSection === section;
-        if (isCurrentPart) {
-          section.classList.add('show');
-        } else {
-          section.classList.remove('show');
-        }
-
-        const sectionTarget = '#' + section.id;
-        sidebar.querySelectorAll('[data-bs-target]').forEach(function(toggle) {
-          if (toggle.getAttribute('data-bs-target') === sectionTarget) {
-            toggle.setAttribute('aria-expanded', isCurrentPart ? 'true' : 'false');
-          }
-        });
-      });
-    };
-
-    const contentRoot = document.querySelector('#quarto-content, .quarto-content, #quarto-document-content, main.content') || document.body;
-
-    applyCodeWatermarks(contentRoot);
-    applyEmojiAliases(contentRoot);
-    applyGlossaryLinks(contentRoot);
-    applyReadingStats(contentRoot);
-    prepareMermaidBlocks(document);
-
-    // Initialize mermaid when available. If loading fails,
-    // source tabs still work for accessibility.
-    if (window.mermaid && typeof window.mermaid.initialize === 'function') {
-      window.mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
-    }
-    renderMermaid(document);
-    collapseSidebarToCurrentPart();
-
-    // Mermaid blocks inside hidden tab panels may need rendering
-    // when the tab becomes visible.
-    document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]').forEach(function(tab) {
-      tab.addEventListener('shown.bs.tab', function(event) {
-        const targetSelector = event.target.getAttribute('data-bs-target');
-        if (!targetSelector) {
-          renderMermaid(document);
-          return;
-        }
-
-        const pane = document.querySelector(targetSelector);
-        if (pane) {
-          resetMermaidBlocks(pane);
-          renderMermaid(pane);
-        }
-      });
-    });
-  });
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/book-enhancements.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -1397,6 +162,9 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/Homepage.css">
 <link rel="stylesheet" href="ui-shared.css">
 </head>
 
@@ -1409,7 +177,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Logic-Library.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Sub-Var-Func.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Chp-Start.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Sub-Var-Func.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1424,7 +192,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">5000 Years of Modern Programming</a> 
+      <a href="../">5000 Years of Modern Computing</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -1437,13 +205,19 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+  <a href="../00/preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../00/Acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1457,371 +231,503 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../01/Chp-Start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A Library of logic.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Judgment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gavel"></i> Logical Judgments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Writing-down-a-logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Sub-Var-Func.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Combinators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-microchip"></i> Gates, Combinators, and Turing and Kleene</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Chp-Summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-clipboard-list"></i> Logical Library summary</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02/LIE-AND.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02/Quantifiers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quantifiers <span class="math inline">\(\forall\)</span>, <span class="math inline">\(\exists\)</span>, <span class="math inline">\(=\)</span>, and <span class="math inline">\(!^n\)</span></span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quantifiers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02/Qualifiers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-screwdriver-wrench fa-la"></i> III. Types of Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../QUATRO/module_03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">(Week 3) LOGICS: Types of data</span></span></a>
+  <a href="../03/overview-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Types of data</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-id-card fa-la"></i> IV. Subset and Partitions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../QUATRO/module_04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">(Week 4) LOGICS: Subsets &amp; Partitions</span></span></a>
+  <a href="../04/1-Boubaki-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Solving <span class="math inline">\(y=f(x)\)</span> needs new types of data: subsets and partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/injective.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Injective</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/surjective-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">math156 surjective Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/Club-Membership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-id-card fa-la"></i> Subsets and Partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/partitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">math156 Partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/what-is-a-subset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What is a subset?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/Summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Subset <span class="math inline">\(\subset\)</span> and Partition <span class="math inline">\(/\)</span> Summary</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text"><i class="fa-solid fa-folder fa-la"></i> V. Pattern Matching</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-folder-tree fa-la"></i> V. Pattern Matching</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/derivative-patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">math156 Derivative Patterns</span></span></a>
+  <a href="../05/pattern-making-and-its-co-operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Week 6 Day 2  Pattern Making &amp; its Co-operators</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-users fa-la"></i> VI. Relations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/bijective-when-slash-y=f-x-slash-has-exactly-one-solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Math 156 When (y=f(x)) has exactly one solution</span></span></a>
+  <a href="../06/describing-relations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-kiwi-bird fa-la"></i> VII. Default and Adaptive Logic</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/bijective.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">math156 Bijective</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/w-orders-and-transitivity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">w-orders-and-transitivity.html</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/relations-and-orders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Week 7</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/describing-relations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/minimums-maximums-and-well-founded-orders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">minimums-maximums-and-well-founded-orders.html</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/should-you-modify-your-priors-or-your-reasoning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 8 Day 1 Should you Modify your Priors or Your Reasoning</span></span></a>
+  <a href="../07/overview-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Week 6 Inductive Reasoning</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-dice fa-la"></i> VIII. Probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Week 9 Day 1 Proportions towards Probability</span></span></a>
+  <a href="../08/1-proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Proportions towards Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/explaining-most-of-the-evidence-with-limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">*Week 11 Explaining most of the evidence with Limits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/overview-when-reasons-beyond-evidence-are-wrong.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Overview When Reasons beyond evidence are Wrong</span></span></a>
+  <a href="../08/3-probabilistic-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Probabilistic Data Types</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-taxi fa-la"></i> IX. Approximation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/approximation-and-errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">approximation-and-errors.html</span></span></a>
+  <a href="../09/overview-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">overview-9.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">math156 Limits</span></span></a>
+  <a href="../09/a/limits-and-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Name ## Assessment 11</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/sequences.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">sequences.html</span></span></a>
+  <a href="../09/l/getting-close-is-not-enough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lab 11 Getting Close is not Enough</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">series.html</span></span></a>
+  <a href="../09/1/cauchys-limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/1-finite-and-infinite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">1-finite-and-infinite.html</span></span></a>
+  <a href="../09/2/asymptotics-and-long-term-behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">*Part  2   Asymptotics &amp; Long term behavior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/part-1-cauchys-limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
+  <a href="../09/3/functions-as-limits-of-sums-taylor-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Part 3 Functions as Limits of Sums (Taylor Series)</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-ruler-combined fa-la"></i> X. Creating Measurements</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/distributive-qualities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">math156 Distributive Qualities</span></span></a>
+  <a href="../10/overview-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">overview-10.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/fundamental-theorem-of-calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">math156 Fundamental Theorem of Calculus</span></span></a>
+  <a href="../10/0/measurement-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/integrals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">math156 Integrals</span></span></a>
+  <a href="../10/l/features-in-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Lab 12 Features in Signals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/measurement-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
+  <a href="../10/1/a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/part-1-dot-a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
+  <a href="../10/1/b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/part-1-dot-b-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
+  <a href="../10/1/learning-materials-and-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Lesson 10.1 | Title/Topic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/a-15-mins-from-multiplication-to-the-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/b-changing-measures-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">* 12.2.b Changing Measure: The Derivative</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/b-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/c-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/3/calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/3/calculus-with-sums-products-and-powers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">12.2.b Some practical Integrals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/s/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/geometry-of-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">geometry-of-data.html</span></span></a>
+  <a href="../11/0/overview-what-is-a-feature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/overview-11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">overview-11.html</span></span></a>
+  <a href="../11/a/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Name ## Assessment 13</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/shape-of-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">shape-of-space.html</span></span></a>
+  <a href="../11/l/features-in-audio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Lab 13 Features in audio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/topology-of-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">topology-of-data.html</span></span></a>
+  <a href="../11/1/linear-features-are-integrals-riesz-representation-theorem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">* Part 1 Why Most Features are Integrals (Riesz Representation Theorem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11/2/moving-averages-and-mean-value-theorems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Day 2  Moving Averages &amp; Mean Value Theorems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11/2linear/features-are-integrals-riesz-representation-theorem-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Part 1 All Features are Integrals (Riesz Representation Theorem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11/3/critical-points-increases-and-decreases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Day 3  Critical Points, Increases &amp; Decreases</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-bullseye fa-la"></i> XII. Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/0/overview-machine-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Name ## Overview Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/a/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Name ## Assessment 14</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/l/learning-from-trades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Lab 14 Learning from trades</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/1/chain-rule-for-change-upon-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Day 1 Chain Rule for change upon change</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-1-b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-2-b-the-derivative.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-2-c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-3-calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-s-summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/2/back-propogation-for-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Day 2 Back propogation for learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/3/equations-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Day 3 Equations of change</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
+  <a href="../AA/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
   </div>
 </li>
     </ul>
@@ -1834,31 +740,27 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#the-paradox-of-the-trapped-variable" id="toc-the-paradox-of-the-trapped-variable" class="nav-link active" data-scroll-target="#the-paradox-of-the-trapped-variable"><span class="header-section-number">3.1</span> The Paradox of the Trapped Variable</a></li>
-  <li><a href="#mappings-functions-and-tuples" id="toc-mappings-functions-and-tuples" class="nav-link" data-scroll-target="#mappings-functions-and-tuples"><span class="header-section-number">3.2</span> Mappings, functions, and tuples</a>
+  <li><a href="#the-paradox-of-the-trapped-variable" id="toc-the-paradox-of-the-trapped-variable" class="nav-link active" data-scroll-target="#the-paradox-of-the-trapped-variable"><span class="header-section-number">8.1</span> The Paradox of the Trapped Variable</a></li>
+  <li><a href="#mappings-functions-and-tuples" id="toc-mappings-functions-and-tuples" class="nav-link" data-scroll-target="#mappings-functions-and-tuples"><span class="header-section-number">8.2</span> Mappings, functions, and tuples</a>
   <ul class="collapse">
   <li><a href="#naming-functions." id="toc-naming-functions." class="nav-link" data-scroll-target="#naming-functions.">Naming functions.</a></li>
   <li><a href="#tuples" id="toc-tuples" class="nav-link" data-scroll-target="#tuples">Tuples</a></li>
   </ul></li>
-  <li><a href="#what-is-a-variable-really" id="toc-what-is-a-variable-really" class="nav-link" data-scroll-target="#what-is-a-variable-really"><span class="header-section-number">3.3</span> What is a variable really?</a>
+  <li><a href="#what-is-a-variable-really" id="toc-what-is-a-variable-really" class="nav-link" data-scroll-target="#what-is-a-variable-really"><span class="header-section-number">8.3</span> What is a variable really?</a>
   <ul class="collapse">
   <li><a href="#how-to-assign-a-variable." id="toc-how-to-assign-a-variable." class="nav-link" data-scroll-target="#how-to-assign-a-variable.">How to assign a variable.</a></li>
   <li><a href="#curry-feys-substitution-rules" id="toc-curry-feys-substitution-rules" class="nav-link" data-scroll-target="#curry-feys-substitution-rules">Curry-Feys Substitution rules</a></li>
   </ul></li>
-  <li><a href="#alternative-giving-up-on-variables" id="toc-alternative-giving-up-on-variables" class="nav-link" data-scroll-target="#alternative-giving-up-on-variables"><span class="header-section-number">3.4</span> Alternative: Giving up on variables</a>
-  <ul class="collapse">
-  <li><a href="#applied-combinators-and-modern-hardware" id="toc-applied-combinators-and-modern-hardware" class="nav-link" data-scroll-target="#applied-combinators-and-modern-hardware">Applied Combinators and modern hardware</a></li>
-  </ul></li>
-  <li><a href="#abstraction-fixes-a-paradox" id="toc-abstraction-fixes-a-paradox" class="nav-link" data-scroll-target="#abstraction-fixes-a-paradox"><span class="header-section-number">3.5</span> Abstraction “Fixes” a paradox</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8.4</span> Summary</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Logic-Library.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Sub-Var-Func.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../01/Chp-Start.html"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</a></li><li class="breadcrumb-item"><a href="../01/Sub-Var-Func.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></h1>
 </div>
 
 
@@ -1915,8 +817,8 @@ y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
     <span class="math">\(y = 3\)</span><span class="handboxed">5</span><span class="math">\(+7\)<span class="handboxed">=22</span></span>
 </div>
 <p>While some of this is correct it has some limitations that might go unnoticed and setup confusion. That confusion is easy to talk out when arguing in person but when it comes to computing we have to be thorough. So let’s consider what happens if we take the “fill-in-the-blank” story of variables a bit too seriously. Then we will set out to fix the problems that creates.</p>
-<section id="the-paradox-of-the-trapped-variable" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="the-paradox-of-the-trapped-variable"><span class="header-section-number">3.1</span> The Paradox of the Trapped Variable</h2>
+<section id="the-paradox-of-the-trapped-variable" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="the-paradox-of-the-trapped-variable"><span class="header-section-number">8.1</span> The Paradox of the Trapped Variable</h2>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="../QUATRO/1/media/1-4-substitution/image0.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -1942,14 +844,14 @@ y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
 <li><strong>Combinatory Logic (“Hardware”):</strong> give up on variables entirely and focus on hardware instructions.</li>
 </ul>
 <p>Try out some situations from algebra that also feature this paradox. If you feel uneasy following some of the instructions try to think back to any rules or experiences you were taught. It could be that you learned to avoid this paradox long ago without even knowing it existed.</p>
-<div class="callout-caution callout-exercise" title="" data-callout-family="exercise">
+<div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <ol type="1">
 <li>What is the slope of a line of the form <span class="math inline">\(y=b\)</span>?</li>
 <li>What is the slope of the line <span class="math inline">\(y=x\)</span>?</li>
 <li>If you start with a line of type <span class="math inline">\(y=b\)</span> and then substitute <span class="math inline">\(b=x\)</span> so that <span class="math inline">\(y=b=x\)</span> does your line have the slope of part 1 or part 2 or something else? If you feel uneasy with the premise, can you articulate what precisely has you uneasy? If you use words like “constant” and “variable” be sure to explain properly how the unknown <span class="math inline">\(b\)</span> is constant but the unknown <span class="math inline">\(x\)</span> is variable.</li>
 </ol>
 </div>
-<div class="callout-caution callout-exercise" title="" data-callout-family="exercise">
+<div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <ol type="1">
 <li>What type of graph is the function <span class="math inline">\(y=m\cdot x+b\)</span>? (e.g.&nbsp;line, parabola, circle, etc.)<br>
 </li>
@@ -1957,8 +859,8 @@ y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
 </ol>
 </div>
 </section>
-<section id="mappings-functions-and-tuples" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="mappings-functions-and-tuples"><span class="header-section-number">3.2</span> Mappings, functions, and tuples</h2>
+<section id="mappings-functions-and-tuples" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="mappings-functions-and-tuples"><span class="header-section-number">8.2</span> Mappings, functions, and tuples</h2>
 <p>To fix the paradox of the trapped variables we will want to revisit what we really want from substitution and variables. Variables are meant as abbreviations for work we are not prepared or capable of doing. For instance, in the “Curry &amp; Feys got to lunch” fable, the restaurant chain “Konstants” serves only one item. We can draw an arrow from each order to what you actually get served. For the restaurant that only serves Curry that diagram would look like this. We read <span class="glossary-tip" title="Pronounced: maps to. LaTeX: \mapsto. Unicode: U+21A6."><span class="math inline">\(\mapsto\)</span></span> as “maps to” (hover over the symbols to learn how to read them and how to reproduce them in your own writing). <span class="math display">\[
 \begin{aligned}
 \text{Haskell} &amp; \mapsto \text{Curry} \qquad \text{(``Curry maps to Curry''') },\\
@@ -1966,32 +868,32 @@ y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
 &amp; \vdots
 \end{aligned}
 \]</span> Do not be afraid to draw the arrows in reverse or with wobbles and turns. They just need to point in the right way. For instance the following flowchart will suffice.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart RL</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    H[Haskell] --&gt; Curry</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    R[Robert] --&gt; Curry</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>flowchart RL</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    H[Haskell] --&gt; Curry</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    R[Robert] --&gt; Curry</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If we knew every customer we could write a complete list. Indeed most software platforms include a data structure with names like <code>Map</code> to do just that: store the list of inputs (keys) and outputs (values). You give it the input name and it outputs the value that goes with it.</p>
-<div class="callout-tip callout-example" title="Explicit Mapping in Code" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Explicit Mapping in Code" data-callout-family="example">
 <p>When the list of known customers is finite, we can write the mappings directly.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Java</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">R</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>K_curry <span class="op">=</span> {</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    <span class="st">"Haskell"</span>: <span class="st">"Curry"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>    <span class="st">"Robert"</span>: <span class="st">"Curry"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>}</span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="bu">print</span>(K_curry[<span class="st">"Haskell"</span>])  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>K_curry <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    <span class="st">"Haskell"</span>: <span class="st">"Curry"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    <span class="st">"Robert"</span>: <span class="st">"Curry"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="bu">print</span>(K_curry[<span class="st">"Haskell"</span>])  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Languages often decorate their tokens with other information declaring the kind of data they will manage, for example <code>String</code> to indicate strings and quotes around constants like <code>"Curry"</code>. You can get pretty far by simply ignore those details and looking at the shape of the program first coming back later to clarify what those terms do.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span><span class="bu">String</span><span class="op">&gt;</span> K_Curry <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Robert"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>K_Curry<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">);</span> <span class="co">// returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span><span class="bu">String</span><span class="op">&gt;</span> K_Curry <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Robert"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>K_Curry<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">);</span> <span class="co">// returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>K_curry <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Haskell =</span> <span class="st">"Curry"</span>, <span class="at">Robert =</span> <span class="st">"Curry"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a>K_curry[[<span class="st">"Haskell"</span>]]  <span class="co"># returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>K_curry <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Haskell =</span> <span class="st">"Curry"</span>, <span class="at">Robert =</span> <span class="st">"Curry"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>K_curry[[<span class="st">"Haskell"</span>]]  <span class="co"># returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -2010,14 +912,14 @@ x \mapsto  \text{Curry} \qquad \text{(``$x$ maps to Curry'') }
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">lambda</span> x: <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>x <span class="op">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a>x <span class="kw">=&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="kw">lambda</span> x: <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>x <span class="op">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>x <span class="kw">=&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a>\<span class="op">|</span>x\<span class="op">|</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1"></a>\x <span class="ot">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb10-1"><a href="#cb10-1"></a><span class="ot">λ</span> x <span class="ot">→</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>\<span class="op">|</span>x\<span class="op">|</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>\x <span class="ot">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a><span class="ot">λ</span> x <span class="ot">→</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -2056,34 +958,34 @@ u_i \qquad e^x \qquad x^3\qquad
 </ul>
 <p>The differences are not as important as using the style that others in your group expect. Agreeing to the community standards will minimize mistakes and increase acceptance of your ideas. Save creativity for where it matters: better programs, new features, and beautiful insights.</p>
 <p>In software we often use a keyword <code>def</code> or <code>func</code>. Sometimes in software there are technical differences between functions and so-called <em>proceedures</em> based on whether the results are returned or put somewhere else (like printed to the screen, a file or a network). Here are some common situations.</p>
-<div class="callout-tip callout-example" title="Naming functions in software" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Naming functions in software" data-callout-family="example">
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">JavaScript</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Java/C/C++</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Agda</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> K_Curry(x):</span>
-<span id="cb11-2"><a href="#cb11-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="kw">def</span> K_Curry(x):</span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">function</span> <span class="fu">konstantCurry</span>(x) {</span>
-<span id="cb12-2"><a href="#cb12-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">konstantCurry</span>(x) {</span>
+<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Languages like Java put the annotation of output before the function which makes sense if we think of the arrows going <span class="math inline">\(M\leftarrowtail x\)</span> instead of <span class="math inline">\(x\mapsto M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">String</span> <span class="fu">konstantCurry</span><span class="op">(</span><span class="bu">String</span> x<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a><span class="bu">String</span> <span class="fu">konstantCurry</span><span class="op">(</span><span class="bu">String</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <p>Many modern languages allow Unicode so that we have a larger alphabet where we can use Greek letters like <span class="math inline">\(\varphi\)</span> (using the <span class="math inline">\(\LaTeX\)</span> command <span class="math inline">\(\varphi\)</span>) and nice arrows like <span class="math inline">\(\to\)</span> (using <span class="math inline">\(\LaTeX\)</span> <code>\to</code>). This is useful when matching commands with scientific terms, but can be difficult for others to reproduce since it does not represent standard keyboard letters and so you need intermediate tools like <span class="math inline">\(\LaTeX\)</span> or AI code assistant.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb14-1"><a href="#cb14-1"></a>φ <span class="ot">:</span> String <span class="ot">→</span> String</span>
-<span id="cb14-2"><a href="#cb14-2"></a>φ x <span class="ot">=</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a>φ <span class="ot">:</span> String <span class="ot">→</span> String</span>
+<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>φ x <span class="ot">=</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 </div>
-<div class="callout-caution callout-exercise" title="" data-callout-family="exercise">
+<div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <p>Convert the following lambda <span class="math inline">\(x\mapsto 3x+8\)</span> into named functions in the target language.</p>
 <ol type="1">
 <li>Mathematics.</li>
@@ -2102,41 +1004,41 @@ m  \mapsto (x\mapsto (b\mapsto mx+b))
 \]</span> Note many software systems will prefer square-brackets to parenthesis, e.g.&nbsp;<code>[m,x,b]</code>. One subtle concern is that if we just read the list we might take this apart in a different order, for example, someone might think we meant this: <span class="math display">\[
 b  \mapsto (x\mapsto (m\mapsto mx+b))
 \]</span> Ultimately it is a choice to read <span class="math inline">\((m,x,b)\)</span> from left-to-right and since it matches the reading order of English it is default choice within English and similar languages. Even so, you may need to check with others before you assume. For example, the data science software <a href="https://julialang.org/">Julia</a> famously interprets <span class="math inline">\((a,b,c)\)</span> as top-to-bottom, not left-to-right. So in Julia the following code</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1"></a>julia<span class="op">&gt;</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]</span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="fl">3</span><span class="op">-</span>element <span class="dt">Vector</span>{<span class="dt">Int64</span>}<span class="op">:</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a> <span class="fl">1</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a> <span class="fl">2</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a> <span class="fl">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a>julia<span class="op">&gt;</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a><span class="fl">3</span><span class="op">-</span>element <span class="dt">Vector</span>{<span class="dt">Int64</span>}<span class="op">:</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-label="3"></a> <span class="fl">1</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-label="4"></a> <span class="fl">2</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-label="5"></a> <span class="fl">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Because we read these in order we call these</p>
 <ul>
 <li><strong>ordered pairs</strong> for <span class="math inline">\((a,b)\)</span>,</li>
 <li><strong>ordered triples</strong> for <span class="math inline">\((a,b,c)\)</span>, and</li>
 <li><strong>ordered n-tuples</strong> for <span class="math inline">\((a_1,a_2,\ldots,a_n)\)</span>.</li>
 </ul>
-<div class="callout-caution callout-exercise" title="" data-callout-family="exercise">
+<div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <p>Convert the following named functions into lambda’s.</p>
 <ol type="1">
 <li><span class="math inline">\(f(x,y) = x^2+y^2\)</span>.</li>
 <li>Python lets multiple inputs be given by tuples.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">def</span> dist(x,y):</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    <span class="cf">return</span> <span class="bu">abs</span>(x<span class="op">-</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a><span class="kw">def</span> dist(x,y):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>    <span class="cf">return</span> <span class="bu">abs</span>(x<span class="op">-</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>In Scala you can have repeated tuples</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource scala number-lines code-with-copy"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">def</span> <span class="fu">distribute</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">)(</span>z<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb17-2"><a href="#cb17-2"></a>   x<span class="op">*</span>z<span class="op">+</span>y<span class="op">*</span>z</span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource scala number-lines code-with-copy"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a><span class="kw">def</span> <span class="fu">distribute</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">)(</span>z<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a>   x<span class="op">*</span>z<span class="op">+</span>y<span class="op">*</span>z</span>
+<span id="cb17-3"><a href="#cb17-3" aria-label="3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
 <li>In Agda multiple inputs are separated by spaces not commas and read left-to-right.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb18-1"><a href="#cb18-1"></a>max <span class="ot">:</span> ℕ <span class="ot">→</span> ℕ <span class="ot">→</span> ℕ</span>
-<span id="cb18-2"><a href="#cb18-2"></a>max x y <span class="ot">=</span> if x &gt; y then x else y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>max <span class="ot">:</span> ℕ <span class="ot">→</span> ℕ <span class="ot">→</span> ℕ</span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a>max x y <span class="ot">=</span> if x &gt; y then x else y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
-<section id="what-is-a-variable-really" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="what-is-a-variable-really"><span class="header-section-number">3.3</span> What is a variable really?</h2>
+<section id="what-is-a-variable-really" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="what-is-a-variable-really"><span class="header-section-number">8.3</span> What is a variable really?</h2>
 <p>Placeholders as they are used in everyday life introduce confusion with data. In contemporary US English, especially in the practice of Law, the name “John Doe” is meant as a placeholder for a yet unnamed person. If compared to other names it may not stand out as variable, which is the point, it is a name that can be used in the software and many forms that require a name while still not being attached to any specific person. In the other direction a name like “Malcom X” could place an order at Konstants as “x”, but now this is not the placeholder but the actual name. So the roles of data and variables is often quite difficult to distinguish.</p>
 <p>The resolution is that we need to keep track of two alphabets. One alphabet is how we write down our data. The second alphabet is for variables.</p>
 <div class="callout-definition" title="Two alphabets for substitution">
@@ -2166,7 +1068,7 @@ b  \mapsto (x\mapsto (m\mapsto mx+b))
 <p>You learn these differences as the syntax and grammar of the programming language and every programming language has its own rules. Most programming languages are descendants of a few common ancestors (<a href="https://en.wikipedia.org/wiki/ALGOL">ALGOL</a>, <a href="https://en.wikipedia.org/wiki/COBOL">COBOL</a>, <a href="https://en.wikipedia.org/wiki/Fortran">Fortran</a>, and <a href="https://en.wikipedia.org/wiki/Lisp">Lisp</a>). So you likely will find it gets easier to read these implied rules once you have been exposed to a few examples.</p>
 </div>
 </div>
-<div class="callout-caution callout-exercise" title="" data-callout-family="exercise">
+<div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <p>In the following code sample, find the tokens of the alphabets and identify them as either constants or variables. You are not expected to know all these languages and you may find it helpful to consult an AI code assistant for some hints.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">Math</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">ALGOL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false" href="">COBOL</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-4" role="tab" aria-controls="tabset-3-4" aria-selected="false" href="">Fortran</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-5-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-5" role="tab" aria-controls="tabset-3-5" aria-selected="false" href="">Lisp</a></li></ul>
@@ -2180,40 +1082,40 @@ f(x) := \begin{cases}
 \]</span></p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource algol number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1"></a>begin</span>
-<span id="cb19-2"><a href="#cb19-2"></a>    string procedure f(x);</span>
-<span id="cb19-3"><a href="#cb19-3"></a>    string x;</span>
-<span id="cb19-4"><a href="#cb19-4"></a>    if x = "Haskell" then</span>
-<span id="cb19-5"><a href="#cb19-5"></a>        f := "Curry"</span>
-<span id="cb19-6"><a href="#cb19-6"></a>    else if x = "Robert" then</span>
-<span id="cb19-7"><a href="#cb19-7"></a>        f := "Curry";</span>
-<span id="cb19-8"><a href="#cb19-8"></a>end</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource algol number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a>begin</span>
+<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a>    string procedure f(x);</span>
+<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a>    string x;</span>
+<span id="cb19-4"><a href="#cb19-4" aria-label="4"></a>    if x = "Haskell" then</span>
+<span id="cb19-5"><a href="#cb19-5" aria-label="5"></a>        f := "Curry"</span>
+<span id="cb19-6"><a href="#cb19-6" aria-label="6"></a>    else if x = "Robert" then</span>
+<span id="cb19-7"><a href="#cb19-7" aria-label="7"></a>        f := "Curry";</span>
+<span id="cb19-8"><a href="#cb19-8" aria-label="8"></a>end</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource cobol number-lines code-with-copy"><code class="sourceCode"><span id="cb20-1"><a href="#cb20-1"></a>WORKING-STORAGE SECTION.</span>
-<span id="cb20-2"><a href="#cb20-2"></a>01 X PIC X(10).</span>
-<span id="cb20-3"><a href="#cb20-3"></a>01 Y PIC X(10).</span>
-<span id="cb20-4"><a href="#cb20-4"></a></span>
-<span id="cb20-5"><a href="#cb20-5"></a>PROCEDURE DIVISION.</span>
-<span id="cb20-6"><a href="#cb20-6"></a>        EVALUATE TRUE</span>
-<span id="cb20-7"><a href="#cb20-7"></a>            WHEN X = "Haskell" OR X = "Robert"</span>
-<span id="cb20-8"><a href="#cb20-8"></a>                MOVE "Curry" TO Y</span>
-<span id="cb20-9"><a href="#cb20-9"></a>        END-EVALUATE.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource cobol number-lines code-with-copy"><code class="sourceCode"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a>WORKING-STORAGE SECTION.</span>
+<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a>01 X PIC X(10).</span>
+<span id="cb20-3"><a href="#cb20-3" aria-label="3"></a>01 Y PIC X(10).</span>
+<span id="cb20-4"><a href="#cb20-4" aria-label="4"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-label="5"></a>PROCEDURE DIVISION.</span>
+<span id="cb20-6"><a href="#cb20-6" aria-label="6"></a>        EVALUATE TRUE</span>
+<span id="cb20-7"><a href="#cb20-7" aria-label="7"></a>            WHEN X = "Haskell" OR X = "Robert"</span>
+<span id="cb20-8"><a href="#cb20-8" aria-label="8"></a>                MOVE "Curry" TO Y</span>
+<span id="cb20-9"><a href="#cb20-9" aria-label="9"></a>        END-EVALUATE.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource fortran number-lines code-with-copy"><code class="sourceCode fortranfixed"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">character(len=10) function f(x)</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a><span class="co">character(len=*), intent(in) :: x</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a></span>
-<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">if</span> (x <span class="op">==</span> <span class="st">"Haskell"</span> <span class="op">.or.</span> x <span class="op">==</span> <span class="st">"Robert"</span>) <span class="kw">then</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>    f <span class="kw">=</span> <span class="st">"Curry"</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a><span class="kw">end if</span></span>
-<span id="cb21-7"><a href="#cb21-7"></a></span>
-<span id="cb21-8"><a href="#cb21-8"></a><span class="kw">end function</span> f</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource fortran number-lines code-with-copy"><code class="sourceCode fortranfixed"><span id="cb21-1"><a href="#cb21-1" aria-label="1"></a><span class="co">character(len=10) function f(x)</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-label="2"></a><span class="co">character(len=*), intent(in) :: x</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-label="3"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-label="4"></a><span class="kw">if</span> (x <span class="op">==</span> <span class="st">"Haskell"</span> <span class="op">.or.</span> x <span class="op">==</span> <span class="st">"Robert"</span>) <span class="kw">then</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-label="5"></a>    f <span class="kw">=</span> <span class="st">"Curry"</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-label="6"></a><span class="kw">end if</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-label="7"></a></span>
+<span id="cb21-8"><a href="#cb21-8" aria-label="8"></a><span class="kw">end function</span> f</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource lisp number-lines code-with-copy"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x)</span>
-<span id="cb22-2"><a href="#cb22-2"></a>    (<span class="kw">cond</span> ((<span class="kw">string=</span> x <span class="st">"Haskell"</span>) <span class="st">"Curry"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3"></a>        ((<span class="kw">string=</span> x <span class="st">"Robert"</span>) <span class="st">"Curry"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource lisp number-lines code-with-copy"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a>    (<span class="kw">cond</span> ((<span class="kw">string=</span> x <span class="st">"Haskell"</span>) <span class="st">"Curry"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-label="3"></a>        ((<span class="kw">string=</span> x <span class="st">"Robert"</span>) <span class="st">"Curry"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -2242,7 +1144,7 @@ If we did then it would later seems strange to say “<span class="math inline">
 \tag{Constant Rule}
 c|_{x:=N}\text{ yields }c \text{ for constants }c.
 \]</span></p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">Math</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false" href="">Java</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-4" role="tab" aria-controls="tabset-4-4" aria-selected="false" href="">Swift</a></li></ul>
 <div class="tab-content nav-pills">
@@ -2251,21 +1153,21 @@ c|_{x:=N}\text{ yields }c \text{ for constants }c.
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>M <span class="op">=</span> <span class="st">"Curry"</span></span>
-<span id="cb23-2"><a href="#cb23-2"></a>x <span class="op">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb23-3"><a href="#cb23-3"></a><span class="bu">print</span>(M)  <span class="co"># yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a>M <span class="op">=</span> <span class="st">"Curry"</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-label="2"></a>x <span class="op">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-label="3"></a><span class="bu">print</span>(M)  <span class="co"># yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1"></a><span class="bu">String</span> M <span class="op">=</span> <span class="st">"Curry"</span><span class="op">;</span></span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
-<span id="cb24-3"><a href="#cb24-3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a><span class="bu">String</span> M <span class="op">=</span> <span class="st">"Curry"</span><span class="op">;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-label="2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-label="3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">let</span> <span class="va">M</span> <span class="op">=</span> <span class="st">"Curry"</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">let</span> <span class="va">x</span> <span class="op">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb25-3"><a href="#cb25-3"></a>print<span class="op">(</span>M<span class="op">)</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb25-1"><a href="#cb25-1" aria-label="1"></a><span class="kw">let</span> <span class="va">M</span> <span class="op">=</span> <span class="st">"Curry"</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-label="2"></a><span class="kw">let</span> <span class="va">x</span> <span class="op">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-label="3"></a>print<span class="op">(</span>M<span class="op">)</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -2274,7 +1176,7 @@ c|_{x:=N}\text{ yields }c \text{ for constants }c.
 \tag{Same Variable Rule}
 x|_{x:=N}\text{ yields }N
 \]</span></p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">Math</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Java</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false" href="">Mathematic</a></li></ul>
 <div class="tab-content nav-pills">
@@ -2282,14 +1184,14 @@ x|_{x:=N}\text{ yields }N
 <p>For example, <span class="math inline">\(x|_{x:=\text{Haskell}}\)</span> yields <span class="math inline">\(\text{Haskell}\)</span>.</p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1"></a><span class="bu">String</span> x<span class="op">;</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>x<span class="op">);</span>  <span class="co">// prints "Haskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a><span class="bu">String</span> x<span class="op">;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-label="3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>x<span class="op">);</span>  <span class="co">// prints "Haskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">x</span><span class="op">]</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">x</span>  <span class="co">(* yields "Haskell" *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb27-1"><a href="#cb27-1" aria-label="1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">x</span><span class="op">]</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-label="2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-label="3"></a><span class="fu">x</span>  <span class="co">(* yields "Haskell" *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -2298,7 +1200,7 @@ x|_{x:=N}\text{ yields }N
 \tag{Distinct Variable Rule}
 y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 \]</span></p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">Math</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Java</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false" href="">Mathematics</a></li></ul>
 <div class="tab-content nav-pills">
@@ -2308,15 +1210,15 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>. However, in software often you cannot have a variable without some actual data, it might just fill in a default value like <span class="math inline">\(0\)</span> or <code>null</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">String</span> M<span class="op">;</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// prints null </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb28-1"><a href="#cb28-1" aria-label="1"></a><span class="bu">String</span> M<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-label="2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-label="3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// prints null </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>. In symbolic programming languages you can often keep <span class="math inline">\(M\)</span> as a variable without need for a default value. This is closest to the mathematical idea.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">M</span><span class="op">]</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">M</span>  <span class="co">(* yields M *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb29-1"><a href="#cb29-1" aria-label="1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">M</span><span class="op">]</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-label="2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-label="3"></a><span class="fu">M</span>  <span class="co">(* yields M *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -2325,7 +1227,7 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 \tag{Repeat Rule}
 (LR)|_{x:=N}\text{ yields }L|_{x:=N}R|_{x:=N}
 \]</span></p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <div class="tabset-margin-container"></div><div class="panel-tabset nav-pills">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">Math</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false" href="">Idris</a></li></ul>
 <div class="tab-content nav-pills">
@@ -2334,16 +1236,16 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <p>The repeated use of variables in most programming languages use the same value as many times as needed.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>x <span class="op">=</span> <span class="st">"Haskell"</span>   </span>
-<span id="cb30-2"><a href="#cb30-2"></a>M <span class="op">=</span> x <span class="op">+</span> x</span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="bu">print</span>(M)  <span class="co"># prints "HaskellHaskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-label="1"></a>x <span class="op">=</span> <span class="st">"Haskell"</span>   </span>
+<span id="cb30-2"><a href="#cb30-2" aria-label="2"></a>M <span class="op">=</span> x <span class="op">+</span> x</span>
+<span id="cb30-3"><a href="#cb30-3" aria-label="3"></a><span class="bu">print</span>(M)  <span class="co"># prints "HaskellHaskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
 <p>Be careful. In some modern languages like Rust and Idris you may be limited in how many times you can use a variable. Here is an example where the number 1 tell the system to use the value of <code>x</code> exactly once. If you try to use it more than once the program will not compile.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">dupFail</span> <span class="ot">:</span> (<span class="dv">1</span> x <span class="ot">:</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span></span>
-<span id="cb31-2"><a href="#cb31-2"></a>dupFail x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Will not compile: x is used twice.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">dupOk</span> <span class="ot">:</span>  <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
-<span id="cb32-2"><a href="#cb32-2"></a>dupOk x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Now succeeds because x is unrestricted.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb31-1"><a href="#cb31-1" aria-label="1"></a><span class="fu">dupFail</span> <span class="ot">:</span> (<span class="dv">1</span> x <span class="ot">:</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-label="2"></a>dupFail x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Will not compile: x is used twice.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb32-1"><a href="#cb32-1" aria-label="1"></a><span class="fu">dupOk</span> <span class="ot">:</span>  <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-label="2"></a>dupOk x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Now succeeds because x is unrestricted.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -2353,16 +1255,16 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 <p>THe rest of the rules concern substitution into <span class="math inline">\(x\mapsto M\)</span> strings.</p>
 </blockquote>
 <p>Lets begin with a named function <span class="math inline">\(K\)</span> that takes an input <span class="math inline">\(x\)</span> and returns the constant <span class="math inline">\(c\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb33-2"><a href="#cb33-2"></a>    <span class="cf">return</span> c</span>
-<span id="cb33-3"><a href="#cb33-3"></a>c <span class="op">=</span> <span class="st">"Curry"</span></span>
-<span id="cb33-4"><a href="#cb33-4"></a></span>
-<span id="cb33-5"><a href="#cb33-5"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb33-2"><a href="#cb33-2" aria-label="2"></a>    <span class="cf">return</span> c</span>
+<span id="cb33-3"><a href="#cb33-3" aria-label="3"></a>c <span class="op">=</span> <span class="st">"Curry"</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-label="4"></a></span>
+<span id="cb33-5"><a href="#cb33-5" aria-label="5"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If <span class="math inline">\(M\)</span> is the program <code>return c</code>, then this is simply naming the lambda <span class="math inline">\(x\mapsto c\)</span>. To feed in “Curry” for <span class="math inline">\(c\)</span> we have to assign <span class="math inline">\(c:=\text{Curry}\)</span> which we do in line 3. So after this line we have <span class="math inline">\(x\mapsto \text{Curry}\)</span>. The last line confirmed this by inputting “Robert” for <span class="math inline">\(x\)</span> and getting “Curry” as the output. Thus following line 3 we could think of the program as equal to this.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb34-2"><a href="#cb34-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb34-2"><a href="#cb34-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-label="3"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-label="4"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This suggests the following rule. <span class="math display">\[
 \tag{Incorrect Rule}
 (x\mapsto M)|_{c:=N} \text{ yields } x\mapsto (M|_{c:=N})
@@ -2373,7 +1275,7 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 \tag{Scope Rule}
 (x\mapsto M)|_{c:=N} \text{ yields } \acute{x}\mapsto \Big(M|_{x:=\acute{x}}\Big)\Big|_{c:=N}
 \]</span></p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 37%">
@@ -2389,14 +1291,14 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </thead>
 <tbody>
 <tr class="odd">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb35-2"><a href="#cb35-2"></a>    <span class="cf">return</span> c</span>
-<span id="cb35-3"><a href="#cb35-3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">def</span> K(local_x):</span>
-<span id="cb36-2"><a href="#cb36-2"></a>    <span class="cf">return</span> c</span>
-<span id="cb36-3"><a href="#cb36-3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">def</span> K(local_x):</span>
-<span id="cb37-2"><a href="#cb37-2"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb35-2"><a href="#cb35-2" aria-label="2"></a>    <span class="cf">return</span> c</span>
+<span id="cb35-3"><a href="#cb35-3" aria-label="3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-label="1"></a><span class="kw">def</span> K(local_x):</span>
+<span id="cb36-2"><a href="#cb36-2" aria-label="2"></a>    <span class="cf">return</span> c</span>
+<span id="cb36-3"><a href="#cb36-3" aria-label="3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-label="1"></a><span class="kw">def</span> K(local_x):</span>
+<span id="cb37-2"><a href="#cb37-2" aria-label="2"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -2417,7 +1319,7 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </div>
 </div>
 <p>Programming languages solve the trapped variable paradox in similar ways but often introduce indentation, braces, and other notation to make it easy to identify where a variable is meant to need a nickname, so-called <strong>local variable</strong>. Other variables are called <strong>global</strong> and the discussion of local/global is known as <strong>scope</strong>. Sometimes a variable is reused many times cause there to be several levels nicknames, i.e.&nbsp;“scope”, such as in this program.</p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <p><span class="math display">\[
 \begin{aligned}
 (x\mapsto (x\mapsto c))|_{c:=x} &amp; \text{ yields } \dot{x}\mapsto \Big((x\mapsto c)|_{x:=\dot{x}}\Big)\Big|_{c:=x} \\
@@ -2428,7 +1330,7 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 \]</span></p>
 </div>
 <p>Here is the same example as Python program.</p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 21%">
@@ -2446,25 +1348,25 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </thead>
 <tbody>
 <tr class="odd">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb38-2"><a href="#cb38-2"></a>  <span class="kw">def</span> L(x):</span>
-<span id="cb38-3"><a href="#cb38-3"></a>      <span class="cf">return</span> c</span>
-<span id="cb38-4"><a href="#cb38-4"></a>  <span class="cf">return</span> L</span>
-<span id="cb38-5"><a href="#cb38-5"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">def</span> K(x_temp_1):</span>
-<span id="cb39-2"><a href="#cb39-2"></a>    c <span class="op">=</span> x</span>
-<span id="cb39-3"><a href="#cb39-3"></a>    <span class="kw">def</span> L(x):</span>
-<span id="cb39-4"><a href="#cb39-4"></a>        <span class="cf">return</span> c</span>
-<span id="cb39-5"><a href="#cb39-5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">def</span> K(x_temp_1):</span>
-<span id="cb40-2"><a href="#cb40-2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
-<span id="cb40-3"><a href="#cb40-3"></a>        c <span class="op">=</span> x</span>
-<span id="cb40-4"><a href="#cb40-4"></a>        <span class="cf">return</span> c</span>
-<span id="cb40-5"><a href="#cb40-5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">def</span> K(x_temp_1):</span>
-<span id="cb41-2"><a href="#cb41-2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
-<span id="cb41-3"><a href="#cb41-3"></a>        <span class="cf">return</span> x</span>
-<span id="cb41-4"><a href="#cb41-4"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb38-2"><a href="#cb38-2" aria-label="2"></a>  <span class="kw">def</span> L(x):</span>
+<span id="cb38-3"><a href="#cb38-3" aria-label="3"></a>      <span class="cf">return</span> c</span>
+<span id="cb38-4"><a href="#cb38-4" aria-label="4"></a>  <span class="cf">return</span> L</span>
+<span id="cb38-5"><a href="#cb38-5" aria-label="5"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-label="1"></a><span class="kw">def</span> K(x_temp_1):</span>
+<span id="cb39-2"><a href="#cb39-2" aria-label="2"></a>    c <span class="op">=</span> x</span>
+<span id="cb39-3"><a href="#cb39-3" aria-label="3"></a>    <span class="kw">def</span> L(x):</span>
+<span id="cb39-4"><a href="#cb39-4" aria-label="4"></a>        <span class="cf">return</span> c</span>
+<span id="cb39-5"><a href="#cb39-5" aria-label="5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-label="1"></a><span class="kw">def</span> K(x_temp_1):</span>
+<span id="cb40-2"><a href="#cb40-2" aria-label="2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
+<span id="cb40-3"><a href="#cb40-3" aria-label="3"></a>        c <span class="op">=</span> x</span>
+<span id="cb40-4"><a href="#cb40-4" aria-label="4"></a>        <span class="cf">return</span> c</span>
+<span id="cb40-5"><a href="#cb40-5" aria-label="5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-label="1"></a><span class="kw">def</span> K(x_temp_1):</span>
+<span id="cb41-2"><a href="#cb41-2" aria-label="2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
+<span id="cb41-3"><a href="#cb41-3" aria-label="3"></a>        <span class="cf">return</span> x</span>
+<span id="cb41-4"><a href="#cb41-4" aria-label="4"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -2472,94 +1374,14 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 <p>Often the term <strong>scope</strong> is used to describe when a variable should be thought of as having a nickname that isn’t known outside of program. The terms <strong>local variable</strong> are used for variables that need nicknames and <strong>global variable</strong> for ones that can be used without a nickname. It is the job of the programming language to provide nicknames and keep track of local/global scope. However, the programs that result from these choices can offer surprising outcomes that cause many programs to seem to behave in peculiar ways. Let us look at a few.</p>
 </section>
 </section>
-<section id="alternative-giving-up-on-variables" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="alternative-giving-up-on-variables"><span class="header-section-number">3.4</span> Alternative: Giving up on variables</h2>
-<p>One idea to prevent the paradox of a trapped variable occurred first to Shonfinkle and explored extensively by Curry and Feys is to get ride of the use of variables entirely. Instead focus on a list of allowed operations that can be applied to data. These operations were known as <strong>combinators</strong> but most people today will know them as <strong>gates</strong>. We can explore this with some examples.</p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
-<p>In the Konstants restaraunts, <span class="math inline">\(K\)</span> is the combinator. When followed by two pieces of data (which can be grouped in parentheses) it yields the first of the two ignoring the second.</p>
+<section id="summary" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="summary"><span class="header-section-number">8.4</span> Summary</h2>
 <ul>
-<li><code>K "Curry" "Fries"</code> yields <code>"Curry"</code>.</li>
-<li><code>K 3 7</code> yields <code>3</code>.</li>
-<li><code>K (3 7) 5</code> yields <code>3 7</code>. The parentheses around <code>(3 7)</code> forced us to treat that as one piece of data and so it was the first of the two pieces and thus returned.</li>
-<li>Working from the outside in, <code>K (K 3 7) 5</code> yields <code>K 3 7</code> (the first term to the outermost <span class="math inline">\(K\)</span>) which in turn yields <code>3</code>.</li>
-<li>Now working from the inside-out, <code>K (K 3 7) 5</code> yields <code>K 3 5</code> (the second <span class="math inline">\(K\)</span> was applied first to <code>3 7</code>) which still yields <code>3</code>.</li>
+<li>A constant is a character from the constant alphabet.</li>
+<li>A variable is a character from the variable alphabet.</li>
+<li>Substitute by fill-in-the-blank until the variable is bound to a scope.</li>
+<li>Variables in scope should be renamed to unused variables before substitution.</li>
 </ul>
-</div>
-<p>Viewed form the perspective of the second term, this is a constant function.</p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
-<p>The <strong>identity</strong> combinator <span class="math inline">\(I\)</span> is defined by <span class="math inline">\(I~x\)</span> yields <span class="math inline">\(x\)</span>. It simply returns its argument unchanged.</p>
-</div>
-<p>Notice there are no variables and no substitution. Just computations. In fact, we could make these two combinators as simple machines. The game now is to list a number of combinators that can assist you in building a program.</p>
-<p>It may surprise you to learn how powerful <code>K</code> together with <code>I</code> can be. For example, the next exercise asks you to confirm that combining <code>K</code> and <code>I</code> is already enough to make a program that manages the concept of <code>if a then b else c</code>.</p>
-<div class="callout-caution callout-exercise" title="Conditional combinator" data-callout-family="exercise">
-<p>Let <code>K</code> be represent “True” and <code>K I</code> represent “False”; and define a new combinator <code>IF</code> by <code>IF a b c = I a b c</code>. Show that:</p>
-<ul>
-<li><code>IF True 3 7</code> yields <code>3</code></li>
-<li><code>IF False 3 7</code> yields <code>7</code></li>
-</ul>
-<p>Because of this behavior, the <code>IF</code> combinator is usually called a <strong>conditional combinator</strong> and instead of <code>IF a b c</code> we write it:</p>
-<pre><code>if a then b else c</code></pre>
-</div>
-<p>So far we chain together our combinators as lists, but once we make a clever little program like <code>if-then-else</code> we might want to compose it with other little programs without physically rewriting all the lines of instructions. We can do that with a combinator specially built to combine two programs into one and apply them in a specified order.</p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
-The <span class="math inline">\(S\)</span> combinator (for Schonfinkle) is defined so that <span class="math inline">\(S~f~g~x\)</span> yields <span class="math inline">\(f~x~(g~x)\)</span>. It allows us to apply a function to an argument and then apply another function to the same argument, combining the results.
-<p style="margin-left: 2em;">
-<code>S f g x</code> yields <code>f x (g x)</code>.<br> <code>S K K 3</code> yields <code>K 3 (K 3)</code> which in turn yields <code>K 3 3</code> which finally yields <code>3</code>.<br>
-</p>
-</div>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
-<p>Set <code>B</code> to be <code>S (K S) K</code>. Show that <code>B f g x</code> yields <code>f (g x)</code>. That is, <code>B</code> behaves like the <strong>composition combinator</strong>, it applies the program <code>f</code> to the output of the program <code>g</code>.</p>
-</div>
-<p>When you think of the operations of combinators like <code>K</code>, <code>I</code>, and <code>S</code> it may strike you as highly mechanical. That is the right picture to have. And perhaps you are also convinced that in combination they begin to make a tiny bit of sophistication, such as if-then-else, counting, possibly more. Well in fact they can do everything any computer can do.l.</p>
-<div class="callout-tip callout-thm" title="SKI universality" data-callout-family="thm">
-<p>The S, K, I combinators together are enough to do all computations.</p>
-</div>
-<p>Notice the complete absence of substitution and variables so the trapped variable problem just does not exist in computations. Gone also is the requirement that we are secretly depending on infinity to get substitution to work. It was only ever a mistake in vague mathematics and the programming languages used to bridge humans to machines. Put another way, humans who can imagine a place for infinity are beyond what a machine can imagine for itself.</p>
-<div class="callout-caution callout-exercise" title="" data-callout-family="exercise">
-<p><span class="math inline">\(S~K~K~x\)</span> yields <span class="math inline">\(x\)</span>. In this sense <span class="math inline">\(S~K~K\)</span> behaves like the identity combinator <span class="math inline">\(I\)</span>.</p>
-</div>
-<section id="applied-combinators-and-modern-hardware" class="level3">
-<h3 class="anchored" data-anchor-id="applied-combinators-and-modern-hardware">Applied Combinators and modern hardware</h3>
-<p>Unfortunately it is not the case that using just these three combinators is a <em>fast</em> way to write practical programs. For example we saw we do not really need <span class="math inline">\(I\)</span> because we can get the same behavior as <code>S K K</code>. But doing three operations instead of one is silly. Modern day CPUs therefore boast over a thousand additional instructions (applied combinators) and GPUs use a few hundred. Even so, given more time to operate, any one of these devices can compute anything that is computable. That was the insight of Alan Turing and Alonzo Church and it is known today as the Turing-Church thesis.</p>
-<p>As another exercise you can invent counting, additions, binary numbers, decimal numbers and on and on. But those will be very slow. Instead you are better off adding many more combinators to your list to give yourself a solid start.</p>
-<div class="callout-tip callout-example" title="Applied Combinator" data-callout-family="example">
-<p>In the Intel x86 instruction set there is a command to add two numbers. <code>ADD</code>. It takes the next to terms and adds them.</p>
-<ul>
-<li><code>ADD 3 7</code> yields <code>10</code>.</li>
-<li>Working from the inside-out, <code>ADD (ADD 3 7) 5</code> yields <code>ADD 10 5</code> which in turn yields <code>15</code>.</li>
-<li>Working from the outside in, <code>ADD (ADD 3 7) 5</code> gets stuck! Based on work from the outside we have not yet computed <code>ADD 3 7</code> and so the outside <code>ADD</code> is stuck waiting on that number before it can continue.</li>
-</ul>
-<p>Notice how the <code>ADD</code> operation is not as straight-forward as the <code>K</code> and <code>I</code> or even the <code>IF</code> combinator in that <code>ADD</code> really only makes sense when followed by numbers. This is why it got stuck when working outside-in instead of inside-out. It is striking that something as basic as adding can run into trouble based purely on how we ask the question. To get unstuck we would need to go into the design of the hardware and rewrite the order of operations. This highlights the difference between pure combinators like <span class="math inline">\(K\)</span> and applied combinators like <code>ADD</code>. This is what is known as an “Applied Combinator”.</p>
-</div>
-<div class="callout-tip callout-example" title="Fixed-point combinator" data-callout-family="example">
-<p>A <strong>fixed-point combinator</strong> <span class="math inline">\(F\)</span> is one where <span class="math inline">\(F~g\)</span> yields <span class="math inline">\(g~(F~g)\)</span>. We call this a fixed-point because <span class="math inline">\(g\)</span> applied to <span class="math inline">\(F~g\)</span> yields the same result as <span class="math inline">\(F~g\)</span> itself, so the “point” <span class="math inline">\(F~g\)</span> is fixed. When introduced as an option for computation they give the programmer a way to have an operation applied to itself repeatedly in a process known as <strong>recursion</strong>. That is an essential power in modern programming so the ability to create such a combinator (or gate) is highly valuable. The mathematician <a href="https://en.wikipedia.org/wiki/Alonzo_Church">Alanzo Church (1903-1995)</a> found one such operator he called <span class="math inline">\(Y\)</span> and <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing (1912-1954)</a> discovered another called <span class="math inline">\(\Theta\)</span>.</p>
-<blockquote class="blockquote">
-<p>There is a tech incubator launched in 2005 called the “<a href="https://www.ycombinator.com">Y Combinator</a>” which also hosts “Hacker News”, a website dedicated to articles and announcements on cutting edge technology.</p>
-</blockquote>
-</div>
-</section>
-</section>
-<section id="abstraction-fixes-a-paradox" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="abstraction-fixes-a-paradox"><span class="header-section-number">3.5</span> Abstraction “Fixes” a paradox</h2>
-<p>A common feature of “fixing” a paradox is that we agree to give up on something. In this example, to give up on constants and variables is to give up a lot of the ways we have learned to talk about science. Yet to put rules on what substitution looks like, goes against the “fill-in-the-box” intuition we spent years building for ourselves.</p>
-<p>Whenever we encounter a situation where we limit our thinking by rules we have what is called an <strong>abstraction.</strong></p>
-<div class="callout-definition" title="Abstraction">
-<p>An <strong>abstraction</strong> is to limit a topic by rules.</p>
-</div>
-<p>We will have many opportunities to explore abstraction within computation, but the word is so common you might benefit from some outside examples to connect your learning with what you already experience. In economics, workers do many different jobs but to make it possible to compare their productivity we can limit their jobs to how much money they earn. The money is the abstraction.</p>
-<div class="callout-tip callout-example" title="" data-callout-family="example">
-<p>An abstract painting such as Marcel Duchamp’s <em>Nude Descending a Staircase</em> the nude figure is limited to having a head, arms, and legs. This allowed the subject of the abstract art to consider the locomotion of descending a staircase rather than the details of a specific person.</p>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="Duchamp-Nude_Descending_a_Staircase.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Nude Descending a Staircase, by Marcel Duchamp (1887-1968) - Philadelphia Museum of Art, PD-US</figcaption>
-</figure>
-</div>
-</div>
-<p>Possibly here is a place to imagine how data we collect for computations is typically an abstraction of whatever we want to explore. You have some control in creating abstractions when you compute. Choose your rules wisely, they will have consequences.</p>
-<div class="reading-stats" data-reading-stats="" aria-label="Reading statistics">
-
-</div>
 
 
 </section>
@@ -2968,12 +1790,12 @@ The <span class="math inline">\(S\)</span> combinator (for Schonfinkle) is defin
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../01/Writing-down-a-logic.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-scroll fa-la&quot;></i> Writing down a logic">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../02/LIE-AND.html" class="pagination-link" aria-label="Logical Operators">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../01/Combinators.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-microchip&quot;></i>  Gates, Combinators, and Turing and Kleene">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-microchip"></i> Gates, Combinators, and Turing and Kleene</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Logical Operators – 5000 Years of Modern Programming</title>
+<title>11&nbsp; Logical Operators – 5000 Years of Modern Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -69,17 +72,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../02/Quantifiers.html" rel="next">
-<link href="../01/Sub-Var-Func.html" rel="prev">
+<link href="../01/Chp-Summary.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -108,1267 +111,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="stylesheet" href="../assets/webllm-chat.css">
-<script src="../assets/mermaid.min.js"></script>
-<script type="module" src="../assets/webllm-chat.js"></script>
-<style>
-  .quarto-content img {
-    max-width: min(50%, 42rem);
-    width: auto;
-    height: auto;
-    cursor: zoom-in;
-  }
-
-  .quarto-content .quarto-figure-left,
-  .quarto-content .quarto-float-fig.quarto-float-left {
-    float: left;
-    margin: 0.15rem 0.85rem 0.55rem 0;
-    max-width: min(50%, 42rem);
-  }
-
-  .quarto-content .quarto-figure-right,
-  .quarto-content .quarto-float-fig.quarto-float-right {
-    float: right;
-    margin: 0.15rem 0 0.55rem 0.85rem;
-    max-width: min(50%, 42rem);
-  }
-
-  .quarto-content .quarto-figure-left img,
-  .quarto-content .quarto-float-fig.quarto-float-left img,
-  .quarto-content .quarto-figure-right img,
-  .quarto-content .quarto-float-fig.quarto-float-right img {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-  }
-
-  .quarto-content .quarto-figure-left figcaption,
-  .quarto-content .quarto-float-fig.quarto-float-left figcaption,
-  .quarto-content .quarto-figure-right figcaption,
-  .quarto-content .quarto-float-fig.quarto-float-right figcaption {
-    display: block;
-    margin-top: 0.35rem;
-    font-size: 0.9rem;
-    line-height: 1.3;
-  }
-
-  .quarto-content .clay-wrap-figure {
-    float: left;
-    margin: 0.15rem 0.85rem 0.55rem 0;
-  }
-
-  .quarto-content .clay-wrap-figure img {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-  }
-
-  .quarto-content .clay-wrap-figure figcaption {
-    display: block;
-    margin-top: 0.35rem;
-    font-size: 0.9rem;
-    line-height: 1.3;
-    font-style: italic;
-  }
-
-  .quarto-content .float-clear {
-    clear: both;
-  }
-
-  figure.left {
-    float: left;
-    width: 200px;
-    margin: 0 1rem 1rem 0;
-  }
-
-  .quarto-image-lightbox {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.96);
-    padding: 1rem;
-  }
-
-  .quarto-image-lightbox.is-open {
-    display: flex;
-  }
-
-  .quarto-image-lightbox img {
-    width: auto;
-    max-width: 96vw;
-    max-height: 96vh;
-    height: auto;
-    object-fit: contain;
-    cursor: zoom-out;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-  }
-
-  .quarto-image-lightbox__close {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    border: 0;
-    background: rgba(0, 0, 0, 0.08);
-    color: #111;
-    font-size: 2rem;
-    line-height: 1;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 999px;
-    cursor: pointer;
-  }
-
-  .quarto-image-lightbox__close:hover {
-    background: rgba(0, 0, 0, 0.16);
-  }
-
-  .callout-inline,
-  .blue-callout-inline,
-  .green-callout-inline {
-    display: inline-block;
-    max-width: 100%;
-    white-space: normal;
-    border-radius: 8px;
-    padding: 0.08em 0.35em;
-  }
-
-  .callout-inline--blue,
-  .blue-callout-inline {
-    background: #eaf4ff;
-    border: 1px solid #b8d9ff;
-  }
-
-  .callout-inline--green,
-  .green-callout-inline {
-    background: #e7f8ec;
-    border: 1px solid #9bd7ad;
-  }
-
-  .callout-inline--yellow,
-  .yellow-callout-inline {
-    background: #fff7d6;
-    border: 1px solid #e6cf75;
-  }
-
-  .callout-inline--red,
-  .red-callout-inline {
-    background: #fdebec;
-    border: 1px solid #e9a8ad;
-  }
-
-  /* Semantic callout modes by class family. */
-  .callout.callout-defn,
-  .callout.callout-thm,
-  .callout.callout-prop,
-  .callout.callout-lemma,
-  .callout.callout-cor,
-  .callout.callout-example,
-  .callout.callout-exercise,
-  .callout.callout-question {
-    --bs-callout-margin-top: 1rem;
-    --bs-callout-margin-bottom: 1rem;
-  }
-
-  .callout.callout-defn .callout-icon-container,
-  .callout.callout-thm .callout-icon-container,
-  .callout.callout-prop .callout-icon-container,
-  .callout.callout-lemma .callout-icon-container,
-  .callout.callout-cor .callout-icon-container,
-  .callout.callout-example .callout-icon-container,
-  .callout.callout-exercise .callout-icon-container,
-  .callout.callout-question .callout-icon-container {
-    display: none !important;
-  }
-
-  .callout.callout-defn {
-    border-left: 0.36rem solid #1f3a68 !important;
-    border-color: #9eb8df !important;
-    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
-  }
-
-  .callout.callout-defn .callout-title {
-    color: #18345f;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout.callout-thm,
-  .callout.callout-prop,
-  .callout.callout-lemma,
-  .callout.callout-cor {
-    border-left: 0.36rem solid #0a6a43 !important;
-    border-color: #96d7bb !important;
-    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
-  }
-
-  .callout.callout-thm .callout-title,
-  .callout.callout-prop .callout-title,
-  .callout.callout-lemma .callout-title,
-  .callout.callout-cor .callout-title {
-    color: #0b5a3a;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout.callout-example {
-    border-left: 0.36rem solid #8a4f00 !important;
-    border-color: #f0cb91 !important;
-    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
-  }
-
-  .callout.callout-example .callout-title {
-    color: #7a4700;
-    font-weight: 700;
-  }
-
-  .callout.callout-exercise {
-    border-left: 0.36rem solid #6a1f3b !important;
-    border-color: #e5a8c1 !important;
-    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
-  }
-
-  .callout.callout-exercise .callout-title {
-    color: #61203a;
-    font-weight: 700;
-  }
-
-  .callout.callout-question {
-    border-left: 0.36rem solid #005f73 !important;
-    border-color: #9fd6de !important;
-    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
-  }
-
-  .callout.callout-question .callout-title {
-    color: #0b4f61;
-    font-weight: 700;
-  }
-
-  .mermaid,
-  .mermaid svg {
-    direction: ltr;
-  }
-  .mermaid .node rect,
-  .mermaid .node circle,
-  .mermaid .node ellipse,
-  .mermaid .node polygon,
-  .mermaid .cluster rect,
-  .mermaid .label,
-  .mermaid foreignObject {
-    filter: none !important;
-    box-shadow: none !important;
-  }
-
-  .mermaid g.stopNode rect,
-  .mermaid .stopNode rect {
-    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-  }
-
-  .mermaid-auto-tabset {
-    margin: 1rem 0;
-  }
-
-  .mermaid-auto-tabset .nav-tabs {
-    margin-bottom: 0.65rem;
-  }
-
-  .mermaid-auto-tabset .tab-pane pre {
-    margin-top: 0;
-  }
-
-  .glossary-link {
-    text-decoration-style: dotted;
-    text-underline-offset: 0.15em;
-    cursor: help;
-  }
-
-  .reading-stats {
-    margin-top: 3rem;
-    padding-top: 1rem;
-    border-top: 1px solid #d7dde2;
-    font-size: 0.92rem;
-    color: #5b6670;
-    text-align: center;
-    letter-spacing: 0.02em;
-  }
-
-  body {
-    counter-reset: definition-counter theorem-counter example-counter exercise-counter question-counter;
-  }
-
-  .callout.callout-defn {
-    counter-increment: definition-counter;
-  }
-
-  .callout.callout-thm,
-  .callout.callout-prop,
-  .callout.callout-lemma,
-  .callout.callout-cor {
-    counter-increment: theorem-counter;
-  }
-
-  .callout.callout-example {
-    counter-increment: example-counter;
-  }
-
-  .callout.callout-exercise {
-    counter-increment: exercise-counter;
-  }
-
-  .callout.callout-question {
-    counter-increment: question-counter;
-  }
-
-  .callout.callout-defn .callout-title-container::before {
-    content: "📘 Definition " counter(definition-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-thm .callout-title-container::before {
-    content: "★ Theorem " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-prop .callout-title-container::before {
-    content: "★ Proposition " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-lemma .callout-title-container::before {
-    content: "★ Lemma " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-cor .callout-title-container::before {
-    content: "★ Corollary " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-example .callout-title-container::before {
-    content: "🧪 Example " counter(example-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-exercise .callout-title-container::before {
-    content: "✎ Exercise " counter(exercise-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout.callout-question .callout-title-container::before {
-    content: "❓ Question " counter(question-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  /* Support custom callout families authored without a base callout class. */
-  .callout[data-callout-family="defn"],
-  .callout[data-callout-family="thm"],
-  .callout[data-callout-family="prop"],
-  .callout[data-callout-family="lemma"],
-  .callout[data-callout-family="cor"],
-  .callout[data-callout-family="example"],
-  .callout[data-callout-family="exercise"],
-  .callout[data-callout-family="question"] {
-    --bs-callout-margin-top: 1rem;
-    --bs-callout-margin-bottom: 1rem;
-  }
-
-  .callout[data-callout-family="defn"] .callout-icon-container,
-  .callout[data-callout-family="thm"] .callout-icon-container,
-  .callout[data-callout-family="prop"] .callout-icon-container,
-  .callout[data-callout-family="lemma"] .callout-icon-container,
-  .callout[data-callout-family="cor"] .callout-icon-container,
-  .callout[data-callout-family="example"] .callout-icon-container,
-  .callout[data-callout-family="exercise"] .callout-icon-container,
-  .callout[data-callout-family="question"] .callout-icon-container {
-    display: none !important;
-  }
-
-  .callout[data-callout-family="defn"] {
-    border-left: 0.36rem solid #1f3a68 !important;
-    border-color: #9eb8df !important;
-    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
-    counter-increment: definition-counter;
-  }
-
-  .callout[data-callout-family="defn"] .callout-title {
-    color: #18345f;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout[data-callout-family="thm"],
-  .callout[data-callout-family="prop"],
-  .callout[data-callout-family="lemma"],
-  .callout[data-callout-family="cor"] {
-    border-left: 0.36rem solid #0a6a43 !important;
-    border-color: #96d7bb !important;
-    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
-    counter-increment: theorem-counter;
-  }
-
-  .callout[data-callout-family="thm"] .callout-title,
-  .callout[data-callout-family="prop"] .callout-title,
-  .callout[data-callout-family="lemma"] .callout-title,
-  .callout[data-callout-family="cor"] .callout-title {
-    color: #0b5a3a;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-  }
-
-  .callout[data-callout-family="example"] {
-    border-left: 0.36rem solid #8a4f00 !important;
-    border-color: #f0cb91 !important;
-    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
-    counter-increment: example-counter;
-  }
-
-  .callout[data-callout-family="example"] .callout-title {
-    color: #7a4700;
-    font-weight: 700;
-  }
-
-  .callout[data-callout-family="exercise"] {
-    border-left: 0.36rem solid #6a1f3b !important;
-    border-color: #e5a8c1 !important;
-    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
-    counter-increment: exercise-counter;
-  }
-
-  .callout[data-callout-family="exercise"] .callout-title {
-    color: #61203a;
-    font-weight: 700;
-  }
-
-  .callout[data-callout-family="question"] {
-    border-left: 0.36rem solid #005f73 !important;
-    border-color: #9fd6de !important;
-    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
-    counter-increment: question-counter;
-  }
-
-  .callout[data-callout-family="question"] .callout-title {
-    color: #0b4f61;
-    font-weight: 700;
-  }
-
-  .callout[data-callout-family="defn"] .callout-title-container::before {
-    content: "📘 Definition " counter(definition-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="thm"] .callout-title-container::before {
-    content: "★ Theorem " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="prop"] .callout-title-container::before {
-    content: "★ Proposition " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="lemma"] .callout-title-container::before {
-    content: "★ Lemma " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="cor"] .callout-title-container::before {
-    content: "★ Corollary " counter(theorem-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="example"] .callout-title-container::before {
-    content: "🧪 Example " counter(example-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="exercise"] .callout-title-container::before {
-    content: "✎ Exercise " counter(exercise-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  .callout[data-callout-family="question"] .callout-title-container::before {
-    content: "❓ Question " counter(question-counter) ": ";
-    font-weight: 700;
-    margin-right: 0.15rem;
-  }
-
-  /* Fallback rendering for custom family blocks authored without native callout syntax. */
-  .callout-defn:not(.callout),
-  .callout-thm:not(.callout),
-  .callout-prop:not(.callout),
-  .callout-lemma:not(.callout),
-  .callout-cor:not(.callout),
-  .callout-example:not(.callout),
-  .callout-exercise:not(.callout),
-  .callout-question:not(.callout) {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    padding: 0.8rem 1rem;
-    border: 1px solid transparent;
-    border-left-width: 0.36rem;
-    border-radius: 0.375rem;
-  }
-
-  .callout-defn:not(.callout) {
-    border-left-color: #1f3a68;
-    border-color: #9eb8df;
-    background: linear-gradient(180deg, #f4f8ff 0%, #ffffff 78%);
-    counter-increment: definition-counter;
-  }
-
-  .callout-thm:not(.callout),
-  .callout-prop:not(.callout),
-  .callout-lemma:not(.callout),
-  .callout-cor:not(.callout) {
-    border-left-color: #0a6a43;
-    border-color: #96d7bb;
-    background: linear-gradient(180deg, #f1fbf5 0%, #ffffff 78%);
-    counter-increment: theorem-counter;
-  }
-
-  .callout-example:not(.callout) {
-    border-left-color: #8a4f00;
-    border-color: #f0cb91;
-    background: linear-gradient(180deg, #fff8ec 0%, #ffffff 78%);
-    counter-increment: example-counter;
-  }
-
-  .callout-exercise:not(.callout) {
-    border-left-color: #6a1f3b;
-    border-color: #e5a8c1;
-    background: linear-gradient(180deg, #fff2f7 0%, #ffffff 78%);
-    counter-increment: exercise-counter;
-  }
-
-  .callout-question:not(.callout) {
-    border-left-color: #005f73;
-    border-color: #9fd6de;
-    background: linear-gradient(180deg, #edfafd 0%, #ffffff 78%);
-    counter-increment: question-counter;
-  }
-
-  .callout-defn:not(.callout)::before,
-  .callout-thm:not(.callout)::before,
-  .callout-prop:not(.callout)::before,
-  .callout-lemma:not(.callout)::before,
-  .callout-cor:not(.callout)::before,
-  .callout-example:not(.callout)::before,
-  .callout-exercise:not(.callout)::before,
-  .callout-question:not(.callout)::before {
-    display: block;
-    margin-bottom: 0.35rem;
-    font-weight: 700;
-  }
-
-  .callout-defn:not(.callout)::before {
-    content: "📘 Definition " counter(definition-counter) ": " attr(title);
-    color: #18345f;
-  }
-
-  .callout-thm:not(.callout)::before {
-    content: "★ Theorem " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-prop:not(.callout)::before {
-    content: "★ Proposition " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-lemma:not(.callout)::before {
-    content: "★ Lemma " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-cor:not(.callout)::before {
-    content: "★ Corollary " counter(theorem-counter) ": " attr(title);
-    color: #0b5a3a;
-  }
-
-  .callout-example:not(.callout)::before {
-    content: "🧪 Example " counter(example-counter) ": " attr(title);
-    color: #7a4700;
-  }
-
-  .callout-exercise:not(.callout)::before {
-    content: "✎ Exercise " counter(exercise-counter) ": " attr(title);
-    color: #61203a;
-  }
-
-  .callout-question:not(.callout)::before {
-    content: "❓ Question " counter(question-counter) ": " attr(title);
-    color: #0b4f61;
-  }
-
-  pre[data-lang],
-  .mermaid[data-lang] {
-    position: relative;
-    padding-bottom: 1.5rem;
-  }
-
-  pre[data-lang]::after,
-  .mermaid[data-lang]::after {
-    content: attr(data-lang);
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.35rem;
-    font-size: 0.68rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #666;
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 0.2rem;
-    padding: 0 0.3rem;
-    pointer-events: none;
-  }
-</style>
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const applyCodeWatermarks = function(root) {
-      if (!root) {
-        return;
-      }
-
-      const generic = new Set([
-        'sourcecode', 'number-lines', 'numbersource', 'code-with-copy',
-        'code-copy-outer-scaffold', 'code-annotation-code'
-      ]);
-
-      const aliases = {
-        commonlisp: 'lisp',
-        py: 'python',
-        shell: 'bash',
-        sh: 'bash',
-        zsh: 'bash',
-        yml: 'yaml',
-        tex: 'latex'
-      };
-
-      const known = new Set([
-        'python', 'lisp', 'scheme', 'clojure', 'bash', 'sh', 'zsh', 'powershell',
-        'javascript', 'js', 'typescript', 'ts', 'java', 'c', 'cpp', 'c++',
-        'go', 'rust', 'ruby', 'php', 'julia', 'r', 'lua', 'haskell',
-        'html', 'css', 'json', 'yaml', 'yml', 'xml', 'sql', 'tex', 'latex',
-        'mermaid', 'commonlisp'
-      ]);
-
-      const normalize = function(lang) {
-        if (!lang) {
-          return '';
-        }
-        const lowered = lang.toLowerCase();
-        return aliases[lowered] || lowered;
-      };
-
-      const detectLanguage = function(classes) {
-        let lang = '';
-
-        const languagePrefixed = classes.find(function(className) {
-          return className.startsWith('language-');
-        });
-        if (languagePrefixed) {
-          lang = languagePrefixed.replace('language-', '');
-        }
-
-        if (!lang) {
-          const plain = classes.find(function(className) {
-            return known.has(className);
-          });
-          if (plain) {
-            lang = plain;
-          }
-        }
-
-        if (!lang) {
-          const fallback = classes.find(function(className) {
-            return !generic.has(className) && /^[a-z][a-z0-9_+\-]*$/.test(className);
-          });
-          if (fallback) {
-            lang = fallback;
-          }
-        }
-
-        return normalize(lang);
-      };
-
-      root.querySelectorAll('pre > code[class]').forEach(function(code) {
-        const pre = code.closest('pre');
-        if (!pre || pre.dataset.lang) {
-          return;
-        }
-
-        const classes = Array.from(new Set(
-          Array.from(code.classList).concat(Array.from(pre.classList))
-        )).map(function(className) {
-          return className.toLowerCase();
-        });
-
-        const lang = detectLanguage(classes);
-
-        if (lang) {
-          pre.dataset.lang = lang;
-        }
-      });
-
-      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
-        if (!block.dataset.lang) {
-          block.dataset.lang = 'mermaid';
-        }
-      });
-    };
-
-    const emojiAliases = {
-      eye_roll: '🙄',
-      face_palm: '🤦',
-      shrug: '🤷',
-      warning: '⚠️',
-      light_bulb: '💡',
-      check_mark: '✅',
-      x_mark: '❌'
-    };
-
-    const applyEmojiAliases = function(root) {
-      if (!root) {
-        return;
-      }
-
-      const aliasPattern = /:([a-z0-9_+-]+):/gi;
-      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-      const textNodes = [];
-
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        const parent = node.parentElement;
-
-        if (!parent) {
-          continue;
-        }
-        if (['CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG'].includes(parent.tagName)) {
-          continue;
-        }
-        if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
-          continue;
-        }
-        if (!node.nodeValue || node.nodeValue.indexOf(':') === -1) {
-          continue;
-        }
-
-        textNodes.push(node);
-      }
-
-      textNodes.forEach(function(node) {
-        if (!aliasPattern.test(node.nodeValue)) {
-          aliasPattern.lastIndex = 0;
-          return;
-        }
-        aliasPattern.lastIndex = 0;
-
-        const fragment = document.createDocumentFragment();
-        let lastIndex = 0;
-        let match = aliasPattern.exec(node.nodeValue);
-        let changed = false;
-
-        while (match) {
-          const start = match.index;
-          const end = start + match[0].length;
-          const aliasKey = match[1].toLowerCase();
-          const icon = emojiAliases[aliasKey];
-
-          if (!icon) {
-            match = aliasPattern.exec(node.nodeValue);
-            continue;
-          }
-
-          if (start > lastIndex) {
-            fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, start)));
-          }
-
-          fragment.appendChild(document.createTextNode(icon));
-          lastIndex = end;
-          changed = true;
-          match = aliasPattern.exec(node.nodeValue);
-        }
-
-        if (!changed) {
-          return;
-        }
-
-        if (lastIndex < node.nodeValue.length) {
-          fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
-        }
-
-        node.parentNode.replaceChild(fragment, node);
-      });
-    };
-
-    const glossaryEntries = [
-      {
-        term: 'memoization',
-        href: 'https://en.wikipedia.org/wiki/Memoization',
-        tooltip: 'Memoization caches results so repeated calls with the same inputs can return faster.'
-      },
-      {
-        term: 'recursion',
-        href: 'https://en.wikipedia.org/wiki/Recursion_(computer_science)',
-        tooltip: 'Recursion solves a problem by calling the same function on smaller inputs until a base case.'
-      },
-      {
-        term: 'induction',
-        href: 'https://en.wikipedia.org/wiki/Mathematical_induction',
-        tooltip: 'Mathematical induction proves a statement for all natural numbers using a base case and an inductive step.'
-      },
-      {
-        term: 'division algorithm',
-        href: 'https://en.wikipedia.org/wiki/Euclidean_division',
-        tooltip: 'For integers m and n > 0, there exist unique q and r with m = qn + r and 0 <= r < n.'
-      },
-      {
-        term: 'quotient',
-        href: 'https://en.wikipedia.org/wiki/Quotient',
-        tooltip: 'In division, the quotient is the whole-number count of how many times the divisor fits.'
-      },
-      {
-        term: 'remainder',
-        href: 'https://en.wikipedia.org/wiki/Remainder',
-        tooltip: 'The remainder is what is left after dividing when equal groups can no longer be formed.'
-      },
-      {
-        term: 'commutative diagram',
-        href: 'https://en.wikipedia.org/wiki/Commutative_diagram',
-        tooltip: 'A commutative diagram shows that different paths of composed steps lead to the same result.'
-      },
-      {
-        term: 'proof',
-        href: 'https://en.wikipedia.org/wiki/Mathematical_proof',
-        tooltip: 'A proof is a logically valid argument that establishes a mathematical claim.'
-      },
-      {
-        term: 'algorithm',
-        href: 'https://en.wikipedia.org/wiki/Algorithm',
-        tooltip: 'An algorithm is a finite, precise sequence of steps for solving a class of problems.'
-      },
-      {
-        term: 'curry-howard-lambek correspondence',
-        href: 'https://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence',
-        tooltip: 'This correspondence links proofs, programs, and categorical structure as different views of the same logic.'
-      }
-    ];
-
-    // Exported for future expansion (e.g., adding terms in one place).
-    window.bookGlossary = glossaryEntries;
-
-    const applyGlossaryLinks = function(root) {
-      if (!root || !glossaryEntries.length) {
-        return;
-      }
-
-      const skipTags = new Set(['A', 'CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG']);
-      const terms = glossaryEntries
-        .map(function(entry) { return entry.term; })
-        .filter(Boolean)
-        .sort(function(a, b) { return b.length - a.length; });
-
-      if (!terms.length) {
-        return;
-      }
-
-      const escapeRegex = function(text) {
-        return text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-      };
-
-      const glossaryMap = new Map(
-        glossaryEntries.map(function(entry) {
-          return [entry.term.toLowerCase(), entry];
-        })
-      );
-
-      const linkedTerms = new Set();
-      const termRegex = new RegExp('\\b(' + terms.map(escapeRegex).join('|') + ')\\b', 'gi');
-      const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
-      const textNodes = [];
-
-      while (walker.nextNode()) {
-        const node = walker.currentNode;
-        const parent = node.parentElement;
-
-        if (!parent) {
-          continue;
-        }
-        if (skipTags.has(parent.tagName)) {
-          continue;
-        }
-        if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
-          continue;
-        }
-        if (!node.nodeValue || !node.nodeValue.trim()) {
-          continue;
-        }
-
-        textNodes.push(node);
-      }
-
-      textNodes.forEach(function(node) {
-        if (!termRegex.test(node.nodeValue)) {
-          termRegex.lastIndex = 0;
-          return;
-        }
-        termRegex.lastIndex = 0;
-
-        const fragment = document.createDocumentFragment();
-        let lastIndex = 0;
-        let match = termRegex.exec(node.nodeValue);
-        let changed = false;
-
-        while (match) {
-          const matchedText = match[0];
-          const lowerTerm = matchedText.toLowerCase();
-          const entry = glossaryMap.get(lowerTerm);
-          const start = match.index;
-          const end = start + matchedText.length;
-
-          if (!entry || linkedTerms.has(lowerTerm)) {
-            match = termRegex.exec(node.nodeValue);
-            continue;
-          }
-
-          if (start > lastIndex) {
-            fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex, start)));
-          }
-
-          const link = document.createElement('a');
-          link.href = entry.href;
-          link.target = '_blank';
-          link.rel = 'noopener noreferrer';
-          link.className = 'glossary-link';
-          link.textContent = matchedText;
-          link.title = entry.tooltip;
-          link.setAttribute('aria-label', matchedText + ': ' + entry.tooltip);
-
-          fragment.appendChild(link);
-          linkedTerms.add(lowerTerm);
-          lastIndex = end;
-          changed = true;
-          match = termRegex.exec(node.nodeValue);
-        }
-
-        if (!changed) {
-          return;
-        }
-
-        if (lastIndex < node.nodeValue.length) {
-          fragment.appendChild(document.createTextNode(node.nodeValue.slice(lastIndex)));
-        }
-
-        node.parentNode.replaceChild(fragment, node);
-      });
-    };
-
-    const applyReadingStats = function(root) {
-      const statsNode = root.querySelector('[data-reading-stats]');
-      if (!statsNode) {
-        return;
-      }
-
-      const clone = root.cloneNode(true);
-      clone.querySelectorAll('[data-reading-stats], script, style, pre, code').forEach(function(node) {
-        node.remove();
-      });
-
-      const text = (clone.textContent || '')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-      const wordCount = text ? text.split(' ').filter(Boolean).length : 0;
-      const minutes = Math.max(1, Math.ceil(wordCount / 120));
-      const minuteLabel = minutes === 1 ? 'minute' : 'minutes';
-
-      statsNode.textContent = wordCount.toLocaleString() + ' words • ' + minutes + ' ' + minuteLabel + ' to read';
-    };
-
-    const lightbox = document.createElement('div');
-    lightbox.className = 'quarto-image-lightbox';
-    lightbox.innerHTML = '<button type="button" class="quarto-image-lightbox__close" aria-label="Close image">&times;</button><img alt="">';
-    document.body.appendChild(lightbox);
-
-    const lightboxImage = lightbox.querySelector('img');
-    const closeLightbox = function() {
-      lightbox.classList.remove('is-open');
-      lightboxImage.removeAttribute('src');
-      lightboxImage.removeAttribute('alt');
-    };
-
-    lightbox.addEventListener('click', function(event) {
-      if (event.target === lightbox || event.target.classList.contains('quarto-image-lightbox__close')) {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        closeLightbox();
-      }
-    });
-
-    document.addEventListener('click', function(event) {
-      const image = event.target.closest('#quarto-content img, .quarto-content img, #quarto-document-content img');
-      if (!image) {
-        return;
-      }
-
-      event.preventDefault();
-      lightboxImage.src = image.currentSrc || image.src;
-      lightboxImage.alt = image.alt || '';
-      lightbox.classList.add('is-open');
-    });
-
-    const getMermaidSource = function(block) {
-      if (!block) {
-        return '';
-      }
-
-      const directCode = block.querySelector(':scope > code');
-      if (directCode) {
-        return directCode.textContent || '';
-      }
-
-      return block.textContent || '';
-    };
-
-    const normalizeMermaidBlocks = function(root) {
-      root.querySelectorAll('pre.sourceCode.mermaid, pre.mermaid').forEach(function(preBlock) {
-        const source = getMermaidSource(preBlock).trim();
-        const normalized = document.createElement('pre');
-        normalized.className = 'mermaid';
-        normalized.textContent = source;
-
-        let replaceTarget = preBlock;
-        const sourceContainer = preBlock.closest('.sourceCode');
-        const copyScaffold = preBlock.closest('.code-copy-outer-scaffold');
-
-        if (copyScaffold && copyScaffold.querySelector('pre') === preBlock) {
-          replaceTarget = copyScaffold;
-        } else if (sourceContainer && sourceContainer.querySelector('pre') === preBlock) {
-          replaceTarget = sourceContainer;
-        }
-
-        replaceTarget.replaceWith(normalized);
-      });
-    };
-
-    const buildMermaidTabs = function(root) {
-      let mermaidCounter = 0;
-      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
-        if (!block || block.closest('.panel-tabset') || block.closest('.mermaid-auto-tabset')) {
-          return;
-        }
-
-        const source = getMermaidSource(block).trim();
-        if (!source) {
-          return;
-        }
-
-        mermaidCounter += 1;
-        const instanceId = 'mermaid-auto-' + mermaidCounter;
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'panel-tabset nav-pills mermaid-auto-tabset';
-
-        const tabs = document.createElement('ul');
-        tabs.className = 'nav nav-tabs';
-        tabs.setAttribute('role', 'tablist');
-
-        const diagramTabItem = document.createElement('li');
-        diagramTabItem.className = 'nav-item';
-        diagramTabItem.setAttribute('role', 'presentation');
-
-        const diagramTab = document.createElement('a');
-        diagramTab.className = 'nav-link active';
-        diagramTab.id = instanceId + '-diagram-tab';
-        diagramTab.setAttribute('data-bs-toggle', 'tab');
-        diagramTab.setAttribute('data-bs-target', '#' + instanceId + '-diagram');
-        diagramTab.setAttribute('role', 'tab');
-        diagramTab.setAttribute('aria-controls', instanceId + '-diagram');
-        diagramTab.setAttribute('aria-selected', 'true');
-        diagramTab.href = '';
-        diagramTab.textContent = 'Diagram';
-        diagramTabItem.appendChild(diagramTab);
-
-        const sourceTabItem = document.createElement('li');
-        sourceTabItem.className = 'nav-item';
-        sourceTabItem.setAttribute('role', 'presentation');
-
-        const sourceTab = document.createElement('a');
-        sourceTab.className = 'nav-link';
-        sourceTab.id = instanceId + '-source-tab';
-        sourceTab.setAttribute('data-bs-toggle', 'tab');
-        sourceTab.setAttribute('data-bs-target', '#' + instanceId + '-source');
-        sourceTab.setAttribute('role', 'tab');
-        sourceTab.setAttribute('aria-controls', instanceId + '-source');
-        sourceTab.setAttribute('aria-selected', 'false');
-        sourceTab.href = '';
-        sourceTab.textContent = 'Source';
-        sourceTabItem.appendChild(sourceTab);
-
-        tabs.appendChild(diagramTabItem);
-        tabs.appendChild(sourceTabItem);
-
-        const tabContent = document.createElement('div');
-        tabContent.className = 'tab-content nav-pills';
-
-        const diagramPane = document.createElement('div');
-        diagramPane.className = 'tab-pane active';
-        diagramPane.id = instanceId + '-diagram';
-        diagramPane.setAttribute('role', 'tabpanel');
-        diagramPane.setAttribute('aria-labelledby', instanceId + '-diagram-tab');
-
-        const diagramBlock = document.createElement('pre');
-        diagramBlock.className = 'mermaid';
-        diagramBlock.textContent = source;
-        diagramPane.appendChild(diagramBlock);
-
-        const sourcePane = document.createElement('div');
-        sourcePane.className = 'tab-pane';
-        sourcePane.id = instanceId + '-source';
-        sourcePane.setAttribute('role', 'tabpanel');
-        sourcePane.setAttribute('aria-labelledby', instanceId + '-source-tab');
-
-        const sourcePre = document.createElement('pre');
-        const sourceCode = document.createElement('code');
-        sourceCode.className = 'language-mermaid';
-        sourceCode.textContent = source;
-        sourcePre.appendChild(sourceCode);
-        sourcePane.appendChild(sourcePre);
-
-        tabContent.appendChild(diagramPane);
-        tabContent.appendChild(sourcePane);
-
-        wrapper.appendChild(tabs);
-        wrapper.appendChild(tabContent);
-
-        block.replaceWith(wrapper);
-      });
-    };
-
-    const cacheMermaidSource = function(root) {
-      root.querySelectorAll('pre.mermaid, div.mermaid').forEach(function(block) {
-        if (!block.dataset.mermaidSource) {
-          block.dataset.mermaidSource = block.textContent;
-        }
-      });
-    };
-
-    const resetMermaidBlocks = function(root) {
-      root.querySelectorAll('pre.mermaid[data-mermaid-source], div.mermaid[data-mermaid-source]').forEach(function(block) {
-        block.removeAttribute('data-processed');
-        block.textContent = block.dataset.mermaidSource;
-      });
-    };
-
-    const prepareMermaidBlocks = function(root) {
-      normalizeMermaidBlocks(root);
-      buildMermaidTabs(root);
-      cacheMermaidSource(root);
-    };
-
-    const renderMermaid = function(root) {
-      prepareMermaidBlocks(root);
-      if (!window.mermaid || typeof window.mermaid.run !== 'function') {
-        return;
-      }
-      const nodes = root.querySelectorAll('pre.mermaid:not([data-processed]), div.mermaid:not([data-processed])');
-      if (nodes.length === 0) {
-        return;
-      }
-      window.mermaid.run({ nodes: Array.from(nodes), suppressErrors: true });
-    };
-
-    const collapseSidebarToCurrentPart = function() {
-      const sidebar = document.querySelector('#quarto-sidebar');
-      if (!sidebar) {
-        return;
-      }
-
-      const partSections = Array.from(sidebar.querySelectorAll('ul.sidebar-section.depth1.collapse'));
-      if (!partSections.length) {
-        return;
-      }
-
-      const activeLink = sidebar.querySelector('a.sidebar-link.active');
-      const activeSection = activeLink ? activeLink.closest('ul.sidebar-section.depth1.collapse') : null;
-
-      partSections.forEach(function(section) {
-        const isCurrentPart = activeSection === section;
-        if (isCurrentPart) {
-          section.classList.add('show');
-        } else {
-          section.classList.remove('show');
-        }
-
-        const sectionTarget = '#' + section.id;
-        sidebar.querySelectorAll('[data-bs-target]').forEach(function(toggle) {
-          if (toggle.getAttribute('data-bs-target') === sectionTarget) {
-            toggle.setAttribute('aria-expanded', isCurrentPart ? 'true' : 'false');
-          }
-        });
-      });
-    };
-
-    const contentRoot = document.querySelector('#quarto-content, .quarto-content, #quarto-document-content, main.content') || document.body;
-
-    applyCodeWatermarks(contentRoot);
-    applyEmojiAliases(contentRoot);
-    applyGlossaryLinks(contentRoot);
-    applyReadingStats(contentRoot);
-    prepareMermaidBlocks(document);
-
-    // Initialize mermaid when available. If loading fails,
-    // source tabs still work for accessibility.
-    if (window.mermaid && typeof window.mermaid.initialize === 'function') {
-      window.mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
-    }
-    renderMermaid(document);
-    collapseSidebarToCurrentPart();
-
-    // Mermaid blocks inside hidden tab panels may need rendering
-    // when the tab becomes visible.
-    document.querySelectorAll('[data-bs-toggle="tab"], [data-bs-toggle="pill"]').forEach(function(tab) {
-      tab.addEventListener('shown.bs.tab', function(event) {
-        const targetSelector = event.target.getAttribute('data-bs-target');
-        if (!targetSelector) {
-          renderMermaid(document);
-          return;
-        }
-
-        const pane = document.querySelector(targetSelector);
-        if (pane) {
-          resetMermaidBlocks(pane);
-          renderMermaid(pane);
-        }
-      });
-    });
-  });
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/book-enhancements.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -1397,6 +162,9 @@ window.Quarto = {
 };
 </script>
 
+<link rel="stylesheet" href="../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/Homepage.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -1408,7 +176,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</a></li><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</a></li><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logical Operators</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1423,7 +191,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../">5000 Years of Modern Programming</a> 
+      <a href="../">5000 Years of Modern Computing</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -1436,40 +204,76 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../preface.html" class="sidebar-item-text sidebar-link">
+  <a href="../00/preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../00/Acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-gamepad fa-la"></i> I. A Library of Logic</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Chp-Start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">A Library of logic.</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Judgment.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gavel"></i> Logical Judgments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Writing-down-a-logic.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Sub-Var-Func.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Combinators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-microchip"></i> Gates, Combinators, and Turing and Kleene</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../01/Chp-Summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-clipboard-list"></i> Logical Library summary</span></span></a>
   </div>
 </li>
       </ul>
@@ -1486,341 +290,443 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02/LIE-AND.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02/Quantifiers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quantifiers <span class="math inline">\(\forall\)</span>, <span class="math inline">\(\exists\)</span>, <span class="math inline">\(=\)</span>, and <span class="math inline">\(!^n\)</span></span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quantifiers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../02/Qualifiers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-screwdriver-wrench fa-la"></i> III. Types of Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../QUATRO/module_03/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">(Week 3) LOGICS: Types of data</span></span></a>
+  <a href="../03/overview-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Types of data</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-id-card fa-la"></i> IV. Subset and Partitions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../QUATRO/module_04/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">(Week 4) LOGICS: Subsets &amp; Partitions</span></span></a>
+  <a href="../04/1-Boubaki-Functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Solving <span class="math inline">\(y=f(x)\)</span> needs new types of data: subsets and partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/injective.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Injective</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/surjective-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">math156 surjective Functions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/Club-Membership.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-id-card fa-la"></i> Subsets and Partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/partitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">math156 Partitions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/what-is-a-subset.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">What is a subset?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../04/Summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Subset <span class="math inline">\(\subset\)</span> and Partition <span class="math inline">\(/\)</span> Summary</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text"><i class="fa-solid fa-folder fa-la"></i> V. Pattern Matching</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text"><i class="fa-solid fa-folder-tree fa-la"></i> V. Pattern Matching</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/derivative-patterns.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">math156 Derivative Patterns</span></span></a>
+  <a href="../05/pattern-making-and-its-co-operators.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Week 6 Day 2  Pattern Making &amp; its Co-operators</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-users fa-la"></i> VI. Relations</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/bijective-when-slash-y=f-x-slash-has-exactly-one-solution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Math 156 When (y=f(x)) has exactly one solution</span></span></a>
+  <a href="../06/describing-relations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-kiwi-bird fa-la"></i> VII. Default and Adaptive Logic</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/bijective.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">math156 Bijective</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/w-orders-and-transitivity.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">w-orders-and-transitivity.html</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/relations-and-orders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Week 7</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/describing-relations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/minimums-maximums-and-well-founded-orders.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">minimums-maximums-and-well-founded-orders.html</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/should-you-modify-your-priors-or-your-reasoning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Week 8 Day 1 Should you Modify your Priors or Your Reasoning</span></span></a>
+  <a href="../07/overview-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Week 6 Inductive Reasoning</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-dice fa-la"></i> VIII. Probability</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Week 9 Day 1 Proportions towards Probability</span></span></a>
+  <a href="../08/1-proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Proportions towards Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/explaining-most-of-the-evidence-with-limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">*Week 11 Explaining most of the evidence with Limits</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/overview-when-reasons-beyond-evidence-are-wrong.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Overview When Reasons beyond evidence are Wrong</span></span></a>
+  <a href="../08/3-probabilistic-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Probabilistic Data Types</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-taxi fa-la"></i> IX. Approximation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/approximation-and-errors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">approximation-and-errors.html</span></span></a>
+  <a href="../09/overview-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">overview-9.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">math156 Limits</span></span></a>
+  <a href="../09/a/limits-and-accumulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Name ## Assessment 11</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/sequences.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">sequences.html</span></span></a>
+  <a href="../09/l/getting-close-is-not-enough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Lab 11 Getting Close is not Enough</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">series.html</span></span></a>
+  <a href="../09/1/cauchys-limits.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/1-finite-and-infinite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">1-finite-and-infinite.html</span></span></a>
+  <a href="../09/2/asymptotics-and-long-term-behavior.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">*Part  2   Asymptotics &amp; Long term behavior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/part-1-cauchys-limits.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
+  <a href="../09/3/functions-as-limits-of-sums-taylor-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Part 3 Functions as Limits of Sums (Taylor Series)</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-ruler-combined fa-la"></i> X. Creating Measurements</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/distributive-qualities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">math156 Distributive Qualities</span></span></a>
+  <a href="../10/overview-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">overview-10.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/fundamental-theorem-of-calculus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">math156 Fundamental Theorem of Calculus</span></span></a>
+  <a href="../10/0/measurement-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/integrals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">math156 Integrals</span></span></a>
+  <a href="../10/l/features-in-signals.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Lab 12 Features in Signals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/measurement-overview.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
+  <a href="../10/1/a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/part-1-dot-a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
+  <a href="../10/1/b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/part-1-dot-b-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
+  <a href="../10/1/learning-materials-and-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">Lesson 10.1 | Title/Topic</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/a-15-mins-from-multiplication-to-the-integral.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/b-changing-measures-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">* 12.2.b Changing Measure: The Derivative</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/b-the-derivative.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/c-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/2/c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/3/calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/3/calculus-with-sums-products-and-powers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">12.2.b Some practical Integrals</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../10/s/summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/geometry-of-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">geometry-of-data.html</span></span></a>
+  <a href="../11/0/overview-what-is-a-feature.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/overview-11.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">overview-11.html</span></span></a>
+  <a href="../11/a/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Name ## Assessment 13</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/shape-of-space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">shape-of-space.html</span></span></a>
+  <a href="../11/l/features-in-audio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">Lab 13 Features in audio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Math156-SP26/wiki_content_qmd/topology-of-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">topology-of-data.html</span></span></a>
+  <a href="../11/1/linear-features-are-integrals-riesz-representation-theorem.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">* Part 1 Why Most Features are Integrals (Riesz Representation Theorem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11/2/moving-averages-and-mean-value-theorems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Day 2  Moving Averages &amp; Mean Value Theorems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11/2linear/features-are-integrals-riesz-representation-theorem-copy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Part 1 All Features are Integrals (Riesz Representation Theorem)</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../11/3/critical-points-increases-and-decreases.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Day 3  Critical Points, Increases &amp; Decreases</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-bullseye fa-la"></i> XII. Machine Learning</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/0/overview-machine-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">Name ## Overview Machine Learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/a/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Name ## Assessment 14</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/l/learning-from-trades.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Lab 14 Learning from trades</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/1/chain-rule-for-change-upon-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Day 1 Chain Rule for change upon change</span></span></a>
+  </div>
+</li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-1-b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-2-b-the-derivative.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-2-c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-3-calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../12/12-dot-s-summary.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/2/back-propogation-for-learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">Day 2 Back propogation for learning</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../12/3/equations-of-change.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">Day 3 Equations of change</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
+  <a href="../AA/references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
   </div>
 </li>
     </ul>
@@ -1833,15 +739,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#tarskis-thesis" id="toc-tarskis-thesis" class="nav-link active" data-scroll-target="#tarskis-thesis"><span class="header-section-number">4.1</span> Tarski’s Thesis</a></li>
-  <li><a href="#logical-operators-language-introduction-elimination-lie" id="toc-logical-operators-language-introduction-elimination-lie" class="nav-link" data-scroll-target="#logical-operators-language-introduction-elimination-lie"><span class="header-section-number">4.2</span> Logical Operators: Language, Introduction, Elimination (LIE)</a>
+  <li><a href="#lie-language-introduction-elimination" id="toc-lie-language-introduction-elimination" class="nav-link active" data-scroll-target="#lie-language-introduction-elimination"><span class="header-section-number">11.1</span> LIE: Language, Introduction, &amp; Elimination</a>
+  <ul class="collapse">
+  <li><a href="#naming-operators" id="toc-naming-operators" class="nav-link" data-scroll-target="#naming-operators">Naming operators</a></li>
+  </ul></li>
+  <li><a href="#making-a-proof-with-wedge-and-to" id="toc-making-a-proof-with-wedge-and-to" class="nav-link" data-scroll-target="#making-a-proof-with-wedge-and-to"><span class="header-section-number">11.2</span> Making a proof with <span class="math inline">\(\wedge\)</span> and <span class="math inline">\(\to\)</span></a>
+  <ul class="collapse">
+  <li><a href="#equivalence-and-if-and-only-if" id="toc-equivalence-and-if-and-only-if" class="nav-link" data-scroll-target="#equivalence-and-if-and-only-if">Equivalence and “if, and only if,”</a></li>
+  </ul></li>
+  <li><a href="#a-diagram-view-of-and" id="toc-a-diagram-view-of-and" class="nav-link" data-scroll-target="#a-diagram-view-of-and"><span class="header-section-number">11.3</span> A diagram view of “And”</a></li>
+  <li><a href="#specializing-conjunction-and-implication" id="toc-specializing-conjunction-and-implication" class="nav-link" data-scroll-target="#specializing-conjunction-and-implication"><span class="header-section-number">11.4</span> Specializing Conjunction and Implication</a>
   <ul class="collapse">
   <li><a href="#language-of-and" id="toc-language-of-and" class="nav-link" data-scroll-target="#language-of-and">Language of “And”</a></li>
   <li><a href="#introduction-rule-for-conjunction" id="toc-introduction-rule-for-conjunction" class="nav-link" data-scroll-target="#introduction-rule-for-conjunction">Introduction Rule for conjunction</a></li>
   <li><a href="#elimination-rule-for-conjunction" id="toc-elimination-rule-for-conjunction" class="nav-link" data-scroll-target="#elimination-rule-for-conjunction">Elimination Rule for conjunction</a></li>
-  <li><a href="#a-diagram-view-of-and" id="toc-a-diagram-view-of-and" class="nav-link" data-scroll-target="#a-diagram-view-of-and">A diagram view of “And”</a></li>
   </ul></li>
-  <li><a href="#clarity-through-syntax" id="toc-clarity-through-syntax" class="nav-link" data-scroll-target="#clarity-through-syntax"><span class="header-section-number">4.3</span> Clarity through Syntax</a>
+  <li><a href="#clarity-through-syntax" id="toc-clarity-through-syntax" class="nav-link" data-scroll-target="#clarity-through-syntax"><span class="header-section-number">11.5</span> Clarity through Syntax</a>
   <ul class="collapse">
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives">* Objectives</a></li>
   <li><a href="#and-by-sequent-calculus" id="toc-and-by-sequent-calculus" class="nav-link" data-scroll-target="#and-by-sequent-calculus">*And by Sequent Calculus</a></li>
@@ -1856,9 +769,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</a></li><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</a></li><li class="breadcrumb-item"><a href="../02/LIE-AND.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logical Operators</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Logical Operators</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Logical Operators</span></h1>
 </div>
 
 
@@ -1875,20 +788,57 @@ window.Quarto = {
 </header>
 
 
-<p>One of the giants of 20th century logic, <a href="https://en.wikipedia.org/wiki/Alfred_Tarski">Alfred Tarski</a>, gave an account of “What are Logical Notions?” His answer considered how these ideas evolved in history. He gave the following thoughts.</p>
-<section id="tarskis-thesis" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="tarskis-thesis"><span class="header-section-number">4.1</span> Tarski’s Thesis</h2>
+<p>One of the giants of 20th century logic, <a href="https://en.wikipedia.org/wiki/Alfred_Tarski">Alfred Tarski</a>, gave an account of “What are Logical Notions?” His answer considered how these ideas evolved in history which lead him to a brilliant start of an answer.</p>
 <blockquote class="blockquote">
-<p><strong>Tarski’s Thesis</strong>: When you reason about a world you limit the topic by rules, called <strong>abstraction</strong>. When in your abstract world, the logical notions are those things that are no longer perceived to change.</p>
+<p><strong>Tarski’s Thesis</strong>: When you reason about a world you limit the topic by rules, called <strong>abstraction</strong>. Once in your abstract world, your logical notions are those things that are no longer perceived to change.</p>
 </blockquote>
-<p>We can do no better than to use Tarski’s own example. If our world is Euclid’s geometry, then a triangle is a shape outlined by three lines. Two triangles are congruent if they have the same angles and lengths of sides. It does not matter if we draw one of these triangles in another room, rotated, or reflected in a mirror. By abstracting to a world where triangles are their edges and their angles we give up on other things that would set them apart. So what does not change when we talk about a triangle with Euclid are topics like length and angles. Those become the logical notions of Euclidean geometry.</p>
-<p>The brilliance of this perspective is that it allows us adjust our logic as we change our world. Already Euclid sensed this need because not everyone will use the same ruler. The ability to scale a triangle leads to giving up length as a logical notion and comparing triangles only if they are similar.</p>
-<p>And a property even more abstract is that in a triangle three vertices are connected by three edges. All triangles share that property and it sets them apart form say squares and rectangles. That view of geometry was latter called “topology” and you see whenever you look at a map of bus routes where the stops are evenly spaced and the lines are mostly straight even though the bus no doubt takes much different times to reach tops and twists and turns on its way. After abstracting to the level of what stop comes next distance is not a logical notion.</p>
-<p>Now the point of Tarski’s thesis was to draw the experiment to its most extreme conclusions. Imagine that you have abstracted away everything. What logical notions would remain? If you can explain those then those notions should be the foundation of all reasoning. With the right imagination you can see there is no way to forget everything but if you forget nearly everything you will start to see a few logical notions seem to remain, for example, the concepts of “and”, “or”, “not”, “if…then”, and “true” and “false”. These are the logical operators that we will explore in this book.</p>
-</section>
-<section id="logical-operators-language-introduction-elimination-lie" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="logical-operators-language-introduction-elimination-lie"><span class="header-section-number">4.2</span> Logical Operators: Language, Introduction, Elimination (LIE)</h2>
-<div class="callout-note callout-defn" data-callout-family="defn">
+<p>Tarski used an example of his predecessor Klein. Imagine you are in high-school geometry, Euclid’s world, what might you say about the three triangles?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="triangles.png" class="img-fluid figure-img" style="width:72.0%"></p>
+<figcaption>Triangle A is 30-60-90 triangle with hypotenuse of length 2, Triangle B is a 90-60-30 triangle with hypotenuse of length 3, Triangle C is a 60-30-90 triangle with hypotenuse of length 2</figcaption>
+</figure>
+</div>
+<p>You might recall that triangles A and C are called <strong>congruent</strong> because they have the same angles and edge lengths. Euclid considered them the same. In fact much of Euclidean geometry is about making congruent copies of shapes with a ruler and compass. But of course there are differences. <span class="math inline">\(A\)</span> is on the left, <span class="math inline">\(C\)</span> is on the right. <span class="math inline">\(A\)</span>’s right-angle is up, <span class="math inline">\(C\)</span>’s right angle points down. Those differences are ones that abstraction to Euclid’s world simply ignores. Euclid’s abstraction is thus <strong>invariant</strong> (unchanging) to translation, rotations, and flips. All aspects of a diagram that are invariant to those transformations are the logic of Euclid’s geometry.</p>
+<p>We can change the level of abstraction. We could insist for instance that the triangles not be rotated or flipped, only translations are allowed. That would make <span class="math inline">\(A\)</span> no longer the same as <span class="math inline">\(C\)</span>. We would have lowered the level of abstraction being more precise about the differences. We can also go the other direction and raise the level of abstraction by ignoring the lengths of edges and comparing only interior angles, what are called <strong>similar triangles</strong>. Now the triangles <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are all similar. This is a new world in which we can also rescale and ignore those transformations. Both directions have new logical notions.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    Start["Higher abstraction"] -.-&gt;    Perspective[Rescale, Translations, Rotations, &amp; Flips allowed] --&gt;|abstraction| Euclid[Translations, Rotations, &amp;  Flips allowed] ---&gt;|abstraction| Tiling[Only translations allowed]  -.-&gt; End["Lower abstraction"]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    class Start,End unframed;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can push this further by permitting even more transformations, such as the option to move points around so long as we do not disconnect any shapes. That is, we care that a triangle has 3 vertices and 3 edges but we no longer care what lengths an angle mean. Those are known as <strong>continuous transformations</strong> and the resulting logic is called <strong>topology</strong>. In this world all three triangles are the same. (Using a different perspective we can proceed to abstract to graph theory and possibly other abtractions as well.)</p>
+<p>Now Tarski’s goal was to imagine that we could keep raising the level of abstraction and at each level talk of logical notion. Tarski and many other logicians have suggested this process has to stop, and wherever it stops that is the most logical you can get.</p>
+<p>The bottom for Tarski was something called <em>Principia Mathematica</em>, a book by Russell and Whitehead that tried to give foundation for math. It supports a number of useful logical notions: “and”, “if this then that”, “or”, “not”, and “true” and “false” are among them.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    Principia --&gt;|abstraction| Topology </span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    Topology --&gt;|abstraction| Geometry</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    Geometry -.-&gt; End["..."]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    Principia --&gt;|abstraction| Analysis</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    Analysis -.-&gt; End2["..."]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>    Analysis --&gt;|abstraction| Geometry</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    Principia --&gt;|abstraction| Algebra</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>    Algebra -.-&gt; End3["..."]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>  classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>  class End,End2,End3 unframed;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Recent researchers Andre Joyal and Jacob Lurie have argued instead that logic can always be refined to show more details so that there is no absolute bottom but instead categories of abstraction go on forever, <em>Higher Topos Theories</em>. Doing this dislodges “Principia” as the natural center and accordingly theorist are drifting into other foundations. We still can agree historically Prinicpia has a right to be mentioned near the center.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    Start["..."] -.-&gt;|abstraction| NaturalTransformations[Natural Transforms]</span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    Start2["..."] -.-&gt;|abstraction| Homotopy</span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    NaturalTransformations --&gt;|refinement| Principia</span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    Homotopy --&gt;|abstraction| Principia</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>    Homotopy --&gt;|abstraction| Types</span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>    Types --&gt;|abstraction| Algebra</span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>    Principia --&gt;|abstraction| Algebra</span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>    Principia --&gt;|abstraction| Topology</span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>    Principia --&gt;|abstraction| Analysis</span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a>    Topology -.-&gt; End["..."]</span>
+<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a>    Analysis -.-&gt; End2["..."]</span>
+<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a>    classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
+<span id="cb3-14"><a href="#cb3-14" aria-label="14"></a>    class Start,Start2,End,End2 unframed;</span>
+<span id="cb3-15"><a href="#cb3-15" aria-label="15"></a>    classDef center fill:green,stroke:transparent,color:#fff;</span>
+<span id="cb3-16"><a href="#cb3-16" aria-label="16"></a>    class Principia center;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="lie-language-introduction-elimination" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="lie-language-introduction-elimination"><span class="header-section-number">11.1</span> LIE: Language, Introduction, &amp; Elimination</h2>
+<div class="callout-note defn callout-defn" data-callout-family="defn">
 <p>To create a logical operator we need to specify three things:</p>
 <ul>
 <li><strong>Language</strong>: the symbols and grammar to be used to express the logical operator.</li>
@@ -1923,8 +873,22 @@ window.Quarto = {
 \hline
   &amp; 132
 \end{array}
-\]</span> We will use a similar notation to begin explaining our logical operators and later we will adjust this into what is known as “sequent calculus”.</p>
-<div class="callout-tip callout-example" title="A LIE for AND" data-callout-family="example">
+\qquad
+\begin{array}{rc}
+\\
+-  &amp; 11\\
+\hline
+   &amp; -11
+\end{array}
+\qquad
+\begin{array}{rc}
+  &amp; \\
+0 &amp; \\
+\hline
+  &amp; 0
+\end{array}
+\]</span> These last two are not too common but they continue the pattern showing that we could operate by the negative sign on a single input and the the constant 0 is akin to an operator with no inputs. We will use a similar notation to begin explaining our logical operators and later we will adjust this into what is known as “sequent calculus”. When this takes up too much vertical space we can flip the notation horizontally similar to <span class="math inline">\(11+12=23\)</span>, but instead of and <span class="math inline">\(=\)</span> sign we use our judgment symbols <span class="math inline">\(P, Q\vdash R\)</span> for example.</p>
+<div class="callout-tip example callout-example" title="A LIE for AND" data-callout-family="example">
 <ul>
 <li><p><strong>Language</strong>: <span class="math inline">\(\wedge\)</span> (“wedge” but pronounced “and”) is used to represent the logical operator “and”. The grammar for “and” is given by the following production rule: <span class="math display">\[
 \tag{$L_{\wedge}$}
@@ -1955,8 +919,8 @@ window.Quarto = {
   \]</span></p></li>
 </ul>
 </div>
-<p>It may surprise you to notice that the LIE for AND we just used does specify what form of judgement we are using. This is the model in all logics be they Computational, Theoretical, or Practical. However, when we include those as added information we get more precise descriptions of this logical operator which we will come to later.</p>
-<div class="callout-tip callout-example" title="Exercise: LIE for Implication" data-callout-family="example">
+<p>It may surprise you to notice that the LIE for AND we just used does specify what form of judgement we are using. AND so described could be used in all the styles of logic we have seen: Computational, Theoretical, or Practical. There is a similar logical operator available to nearly all logics called “implication”, but you may know it as “if…then”. We will explore that next.</p>
+<div class="callout-tip example callout-example" title="Exercise: LIE for Implication" data-callout-family="example">
 <ul>
 <li><strong>Language</strong>: <span class="math inline">\(\to\)</span> (“arrow” but pronounced “implies”) is used to represent the logical operator “implies”. The grammar for “implies” is given by the following production rule: <span class="math display">\[
 \tag{$L_{\to}$}
@@ -1972,21 +936,259 @@ window.Quarto = {
   \]</span></li>
 <li><strong>Elimination</strong>: If <span class="math inline">\(P\to Q\)</span> is judged as valid then so is <span class="math inline">\(Q\)</span> if <span class="math inline">\(P\)</span> is also judged as valid. In symbols <span class="math display">\[
   \tag{$E_{\to}$}
-  \begin{array}{rc}
-   &amp; P\to Q\\ @ &amp; P   \\
+  \begin{array}{rr}
+   &amp; P\to Q\\ @ &amp; P\phantom{\to Q}   \\
   \hline
   &amp; Q
   \end{array}
   \]</span></li>
 </ul>
+<p>The elimination rule for <span class="math inline">\(\to\)</span> is so famous it has its own name in Latin: “Modus Ponens”. Within classical mathematics the use of <span class="math inline">\(\Rightarrow\)</span> is preferred to <span class="math inline">\(\to\)</span> but that trend is changing as new forms of judgment take a larger role within mathematics.</p>
 </div>
-<div class="callout-caution callout-exercise" title="Exercise: LIE for OR" data-callout-family="exercise">
+<div class="callout callout-style-default callout-note callout-titled" title="Why $\to$ versus $\vdash$?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why <span class="math inline">\(\to\)</span> versus <span class="math inline">\(\vdash\)</span>?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The introduction of <span class="math inline">\(P\to Q\)</span> by <span class="math inline">\(P\vdash Q\)</span> is may seem like mere renaming. However, <span class="math inline">\(P\vdash Q\)</span> is a statement of truth about our world and <span class="math inline">\(P\to Q\)</span> is a proposition within the world. In fact we can write <span class="math inline">\(P\to Q\)</span> even if it turns out to be false. However, similar to replacing the false proposition <span class="math inline">\(5=7\)</span> with the obvious notation <span class="math inline">\(5\neq 7\)</span>, whenever we know <span class="math inline">\(P\to Q\)</span> is false we make that clear with <span class="math inline">\(P\not\to Q\)</span>, and when we are uncertain if <span class="math inline">\(P\to Q\)</span> is valid we says so in the surrounding text.</p>
+</div>
+</div>
+<p>It is convenient to include values as logical operators such as “true” or “false”.</p>
+<div class="callout-tip example callout-example" title="Truth as a logical operator" data-callout-family="example">
+<p>In Brouwerian logic we take truth to be a symbol from which is judged valid from any we start any</p>
+<ul>
+<li><strong>Language</strong>: <span class="math inline">\(\top\)</span> (“top” but pronounced “true”), also denoted <code>true</code> or <code>1</code> in software. The grammar for <span class="math inline">\(\top\)</span> is <span class="math display">\[
+\tag{$L_{\top}$}
+\langle truth \rangle ::= \top
+\]</span></li>
+<li><strong>Introduction</strong>: <span class="math inline">\(\top\)</span> is always valid, depending on nothing. In symbols <span class="math display">\[
+\tag{$I_{\top}$}
+\overline{\top}\qquad \text{ i.e. }\vdash \top
+\]</span></li>
+<li><strong>Elimination</strong>: <span class="math inline">\(\top\)</span> leads to every valid proposition <span class="math inline">\(P\)</span>. In symbols, <span class="math display">\[
+\tag{$E_{\top}$}
+\begin{array}{rc}
+    &amp; \top\\
+    &amp; P\\
+  \hline
+   &amp; P
+  \end{array}
+  \qquad \text{ i.e. }\top,P \vdash P
+\]</span></li>
+</ul>
+</div>
+<p>Writing <span class="math inline">\(\top, P,\vdash P\)</span> amounts to saying “if truth and P are valid then P is valid”. Some models of logic make <span class="math inline">\(P\vdash P\)</span> a separate assumption called the Law of Identity.</p>
+<div class="callout-tip example callout-example" title="Explosion Operator" data-callout-family="example">
+<p>In many systems of judgment we want to avoid any inconsistences. Nothing can be both true and false. This lead some systems to assume a false that is quite difficult to</p>
+<ul>
+<li><strong>Languaage</strong>: <span class="math inline">\(\langle false\rangle ::= \bot\)</span>.</li>
+<li><strong>Introduction</strong>: None! We don’t want to allow our logic to introduce falsehoods.</li>
+<li><strong>Elimination (Law of Explosion)</strong> For every proposition <span class="math inline">\(P\)</span> (valid or not) <span class="math display">\[
+\text{P is a proposition}, \bot \vdash P
+\]</span></li>
+</ul>
+<p>The law of explosion is controversial in a number of ways. For one it is completely vague about where <span class="math inline">\(P\)</span> comes from. It is a proposition the only rule that does can put any proposition</p>
+</div>
+<div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
+<p>Use the logic of <span class="math inline">\(\top\)</span> and <span class="math inline">\(\to\)</span> to show that <span class="math inline">\(P\to P\)</span> is always valid.</p>
+<p>Recall on our earlier discussion of Brouwerian verification judgments we insisted every valid propositions <span class="math inline">\(P\)</span> had to be derivable from truth, so <span class="math inline">\(\top,P\to P\)</span> hypothesis that <span class="math inline">\(P\)</span> is valid (along with <span class="math inline">\(\top\)</span> which by its introduction is always valid) and it derives <span class="math inline">\(P\)</span>. Using the logical operator <span class="math inline">\(\to\)</span> and <span class="math inline">\(\top\)</span> LIE rules, prove that any system of logic with both must have Brouwerian verification judgments.</p>
+</div>
+<div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
+<p>Recall on our earlier discussion of Brouwerian verification judgments we insisted propositions <span class="math inline">\(P\)</span> had to be deriveable from truth, so <span class="math inline">\(\top\to P\)</span>. Using the logical operator <span class="math inline">\(\to\)</span> and <span class="math inline">\(\top\)</span> LIE rules, prove that any system of logic with both must have Brouwerian verification judgments.</p>
+</div>
+<div class="callout-caution exercise callout-exercise" title="Negation" data-callout-family="exercise">
+<p>Suppose you are told <span class="math inline">\(P\to \bot\)</span> is valid. What does this say about <span class="math inline">\(P\)</span>? Show that <span class="math display">\[
+\tag{Law~of~non-contradiction}
+\begin{array}{rc}
+    &amp; \neg P\\
+     &amp; P\\
+  \hline
+      &amp;  \bot
+  \end{array}
+\]</span></p>
+</div>
+<p>The operator <span class="math inline">\(\neg P\)</span>, called <strong>negation</strong> is the composite <span class="math inline">\(P\to \bot\)</span>, <span class="math display">\[
+\tag{Negation}
+\neg P := P\to \bot
+\]</span></p>
+<section id="naming-operators" class="level3">
+<h3 class="anchored" data-anchor-id="naming-operators">Naming operators</h3>
+<p>Once we create operators we try to give them names that resemble their use in natural language but as we have seen judgment changes from computational, theoretical, and practical. This means that the meanings of our operator drift. However, to keep some sense of continuity we often find that the language and grammar are kept the same and keep either the introduction or the elimination rule the same. When we keep the introduction rules the same we refer to the operators as “covariant” and when keep the elimination rule the same we refer to it as “contravariant”. This name comes from the associated diagrams.</p>
+</section>
+</section>
+<section id="making-a-proof-with-wedge-and-to" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="making-a-proof-with-wedge-and-to"><span class="header-section-number">11.2</span> Making a proof with <span class="math inline">\(\wedge\)</span> and <span class="math inline">\(\to\)</span></h2>
+<p>This is enough for a proof of concept in reasoning.</p>
+<div class="callout-tip thm callout-thm" data-callout-family="thm">
+<p>If we can reuse propositions, then P conjoined with P implies Q leads to Q. In symbols: <span class="math display">\[
+P \wedge (P \to Q) \vdash Q
+\]</span></p>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Proof">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Proof
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Assume the hypothesis <span class="math inline">\(P\wedge (P\to Q)\)</span> is true. By left elimination of the conjunction <span class="math inline">\(\wedge-\)</span> we get that <span class="math inline">\(P\)</span> is valid. Then by the the right elimination <span class="math inline">\(\wedge -\)</span> we have that <span class="math inline">\(P\to Q\)</span> is valid. Hence we now have the conditions for the elimination rule <span class="math inline">\(@\)</span> of implication so we derive <span class="math inline">\(Q\)</span>$.</p>
+<hr>
+<p>As a proof DAG we can remove all the words which are there to write our thoughts linearly through time and instead just identify the ingredients.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>flowchart TD</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    Premise["P ∧ (P → Q)"] --&gt;|"E&lt;sub&gt;-∧&lt;/sub&gt;"| P["P"]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    Premise --&gt;|"E&lt;sub&gt;-∧&lt;/sub&gt;"| PThenQ["P → Q"]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    P --&gt; at["@"] </span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    PThenQ --&gt; at</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    at --&gt; Q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
+<p>Using the LIE rules of <span class="math inline">\(\wedge\)</span> to prove that <span class="math inline">\(P\wedge Q\to Q\wedge P\)</span>.</p>
+</div>
+<section id="equivalence-and-if-and-only-if" class="level3">
+<h3 class="anchored" data-anchor-id="equivalence-and-if-and-only-if">Equivalence and “if, and only if,”</h3>
+<div class="callout-note defn callout-defn" title="Equivalence" data-callout-family="defn">
+<p>For proposition <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, <span class="math inline">\(P\)</span> is said to be <strong>equivalent</strong> to <span class="math inline">\(Q\)</span> if <span class="math inline">\(P\to Q\)</span> and <span class="math inline">\(Q\to P\)</span>. In symbols we write <span class="math inline">\(P \leftrightarrow Q\)</span>.</p>
+<p>In words we can say</p>
+<ul>
+<li><span class="math inline">\(P\)</span> is true if, and only if, <span class="math inline">\(Q\)</span> is true.</li>
+<li><span class="math inline">\(P\text{ iff }Q\)</span> (though this author cautions that this abbreviation can easily be removed by a spell-checker or be misunderstood as a typo).</li>
+</ul>
+</div>
+<div class="callout-caution exercise callout-exercise" title="Currying" data-callout-family="exercise">
+<p>Prove that <span class="math inline">\((P\wedge Q)\to R\)</span> then <span class="math inline">\(P\to (Q\to R)\)</span>. Draw the proof diagram and label all the logical operators.</p>
+</div>
+</section>
+</section>
+<section id="a-diagram-view-of-and" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="a-diagram-view-of-and"><span class="header-section-number">11.3</span> A diagram view of “And”</h2>
+<p>As our above proof shows we often can get some impact from a diagram view of logical operators. This can help to point out some details that are missing.</p>
+<section id="diagram-for-introduction-rules" class="level4">
+<h4 class="anchored" data-anchor-id="diagram-for-introduction-rules">Diagram for introduction rules</h4>
+<p>Let us consider why we come to know <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> are valid when we write the introduction rule for <span class="math inline">\(\wedge\)</span>. Surely everything occurs in a context, let us call this <span class="math inline">\(\Gamma\)</span>. Putting the two together means that one even has occured that lead you to believe in both at the same stage of your argument. Let us put that reason into the notation. <span class="math display">\[
+\tag{$I'_{\wedge}$}
+\begin{array}{crcl}
+    &amp; \Gamma, R &amp; \vdash &amp; P\\
+\wedge &amp;   \Gamma, S &amp; \vdash &amp; Q\\
+\hline
+    &amp; \Gamma, R\wedge S &amp; \vdash &amp; P \wedge Q
+\end{array}
+\]</span> To draw thus we can resort to comic strips where we draw separate panels that we can read together as an evolving story. In the first panel we have the reason <span class="math inline">\(R\)</span> that leads to <span class="math inline">\(P\)</span> through evidence <span class="math inline">\(f\)</span> and the reason <span class="math inline">\(S\)</span> that leads to <span class="math inline">\(Q\)</span> from evidence <span class="math inline">\(g\)</span>. In the second panel we have the conjunction of the reasons <span class="math inline">\(R\wedge S\)</span> that lead to the conjunction of the propositions <span class="math inline">\(P\wedge Q\)</span>. To make the diagrams we may as well replace <span class="math inline">\(A\vdash B\)</span> with <span class="math inline">\(A\to B\)</span> since it makes the diagram look familiar. For <span class="math inline">\(\Gamma\)</span> we shade the background to indicate that it is a context that is always present everything takes place within it.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    subgraph panel1["Context Γ"]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>        direction LR</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>        R["Prop R"] --&gt;|f| P["Prop P"]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>        S["Prop S"] --&gt;|g| Q["Prop Q"]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    end</span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>    subgraph panel2["Context Γ after Conjunction"]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>        direction LR</span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>        R1["Prop R"] --&gt;|f| P1["Prop P"]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>        RS["Prop R ∧ S"] --&gt;|I'&lt;sub&gt;∧&lt;/sub&gt;| PQ["Prop P ∧ Q"]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>        S1["Prop S"] --&gt;|g| Q1["Prop Q"]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>        style RS fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>        style PQ fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a>    end</span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a>    %% Trick to make the subgraph appear in order</span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a>    panel1 --- panel2</span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>    linkStyle 5 stroke:transparent,fill:transparent</span>
+<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a>    </span>
+<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
+<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
+<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The elimination rules now start from the position of knowing <span class="math inline">\(P\wedge Q\)</span> is valid for some reason and extracting just the validity of <span class="math inline">\(P\)</span> or <span class="math inline">\(Q\)</span>. <span class="math display">\[
+\frac{
+    \Gamma \vdash P \wedge Q
+}{
+    \Gamma \vdash P
+}(E_{\wedge -})
+\qquad
+\frac{
+    \Gamma \vdash P \wedge Q
+}{
+    \Gamma \vdash Q
+}(E_{-\wedge})
+\]</span> Now when we diagram this we realize we also get similar rules from <span class="math inline">\(R\wedge S\)</span>. So when we put these together we get the following final diagram.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    subgraph panel["Context Γ Conjunction"]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>        direction LR</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>        R["Prop R"] --&gt;|f| P["Prop P"]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>        RS["Prop R ∧ S"] --&gt;|I'&lt;sub&gt;∧&lt;/sub&gt;| PQ["Prop P ∧ Q"]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>        RS --&gt;|E&lt;sub&gt;-∧&lt;/sub&gt;&lt;sup&gt;R&lt;/sup&gt;| R["Prop R"]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>        RS --&gt;|E&lt;sub&gt;∧-&lt;/sub&gt;&lt;sup&gt;S&lt;/sup&gt;| S["Prop S"]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>        PQ --&gt;|E&lt;sub&gt;-∧&lt;/sub&gt;&lt;sup&gt;P&lt;/sup&gt;| P["Prop P"]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>        PQ --&gt;|E&lt;sub&gt;∧-&lt;/sub&gt;&lt;sup&gt;Q&lt;/sup&gt;| Q["Prop Q"]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>        S["Prop S"] --&gt;|g| Q["Prop Q"]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>        style RS fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>        style PQ fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>    end</span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>    style panel fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To make this diagram even more powerful let us observe that if we follow arrows two different ways and get to the same place, the results are equal. For example, <span class="math display">\[
+\begin{aligned}
+f \text{ after } E_{\wedge -}^{R} &amp; = E_{\wedge -}^{P} \text{ after } I'_{\wedge}\\
+f \text{ after } E_{-\wedge}^{R} &amp; = E_{-\wedge}^{P} \text{ after } I'_{\wedge}
+\end{aligned}
+\]</span> This concept has a name.</p>
+<div class="callout-note defn callout-defn" title="Commutative Diagrams" data-callout-family="defn">
+<p>A <strong>commutative diagram</strong> is a diagram of arrows such that any two oriented paths that start and end at the same place are considered equal.</p>
+</div>
+<p>Now we see something much more nuanced, for instance this captures how we may need to behave when dealing shared resources since we keep as many reason in the premise as uses in the conclusion.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Order of operations">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Order of operations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A lot of grammar is tedious to read with extra parenthesis. To avoid this mathematicians prefer to teach an order of operations rule (which is entirely arbitrary but agreed to by community).</p>
+<ul>
+<li>Parenthesis overrule everything.</li>
+<li>Read operators left to right, so <span class="math inline">\(P\to Q\to R\)</span> reads as <span class="math inline">\(P\to (Q\to R)\)</span> <strong>not</strong> <span class="math inline">\((P\to Q)\to R\)</span>.</li>
+<li>And <span class="math inline">\(\wedge\)</span> is stronger than <span class="math inline">\(\to\)</span> so <span class="math inline">\(P\wedge Q\to R\)</span> means <span class="math inline">\((P\wedge Q)\to R\)</span> <strong>not</strong> <span class="math inline">\(P\wedge (Q\to R)\)</span>.</li>
+</ul>
+</div>
+</div>
+<p>When in doubt, use parenthesis to make your meaning clear.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Identifying introduction and elimination rules">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Identifying introduction and elimination rules
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In a diagram that specifies the result <span class="math inline">\(R\)</span> of logical operators then</p>
+<ul>
+<li>the introduction rules are those that have arrows pointing into <span class="math inline">\(R\)</span>.</li>
+<li>the elimination rules are those that have arrows pointing out of <span class="math inline">\(R\)</span>.</li>
+</ul>
+</div>
+</div>
+<div class="callout-caution exercise callout-exercise" title="Exercise: LIE for OR" data-callout-family="exercise">
 <p>Using <span class="math inline">\(\vee\)</span> (“vee” but pronounced “or”) as the symbol for the logical operator “or”, write down a LIE for “or”.</p>
 </div>
+</section>
+</section>
+<section id="specializing-conjunction-and-implication" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="specializing-conjunction-and-implication"><span class="header-section-number">11.4</span> Specializing Conjunction and Implication</h2>
+<p>So now let us put on the filter of a target form of judgment and see what we gain or loose from our above LIE rules for both operators.</p>
 <section id="language-of-and" class="level3">
 <h3 class="anchored" data-anchor-id="language-of-and">Language of “And”</h3>
 <p>The best tool language has for clarifying meaning is the use of a grammar. If we keep to a context-free grammar we can be certain that everyone reads the meaning the same. So here is a grammar we can give to “and” to fit our logical purposes. Note, in historical settings the term “conjunction” is often used as synonym for “and”. Using “conjunction” can often solve the annoying problem needing to use “and” as an every day word while also talking about “and” in a logical way.</p>
-<div class="callout-note callout-defn" title="Language for conjunction" data-callout-family="defn">
+<div class="callout-note defn callout-defn" title="Language for conjunction" data-callout-family="defn">
 <p>In symbolic language <span class="math inline">\(\wedge\)</span> (“wedge” but pronounced “and”) is used to represent the logical operator “and”. The grammar for “and” is given by the following production rule: <span class="math display">\[
 \tag{$L_{\wedge}$}
 \langle conjunction \rangle ::= \langle proposition \rangle \wedge \langle proposition \rangle
@@ -2001,7 +1203,7 @@ window.Quarto = {
 <p>“(7 is positive) and ((7 is odd) and (7 is prime))”</p>
 </blockquote>
 <p>We forgive most authors who slide back to the more natural language uses of “and” but it will strengthen your understanding to practice this in a precise way for a while.</p>
-<div class="callout-tip callout-example" title="Programming Theoretical Conjunction" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Programming Theoretical Conjunction" data-callout-family="example">
 <p>In a theoretical judgment where we forget about evidence then all we need from propositions is their truth value. We can ask for this in most programming languages by builtin logical operators that are written in a variety of ways. Here are some popular options.</p>
 <ul>
 <li><code>p &amp;&amp; q</code> is used in C, C++, Java, JavaScript, and R.</li>
@@ -2011,7 +1213,7 @@ window.Quarto = {
 </ul>
 <p>Note that these result in a truth value only, they do not hold on to any evidence.</p>
 </div>
-<div class="callout-tip callout-example" title="Programming Computational Conjunction" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Programming Computational Conjunction" data-callout-family="example">
 <p>In a computational judgment we need data (evidence) that proves the propositions. So a proposition <span class="math inline">\(P\)</span> has data <span class="math inline">\(x\)</span> that proves it, and a proposition <span class="math inline">\(Q\)</span> has data <span class="math inline">\(y\)</span> that proves it. We combine these as a joint proposition</p>
 <ul>
 <li><code>(P,Q)</code> in Scala</li>
@@ -2022,7 +1224,7 @@ window.Quarto = {
 </ul>
 <p>These are just the propositions, they will need data to be proved.</p>
 </div>
-<div class="callout-tip callout-example" title="Programming Practical Conjunction" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Programming Practical Conjunction" data-callout-family="example">
 <p>In a practical judgment of a proposition <span class="math inline">\(P\)</span> we associate some value <span class="math inline">\(\varepsilon\)</span> of truth, for example, a percentage of our believe the <span class="math inline">\(P\)</span> is true. If we have similar proposition <span class="math inline">\(Q\)</span> with a value <span class="math inline">\(\delta\)</span> then to judge <span class="math inline">\(P\wedge Q\)</span> we need to combine these values. Some of the options include</p>
 <ul>
 <li><code>min(ε,δ)</code> assumes whichever the lower of two percentages should be the default.</li>
@@ -2033,7 +1235,7 @@ window.Quarto = {
 <section id="introduction-rule-for-conjunction" class="level3">
 <h3 class="anchored" data-anchor-id="introduction-rule-for-conjunction">Introduction Rule for conjunction</h3>
 <p>Now get into what drives the meaning of “and” by describing what must be present to ensure we can create an instance of its use. Logicians call these <strong>introduction rules</strong> because they introduce the symbols of the logical operator, in this case <span class="math inline">\(\wedge\)</span>.</p>
-<div class="callout-note callout-defn" title="Introduction Rule for 'AND'" data-callout-family="defn">
+<div class="callout-note defn callout-defn" title="Introduction Rule for 'AND'" data-callout-family="defn">
 <p>In natural language we use “and” when we combine two valid propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> to make a new valid proposition <span class="math inline">\(P\wedge Q\)</span>.</p>
 <p>Now in symbolic language to say a proposition is valid is to have judged it in a context. So we start with <span class="math display">\[
 \Gamma \vdash P
@@ -2052,7 +1254,7 @@ window.Quarto = {
     \Gamma, \Delta &amp; \vdash P \wedge Q
 \end{array}
 \]</span></p>
-<div class="callout-tip callout-example" title="Introducing conjunction in programs" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Introducing conjunction in programs" data-callout-family="example">
 <p>If we think of a program as making verified judgments then it makes sense that a proposition <span class="math inline">\(P\)</span> has data <span class="math inline">\(x\)</span> the proved it, and a proposition <span class="math inline">\(Q\)</span> has data <span class="math inline">\(y\)</span> that proved it. So to create data the proves both we can just hold on to both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The notation for this is an ordered pair <span class="math inline">\((x,y)\)</span>. The notations vary between programming languages, here are some popular options. Assuming <code>x</code> and <code>y</code> are already data:</p>
 <ul>
 <li><code>p=(x,y)</code> in Python, Ruby, and JavaScript.</li>
@@ -2066,7 +1268,7 @@ window.Quarto = {
 <section id="elimination-rule-for-conjunction" class="level3">
 <h3 class="anchored" data-anchor-id="elimination-rule-for-conjunction">Elimination Rule for conjunction</h3>
 <p>Once we have conjoined two propositions we can carry them around as a single proposition until we intend to use it. It is at this point that we want the ability reach back and extract the to original propositions. Logicians call these <strong>elimination rules</strong> because they eliminate the symbols of the logical operator, in this case <span class="math inline">\(\wedge\)</span>. Something new happens with this step because it not one but two uses we expect. So technically we are after two elimination rules.</p>
-<div class="callout-note callout-defn" title="Elimination Rule for 'AND'" data-callout-family="defn">
+<div class="callout-note defn callout-defn" title="Elimination Rule for 'AND'" data-callout-family="defn">
 <p>In natural language we use <span class="math inline">\(P\wedge Q\)</span> so that we can know <span class="math inline">\(P\)</span> or that we can know <span class="math inline">\(Q\)</span>, or both. So we need to change from a context that judged <span class="math inline">\(P\wedge Q\)</span> to a context that judges <span class="math inline">\(P\)</span> and a context that judges <span class="math inline">\(Q\)</span>. In symbolic language we can write this as two elimination rules: <span class="math display">\[
 \frac{
     \Gamma\vdash P\wedge Q
@@ -2082,23 +1284,23 @@ window.Quarto = {
 \]</span></p>
 </div>
 <p>when we have a reason <span class="math inline">\(R\)</span> to know of a proposition <span class="math inline">\(P\wedge Q\)</span> given to us in a context <span class="math inline">\(\Gamma\)</span>. Then we can say that <span class="math inline">\(R\to P\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(P\)</span> and <span class="math inline">\(R\to Q\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(Q\)</span>. In diagram language we could say <span class="math inline">\(R\to (P\wedge Q)\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to both <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart LR</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    subgraph panel1["Context Γ"]</span>
-<span id="cb1-3"><a href="#cb1-3"></a>        direction LR</span>
-<span id="cb1-4"><a href="#cb1-4"></a>        Reason --&gt; PQ["Prop P ∧ Q"]</span>
-<span id="cb1-5"><a href="#cb1-5"></a>    end</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    subgraph panel2["Context Γ after Elimination"]</span>
-<span id="cb1-7"><a href="#cb1-7"></a>        direction LR</span>
-<span id="cb1-8"><a href="#cb1-8"></a>        Reason2["Reason R"] --&gt;|π₁| P2["Prop P"]</span>
-<span id="cb1-9"><a href="#cb1-9"></a>        Reason2 --&gt;|π₂| Q2["Prop Q"]</span>
-<span id="cb1-10"><a href="#cb1-10"></a>    end</span>
-<span id="cb1-11"><a href="#cb1-11"></a>    %% Trick to make the subgraph appear in order</span>
-<span id="cb1-12"><a href="#cb1-12"></a>    panel1 --- panel2</span>
-<span id="cb1-13"><a href="#cb1-13"></a>    linkStyle 5 stroke:transparent,fill:transparent </span>
-<span id="cb1-14"><a href="#cb1-14"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
-<span id="cb1-15"><a href="#cb1-15"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    subgraph panel1["Context Γ"]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>        direction LR</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>        Reason --&gt; PQ["Prop P ∧ Q"]</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>    end</span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>    subgraph panel2["Context Γ after Elimination"]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>        direction LR</span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a>        Reason2["Reason R"] --&gt;|π₁| P2["Prop P"]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a>        Reason2 --&gt;|π₂| Q2["Prop Q"]</span>
+<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a>    end</span>
+<span id="cb7-11"><a href="#cb7-11" aria-label="11"></a>    %% Trick to make the subgraph appear in order</span>
+<span id="cb7-12"><a href="#cb7-12" aria-label="12"></a>    panel1 --- panel2</span>
+<span id="cb7-13"><a href="#cb7-13" aria-label="13"></a>    linkStyle 5 stroke:transparent,fill:transparent </span>
+<span id="cb7-14"><a href="#cb7-14" aria-label="14"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
+<span id="cb7-15"><a href="#cb7-15" aria-label="15"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Finally in symbolic language this would be the following rule to add to our proof tree options.</p>
-<div class="callout-tip callout-example" title="Elimination of conjunction in programs" data-callout-family="example">
+<div class="callout-tip example callout-example" title="Elimination of conjunction in programs" data-callout-family="example">
 <ul>
 <li><code>p[0]</code> in Python, Ruby, and JavaScript.</li>
 <li><code>(car p)</code> for first, <code>(cdr p)</code> for rest, in Lisp and Scheme.</li>
@@ -2107,61 +1309,13 @@ window.Quarto = {
 <li><code>p.1</code> in Magma.</li>
 </ul>
 </div>
-</section>
-<section id="a-diagram-view-of-and" class="level3">
-<h3 class="anchored" data-anchor-id="a-diagram-view-of-and">A diagram view of “And”</h3>
-<p>we can start to get more specific and insist that a contect <span class="math inline">\(\Gamma\)</span> be given which judged <span class="math inline">\(P\)</span> to be true.</p>
-<p>. For example what does it mean to have had two proposition in the first place? We musth have eai this would be the following rule to add to our proof tree options. <span class="math display">\[
-\frac{
-    \Gamma\vdash P,\qquad
-    \Gamma\vdash Q
-}{
-    \Gamma, R \vdash P \wedge Q
-}
-\]</span></p>
-<p>In diagram language we get much more precise and recognize a reason <span class="math inline">\(f\)</span> the <span class="math inline">\(R\)</span> leads to <span class="math inline">\(P\)</span>, written <span class="math inline">\(f:R\to P\)</span>. A possibly different reason <span class="math inline">\(g:R\to Q\)</span> explains why <span class="math inline">\(R\)</span> leads to <span class="math inline">\(Q\)</span>. The $ and <span class="math inline">\(R\to Q\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(Q\)</span>. Then we can say that <span class="math inline">\(R\to (P\wedge Q)\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to both <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    subgraph panel1["Context Γ"]</span>
-<span id="cb2-3"><a href="#cb2-3"></a>        direction LR</span>
-<span id="cb2-4"><a href="#cb2-4"></a>        R --&gt;|Reason f leads to| P["Prop P"]</span>
-<span id="cb2-5"><a href="#cb2-5"></a>        R --&gt;|Reason g leads to| Q["Prop Q"]</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    end</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    subgraph panel2["Context Γ after Conjunction"]</span>
-<span id="cb2-8"><a href="#cb2-8"></a>        direction LR</span>
-<span id="cb2-9"><a href="#cb2-9"></a>        R2["R"] --&gt; P2["Prop P"]</span>
-<span id="cb2-10"><a href="#cb2-10"></a>        R2 --&gt;|f| PQ["Prop P ∧ Q"]</span>
-<span id="cb2-11"><a href="#cb2-11"></a>        R2 --&gt;|g| Q2["Prop Q"]</span>
-<span id="cb2-12"><a href="#cb2-12"></a>    end</span>
-<span id="cb2-13"><a href="#cb2-13"></a>    %% Trick to make the subgraph appear in order</span>
-<span id="cb2-14"><a href="#cb2-14"></a>    panel1 --- panel2</span>
-<span id="cb2-15"><a href="#cb2-15"></a>    linkStyle 5 stroke:transparent,fill:transparent</span>
-<span id="cb2-16"><a href="#cb2-16"></a>    </span>
-<span id="cb2-17"><a href="#cb2-17"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
-<span id="cb2-18"><a href="#cb2-18"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Now since a context can include any one of its propositions, it is common to simply absorb <span class="math inline">\(R\)</span> into <span class="math inline">\(\Gamma\)</span> and write <span class="math inline">\(\Gamma \vdash P\)</span> and <span class="math inline">\(\Gamma \vdash Q\)</span> as the premises of the rule and <span class="math inline">\(\Gamma \vdash P\wedge Q\)</span> as the conclusion. In fact some authors will even fathom <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> as coming initially from separate contexts <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(\Delta\)</span> and write the rule as <span class="math display">\[
-\frac{
-    \Gamma\vdash P,\qquad
-    \Delta\vdash Q
-}{
-    \Gamma, \Delta \vdash P \wedge Q
-}
-\]</span> This not really more general and it disguises from discussion the implicit assumption that to speak of <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> at the same times must occur from some common reason <span class="math inline">\(R\)</span>. By making the role of <span class="math inline">\(R\)</span> explicit we can draw a more clear diagram of the process.</p>
-</div>
+<div class="callout-caution exercise callout-exercise" title="Giraurd's Resource And" data-callout-family="exercise">
+<p>Let <span class="math inline">\(p\otimes q\)</span> be a logical operator that is like <span class="math inline">\(\wedge\)</span> but it is a resource operator. That is, if we have <span class="math inline">\(p\otimes q\)</span> then we can use <span class="math inline">\(p\)</span> or <span class="math inline">\(q\)</span> but not both. Write down the LIE for this operator.</p>
 </div>
 </section>
 </section>
-<section id="clarity-through-syntax" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="clarity-through-syntax"><span class="header-section-number">4.3</span> Clarity through Syntax</h2>
+<section id="clarity-through-syntax" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="clarity-through-syntax"><span class="header-section-number">11.5</span> Clarity through Syntax</h2>
 <p>In order to be extra clear about our logic we want to set aside the words in natural language an use instead symbols or words in special fonts so as to treat the rules with some rigor that cannot miscommunicate out meaning. To so this we start to make a system that resembles arithmetic with is various additions, subtractions and other operators. When we calculate with any symbols we get what is known as a “Calculus”</p>
 <p>So far we have seen <span class="math inline">\(\lambda\)</span>-calculus and now we will be looking at two further Calculi, Propositional and Sequent. This is as good a place as any to pause and mention the list of “calculi” that exist in this course.</p>
 <p>As a cultural warning, when some says they are studying “Calculus” chances are they mean one of the first two. Our main objective is to start making logical operators and we will focus on “AND”. In assignments you will explore “OR” and “NOT”</p>
@@ -2280,9 +1434,6 @@ Note
 \]</span></p>
 <p>In words: truth and truth is true; truth and partial truth is partially true but any value and a falsity is false. There are clearly many ways that this captures the mode of a logic for AND even when we cannot be certain that our data is good enough to make things exactly true or false. And to make this semantics into arithmetic, suppose we used 1 for <span class="math inline">\(\top\)</span>, 0 for <span class="math inline">\(+\)</span>, and -1 of <span class="math inline">\(\bot\)</span>. Then <span class="math inline">\(P\wedge Q\)</span> becomes merely <span class="math inline">\(\min(P,Q)\)</span>. For example <span class="math inline">\(\min(1,0)=0\)</span> which is what it means to have True and Partially true being only Partially true.</p>
 <p>As you develop your logic you may have many other ways to approach operators like this one. But resist the urge to call it an AND unless it obey the main rule: Only True and True is True.</p>
-<div class="reading-stats" data-reading-stats="" aria-label="Reading statistics">
-
-</div>
 
 
 </section>
@@ -2692,13 +1843,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../01/Sub-Var-Func.html" class="pagination-link" aria-label="Substitution, Variables, and Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Substitution, Variables, and Functions</span></span>
+      <a href="../01/Chp-Summary.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-clipboard-list&quot;></i> Logical Library summary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-clipboard-list"></i> Logical Library summary</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../02/Quantifiers.html" class="pagination-link" aria-label="Quantifiers $\forall$, $\exists$, $=$, and $!^n$">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quantifiers <span class="math inline">\(\forall\)</span>, <span class="math inline">\(\exists\)</span>, <span class="math inline">\(=\)</span>, and <span class="math inline">\(!^n\)</span></span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../02/Quantifiers.html" class="pagination-link" aria-label="Quantifiers">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Quantifiers</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
