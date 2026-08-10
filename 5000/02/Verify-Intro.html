@@ -2,20 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>51&nbsp; Module 13 what is a Feature – 5000 Years of Modern Computing</title>
+<title>12&nbsp;  Verification &amp; Introductions – 5000 Years of Modern Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -26,25 +29,25 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../">
-<link href="../../11/a/index.html" rel="next">
-<link href="../../10/s/summary.html" rel="prev">
-<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../02/Falsiy-Elim.html" rel="next">
+<link href="../01/Chp-Summary.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -124,10 +127,10 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../../quarto-runtime/styles/webllm-chat.css">
-<link rel="stylesheet" href="../../quarto-runtime/styles/book-content.css">
-<link rel="stylesheet" href="../../quarto-runtime/styles/Homepage.css">
-<link rel="stylesheet" href="../../quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/Matrix.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -139,7 +142,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../11/0/overview-what-is-a-feature.html"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</a></li><li class="breadcrumb-item"><a href="../../11/0/overview-what-is-a-feature.html"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02/Verify-Intro.html"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</a></li><li class="breadcrumb-item"><a href="../02/Verify-Intro.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-check"></i> Verification &amp; Introductions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -154,7 +157,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../">5000 Years of Modern Computing</a> 
+      <a href="../">5000 Years of Modern Computing</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -166,19 +169,19 @@ window.Quarto = {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">index.html</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../00/preface.html" class="sidebar-item-text sidebar-link">
+  <a href="../00/preface.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><i class="fa-solid fa-calculator fa-la"></i> Proofs, Programs, and Diagrams</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../00/Acknowledgments.html" class="sidebar-item-text sidebar-link">
+  <a href="../00/Acknowledgments.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Acknowledgments</span></span></a>
   </div>
 </li>
@@ -193,59 +196,55 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Logic-Library.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gamepad fa-la"></i> Choosing a Logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
-<<<<<<< HEAD
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
-=======
+  <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deduct-Induct-Abduct.html</span></span></a>
->>>>>>> 74fb366 (new chap)
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Judgment.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Judgment.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-gavel"></i> Logical Judgments</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Context.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Context.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Context</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Writing-down-a-logic.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Writing-down-a-logic.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-scroll fa-la"></i> Writing down a logic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Trees.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Trees.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Trees: a source of unambiguous reasoning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Sub-Var-Func.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Sub-Var-Func.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-square-root-variable"></i> Substitution, Variables, and Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Combinators.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Combinators.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-microchip"></i> Gates, Combinators, and Turing and Kleene</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../01/Chp-Summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../01/Chp-Summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-clipboard-list"></i> Logical Library summary</span></span></a>
   </div>
 </li>
@@ -253,46 +252,46 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02/Verify-Intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../02/Verify-Intro.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-check"></i> Verification &amp; Introductions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02/Falsiy-Elim.html" class="sidebar-item-text sidebar-link">
+  <a href="../02/Falsiy-Elim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-triangle-exclamation"></i> Falsification &amp; Elimination Rules</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02/LIE-AND.html" class="sidebar-item-text sidebar-link">
+  <a href="../02/LIE-AND.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Logical Operators</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02/ImplicationalLogics.html" class="sidebar-item-text sidebar-link">
+  <a href="../02/ImplicationalLogics.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Conjunction and Implication in contexts</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02/Quantifiers.html" class="sidebar-item-text sidebar-link">
+  <a href="../02/Quantifiers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Quantifiers</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../02/Qualifiers.html" class="sidebar-item-text sidebar-link">
+  <a href="../02/Qualifiers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dual logic and Programs</span></span></a>
   </div>
 </li>
@@ -309,7 +308,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../03/overview-3.html" class="sidebar-item-text sidebar-link">
+  <a href="../03/overview-3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Types of data</span></span></a>
   </div>
 </li>
@@ -326,43 +325,43 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/1-Boubaki-Functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/1-Boubaki-Functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Solving <span class="math inline">\(y=f(x)\)</span> needs new types of data: subsets and partitions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/injective.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/injective.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Injective</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/surjective-functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/surjective-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">math156 surjective Functions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/Club-Membership.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/Club-Membership.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-id-card fa-la"></i> Subsets and Partitions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/partitions.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/partitions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">math156 Partitions</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/what-is-a-subset.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/what-is-a-subset.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">What is a subset?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../04/Summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../04/Summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Subset <span class="math inline">\(\subset\)</span> and Partition <span class="math inline">\(/\)</span> Summary</span></span></a>
   </div>
 </li>
@@ -379,7 +378,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../05/pattern-making-and-its-co-operators.html" class="sidebar-item-text sidebar-link">
+  <a href="../05/pattern-making-and-its-co-operators.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Week 6 Day 2  Pattern Making &amp; its Co-operators</span></span></a>
   </div>
 </li>
@@ -396,7 +395,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../06/describing-relations.html" class="sidebar-item-text sidebar-link">
+  <a href="../06/describing-relations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Week 7 Day 2 Describing Relations</span></span></a>
   </div>
 </li>
@@ -413,7 +412,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../07/overview-7.html" class="sidebar-item-text sidebar-link">
+  <a href="../07/overview-7.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Week 6 Inductive Reasoning</span></span></a>
   </div>
 </li>
@@ -430,13 +429,13 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../08/1-proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
+  <a href="../08/1-proportions-towards-probability.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Proportions towards Probability</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../08/3-probabilistic-data-types.html" class="sidebar-item-text sidebar-link">
+  <a href="../08/3-probabilistic-data-types.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Probabilistic Data Types</span></span></a>
   </div>
 </li>
@@ -453,37 +452,37 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../09/overview-9.html" class="sidebar-item-text sidebar-link">
+  <a href="../09/overview-9.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">overview-9.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../09/a/limits-and-accumulation.html" class="sidebar-item-text sidebar-link">
+  <a href="../09/a/limits-and-accumulation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">Name ## Assessment 11</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../09/l/getting-close-is-not-enough.html" class="sidebar-item-text sidebar-link">
+  <a href="../09/l/getting-close-is-not-enough.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">Lab 11 Getting Close is not Enough</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../09/1/cauchys-limits.html" class="sidebar-item-text sidebar-link">
+  <a href="../09/1/cauchys-limits.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">*Part 1 Cauchy’s Limits</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../09/2/asymptotics-and-long-term-behavior.html" class="sidebar-item-text sidebar-link">
+  <a href="../09/2/asymptotics-and-long-term-behavior.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">*Part  2   Asymptotics &amp; Long term behavior</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../09/3/functions-as-limits-of-sums-taylor-series.html" class="sidebar-item-text sidebar-link">
+  <a href="../09/3/functions-as-limits-of-sums-taylor-series.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Part 3 Functions as Limits of Sums (Taylor Series)</span></span></a>
   </div>
 </li>
@@ -500,85 +499,85 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/overview-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/overview-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">overview-10.html</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/0/measurement-overview.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/0/measurement-overview.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">*Week 12 Measurement Overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/l/features-in-signals.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/l/features-in-signals.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">Lab 12 Features in Signals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/1/a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/1/a-20mins-distributive-measurements.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">*12.1.a</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/1/b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/1/b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/1/learning-materials-and-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/1/learning-materials-and-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">Lesson 10.1 | Title/Topic</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/2/a-15-mins-from-multiplication-to-the-integral.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/2/a-15-mins-from-multiplication-to-the-integral.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/2/b-changing-measures-the-derivative.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/2/b-changing-measures-the-derivative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">* 12.2.b Changing Measure: The Derivative</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/2/b-the-derivative.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/2/b-the-derivative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/2/c-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/2/c-30-mins-where-distributive-measurement-comes-from.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">* Part 1 Where Distribution Comes from.</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/2/c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/2/c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/3/calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/3/calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/3/calculus-with-sums-products-and-powers.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/3/calculus-with-sums-products-and-powers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">12.2.b Some practical Integrals</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../10/s/summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../10/s/summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
   </div>
 </li>
@@ -586,52 +585,52 @@ window.Quarto = {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false">
  <span class="menu-text"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-11" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-11" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/0/overview-what-is-a-feature.html" class="sidebar-item-text sidebar-link active">
+  <a href="../11/0/overview-what-is-a-feature.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/a/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../11/a/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Name ## Assessment 13</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/l/features-in-audio.html" class="sidebar-item-text sidebar-link">
+  <a href="../11/l/features-in-audio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">Lab 13 Features in audio</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/1/linear-features-are-integrals-riesz-representation-theorem.html" class="sidebar-item-text sidebar-link">
+  <a href="../11/1/linear-features-are-integrals-riesz-representation-theorem.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">* Part 1 Why Most Features are Integrals (Riesz Representation Theorem)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/2/moving-averages-and-mean-value-theorems.html" class="sidebar-item-text sidebar-link">
+  <a href="../11/2/moving-averages-and-mean-value-theorems.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">Day 2  Moving Averages &amp; Mean Value Theorems</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/2linear/features-are-integrals-riesz-representation-theorem-copy.html" class="sidebar-item-text sidebar-link">
+  <a href="../11/2linear/features-are-integrals-riesz-representation-theorem-copy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">Part 1 All Features are Integrals (Riesz Representation Theorem)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../11/3/critical-points-increases-and-decreases.html" class="sidebar-item-text sidebar-link">
+  <a href="../11/3/critical-points-increases-and-decreases.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">Day 3  Critical Points, Increases &amp; Decreases</span></span></a>
   </div>
 </li>
@@ -648,67 +647,67 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/0/overview-machine-learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/0/overview-machine-learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">Learning from mistakes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/a/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/a/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">Name ## Assessment 14</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/l/learning-from-trades.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/l/learning-from-trades.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">Lab 14 Learning from trades</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/1/chain-rule-for-change-upon-change.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/1/chain-rule-for-change-upon-change.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">Day 1 Chain Rule for change upon change</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/12-dot-1-b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/12-dot-1-b-20mins-measurable-functions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">*12.1.b</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/12-dot-2-b-the-derivative.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/12-dot-2-b-the-derivative.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">* 12.2  "Area" &amp; "Slope" Working together</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/12-dot-2-c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/12-dot-2-c-exploting-integrals-and-derivatives-together.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">* 12.2.b Combing Integral and Derivative thinking</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/12-dot-3-calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/12-dot-3-calculus-with-sums-products-and-powers-copy.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">Part 3 Calculus with Powers and Products</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/12-dot-s-summary.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/12-dot-s-summary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/2/back-propogation-for-learning.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/2/back-propogation-for-learning.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">Day 2 Back propogation for learning</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../12/3/equations-of-change.html" class="sidebar-item-text sidebar-link">
+  <a href="../12/3/equations-of-change.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">Day 3 Equations of change</span></span></a>
   </div>
 </li>
@@ -716,7 +715,7 @@ window.Quarto = {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../AA/references.html" class="sidebar-item-text sidebar-link">
+  <a href="../AA/references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-book-open fa-la"></i> Bibliography</span></span></a>
   </div>
 </li>
@@ -730,17 +729,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#main-object-features" id="toc-main-object-features" class="nav-link active" data-scroll-target="#main-object-features">Main Object: Features</a></li>
-  <li><a href="#module-objectives" id="toc-module-objectives" class="nav-link" data-scroll-target="#module-objectives">Module Objectives</a></li>
+  <li><a href="#verifying-disjunction-wedge" id="toc-verifying-disjunction-wedge" class="nav-link active" data-scroll-target="#verifying-disjunction-wedge"><span class="header-section-number">12.1</span> Verifying disjunction <span class="math inline">\(\wedge\)</span></a></li>
+  <li><a href="#verifying-existence-exists" id="toc-verifying-existence-exists" class="nav-link" data-scroll-target="#verifying-existence-exists"><span class="header-section-number">12.2</span> Verifying existence <span class="math inline">\(\exists\)</span></a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../11/0/overview-what-is-a-feature.html"><i class="fa-solid fa-camera fa-la"></i> XI. Finding Features</a></li><li class="breadcrumb-item"><a href="../../11/0/overview-what-is-a-feature.html"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../02/Verify-Intro.html"><i class="fa-solid fa-flag fa-la"></i> II. Logical Operators</a></li><li class="breadcrumb-item"><a href="../02/Verify-Intro.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-check"></i> Verification &amp; Introductions</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">Module 13 what is a Feature</span></h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-check"></i> Verification &amp; Introductions</span></h1>
 </div>
 
 
@@ -757,24 +756,21 @@ window.Quarto = {
 </header>
 
 
-<p>11.0 Overview: What is a Feature?</p>
-<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/11-Features-are-Integrals.png" class="img-fluid" alt="Stock Market Plot">* The value of a stock shifts so erratically that we need to simplify the data. See is averaged over time. Plot its highs and lows. These are features. And extracting features is the name of the game in data. And calculus owns that market. So when you see our icon * of an erratic data set. You will think about taming that wave through features.</p>
-<section id="main-object-features" class="level3">
-<h3 class="anchored" data-anchor-id="main-object-features">Main Object: Features</h3>
-<p>Given a set (), a <strong>feature</strong> is a function (f:). If we have two features we might plot them as a pair ((x(),y())) as a point the xy-plane; one point for each datum (). [We saw features several times in this course, most recently in our <a href="$WIKI_REFERENCE$/pages/g9a5591ac43cbc385cc6c2c079a8a1e06">Handwritten Digit’s lab</a>.]. If we have 3 features we can make a list of 3, a point in 3-dimensional space, and so on. In a future course on <a href="https://online.colostate.edu/courses/DSCI/DSCI369.dot">Linear Algebra</a> you can explore the significance of multiple features. In this module we will explore just one.</p>
+<section id="verifying-disjunction-wedge" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="verifying-disjunction-wedge"><span class="header-section-number">12.1</span> Verifying disjunction <span class="math inline">\(\wedge\)</span></h2>
+<ol type="1">
+<li>A job candidate was told to choose an interview spot of “Monday or Tuesday” but they did not choose Monday. You judge them as unreliable.</li>
+</ol>
+<p>Meanwhile in scenario 2 you might have felt it a was bit unfair, perhaps even illogical. The applicant seems to have been given a choice through choice of the word “or”, what professionals call <strong>disjunction</strong>, and in an argument of the form “<span class="math inline">\(P\)</span> or <span class="math inline">\(Q\)</span>” we are not accustomed to demanding both <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> be valid, after all we already have conjunction (and) to do that. So the judgment that failing to choose Monday makes the applicant unreliable seems invalid and thus unfair. Why the difference? Well if we use <span class="math inline">\(\vee\)</span> ofr disjunction (or) and write symbols we see that eliminating disjunction cannot be done as simply as with conjunction. In symbols we write: <span class="math display">\[
+P \vee Q \not \vdash P
+\qquad \text{and similarly, } P \vee Q \not \vdash Q
+\]</span> So we will need more information to falsify a disjunction than we did to falsify a conjunction. (A strike through of anything in logic means failure, so <span class="math inline">\(\not\vdash\)</span> means “does not justify”.)</p>
+<div class="callout-note defn callout-defn" title="Disjunction Introduction" data-callout-family="defn">
+<p>If</p>
+</div>
 </section>
-<section id="module-objectives" class="level3">
-<h3 class="anchored" data-anchor-id="module-objectives">Module Objectives</h3>
-<ul>
-<li><p>Define and recognize features and linear features.</p></li>
-<li><p>Model integrals as linear features.</p></li>
-<li><p>Apply the Mean Value Theorem.</p></li>
-<li><p>Apply the knowledge that all linear features are integrals for some measure (Riesz Representation Theorem.)</p></li>
-<li><p>Use derivatives to extract features</p></li>
-<li><p>Increasing &amp; decreasing rates.</p></li>
-<li><p>Minimums, maximums, critical points.</p></li>
-</ul>
-<p>Icon Progress Bar (browser only)</p>
+<section id="verifying-existence-exists" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="verifying-existence-exists"><span class="header-section-number">12.2</span> Verifying existence <span class="math inline">\(\exists\)</span></h2>
 
 
 </section>
@@ -1182,13 +1178,13 @@ window.Quarto = {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../10/s/summary.html" class="pagination-link" aria-label="Name  ##   12.S Summary">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">Name ## 12.S Summary</span></span>
+      <a href="../01/Chp-Summary.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-clipboard-list&quot;></i> Logical Library summary">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-clipboard-list"></i> Logical Library summary</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../11/a/index.html" class="pagination-link" aria-label="Name  ##   Assessment 13">
-        <span class="nav-page-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">Name ## Assessment 13</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../02/Falsiy-Elim.html" class="pagination-link" aria-label="<i class=&quot;fa-solid fa-triangle-exclamation&quot;></i> Falsification &amp; Elimination Rules">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title"><i class="fa-solid fa-triangle-exclamation"></i> Falsification &amp; Elimination Rules</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

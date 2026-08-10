@@ -1,0 +1,22 @@
+.matrix-table {
+  width: auto;
+  border-collapse: collapse;
+  margin: 0.5em;
+  display: inline-table;
+  font-size: 0.95em;
+}
+
+.matrix-table td {
+  border: 1px solid #444;
+  padding: 0.25em 0.5em;
+  text-align: center;
+  min-width: 1.5em;
+}
+
+.matrix-table tr:first-child td {
+  font-weight: bold;
+}
+
+.matrix-table td:first-child {
+  font-weight: bold;
+}
