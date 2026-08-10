@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -130,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -235,11 +238,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
-<<<<<<< HEAD
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
-=======
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deduct-Induct-Abduct.html</span></span></a>
->>>>>>> 74fb366 (new chap)
   </div>
 </li>
           <li class="sidebar-item">
@@ -812,45 +811,25 @@ window.Quarto = {
 </div>
 <p>You might recall that triangles A and C are called <strong>congruent</strong> because they have the same angles and edge lengths. Euclid considered them the same. In fact much of Euclidean geometry is about making congruent copies of shapes with a ruler and compass. But of course there are differences. <span class="math inline">\(A\)</span> is on the left, <span class="math inline">\(C\)</span> is on the right. <span class="math inline">\(A\)</span>’s right-angle is up, <span class="math inline">\(C\)</span>’s right angle points down. Those differences are ones that abstraction to Euclid’s world simply ignores. Euclid’s abstraction is thus <strong>invariant</strong> (unchanging) to translation, rotations, and flips. All aspects of a diagram that are invariant to those transformations are the logic of Euclid’s geometry.</p>
 <p>We can change the level of abstraction. We could insist for instance that the triangles not be rotated or flipped, only translations are allowed. That would make <span class="math inline">\(A\)</span> no longer the same as <span class="math inline">\(C\)</span>. We would have lowered the level of abstraction being more precise about the differences. We can also go the other direction and raise the level of abstraction by ignoring the lengths of edges and comparing only interior angles, what are called <strong>similar triangles</strong>. Now the triangles <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are all similar. This is a new world in which we can also rescale and ignore those transformations. Both directions have new logical notions.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart LR</span>
-<span id="cb1-2"><a href="#cb1-2"></a>    Start["Higher abstraction"] -.-&gt;    Perspective[Rescale, Translations, Rotations, &amp; Flips allowed] --&gt;|abstraction| Euclid[Translations, Rotations, &amp;  Flips allowed] ---&gt;|abstraction| Tiling[Only translations allowed]  -.-&gt; End["Lower abstraction"]</span>
-<span id="cb1-3"><a href="#cb1-3"></a>    classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
-<span id="cb1-4"><a href="#cb1-4"></a>    class Start,End unframed;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    Start["Higher abstraction"] -.-&gt;    Perspective[Rescale, Translations, Rotations, &amp; Flips allowed] --&gt;|abstraction| Euclid[Translations, Rotations, &amp;  Flips allowed] ---&gt;|abstraction| Tiling[Only translations allowed]  -.-&gt; End["Lower abstraction"]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    class Start,End unframed;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We can push this further by permitting even more transformations, such as the option to move points around so long as we do not disconnect any shapes. That is, we care that a triangle has 3 vertices and 3 edges but we no longer care what lengths an angle mean. Those are known as <strong>continuous transformations</strong> and the resulting logic is called <strong>topology</strong>. In this world all three triangles are the same. (Using a different perspective we can proceed to abstract to graph theory and possibly other abtractions as well.)</p>
 <p>Now Tarski’s goal was to imagine that we could keep raising the level of abstraction and at each level talk of logical notion. Tarski and many other logicians have suggested this process has to stop, and wherever it stops that is the most logical you can get.</p>
 <p>The bottom for Tarski was something called <em>Principia Mathematica</em>, a book by Russell and Whitehead that tried to give foundation for math. It supports a number of useful logical notions: “and”, “if this then that”, “or”, “not”, and “true” and “false” are among them.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2"></a>    Principia --&gt;|abstraction| Topology </span>
-<span id="cb2-3"><a href="#cb2-3"></a>    Topology --&gt;|abstraction| Geometry</span>
-<span id="cb2-4"><a href="#cb2-4"></a>    Geometry -.-&gt; End["..."]</span>
-<span id="cb2-5"><a href="#cb2-5"></a>    Principia --&gt;|abstraction| Analysis</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    Analysis -.-&gt; End2["..."]</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    Analysis --&gt;|abstraction| Geometry</span>
-<span id="cb2-8"><a href="#cb2-8"></a>    Principia --&gt;|abstraction| Algebra</span>
-<span id="cb2-9"><a href="#cb2-9"></a>    Algebra -.-&gt; End3["..."]</span>
-<span id="cb2-10"><a href="#cb2-10"></a>  classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
-<span id="cb2-11"><a href="#cb2-11"></a>  class End,End2,End3 unframed;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    Principia --&gt;|abstraction| Topology </span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    Topology --&gt;|abstraction| Geometry</span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    Geometry -.-&gt; End["..."]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    Principia --&gt;|abstraction| Analysis</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    Analysis -.-&gt; End2["..."]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>    Analysis --&gt;|abstraction| Geometry</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    Principia --&gt;|abstraction| Algebra</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>    Algebra -.-&gt; End3["..."]</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>  classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>  class End,End2,End3 unframed;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Recent researchers Andre Joyal and Jacob Lurie have argued instead that logic can always be refined to show more details so that there is no absolute bottom but instead categories of abstraction go on forever, <em>Higher Topos Theories</em>. Doing this dislodges “Principia” as the natural center and accordingly theorist are drifting into other foundations. We still can agree historically Prinicpia has a right to be mentioned near the center.</p>
-<<<<<<< HEAD
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>flowchart LR</span>
-<span id="cb3-2"><a href="#cb3-2"></a>    Start["..."] -.-&gt;|abstraction| NaturalTransformations[Natural Transforms]</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    Start2["..."] -.-&gt;|abstraction| Homotopy</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    NaturalTransformations --&gt;|refinement| Principia</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    Homotopy --&gt;|abstraction| Principia</span>
-<span id="cb3-6"><a href="#cb3-6"></a>    Homotopy --&gt;|abstraction| Types</span>
-<span id="cb3-7"><a href="#cb3-7"></a>    Types --&gt;|abstraction| Algebra</span>
-<span id="cb3-8"><a href="#cb3-8"></a>    Principia --&gt;|abstraction| Algebra</span>
-<span id="cb3-9"><a href="#cb3-9"></a>    Principia --&gt;|abstraction| Topology</span>
-<span id="cb3-10"><a href="#cb3-10"></a>    Principia --&gt;|abstraction| Analysis</span>
-<span id="cb3-11"><a href="#cb3-11"></a>    Topology -.-&gt; End["..."]</span>
-<span id="cb3-12"><a href="#cb3-12"></a>    Analysis -.-&gt; End2["..."]</span>
-<span id="cb3-13"><a href="#cb3-13"></a>    classDef unframed fill:transparent,stroke:transparent,color:#333;</span>
-<span id="cb3-14"><a href="#cb3-14"></a>    class Start,Start2,End,End2 unframed;</span>
-<span id="cb3-15"><a href="#cb3-15"></a>    classDef center fill:green,stroke:transparent,color:#fff;</span>
-<span id="cb3-16"><a href="#cb3-16"></a>    class Principia center;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="lie-language-introduction-elimination" class="level2" data-number="11.1">
-<h2 data-number="11.1" class="anchored" data-anchor-id="lie-language-introduction-elimination"><span class="header-section-number">11.1</span> LIE: Language, Introduction, &amp; Elimination</h2>
-=======
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>flowchart LR</span>
 <span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    Start["..."] -.-&gt;|abstraction| NaturalTransformations[Natural Transforms]</span>
 <span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    Start2["..."] -.-&gt;|abstraction| Homotopy</span>
@@ -869,7 +848,6 @@ window.Quarto = {
 <span id="cb3-16"><a href="#cb3-16" aria-label="16"></a>    class Principia center;</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="lie-language-introduction-elimination" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="lie-language-introduction-elimination"><span class="header-section-number">14.1</span> LIE: Language, Introduction, &amp; Elimination</h2>
->>>>>>> 74fb366 (new chap)
 <div class="callout-note defn callout-defn" data-callout-family="defn">
 <p>To create a logical operator we need to specify three things:</p>
 <ul>
@@ -1074,12 +1052,12 @@ P \wedge (P \to Q) \vdash Q
 <p>Assume the hypothesis <span class="math inline">\(P\wedge (P\to Q)\)</span> is true. By left elimination of the conjunction <span class="math inline">\(\wedge-\)</span> we get that <span class="math inline">\(P\)</span> is valid. Then by the the right elimination <span class="math inline">\(\wedge -\)</span> we have that <span class="math inline">\(P\to Q\)</span> is valid. Hence we now have the conditions for the elimination rule <span class="math inline">\(@\)</span> of implication so we derive <span class="math inline">\(Q\)</span>$.</p>
 <hr>
 <p>As a proof DAG we can remove all the words which are there to write our thoughts linearly through time and instead just identify the ingredients.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>flowchart TD</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    Premise["P ∧ (P → Q)"] --&gt;|"E&lt;sub&gt;-∧&lt;/sub&gt;"| P["P"]</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    Premise --&gt;|"E&lt;sub&gt;-∧&lt;/sub&gt;"| PThenQ["P → Q"]</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    P --&gt; at["@"] </span>
-<span id="cb4-5"><a href="#cb4-5"></a>    PThenQ --&gt; at</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    at --&gt; Q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>flowchart TD</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    Premise["P ∧ (P → Q)"] --&gt;|"E&lt;sub&gt;-∧&lt;/sub&gt;"| P["P"]</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    Premise --&gt;|"E&lt;sub&gt;-∧&lt;/sub&gt;"| PThenQ["P → Q"]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    P --&gt; at["@"] </span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    PThenQ --&gt; at</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    at --&gt; Q</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
@@ -1114,27 +1092,27 @@ P \wedge (P \to Q) \vdash Q
     &amp; \Gamma, R\wedge S &amp; \vdash &amp; P \wedge Q
 \end{array}
 \]</span> To draw thus we can resort to comic strips where we draw separate panels that we can read together as an evolving story. In the first panel we have the reason <span class="math inline">\(R\)</span> that leads to <span class="math inline">\(P\)</span> through evidence <span class="math inline">\(f\)</span> and the reason <span class="math inline">\(S\)</span> that leads to <span class="math inline">\(Q\)</span> from evidence <span class="math inline">\(g\)</span>. In the second panel we have the conjunction of the reasons <span class="math inline">\(R\wedge S\)</span> that lead to the conjunction of the propositions <span class="math inline">\(P\wedge Q\)</span>. To make the diagrams we may as well replace <span class="math inline">\(A\vdash B\)</span> with <span class="math inline">\(A\to B\)</span> since it makes the diagram look familiar. For <span class="math inline">\(\Gamma\)</span> we shade the background to indicate that it is a context that is always present everything takes place within it.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>flowchart LR</span>
-<span id="cb5-2"><a href="#cb5-2"></a>    subgraph panel1["Context Γ"]</span>
-<span id="cb5-3"><a href="#cb5-3"></a>        direction LR</span>
-<span id="cb5-4"><a href="#cb5-4"></a>        R["Prop R"] --&gt;|f| P["Prop P"]</span>
-<span id="cb5-5"><a href="#cb5-5"></a>        S["Prop S"] --&gt;|g| Q["Prop Q"]</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    end</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    subgraph panel2["Context Γ after Conjunction"]</span>
-<span id="cb5-8"><a href="#cb5-8"></a>        direction LR</span>
-<span id="cb5-9"><a href="#cb5-9"></a>        R1["Prop R"] --&gt;|f| P1["Prop P"]</span>
-<span id="cb5-10"><a href="#cb5-10"></a>        RS["Prop R ∧ S"] --&gt;|I'&lt;sub&gt;∧&lt;/sub&gt;| PQ["Prop P ∧ Q"]</span>
-<span id="cb5-11"><a href="#cb5-11"></a>        S1["Prop S"] --&gt;|g| Q1["Prop Q"]</span>
-<span id="cb5-12"><a href="#cb5-12"></a>        style RS fill:#55ff55,stroke:#333,stroke-width:2px</span>
-<span id="cb5-13"><a href="#cb5-13"></a>        style PQ fill:#55ff55,stroke:#333,stroke-width:2px</span>
-<span id="cb5-14"><a href="#cb5-14"></a>    end</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    %% Trick to make the subgraph appear in order</span>
-<span id="cb5-16"><a href="#cb5-16"></a>    panel1 --- panel2</span>
-<span id="cb5-17"><a href="#cb5-17"></a>    linkStyle 5 stroke:transparent,fill:transparent</span>
-<span id="cb5-18"><a href="#cb5-18"></a>    </span>
-<span id="cb5-19"><a href="#cb5-19"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
-<span id="cb5-20"><a href="#cb5-20"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
-<span id="cb5-21"><a href="#cb5-21"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    subgraph panel1["Context Γ"]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>        direction LR</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>        R["Prop R"] --&gt;|f| P["Prop P"]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>        S["Prop S"] --&gt;|g| Q["Prop Q"]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    end</span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>    subgraph panel2["Context Γ after Conjunction"]</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>        direction LR</span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>        R1["Prop R"] --&gt;|f| P1["Prop P"]</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>        RS["Prop R ∧ S"] --&gt;|I'&lt;sub&gt;∧&lt;/sub&gt;| PQ["Prop P ∧ Q"]</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>        S1["Prop S"] --&gt;|g| Q1["Prop Q"]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>        style RS fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>        style PQ fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a>    end</span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a>    %% Trick to make the subgraph appear in order</span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a>    panel1 --- panel2</span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>    linkStyle 5 stroke:transparent,fill:transparent</span>
+<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a>    </span>
+<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
+<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
+<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a>    </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The elimination rules now start from the position of knowing <span class="math inline">\(P\wedge Q\)</span> is valid for some reason and extracting just the validity of <span class="math inline">\(P\)</span> or <span class="math inline">\(Q\)</span>. <span class="math display">\[
 \frac{
     \Gamma \vdash P \wedge Q
@@ -1148,21 +1126,21 @@ P \wedge (P \to Q) \vdash Q
     \Gamma \vdash Q
 }(E_{-\wedge})
 \]</span> Now when we diagram this we realize we also get similar rules from <span class="math inline">\(R\wedge S\)</span>. So when we put these together we get the following final diagram.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>flowchart LR</span>
-<span id="cb6-2"><a href="#cb6-2"></a>    subgraph panel["Context Γ Conjunction"]</span>
-<span id="cb6-3"><a href="#cb6-3"></a>        direction LR</span>
-<span id="cb6-4"><a href="#cb6-4"></a>        R["Prop R"] --&gt;|f| P["Prop P"]</span>
-<span id="cb6-5"><a href="#cb6-5"></a>        RS["Prop R ∧ S"] --&gt;|I'&lt;sub&gt;∧&lt;/sub&gt;| PQ["Prop P ∧ Q"]</span>
-<span id="cb6-6"><a href="#cb6-6"></a>        RS --&gt;|E&lt;sub&gt;-∧&lt;/sub&gt;&lt;sup&gt;R&lt;/sup&gt;| R["Prop R"]</span>
-<span id="cb6-7"><a href="#cb6-7"></a>        RS --&gt;|E&lt;sub&gt;∧-&lt;/sub&gt;&lt;sup&gt;S&lt;/sup&gt;| S["Prop S"]</span>
-<span id="cb6-8"><a href="#cb6-8"></a>        PQ --&gt;|E&lt;sub&gt;-∧&lt;/sub&gt;&lt;sup&gt;P&lt;/sup&gt;| P["Prop P"]</span>
-<span id="cb6-9"><a href="#cb6-9"></a>        PQ --&gt;|E&lt;sub&gt;∧-&lt;/sub&gt;&lt;sup&gt;Q&lt;/sup&gt;| Q["Prop Q"]</span>
-<span id="cb6-10"><a href="#cb6-10"></a>        S["Prop S"] --&gt;|g| Q["Prop Q"]</span>
-<span id="cb6-11"><a href="#cb6-11"></a></span>
-<span id="cb6-12"><a href="#cb6-12"></a>        style RS fill:#55ff55,stroke:#333,stroke-width:2px</span>
-<span id="cb6-13"><a href="#cb6-13"></a>        style PQ fill:#55ff55,stroke:#333,stroke-width:2px</span>
-<span id="cb6-14"><a href="#cb6-14"></a>    end</span>
-<span id="cb6-15"><a href="#cb6-15"></a>    style panel fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    subgraph panel["Context Γ Conjunction"]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>        direction LR</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>        R["Prop R"] --&gt;|f| P["Prop P"]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>        RS["Prop R ∧ S"] --&gt;|I'&lt;sub&gt;∧&lt;/sub&gt;| PQ["Prop P ∧ Q"]</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>        RS --&gt;|E&lt;sub&gt;-∧&lt;/sub&gt;&lt;sup&gt;R&lt;/sup&gt;| R["Prop R"]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>        RS --&gt;|E&lt;sub&gt;∧-&lt;/sub&gt;&lt;sup&gt;S&lt;/sup&gt;| S["Prop S"]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>        PQ --&gt;|E&lt;sub&gt;-∧&lt;/sub&gt;&lt;sup&gt;P&lt;/sup&gt;| P["Prop P"]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>        PQ --&gt;|E&lt;sub&gt;∧-&lt;/sub&gt;&lt;sup&gt;Q&lt;/sup&gt;| Q["Prop Q"]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>        S["Prop S"] --&gt;|g| Q["Prop Q"]</span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>        style RS fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>        style PQ fill:#55ff55,stroke:#333,stroke-width:2px</span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>    end</span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>    style panel fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>To make this diagram even more powerful let us observe that if we follow arrows two different ways and get to the same place, the results are equal. For example, <span class="math display">\[
 \begin{aligned}
 f \text{ after } E_{\wedge -}^{R} &amp; = E_{\wedge -}^{P} \text{ after } I'_{\wedge}\\
@@ -1212,263 +1190,6 @@ f \text{ after } E_{-\wedge}^{R} &amp; = E_{-\wedge}^{P} \text{ after } I'_{\wed
 <div class="callout-caution exercise callout-exercise" title="Exercise: LIE for OR" data-callout-family="exercise">
 <p>Using <span class="math inline">\(\vee\)</span> (“vee” but pronounced “or”) as the symbol for the logical operator “or”, write down a LIE for “or”.</p>
 </div>
-<<<<<<< HEAD
-</section>
-</section>
-<section id="specializing-conjunction-and-implication" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="specializing-conjunction-and-implication"><span class="header-section-number">11.4</span> Specializing Conjunction and Implication</h2>
-<p>So now let us put on the filter of a target form of judgment and see what we gain or loose from our above LIE rules for both operators.</p>
-<section id="language-of-and" class="level3">
-<h3 class="anchored" data-anchor-id="language-of-and">Language of “And”</h3>
-<p>The best tool language has for clarifying meaning is the use of a grammar. If we keep to a context-free grammar we can be certain that everyone reads the meaning the same. So here is a grammar we can give to “and” to fit our logical purposes. Note, in historical settings the term “conjunction” is often used as synonym for “and”. Using “conjunction” can often solve the annoying problem needing to use “and” as an every day word while also talking about “and” in a logical way.</p>
-<div class="callout-note defn callout-defn" title="Language for conjunction" data-callout-family="defn">
-<p>In symbolic language <span class="math inline">\(\wedge\)</span> (“wedge” but pronounced “and”) is used to represent the logical operator “and”. The grammar for “and” is given by the following production rule: <span class="math display">\[
-\tag{$L_{\wedge}$}
-\langle conjunction \rangle ::= \langle proposition \rangle \wedge \langle proposition \rangle
-\]</span> In natural language we can say “A and B” where A and B are propositions. Alternatives include <code>&amp;</code>, <code>&amp;&amp;</code> and <code>AND</code> but we will stick to <span class="math inline">\(\wedge\)</span> for the rest of this book.</p>
-</div>
-<p>Notice what we have not allowed are some the natural ways that “and” drifts in language, e.g.&nbsp;</p>
-<blockquote class="blockquote">
-<p>“7 is positive, odd and prime”</p>
-</blockquote>
-<p>would now need to be said more like this:</p>
-<blockquote class="blockquote">
-<p>“(7 is positive) and ((7 is odd) and (7 is prime))”</p>
-</blockquote>
-<p>We forgive most authors who slide back to the more natural language uses of “and” but it will strengthen your understanding to practice this in a precise way for a while.</p>
-<div class="callout-tip example callout-example" title="Programming Theoretical Conjunction" data-callout-family="example">
-<p>In a theoretical judgment where we forget about evidence then all we need from propositions is their truth value. We can ask for this in most programming languages by builtin logical operators that are written in a variety of ways. Here are some popular options.</p>
-<ul>
-<li><code>p &amp;&amp; q</code> is used in C, C++, Java, JavaScript, and R.</li>
-<li><code>p and q</code> is used in Python, Ruby, and Pascal.</li>
-<li><code>(and p q)</code> is used in Lisp and Scheme.</li>
-<li><code>p ∧ q</code> in Agda</li>
-</ul>
-<p>Note that these result in a truth value only, they do not hold on to any evidence.</p>
-</div>
-<div class="callout-tip example callout-example" title="Programming Computational Conjunction" data-callout-family="example">
-<p>In a computational judgment we need data (evidence) that proves the propositions. So a proposition <span class="math inline">\(P\)</span> has data <span class="math inline">\(x\)</span> that proves it, and a proposition <span class="math inline">\(Q\)</span> has data <span class="math inline">\(y\)</span> that proves it. We combine these as a joint proposition</p>
-<ul>
-<li><code>(P,Q)</code> in Scala</li>
-<li><code>Pair&lt;P,Q&gt;</code> in Java.</li>
-<li><code>tuple[P,Q]</code> in Python.</li>
-<li><code>std::pair&lt;P,Q&gt;</code> in C++.</li>
-<li><code>P × Q</code> in Agda.</li>
-</ul>
-<p>These are just the propositions, they will need data to be proved.</p>
-</div>
-<div class="callout-tip example callout-example" title="Programming Practical Conjunction" data-callout-family="example">
-<p>In a practical judgment of a proposition <span class="math inline">\(P\)</span> we associate some value <span class="math inline">\(\varepsilon\)</span> of truth, for example, a percentage of our believe the <span class="math inline">\(P\)</span> is true. If we have similar proposition <span class="math inline">\(Q\)</span> with a value <span class="math inline">\(\delta\)</span> then to judge <span class="math inline">\(P\wedge Q\)</span> we need to combine these values. Some of the options include</p>
-<ul>
-<li><code>min(ε,δ)</code> assumes whichever the lower of two percentages should be the default.</li>
-<li><code>ε*δ</code> assumes the two percentages are independent and so the product is a reasonable estimate of the joint probability.</li>
-</ul>
-</div>
-</section>
-<section id="introduction-rule-for-conjunction" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-rule-for-conjunction">Introduction Rule for conjunction</h3>
-<p>Now get into what drives the meaning of “and” by describing what must be present to ensure we can create an instance of its use. Logicians call these <strong>introduction rules</strong> because they introduce the symbols of the logical operator, in this case <span class="math inline">\(\wedge\)</span>.</p>
-<div class="callout-note defn callout-defn" title="Introduction Rule for 'AND'" data-callout-family="defn">
-<p>In natural language we use “and” when we combine two valid propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> to make a new valid proposition <span class="math inline">\(P\wedge Q\)</span>.</p>
-<p>Now in symbolic language to say a proposition is valid is to have judged it in a context. So we start with <span class="math display">\[
-\Gamma \vdash P
-\quad
-\Delta \vdash Q
-\]</span> for contexts <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(\Delta\)</span>. We conclude <span class="math display">\[
-\Gamma, \Delta \vdash P \wedge Q
-\]</span></p>
-</div>
-<p>The mix of words and symbols is helpful initially but when we start to work with logic it becomes much more of a calculation, a <em>calculus</em>. Because this type of calculus is a movement of sequences it is known as <strong>sequent calculus</strong>. In the full sequent calculus we can collapse the words to this: <span class="math display">\[
-\tag{$I_{\wedge}$}
-\begin{array}{rl}
-    \Gamma &amp;\vdash P\\
-    \Delta &amp; \vdash Q\\
-\hline
-    \Gamma, \Delta &amp; \vdash P \wedge Q
-\end{array}
-\]</span></p>
-<div class="callout-tip example callout-example" title="Introducing conjunction in programs" data-callout-family="example">
-<p>If we think of a program as making verified judgments then it makes sense that a proposition <span class="math inline">\(P\)</span> has data <span class="math inline">\(x\)</span> the proved it, and a proposition <span class="math inline">\(Q\)</span> has data <span class="math inline">\(y\)</span> that proved it. So to create data the proves both we can just hold on to both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The notation for this is an ordered pair <span class="math inline">\((x,y)\)</span>. The notations vary between programming languages, here are some popular options. Assuming <code>x</code> and <code>y</code> are already data:</p>
-<ul>
-<li><code>p=(x,y)</code> in Python, Ruby, and JavaScript.</li>
-<li><code>(define p (list x y))</code> in Lisp and Scheme.</li>
-<li><code>Pair p = new Pair(x,y)</code> in Java.</li>
-<li><code>p = &lt;x,y&gt;</code> in Magma.</li>
-<li><code>auto p = std::make_pair(x, y);</code> in C++.</li>
-</ul>
-</div>
-</section>
-<section id="elimination-rule-for-conjunction" class="level3">
-<h3 class="anchored" data-anchor-id="elimination-rule-for-conjunction">Elimination Rule for conjunction</h3>
-<p>Once we have conjoined two propositions we can carry them around as a single proposition until we intend to use it. It is at this point that we want the ability reach back and extract the to original propositions. Logicians call these <strong>elimination rules</strong> because they eliminate the symbols of the logical operator, in this case <span class="math inline">\(\wedge\)</span>. Something new happens with this step because it not one but two uses we expect. So technically we are after two elimination rules.</p>
-<div class="callout-note defn callout-defn" title="Elimination Rule for 'AND'" data-callout-family="defn">
-<p>In natural language we use <span class="math inline">\(P\wedge Q\)</span> so that we can know <span class="math inline">\(P\)</span> or that we can know <span class="math inline">\(Q\)</span>, or both. So we need to change from a context that judged <span class="math inline">\(P\wedge Q\)</span> to a context that judges <span class="math inline">\(P\)</span> and a context that judges <span class="math inline">\(Q\)</span>. In symbolic language we can write this as two elimination rules: <span class="math display">\[
-\frac{
-    \Gamma\vdash P\wedge Q
-}{
-    \Gamma \vdash P
-}(E_{-\wedge *})
-\qquad
-\frac{
-    \Gamma\vdash P\wedge Q
-}{
-    \Gamma \vdash Q
-}(E_{*\wedge -})
-\]</span></p>
-</div>
-<p>when we have a reason <span class="math inline">\(R\)</span> to know of a proposition <span class="math inline">\(P\wedge Q\)</span> given to us in a context <span class="math inline">\(\Gamma\)</span>. Then we can say that <span class="math inline">\(R\to P\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(P\)</span> and <span class="math inline">\(R\to Q\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(Q\)</span>. In diagram language we could say <span class="math inline">\(R\to (P\wedge Q)\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to both <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>flowchart LR</span>
-<span id="cb7-2"><a href="#cb7-2"></a>    subgraph panel1["Context Γ"]</span>
-<span id="cb7-3"><a href="#cb7-3"></a>        direction LR</span>
-<span id="cb7-4"><a href="#cb7-4"></a>        Reason --&gt; PQ["Prop P ∧ Q"]</span>
-<span id="cb7-5"><a href="#cb7-5"></a>    end</span>
-<span id="cb7-6"><a href="#cb7-6"></a>    subgraph panel2["Context Γ after Elimination"]</span>
-<span id="cb7-7"><a href="#cb7-7"></a>        direction LR</span>
-<span id="cb7-8"><a href="#cb7-8"></a>        Reason2["Reason R"] --&gt;|π₁| P2["Prop P"]</span>
-<span id="cb7-9"><a href="#cb7-9"></a>        Reason2 --&gt;|π₂| Q2["Prop Q"]</span>
-<span id="cb7-10"><a href="#cb7-10"></a>    end</span>
-<span id="cb7-11"><a href="#cb7-11"></a>    %% Trick to make the subgraph appear in order</span>
-<span id="cb7-12"><a href="#cb7-12"></a>    panel1 --- panel2</span>
-<span id="cb7-13"><a href="#cb7-13"></a>    linkStyle 5 stroke:transparent,fill:transparent </span>
-<span id="cb7-14"><a href="#cb7-14"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
-<span id="cb7-15"><a href="#cb7-15"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Finally in symbolic language this would be the following rule to add to our proof tree options.</p>
-<div class="callout-tip example callout-example" title="Elimination of conjunction in programs" data-callout-family="example">
-<ul>
-<li><code>p[0]</code> in Python, Ruby, and JavaScript.</li>
-<li><code>(car p)</code> for first, <code>(cdr p)</code> for rest, in Lisp and Scheme.</li>
-<li><code>p.fst</code> or <code>x where t=(x y)</code> in Haskell.</li>
-<li><code>p.first</code> in C++.</li>
-<li><code>p.1</code> in Magma.</li>
-</ul>
-</div>
-<div class="callout-caution exercise callout-exercise" title="Giraurd's Resource And" data-callout-family="exercise">
-<p>Let <span class="math inline">\(p\otimes q\)</span> be a logical operator that is like <span class="math inline">\(\wedge\)</span> but it is a resource operator. That is, if we have <span class="math inline">\(p\otimes q\)</span> then we can use <span class="math inline">\(p\)</span> or <span class="math inline">\(q\)</span> but not both. Write down the LIE for this operator.</p>
-</div>
-</section>
-</section>
-<section id="clarity-through-syntax" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="clarity-through-syntax"><span class="header-section-number">11.5</span> Clarity through Syntax</h2>
-<p>In order to be extra clear about our logic we want to set aside the words in natural language an use instead symbols or words in special fonts so as to treat the rules with some rigor that cannot miscommunicate out meaning. To so this we start to make a system that resembles arithmetic with is various additions, subtractions and other operators. When we calculate with any symbols we get what is known as a “Calculus”</p>
-<p>So far we have seen <span class="math inline">\(\lambda\)</span>-calculus and now we will be looking at two further Calculi, Propositional and Sequent. This is as good a place as any to pause and mention the list of “calculi” that exist in this course.</p>
-<p>As a cultural warning, when some says they are studying “Calculus” chances are they mean one of the first two. Our main objective is to start making logical operators and we will focus on “AND”. In assignments you will explore “OR” and “NOT”</p>
-<section id="objectives" class="level3">
-<h3 class="anchored" data-anchor-id="objectives">* Objectives</h3>
-<ol type="1">
-<li>Identify Premise and Conclusion from a logical expression.</li>
-<li>Use sequent calculus notation to write down logical operators such as AND, TRUE.</li>
-<li>Demonstration the use of introduction and elimination rules.</li>
-</ol>
-</section>
-<section id="and-by-sequent-calculus" class="level3">
-<h3 class="anchored" data-anchor-id="and-by-sequent-calculus">*And by Sequent Calculus</h3>
-</section>
-<section id="sequent-calculus-video" class="level3">
-<h3 class="anchored" data-anchor-id="sequent-calculus-video">Sequent calculus video</h3>
-<p><a href="https://www.youtube.com/embed/SRjXjxSkMRc?si=0LABi-fSVpJXAnaG">YouTube video player</a></p>
-</section>
-<section id="sequent-calculus-slides" class="level3">
-<h3 class="anchored" data-anchor-id="sequent-calculus-slides">Sequent Calculus Slides</h3>
-<p><a href="https://slides.com/jameswilson-3/sequent-calc/embed">Sequent Calculus</a></p>
-</section>
-<section id="sequents" class="level3">
-<h3 class="anchored" data-anchor-id="sequents">Sequents</h3>
-<p>Sequents means “parts of as a sequence” and the entire idea is to separate the premise from a conclusion. The devices to separate can just be a line, a long space, a word like “entails” but the most common one today is the turnstyle ⊢also said “vdash” since that is how you look it up as a font.</p>
-<p>Sequents calculus is the use of sequence to calculate truth in a specified logic. If our logic only has “and” we can only calculate how make an and (introduction) and how to apply an and (elimination). All this must be written in a language.</p>
-<ul>
-<li>(L)anguage : the alphabat, symbols, and grammar to be used in the sequents. If your sequents do not parse in the grammar then they don’t count.</li>
-<li>(I)ntroduction : what premise or premises do you need to get ot use your logical operator?</li>
-<li>(E)limination : what premises along with context do you need to use a logical operator?</li>
-</ul>
-<p>The LIE components of a logical operator are a good way to remember the steps.</p>
-</section>
-<section id="semantics" class="level3">
-<h3 class="anchored" data-anchor-id="semantics">Semantics</h3>
-<p>There is another way we can describe logical operators that get closer to our appreciation of what our data means. For example, 12 is even and positive is true because each of “12 is even” and “12 is positive” are true. If this is all we care about we can ignore the precise form in which we get the facts and focus purely on the values. This is known as “Semantic” reasoning.</p>
-<p>When it comes the semantics of AND we insist on one rule:</p>
-<p><strong>Only True AND True should be True </strong></p>
-<p>However this still leaves us lots of room to explore meaning.</p>
-<section id="classical-theoretical-logic" class="level4">
-<h4 class="anchored" data-anchor-id="classical-theoretical-logic">Classical Theoretical Logic</h4>
-<p>In classical logic, what experts call “KL” (the German initials) we insist every event is judged as true <span class="math inline">\(\top\)</span> or false <span class="math inline">\(\bot\)</span> with no middle values allowed (that rule is called the “Law of the Excluded Middle (LEM)”). That means that <span class="math inline">\(P\wedge Q\)</span> can take only 4 combinations.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 19%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><span class="math inline">\(P\)</span></th>
-<th><span class="math inline">\(Q\)</span></th>
-<th><span class="math inline">\(P\wedge Q\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><span class="math inline">\(\top\)</span></td>
-<td><span class="math inline">\(\top\)</span></td>
-<td><span class="math inline">\(\top\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\top\)</span></td>
-<td><span class="math inline">\(\bot\)</span></td>
-<td><span class="math inline">\(\bot\)</span></td>
-</tr>
-<tr class="odd">
-<td><span class="math inline">\(\bot\)</span></td>
-<td><span class="math inline">\(\top\)</span></td>
-<td><span class="math inline">\(\bot\)</span></td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\bot\)</span></td>
-<td><span class="math inline">\(\bot\)</span></td>
-<td><span class="math inline">\(\bot\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>Many times this information is recorded more compactly as a table where <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> label the rows and columns</p>
-<p><span class="math display">\[
-\begin{array}{|c|cc|}
-\hline
-\wedge &amp; \top &amp; \bot \\
-\hline
-\top &amp; \top &amp; \bot \\
-\bot &amp; \bot &amp; \bot\\
-\hline
-\end{array}
-\]</span> In fact when computing we often replace the symbols with 0 <span class="math inline">\(\bot\)</span> and 1 <span class="math inline">\(\top\)</span> and notice this is the multiplication rules of these numbers</p>
-<p><span class="math display">\[
-\begin{array}{|c|cc|}
-\hline
-* &amp; 1 &amp; 0 \\
-\hline
-1&amp; 1 &amp; 0 \\
-0 &amp; 0 &amp; 0\\
-\hline
-\end{array}
-\]</span></p>
-<p>Notice we could be using very different algorithms to calculate AND through semantics. We might be looking things up in a table or multiplying integers, or using transistors in special configuration called a logic-gate. The point is, if we look at AND as is values instead of its syntax we have the freedom to engineer how we actually apply AND. That can be a powerful feature.</p>
-</section>
-<section id="many-valued-logical-and" class="level4">
-<h4 class="anchored" data-anchor-id="many-valued-logical-and">Many valued logical AND</h4>
-<p>Finally, much of life is not so certain and while we may describe some things as true <span class="math inline">\(\top\)</span> we might struggle to conclude that all other things are false <span class="math inline">\(\bot\)</span>. For that many logics have been created that use further values. Sometimes it is a U for “Unknown”. Some times a “M” for mixed” (maybe a concept that has elements of truth and falsity), or “F(x)” for a “fuzzy truth $0x$” to measure quantities that vary continuously.</p>
-<p>I like to use the symbol <span class="math inline">\(+\)</span> because it seems typographically between <span class="math inline">\(\top\)</span> and <span class="math inline">\(\bot\)</span> and reminds me we could slide the bar up or down to introduce many subdivisions of “truth”. Obeying the rule of and: ONLY TRUE AND TRUE IS TRUE, we are still permitted to assign the remains values in different ways. For example, perhaps <span class="math inline">\(\top \wedge +\)</span> should be <span class="math inline">\(+\)</span>, meaning, if you have something true and something partially true, then the whole thing is partially true. Of course context gets to decide what will count as the new meaning of AND. We close by detailing one of the ANDs as defined by the logician Kleene.</p>
-<p><span class="math display">\[
-\begin{array}{|c|ccc|}
-\hline
-\wedge &amp; \top &amp; + &amp; \bot \\
-\hline
-\top &amp; \top &amp; + &amp; \bot \\
-+ &amp; + &amp; +  &amp; \bot \\
-\bot &amp; \bot &amp; \bot &amp; \bot\\
-\hline
-\end{array}
-\]</span></p>
-<p>In words: truth and truth is true; truth and partial truth is partially true but any value and a falsity is false. There are clearly many ways that this captures the mode of a logic for AND even when we cannot be certain that our data is good enough to make things exactly true or false. And to make this semantics into arithmetic, suppose we used 1 for <span class="math inline">\(\top\)</span>, 0 for <span class="math inline">\(+\)</span>, and -1 of <span class="math inline">\(\bot\)</span>. Then <span class="math inline">\(P\wedge Q\)</span> becomes merely <span class="math inline">\(\min(P,Q)\)</span>. For example <span class="math inline">\(\min(1,0)=0\)</span> which is what it means to have True and Partially true being only Partially true.</p>
-<p>As you develop your logic you may have many other ways to approach operators like this one. But resist the urge to call it an AND unless it obey the main rule: Only True and True is True.</p>
-=======
->>>>>>> 74fb366 (new chap)
 
 
 </section>

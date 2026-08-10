@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -76,10 +79,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccb035bea26c1e21f80f44cf7c27909.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-d3f7f8e73c8d287b30bcf59c2b563615.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -130,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -235,11 +238,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../01/Deduct-Induct-Abduct.html" class="sidebar-item-text sidebar-link">
-<<<<<<< HEAD
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deductive, Inductive, and Abductive reasoning</span></span></a>
-=======
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Deduct-Induct-Abduct.html</span></span></a>
->>>>>>> 74fb366 (new chap)
   </div>
 </li>
           <li class="sidebar-item">
@@ -956,10 +955,10 @@ x=y \equiv \forall P.(P(x) \leftrightarrow P(y))
 </div>
 <p>A major issue in programming is how to provide this notion.</p>
 <div class="callout-tip example callout-example" data-callout-family="example">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="op">==</span> y</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="dt">boolean</span> <span class="fu">equals</span><span class="op">(</span><span class="bu">Object</span> that<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="cf">return</span> <span class="kw">this</span> <span class="op">==</span> that<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>x <span class="op">==</span> y</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="dt">boolean</span> <span class="fu">equals</span><span class="op">(</span><span class="bu">Object</span> that<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>  <span class="cf">return</span> <span class="kw">this</span> <span class="op">==</span> that<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="counting-quantifiers-and-uniqueness" class="level2" data-number="16.4">
@@ -978,33 +977,33 @@ x=y \equiv \forall P.(P(x) \leftrightarrow P(y))
 <p>Meanwhile a rule like contraction clearly seems suspect in concepts like “have a USB port” or “have an egg” where counting seems crucial for the logic. A logic that cares about such counting is often called a “linear logic” (if it needs an exact match) or an “affine logic” (if it is upper bounded by a count). You can find in programming languages like <a href="https://www.idris-lang.org/">Idris</a> and <a href="https://www.rust-lang.org/">Rust</a> that allow for these logics. They are especially useful when we care to track that all our files are and memory are used and released as expected, and to boost the security guarantees of vulnerable software. It is hard to ease drop on data if you can only read it once.</p>
 <div class="callout-tip example callout-example" title="Linear Logic" data-callout-family="example">
 <p>The following Idris code shows how to specify that a value can only be used once. Hence the following fails because it used the value <code>hasUSB</code> twice because the preceeding number 1 instruct Idris to use that value exactly once.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">canKeyAndMouse</span> <span class="ot">:</span> (<span class="dv">1</span> hasUSB <span class="ot">:</span> <span class="dt">PortScanner</span>) <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>canKeyAndMouse hasUSB <span class="fu">=</span> hasUSB <span class="fu">&amp;&amp;</span> hasUSB </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="fu">canKeyAndMouse</span> <span class="ot">:</span> (<span class="dv">1</span> hasUSB <span class="ot">:</span> <span class="dt">PortScanner</span>) <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>canKeyAndMouse hasUSB <span class="fu">=</span> hasUSB <span class="fu">&amp;&amp;</span> hasUSB </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>It also fails if you do not use the value at all.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">canKeyAndMouse</span> <span class="ot">:</span> (<span class="dv">1</span> hasUSB <span class="ot">:</span> <span class="dt">PortScanner</span>) </span>
-<span id="cb3-2"><a href="#cb3-2"></a>                    <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>canKeyAndMouse hasUSB <span class="fu">=</span> false </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">canKeyAndMouse</span> <span class="ot">:</span> (<span class="dv">1</span> hasUSB <span class="ot">:</span> <span class="dt">PortScanner</span>) </span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>                    <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>canKeyAndMouse hasUSB <span class="fu">=</span> false </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Idris is only happy if you use the inputs exactly once, so you need to give it to options. Each gets used exactly once and captures the idea of our logic.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">canKeyAndMouse</span> <span class="ot">:</span> (<span class="dv">1</span> hasUSB <span class="ot">:</span> <span class="dt">PortScanner</span>,</span>
-<span id="cb4-2"><a href="#cb4-2"></a>                  <span class="dv">1</span> hasOtherUSB <span class="ot">:</span> <span class="dt">PortScanner</span>)</span>
-<span id="cb4-3"><a href="#cb4-3"></a>                  <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>canKeyAndMouse hasUSB hasOtherUSB <span class="fu">=</span> </span>
-<span id="cb4-5"><a href="#cb4-5"></a>                    hasUSB <span class="fu">&amp;&amp;</span> hasOtherUSB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="fu">canKeyAndMouse</span> <span class="ot">:</span> (<span class="dv">1</span> hasUSB <span class="ot">:</span> <span class="dt">PortScanner</span>,</span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>                  <span class="dv">1</span> hasOtherUSB <span class="ot">:</span> <span class="dt">PortScanner</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>                  <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>canKeyAndMouse hasUSB hasOtherUSB <span class="fu">=</span> </span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>                    hasUSB <span class="fu">&amp;&amp;</span> hasOtherUSB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout-tip example callout-example" title="Affine Logic" data-callout-family="example">
 <p>Rust makes a similar idea practical with ownership. A value once used transfer ownership and in effect disappears and cannot be reused. This is why the following could would fail.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">let</span> data <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Pa$$w0rd"</span>)<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>send_to_captain(data)<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="co">// Next line causes error; data moved.</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>send_to_criminal(data)<span class="op">;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="kw">let</span> data <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Pa$$w0rd"</span>)<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>send_to_captain(data)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a><span class="co">// Next line causes error; data moved.</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>send_to_criminal(data)<span class="op">;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Here is a safe use of <code>data</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">let</span> data <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Pa$$w0rd"</span>)<span class="op">;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>send_to_captain(data)<span class="op">;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="co">// Next line causes error; data moved.</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>send_to_criminal(data)<span class="op">;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="kw">let</span> data <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Pa$$w0rd"</span>)<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>send_to_captain(data)<span class="op">;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a><span class="co">// Next line causes error; data moved.</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>send_to_criminal(data)<span class="op">;</span> </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Unlike Idris, Rust does not require you to use the value.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">let</span> data <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Pa$$w0rd"</span>)<span class="op">;</span>  </span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="co">// data never used, but that's ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="kw">let</span> data <span class="op">=</span> <span class="dt">String</span><span class="pp">::</span>from(<span class="st">"Pa$$w0rd"</span>)<span class="op">;</span>  </span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a><span class="co">// data never used, but that's ok</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Though nothing should stop you from learning languages like Idris and Rust, this article should convince you firstly of valuable uses for different than expected logic. When your situation demands you can involve future study and coding assistants to select the programming language that supports your logic best.</p>
 </section>
@@ -1024,16 +1023,16 @@ x=y \equiv \forall P.(P(x) \leftrightarrow P(y))
 &amp; (E_{\forall})\\
 \end{aligned}
 \]</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>flowchart LR</span>
-<span id="cb8-2"><a href="#cb8-2"></a>  subgraph forall["In Gamam"]</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    c[constant c]</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    P[P(c)]</span>
-<span id="cb8-5"><a href="#cb8-5"></a>  end</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  subgraph Exists["In Gamma"]</span>
-<span id="cb8-7"><a href="#cb8-7"></a>    Forall[For all x, P(x)]</span>
-<span id="cb8-8"><a href="#cb8-8"></a>  end</span>
-<span id="cb8-9"><a href="#cb8-9"></a>  c --&gt; P</span>
-<span id="cb8-10"><a href="#cb8-10"></a>  Forall --&gt; P</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>flowchart LR</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>  subgraph forall["In Gamam"]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    c[constant c]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    P[P(c)]</span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>  end</span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>  subgraph Exists["In Gamma"]</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>    Forall[For all x, P(x)]</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>  end</span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>  c --&gt; P</span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>  Forall --&gt; P</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="existential-quantifier." class="level3">
 <h3 class="anchored" data-anchor-id="existential-quantifier.">Existential quantifier.</h3>
