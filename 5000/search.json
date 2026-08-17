@@ -8,5 +8,82 @@
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>index.html</span>"
     ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html",
+    "href": "07/Adapative-logic.html",
+    "title": "34  Using Adaptive Logic",
+    "section": "",
+    "text": "34.1 Overview\nThe point of an adaptive logic for computation is to put a formal system of reasoning around various situations in computing that may fail in unpredictable ways, but are also somewhat common occurrences. The loose plan is to create two logics, one stronger than the other. The weaker logic represents the actual computation, and the stronger logic is like a virtual machine running within our systems with its ideal rules. When the ideal rules break, the weaker logic takes over.",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html#overview",
+    "href": "07/Adapative-logic.html#overview",
+    "title": "34  Using Adaptive Logic",
+    "section": "",
+    "text": "Signs of an Adaptive Logic Scenario\n\nOpaque causes of error.\nClear restart option(s).\nRules of ideal world have a weaker realistic version.\n\n\n\nWhat we don’t plan to model adaptively\nThere two extremes we don’t care to consider.\n\nWhen there is a bug. If you failed to call close on a file at the end of your program it caused files to get corrupted, you really should fix your code, instead of fussing the rules of logic to explain it away.\nWhen event are outside our control. How a computer behaves when you spill hot coffee on the keyboard is a step too far in most program designs.\n\n\n\nAdaptive logic is good for Abnormalities\nIn a word addressable “Abnormalities”.\n\nYour program works fine in your environment but not when run on other computers.\nYou can’t reproduce the events reliably.\nThere are multiple ways to reach the problem and they all point to different causes.",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html#a-scenario-of-abnormalities",
+    "href": "07/Adapative-logic.html#a-scenario-of-abnormalities",
+    "title": "34  Using Adaptive Logic",
+    "section": "34.2 A Scenario of Abnormalities",
+    "text": "34.2 A Scenario of Abnormalities\nLet’s look into one scenario where we model the behavior of closing an application.\n\nDesigned behavior\nFirst lets look at the design goal. You have an application where users can create some data. You have the following design goal:When a user closes the app with unsaved work, the app should put up a warning telling them to go back and save the work, or delete it and continue closing. In symbols:\n\n(U) = “There exists unsaved work”\n(C) = “Close application”; hence, (C) = “Do not close application”.\n(D) = “Delete unsaved work.”\n\nThe rule given is that necessarily (U) and possibly (C) leads to ((C)) or (D). More precisely((U)( C) (C)D)\n\nTechnical Remark. We are using qualifiers “necessary” () and “possibly” () to clarify the subtle point that closing is a process over time. If we strip these away and write(UC (C)D)it would read as saying that (C) is true, i.e. (UC C) is one of the elimination rules of an AND. So that would seem to immediately remove even the option not to close, which we actually want our user to have. By using “possibly C” ((C)), we are chasing down the scenario where it is possible to have (C) or (C). Given that we put in qualifiers it makes sense also to require that there actually be unsaved work before warning the user about loosing it; hence, (U).In reality the better qualifiers are from temporal modal logic that are better suited at describing knowledge over time. As we are not studying such logics we leave this as a hint that if you continue in this direction there are many resources to help.\n\n\n\nRace / Deadlock Scenario\n\nEvent A global resource warning prompts you to shut apps down. In haste, you attempt to close an app with unsaved work. You see the warning dialog and click Abort (intending (C)). Meanwhile, the system begins shutting apps down automatically (forcing (C)).\nResult The system enters a confused state where both (C) and (C) are active (e.g., competing threads: one closing, one restoring).\n\nFormally, we have:(C(C))Now, classically, this shouldn’t be possible, and it is not in our classical theoretical logic. But reality trumps theory. From the perspective of the program we are best able to explain the current situation as a logic that allows such contradictions. (Perhaps a 3 valued logic like a paraconsistent logic).",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html#modeling-the-problem",
+    "href": "07/Adapative-logic.html#modeling-the-problem",
+    "title": "34  Using Adaptive Logic",
+    "section": "34.3 Modeling the Problem",
+    "text": "34.3 Modeling the Problem\nHaving a logic that allows for inconsistency does not mean to give up on reasoning, rather it allows us to embrace fixes and clarifications that don’t seek to diagnose the inscrutable circumstances that got us here but rather focus on what to do next. Let us write down precise differences in our classical expectation and what it is we actually witnessed.\n\nUpper Logic\nClassical logic would push toward resolution via Disjunctive Syllogism (()):(())implying the system should delete the unsaved work and proceed to close. Let’s call this the Upper Logic UL, which is the logic we think should be there.\n\n\nLower Logic\nBut in reality, the system hung due to a race/deadlock (two threads enforcing (C) and (C)). The contradiction persists instead of resolving. At a lower level we have a logic where () is not validated. Instead we have much more boring derivation that requires no special rules at all.(())We call this a fact because you can prove this any logic that Ands (()), Ors (()), and Nots (()). All we are saying is that EITHER we delete the unsaved work and continue, or else we are in a confused state of ((C C)). Let’s call this the Lower Logic LL, which is the logic we actually have.\n\n\nAbnormalities\nWe can treat (C(C)) as an abnormality (Ab()) triggered by data () (e.g. running out of memory and entering an emergency shutdown). Now we can return to the classical rule and describe it as n Conditional Rule (CR) meaning it depends on not having the abnormality (Ab()).(C,  (C)D {CL} D C,  (C)D {CL} D Ab())We would say simply that (C, (C)D _{CL} D) is “Conditional Rule”, conditioned on the data (). As long as we avoid the abnormality (Ab()) we have the intended behavior. Rules in the lower logic LL are by design always Unconditional Rules (UR).\n\n\nSummary of the Model\nWhat have we achieved? We have managed to create an underpinning of logic where the behavior we are witnessing is not illogical. It is merely what this logic allows. And because of this we can now design a logical step to follow this. Ideally we fix the “problem” – i.e. the case (C(C)) which doesn’t fit our intended classical expectation.",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html#fixing-the-problem",
+    "href": "07/Adapative-logic.html#fixing-the-problem",
+    "title": "34  Using Adaptive Logic",
+    "section": "34.4 Fixing the problem",
+    "text": "34.4 Fixing the problem\nHaving a lower logic that accurately separate the abnormal behavior, if they occur we no exactly problem to try to address. Unlike default logic, where one rule overrides another in cases of confusion, we do not need to know precisely how created the abnormality. We simply observe that it occurred and proceed with a logic to handle that scenario. For example, it might be that in a confused state the data the user has is also corrupted and could cause harm to our system if not removed. We might therefore proceed with a rule that deletes all user data hasn’t been saved. (E.g. removing all temporary files.).((CC)D())Or perhaps we know this application space is safe and we have other means to protect against errors so even a partially save project might be reconstructed from temporary files when the application is restarted. So we might purposefully save all temporary files overriding any user decisions.((CC)D())Whatever the design choices, we now have a system of logic to express logical outcomes in the face of inconsistent data.\n\nThe catch\nThe one obstacle is that if we proceed with conditional rules only to find conclusions that are eventually abnormal, then we leave behind inconclusive logic. So what we maintain is a rule that as prove our steps we leave a mark next to any claim which is later invalidated by an abnormality. This means that ever step in our proof maintains an ongoing list of possible abnormalities. If any should occur we search back wards and invalid (mark) all rules that are conditioned on that abnormality. Those no longer count towards the reasoning leaving behind a completely logic progression of step, if only in retrospect. The precise mechanics of back tracking could seem to take a long time to search. But there is a weapon in the programmer’s arsenal called “dynamic programming” (or memorization) which in effects reuses previously made calculations and behaves much more efficiently. You can study those details in a future algorithms class. For now, we simply apply in our specific examples.",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html#revisiting-the-scenario",
+    "href": "07/Adapative-logic.html#revisiting-the-scenario",
+    "title": "34  Using Adaptive Logic",
+    "section": "34.5 Revisiting the Scenario",
+    "text": "34.5 Revisiting the Scenario\nLet us imagine that we take the pessimistic solution. We are running several apps at once when our computer tells us it is dangerously low on memory and recommends we close applications. We panic and start closing application, one of them having unsaved work which triggers the warning. We click to abort the close so we can save the file, but by this point the operating system is in emergency mode and sending mandatory close calls to all apps. We enter an abnormality of (CC). This violates Conditional Rule and drops our app out of the hypothetical classical logic into the real world with inconsistencies. Then locating the pessimistic rule, we delete all the user data. Miraculously it was actually one of our temporary files that was growing in size and causing the problem in the first place. Having just deleted it, the system recovers and goes back to functioning normally. Crisis averted, some user data lost.",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
+  },
+  {
+    "objectID": "07/Adapative-logic.html#adaptive-logic-tables",
+    "href": "07/Adapative-logic.html#adaptive-logic-tables",
+    "title": "34  Using Adaptive Logic",
+    "section": "34.6 Adaptive Logic Tables",
+    "text": "34.6 Adaptive Logic Tables\nLet us work out the formal adaptive logic table for this scenario using the following propositions: Defined Propositions:\n\n(U) = “There exists unsaved work”\n(C) = “Close application”\n(D) = “Delete unsaved work”\n\nAdditional Propositions:\n\n(M) = “Memory warning issued by system”\n(E) = “Emergency system shutdown initiated”\n(Ab()) = “Abnormality: ((C C))” where () represents the race condition data\n\nRules:\n\nCR1 (Conditional): (U C (C D)) [Standard close behavior - conditional on no abnormality] Abnromality (Ab()=C(C)) when () is some complex race condition.\n(Unconditional): (M E C) [Emergency close - always applies]\n(Unconditional): (U C ((C C) D)) [Lower logic reality]\n(Pessimistic Rule): ((C C) D) [Abnormality resolution]\n\nStepFormulaRule AppliedStatusNotes\n1(M)Premise✓ ValidMemory warning occurs\n2(U)Premise✓ ValidUnsaved work exists\n3(E)From 1✓ ValidSystem enters emergency mode\n4(C)From 1,3 by UR1✓ ValidEmergency close initiated\n5(C)User attempts abort✓ ValidUser clicks abort\n6((C D))From 2,4 by CR1⚠️ MARKED by 7Conditional rule violated\n7((CC))From 4,5✓ ValidAbnormality detected\n8(Ab())From 7✓ ValidRace condition abnormality\n9(D)From 7 by PR✓ ValidPessimistic solution applied\n10RecoverySystem stabilizes✓ ValidMemory freed, crisis resolved\n\nAdaptive Backtracking.\n\nStep 6 is made by CR1, but initially conditional on the absence of the abnormality (Ab()).\nStep 7 triggers the abnormality (Ab()) which marks 6 and removes it from further consideration.\nThe valid logical thus now skips 6 and goes (1).\nSo in the end, the pessimistic rule takes over and deletes the file.\n\nThis table demonstrates how adaptive logic handles the contradiction by:\n\nDetecting abnormalities when classical logic fails\nMarking invalid steps that depended on violated conditions\nApplying specialized rules (PR) to resolve abnormal states\nMaintaining logical consistency through retrospective validation",
+    "crumbs": [
+      "<i class=\"fa-solid fa-kiwi-bird fa-la\"></i> VII. Default and Adaptive Logic",
+      "<span class='chapter-number'>34</span>  <span class='chapter-title'>Using Adaptive Logic</span>"
+    ]
   }
 ]
