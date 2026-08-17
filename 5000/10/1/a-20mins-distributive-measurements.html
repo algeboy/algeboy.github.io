@@ -921,9 +921,16 @@ window.Quarto = {
 <section id="example-3-counting-measure-latex" class="level3">
 <h3 class="anchored" data-anchor-id="example-3-counting-measure-latex">Example 3:** Counting Measure <img src="https://colostate.instructure.com/equation_images/%255Czeta?scale=1.125" class="img-fluid" alt="LaTeX: "></h3>
 <p>Given (E), the number of integers in (E) is the counting measure. As formula:</p>
-<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Czeta(E)%2520%253A%253D%2520%257CE%255Ccap%2520%255Cmathbb%257BZ%257D%257C?scale=1.png" class="img-fluid" alt="LaTeX: (E) := |E|">.</p>
+<p>[ (E) := |E| ]</p>
 <p>Notice this often does take different values on intervals</p>
-<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Czeta%255CBig(%2520(0%252C1)%2520%255CBig)%2520%2526%2520%253D%2520%257C%255C%257B%2520n%255Cin%255Cmathbb%257BZ%257D%255Cmid%25200%253Cn%253C1%255C%257D%257C%2520%253D%2520%257C%255C%257B%255C%257D%257C%253D0%2520%2526%2520%250A%255Czeta%255CBig(%2520%255B0%252C1)%2520%255CBig.png" class="img-fluid" alt="LaTeX:">%2520%2526%2520%253D%2520%257C%255C%257B%2520n%255Cin%255Cmathbb%257BZ%257D%255Cmid%25200%255Cleq%2520n%255C%2520%253C1%255C%257D%257C%2520%253D%2520%257C%255C%257B%25200%2520%255C%257D%257C%253D1%255C%255C%250A%255Czeta%255CBig(%2520(0%252C1%255D%2520%255CBig)%2520%2526%2520%253D%2520%257C%255C%257B%2520n%255Cin%255Cmathbb%257BZ%257D%255Cmid%25200%253Cn%255Cleq1%255C%257D%257C%2520%253D%2520%257C%255C%257B1%255C%257D%257C%253D1%2520%2526%2520%250A%255Czeta%255CBig(%2520%255B0%252C1%255D%2520%255CBig)%2520%2526%2520%253D%2520%257C%255C%257B%2520n%255Cin%255Cmathbb%257BZ%257D%255Cmid%25200%255Cleq%2520n%2520%255Cleq1%255C%257D%257C%2520%253D%2520%257C%255C%257B%25200%252C1%2520%255C%257D%257C%253D2%250A%255Cend%257Baligned%257D?scale=1)</p>
+<p><span class="math display">\[
+\begin{aligned}
+\zeta\Big((0,1)\Big) &amp;= |\{n\in\mathbb{Z}\mid 0&lt;n&lt;1\}| = |\varnothing| = 0 \\
+\zeta\Big([0,1)\Big) &amp;= |\{n\in\mathbb{Z}\mid 0\leq n&lt;1\}| = |\{0\}| = 1 \\
+\zeta\Big((0,1]\Big) &amp;= |\{n\in\mathbb{Z}\mid 0&lt;n\leq 1\}| = |\{1\}| = 1 \\
+\zeta\Big([0,1]\Big) &amp;= |\{n\in\mathbb{Z}\mid 0\leq n\leq 1\}| = |\{0,1\}| = 2
+\end{aligned}
+\]</span></p>
 <p>Some common places to encounter a counting measure like this include:</p>
 <ul>
 <li>Counting the number of steps in a loop, e.g.&nbsp;<code>for i in [a...b]</code> Use <img src="https://colostate.instructure.com/equation_images/%255Czeta(%255Ba%252Cb%255D)?scale=1.png" class="img-fluid" alt="LaTeX: ([a,b])">.</li>

@@ -811,7 +811,7 @@ window.Quarto = {
   <li><a href="#context-free-grammars" id="toc-context-free-grammars" class="nav-link" data-scroll-target="#context-free-grammars"><span class="header-section-number">7.2</span> Context-Free Grammars</a>
   <ul class="collapse">
   <li><a href="#productions-and-backus-naur-form" id="toc-productions-and-backus-naur-form" class="nav-link" data-scroll-target="#productions-and-backus-naur-form">Productions and Backus-Naur Form</a></li>
-  <li><a href="#mathematical-grammars-and-latex" id="toc-mathematical-grammars-and-latex" class="nav-link" data-scroll-target="#mathematical-grammars-and-latex">Mathematical grammars and <span class="math inline">\(\LaTeX\)</span></a></li>
+  <li><a href="#mathematical-grammars-and-latex" id="toc-mathematical-grammars-and-latex" class="nav-link" data-scroll-target="#mathematical-grammars-and-latex">Mathematical grammars and LaTeX</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.3</span> Summary</a></li>
   </ul>
@@ -1007,12 +1007,12 @@ This grammar now accepts the strings
 </div>
 </section>
 <section id="mathematical-grammars-and-latex" class="level3">
-<h3 class="anchored" data-anchor-id="mathematical-grammars-and-latex">Mathematical grammars and <span class="math inline">\(\LaTeX\)</span></h3>
+<h3 class="anchored" data-anchor-id="mathematical-grammars-and-latex">Mathematical grammars and LaTeX</h3>
 <p>In mathematics we permit a notation that is more than left-to-right. For example <span class="math display">\[
 \frac{1+x}{2+y}\qquad
 \sum_{i=1}^5 a_n\qquad
 \int_0^1 \sqrt{e^{7x}} dx
-\]</span> To explain this we can use a grammar that flattens the notation into a left-to-right string. One such grammar is known as <span class="math inline">\(\TeX\)</span> by famed Mathematician/Computer Scientist <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a> and its extension <span class="math inline">\(\LaTeX\)</span> by Turing Award winner <a href="https://en.wikipedia.org/wiki/Leslie_Lamport">Leslie Lamport</a>. These are worth learning in some form as they are used everywhere form math, logic, computer science and data science. Here the basics.</p>
+\]</span> To explain this we can use a grammar that flattens the notation into a left-to-right string. One such grammar is known as TeX by famed Mathematician/Computer Scientist <a href="https://en.wikipedia.org/wiki/Donald_Knuth">Donald Knuth</a> and its extension LaTeX by Turing Award winner <a href="https://en.wikipedia.org/wiki/Leslie_Lamport">Leslie Lamport</a>. These are worth learning in some form as they are used everywhere form math, logic, computer science and data science. Here the basics.</p>
 <ul>
 <li>Write normal words but use escape characters <code>\</code> to indicate special symbols. For example <code>\alpha</code> makes <span class="math inline">\(\alpha\)</span> and <code>\beta</code> makes <span class="math inline">\(\beta\)</span>.</li>
 <li>Dollar signs surround math expressions. For example <code>$x^2$</code> makes <span class="math inline">\(x^2\)</span> and <code>$e^{7x}$</code> makes <span class="math inline">\(e^{7x}\)</span>. In some systems use <code>\(</code> and <code>\)</code> instead of <code>$</code> to surround math expressions.</li>
@@ -1022,7 +1022,7 @@ This grammar now accepts the strings
 <li><code>\sum_{i=1}^5 a_n</code> makes summations <span class="math inline">\(\sum_{i=1}^5 a_n\)</span></li>
 <li><code>\int_0^1 \sqrt{e^{7x}} dx</code> makes integrals <span class="math inline">\(\int_0^1 \sqrt{e^{7x}} dx\)</span></li>
 </ul>
-<p>You can place <span class="math inline">\(\LaTeX\)</span> inside many file formats including Markdown, Quarto, and Jupyter notebooks. It also works with LLMs and many word processors including Microsoft Word and Google Docs. When a project is large enough it may be beneficial to work exclusively in <span class="math inline">\(\LaTeX\)</span> which ranges from shared webpages like <a href="https://www.overleaf.com/">Overleaf</a> and open source installations <a href="https://tug.org/">TeX User Group</a>.</p>
+<p>You can place LaTeX inside many file formats including Markdown, Quarto, and Jupyter notebooks. It also works with LLMs and many word processors including Microsoft Word and Google Docs. When a project is large enough it may be beneficial to work exclusively in LaTeX which ranges from shared webpages like <a href="https://www.overleaf.com/">Overleaf</a> and open source installations <a href="https://tug.org/">TeX User Group</a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Chomsky Hierarchy">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1077,7 +1077,7 @@ Note
 <h2 data-number="7.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.3</span> Summary</h2>
 <ul>
 <li>Grammar converts sentences into diagrams through a process called <strong>parsing</strong> resulting a <strong>parse diagram</strong>.</li>
-<li>Mathematical grammar involves spacial notation such as subscripts and superscripts, groupings, fractions etc. The <span class="math inline">\(\LaTeX\)</span> system is a grammar that flattens these into a left-to-right string of characters. It is widely used in mathematics, logic, computer science, and data science.</li>
+<li>Mathematical grammar involves spacial notation such as subscripts and superscripts, groupings, fractions etc. The LaTeX system is a grammar that flattens these into a left-to-right string of characters. It is widely used in mathematics, logic, computer science, and data science.</li>
 </ul>
 
 
