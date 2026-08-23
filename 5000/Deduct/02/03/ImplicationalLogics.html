@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>implicationallogics – 5000 Years of Modern Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+/*
+ * Quarto loads MathJax after this header.  Keep \text{...} in mathematical
+ * expressions in the document's native text face rather than MathJax's
+ * fallback math text face, whose metrics can make mixed text/math rows look
+ * vertically uneven.
+ */
+window.MathJax = {
+	chtml: {
+		mtextInheritFont: true
+	}
+};
+
+/* Circuit labels are inserted after Quarto's initial MathJax pass. Wait for
+ * startup, then typeset only the newly generated circuit region. */
+window.typesetDynamicMath = function (roots, attempts = 50) {
+	const targets = Array.from(roots || []).filter(Boolean);
+	if (!targets.length) return Promise.resolve();
+	const mathJax = window.MathJax;
+	if (mathJax?.startup?.promise) {
+		return mathJax.startup.promise
+			.then(() => mathJax.typesetPromise?.(targets))
+			.catch(() => undefined);
+	}
+	if (typeof mathJax?.typesetPromise === 'function') {
+		return mathJax.typesetPromise(targets).catch(() => undefined);
+	}
+	if (attempts <= 0) return Promise.resolve();
+	return new Promise(resolve => {
+		setTimeout(() => resolve(window.typesetDynamicMath(targets, attempts - 1)), 100);
+	});
+};
+</script>
+<script>
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/book-enhancements.js' },
+		{ src: 'scripts/link-icons.js' },
+		{ src: 'scripts/topic-graph.js' },
+		{ src: 'scripts/inline-compass.js' },
+		{ src: 'scripts/toc-compass.js' },
+		{ src: 'assets/quick-check.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/inline-compass.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/topic-graph.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/circuit-content.css">
+<link rel="stylesheet" href="../../../quarto-runtime/assets/quick-check.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      5000 Years of Modern Computing
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">5000 Years of Modern Computing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../Deduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../Induct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../Abduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../TopicMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic Map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#conjunction-and-implication-in-contexts" id="toc-conjunction-and-implication-in-contexts" class="nav-link active" data-scroll-target="#conjunction-and-implication-in-contexts"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Conjunction and Implication in contexts</a>
+  <ul class="collapse">
+  <li><a href="#falsifying-conjunction-wedge-and-implication-to" id="toc-falsifying-conjunction-wedge-and-implication-to" class="nav-link" data-scroll-target="#falsifying-conjunction-wedge-and-implication-to"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Falsifying Conjunction <span class="math inline">\(\wedge\)</span> and Implication <span class="math inline">\(\to\)</span></a></li>
+  <li><a href="#verifying-conjunction-wedge-and-implication-to" id="toc-verifying-conjunction-wedge-and-implication-to" class="nav-link" data-scroll-target="#verifying-conjunction-wedge-and-implication-to"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Verifying Conjunction <span class="math inline">\(\wedge\)</span> and Implication <span class="math inline">\(\to\)</span></a></li>
+  <li><a href="#conjunction-and-implication-in-theory" id="toc-conjunction-and-implication-in-theory" class="nav-link" data-scroll-target="#conjunction-and-implication-in-theory"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Conjunction and Implication in Theory</a></li>
+  <li><a href="#conjunction-and-implication-in-practice" id="toc-conjunction-and-implication-in-practice" class="nav-link" data-scroll-target="#conjunction-and-implication-in-practice"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Conjunction and Implication in Practice</a></li>
+  <li><a href="#syntax-and-semantics" id="toc-syntax-and-semantics" class="nav-link" data-scroll-target="#syntax-and-semantics"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Syntax and Semantics</a></li>
+  <li><a href="#language-of-and" id="toc-language-of-and" class="nav-link" data-scroll-target="#language-of-and"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Language of “And”</a></li>
+  <li><a href="#introduction-rule-for-conjunction" id="toc-introduction-rule-for-conjunction" class="nav-link" data-scroll-target="#introduction-rule-for-conjunction"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Introduction Rule for conjunction</a></li>
+  <li><a href="#elimination-rule-for-conjunction" id="toc-elimination-rule-for-conjunction" class="nav-link" data-scroll-target="#elimination-rule-for-conjunction"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Elimination Rule for conjunction</a></li>
+  <li><a href="#clarity-through-syntax" id="toc-clarity-through-syntax" class="nav-link" data-scroll-target="#clarity-through-syntax"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Clarity through Syntax</a>
+  <ul class="collapse">
+  <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Objectives</a></li>
+  <li><a href="#and-by-sequent-calculus" id="toc-and-by-sequent-calculus" class="nav-link" data-scroll-target="#and-by-sequent-calculus"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *And by Sequent Calculus</a></li>
+  <li><a href="#sequent-calculus-video" id="toc-sequent-calculus-video" class="nav-link" data-scroll-target="#sequent-calculus-video"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sequent calculus video</a></li>
+  <li><a href="#sequent-calculus-slides" id="toc-sequent-calculus-slides" class="nav-link" data-scroll-target="#sequent-calculus-slides"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sequent Calculus Slides</a></li>
+  <li><a href="#sequents" id="toc-sequents" class="nav-link" data-scroll-target="#sequents"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sequents</a></li>
+  <li><a href="#semantics" id="toc-semantics" class="nav-link" data-scroll-target="#semantics"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Semantics</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="conjunction-and-implication-in-contexts" class="level1" data-fa-icon="fa-solid fa-book-open">
+<h1 data-fa-icon="fa-solid fa-book-open"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Conjunction and Implication in contexts</h1>
+<p>So now let us put on the filter of a target form of judgment and see what we gain or loose from our above LIE rules for both operators.</p>
+<section id="falsifying-conjunction-wedge-and-implication-to" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="falsifying-conjunction-wedge-and-implication-to"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Falsifying Conjunction <span class="math inline">\(\wedge\)</span> and Implication <span class="math inline">\(\to\)</span></h2>
+</section>
+<section id="verifying-conjunction-wedge-and-implication-to" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="verifying-conjunction-wedge-and-implication-to"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Verifying Conjunction <span class="math inline">\(\wedge\)</span> and Implication <span class="math inline">\(\to\)</span></h2>
+</section>
+<section id="conjunction-and-implication-in-theory" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="conjunction-and-implication-in-theory"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Conjunction and Implication in Theory</h2>
+</section>
+<section id="conjunction-and-implication-in-practice" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="conjunction-and-implication-in-practice"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Conjunction and Implication in Practice</h2>
+</section>
+<section id="syntax-and-semantics" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="syntax-and-semantics"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Syntax and Semantics</h2>
+</section>
+<section id="language-of-and" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="language-of-and"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Language of “And”</h2>
+<p>The best tool language has for clarifying meaning is the use of a grammar. If we keep to a context-free grammar we can be certain that everyone reads the meaning the same. So here is a grammar we can give to “and” to fit our logical purposes. Note, in historical settings the term “conjunction” is often used as synonym for “and”. Using “conjunction” can often solve the annoying problem needing to use “and” as an every day word while also talking about “and” in a logical way.</p>
+<div class="callout-note defn callout-defn" title="Language for conjunction" data-callout-family="defn">
+<p>In symbolic language <span class="math inline">\(\wedge\)</span> (“wedge” but pronounced “and”) is used to represent the logical operator “and”. The grammar for “and” is given by the following production rule: <span class="math display">\[
+\tag{$L_{\wedge}$}
+\langle conjunction \rangle ::= \langle proposition \rangle \wedge \langle proposition \rangle
+\]</span> In natural language we can say “A and B” where A and B are propositions. Alternatives include <code>&amp;</code>, <code>&amp;&amp;</code> and <code>AND</code> but we will stick to <span class="math inline">\(\wedge\)</span> for the rest of this book.</p>
+</div>
+<p>Notice what we have not allowed are some the natural ways that “and” drifts in language, e.g.&nbsp;</p>
+<blockquote class="blockquote">
+<p>“7 is positive, odd and prime”</p>
+</blockquote>
+<p>would now need to be said more like this:</p>
+<blockquote class="blockquote">
+<p>“(7 is positive) and ((7 is odd) and (7 is prime))”</p>
+</blockquote>
+<p>We forgive most authors who slide back to the more natural language uses of “and” but it will strengthen your understanding to practice this in a precise way for a while.</p>
+<div class="callout-tip example callout-example" title="Programming Theoretical Conjunction" data-callout-family="example">
+<p>In a theoretical judgment where we forget about evidence then all we need from propositions is their truth value. We can ask for this in most programming languages by builtin logical operators that are written in a variety of ways. Here are some popular options.</p>
+<ul>
+<li><code>p &amp;&amp; q</code> is used in C, C++, Java, JavaScript, and R.</li>
+<li><code>p and q</code> is used in Python, Ruby, and Pascal.</li>
+<li><code>(and p q)</code> is used in Lisp and Scheme.</li>
+<li><code>p ∧ q</code> in Agda</li>
+</ul>
+<p>Note that these result in a truth value only, they do not hold on to any evidence.</p>
+</div>
+<div class="callout-tip example callout-example" title="Programming Computational Conjunction" data-callout-family="example">
+<p>In a computational judgment we need data (evidence) that proves the propositions. So a proposition <span class="math inline">\(P\)</span> has data <span class="math inline">\(x\)</span> that proves it, and a proposition <span class="math inline">\(Q\)</span> has data <span class="math inline">\(y\)</span> that proves it. We combine these as a joint proposition</p>
+<ul>
+<li><code>(P,Q)</code> in Scala</li>
+<li><code>Pair&lt;P,Q&gt;</code> in Java.</li>
+<li><code>tuple[P,Q]</code> in Python.</li>
+<li><code>std::pair&lt;P,Q&gt;</code> in C++.</li>
+<li><code>P × Q</code> in Agda.</li>
+</ul>
+<p>These are just the propositions, they will need data to be proved.</p>
+</div>
+<div class="callout-tip example callout-example" title="Programming Practical Conjunction" data-callout-family="example">
+<p>In a practical judgment of a proposition <span class="math inline">\(P\)</span> we associate some value <span class="math inline">\(\varepsilon\)</span> of truth, for example, a percentage of our believe the <span class="math inline">\(P\)</span> is true. If we have similar proposition <span class="math inline">\(Q\)</span> with a value <span class="math inline">\(\delta\)</span> then to judge <span class="math inline">\(P\wedge Q\)</span> we need to combine these values. Some of the options include</p>
+<ul>
+<li><code>min(ε,δ)</code> assumes whichever the lower of two percentages should be the default.</li>
+<li><code>ε*δ</code> assumes the two percentages are independent and so the product is a reasonable estimate of the joint probability.</li>
+</ul>
+</div>
+</section>
+<section id="introduction-rule-for-conjunction" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="introduction-rule-for-conjunction"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Introduction Rule for conjunction</h2>
+<p>Now get into what drives the meaning of “and” by describing what must be present to ensure we can create an instance of its use. Logicians call these <strong>introduction rules</strong> because they introduce the symbols of the logical operator, in this case <span class="math inline">\(\wedge\)</span>.</p>
+<div class="callout-note defn callout-defn" title="Introduction Rule for 'AND'" data-callout-family="defn">
+<p>In natural language we use “and” when we combine two valid propositions <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> to make a new valid proposition <span class="math inline">\(P\wedge Q\)</span>.</p>
+<p>Now in symbolic language to say a proposition is valid is to have judged it in a context. So we start with <span class="math display">\[
+\Gamma \vdash P
+\quad
+\Delta \vdash Q
+\]</span> for contexts <span class="math inline">\(\Gamma\)</span> and <span class="math inline">\(\Delta\)</span>. We conclude <span class="math display">\[
+\Gamma, \Delta \vdash P \wedge Q
+\]</span></p>
+</div>
+<p>The mix of words and symbols is helpful initially but when we start to work with logic it becomes much more of a calculation, a <em>calculus</em>. Because this type of calculus is a movement of sequences it is known as <strong>sequent calculus</strong>. In the full sequent calculus we can collapse the words to this: <span class="math display">\[
+\tag{$I_{\wedge}$}
+\begin{array}{rl}
+    \Gamma &amp;\vdash P\\
+    \Delta &amp; \vdash Q\\
+\hline
+    \Gamma, \Delta &amp; \vdash P \wedge Q
+\end{array}
+\]</span></p>
+<div class="callout-tip example callout-example" title="Introducing conjunction in programs" data-callout-family="example">
+<p>If we think of a program as making verified judgments then it makes sense that a proposition <span class="math inline">\(P\)</span> has data <span class="math inline">\(x\)</span> the proved it, and a proposition <span class="math inline">\(Q\)</span> has data <span class="math inline">\(y\)</span> that proved it. So to create data the proves both we can just hold on to both <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. The notation for this is an ordered pair <span class="math inline">\((x,y)\)</span>. The notations vary between programming languages, here are some popular options. Assuming <code>x</code> and <code>y</code> are already data:</p>
+<ul>
+<li><code>p=(x,y)</code> in Python, Ruby, and JavaScript.</li>
+<li><code>(define p (list x y))</code> in Lisp and Scheme.</li>
+<li><code>Pair p = new Pair(x,y)</code> in Java.</li>
+<li><code>p = &lt;x,y&gt;</code> in Magma.</li>
+<li><code>auto p = std::make_pair(x, y);</code> in C++.</li>
+</ul>
+</div>
+</section>
+<section id="elimination-rule-for-conjunction" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="elimination-rule-for-conjunction"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Elimination Rule for conjunction</h2>
+<p>Once we have conjoined two propositions we can carry them around as a single proposition until we intend to use it. It is at this point that we want the ability reach back and extract the to original propositions. Logicians call these <strong>elimination rules</strong> because they eliminate the symbols of the logical operator, in this case <span class="math inline">\(\wedge\)</span>. Something new happens with this step because it not one but two uses we expect. So technically we are after two elimination rules.</p>
+<div class="callout-note defn callout-defn" title="Elimination Rule for 'AND'" data-callout-family="defn">
+<p>In natural language we use <span class="math inline">\(P\wedge Q\)</span> so that we can know <span class="math inline">\(P\)</span> or that we can know <span class="math inline">\(Q\)</span>, or both. So we need to change from a context that judged <span class="math inline">\(P\wedge Q\)</span> to a context that judges <span class="math inline">\(P\)</span> and a context that judges <span class="math inline">\(Q\)</span>. In symbolic language we can write this as two elimination rules: <span class="math display">\[
+\frac{
+    \Gamma\vdash P\wedge Q
+}{
+    \Gamma \vdash P
+}(E_{-\wedge *})
+\qquad
+\frac{
+    \Gamma\vdash P\wedge Q
+}{
+    \Gamma \vdash Q
+}(E_{*\wedge -})
+\]</span></p>
+</div>
+<p>when we have a reason <span class="math inline">\(R\)</span> to know of a proposition <span class="math inline">\(P\wedge Q\)</span> given to us in a context <span class="math inline">\(\Gamma\)</span>. Then we can say that <span class="math inline">\(R\to P\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(P\)</span> and <span class="math inline">\(R\to Q\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to <span class="math inline">\(Q\)</span>. In diagram language we could say <span class="math inline">\(R\to (P\wedge Q)\)</span> represents that the reason <span class="math inline">\(R\)</span> leads to both <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart LR</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    subgraph panel1["Context Γ"]</span>
+<span id="cb1-3"><a href="#cb1-3"></a>        direction LR</span>
+<span id="cb1-4"><a href="#cb1-4"></a>        Reason --&gt; PQ["Prop P ∧ Q"]</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    end</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    subgraph panel2["Context Γ after Elimination"]</span>
+<span id="cb1-7"><a href="#cb1-7"></a>        direction LR</span>
+<span id="cb1-8"><a href="#cb1-8"></a>        Reason2["Reason R"] --&gt;|π₁| P2["Prop P"]</span>
+<span id="cb1-9"><a href="#cb1-9"></a>        Reason2 --&gt;|π₂| Q2["Prop Q"]</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    end</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    %% Trick to make the subgraph appear in order</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    panel1 --- panel2</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    linkStyle 5 stroke:transparent,fill:transparent </span>
+<span id="cb1-14"><a href="#cb1-14"></a>    style panel1 fill:#f9f9f9,stroke:#333,stroke-width:2px</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    style panel2 fill:#f9f9f9,stroke:#333,stroke-width:2px</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Finally in symbolic language this would be the following rule to add to our proof tree options.</p>
+<div class="callout-tip example callout-example" title="Elimination of conjunction in programs" data-callout-family="example">
+<ul>
+<li><code>p[0]</code> in Python, Ruby, and JavaScript.</li>
+<li><code>(car p)</code> for first, <code>(cdr p)</code> for rest, in Lisp and Scheme.</li>
+<li><code>p.fst</code> or <code>x where t=(x y)</code> in Haskell.</li>
+<li><code>p.first</code> in C++.</li>
+<li><code>p.1</code> in Magma.</li>
+</ul>
+</div>
+<div class="callout-caution exercise callout-exercise" title="Giraurd's Resource And" data-callout-family="exercise">
+<p>Let <span class="math inline">\(p\otimes q\)</span> be a logical operator that is like <span class="math inline">\(\wedge\)</span> but it is a resource operator. That is, if we have <span class="math inline">\(p\otimes q\)</span> then we can use <span class="math inline">\(p\)</span> or <span class="math inline">\(q\)</span> but not both. Write down the LIE for this operator.</p>
+</div>
+</section>
+<section id="clarity-through-syntax" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="clarity-through-syntax"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Clarity through Syntax</h2>
+<p>In order to be extra clear about our logic we want to set aside the words in natural language an use instead symbols or words in special fonts so as to treat the rules with some rigor that cannot miscommunicate out meaning. To so this we start to make a system that resembles arithmetic with is various additions, subtractions and other operators. When we calculate with any symbols we get what is known as a “Calculus”</p>
+<p>So far we have seen <span class="math inline">\(\lambda\)</span>-calculus and now we will be looking at two further Calculi, Propositional and Sequent. This is as good a place as any to pause and mention the list of “calculi” that exist in this course.</p>
+<p>As a cultural warning, when some says they are studying “Calculus” chances are they mean one of the first two. Our main objective is to start making logical operators and we will focus on “AND”. In assignments you will explore “OR” and “NOT”</p>
+<section id="objectives" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="objectives"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Objectives</h3>
+<ol type="1">
+<li>Identify Premise and Conclusion from a logical expression.</li>
+<li>Use sequent calculus notation to write down logical operators such as AND, TRUE.</li>
+<li>Demonstration the use of introduction and elimination rules.</li>
+</ol>
+</section>
+<section id="and-by-sequent-calculus" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="and-by-sequent-calculus"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *And by Sequent Calculus</h3>
+</section>
+<section id="sequent-calculus-video" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="sequent-calculus-video"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sequent calculus video</h3>
+<p><a href="https://www.youtube.com/embed/SRjXjxSkMRc?si=0LABi-fSVpJXAnaG">YouTube video player</a></p>
+</section>
+<section id="sequent-calculus-slides" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="sequent-calculus-slides"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sequent Calculus Slides</h3>
+<p><a href="https://slides.com/jameswilson-3/sequent-calc/embed">Sequent Calculus</a></p>
+</section>
+<section id="sequents" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="sequents"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sequents</h3>
+<p>Sequents means “parts of as a sequence” and the entire idea is to separate the premise from a conclusion. The devices to separate can just be a line, a long space, a word like “entails” but the most common one today is the turnstyle ⊢also said “vdash” since that is how you look it up as a font.</p>
+<p>Sequents calculus is the use of sequence to calculate truth in a specified logic. If our logic only has “and” we can only calculate how make an and (introduction) and how to apply an and (elimination). All this must be written in a language.</p>
+<ul>
+<li>(L)anguage : the alphabat, symbols, and grammar to be used in the sequents. If your sequents do not parse in the grammar then they don’t count.</li>
+<li>(I)ntroduction : what premise or premises do you need to get ot use your logical operator?</li>
+<li>(E)limination : what premises along with context do you need to use a logical operator?</li>
+</ul>
+<p>The LIE components of a logical operator are a good way to remember the steps.</p>
+</section>
+<section id="semantics" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="semantics"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Semantics</h3>
+<p>There is another way we can describe logical operators that get closer to our appreciation of what our data means. For example, 12 is even and positive is true because each of “12 is even” and “12 is positive” are true. If this is all we care about we can ignore the precise form in which we get the facts and focus purely on the values. This is known as “Semantic” reasoning.</p>
+<p>When it comes the semantics of AND we insist on one rule:</p>
+<p><strong>Only True AND True should be True </strong></p>
+<p>However this still leaves us lots of room to explore meaning.</p>
+<section id="classical-theoretical-logic" class="level4" data-fa-icon="fa-solid fa-book-open">
+<h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="classical-theoretical-logic"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Classical Theoretical Logic</h4>
+<p>In classical logic, what experts call “KL” (the German initials) we insist every event is judged as true <span class="math inline">\(\top\)</span> or false <span class="math inline">\(\bot\)</span> with no middle values allowed (that rule is called the “Law of the Excluded Middle (LEM)”). That means that <span class="math inline">\(P\wedge Q\)</span> can take only 4 combinations.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(P\)</span></th>
+<th><span class="math inline">\(Q\)</span></th>
+<th><span class="math inline">\(P\wedge Q\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\top\)</span></td>
+<td><span class="math inline">\(\top\)</span></td>
+<td><span class="math inline">\(\top\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\top\)</span></td>
+<td><span class="math inline">\(\bot\)</span></td>
+<td><span class="math inline">\(\bot\)</span></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\bot\)</span></td>
+<td><span class="math inline">\(\top\)</span></td>
+<td><span class="math inline">\(\bot\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\bot\)</span></td>
+<td><span class="math inline">\(\bot\)</span></td>
+<td><span class="math inline">\(\bot\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Many times this information is recorded more compactly as a table where <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> label the rows and columns</p>
+<p><span class="math display">\[
+\begin{array}{|c|cc|}
+\hline
+\wedge &amp; \top &amp; \bot \\
+\hline
+\top &amp; \top &amp; \bot \\
+\bot &amp; \bot &amp; \bot\\
+\hline
+\end{array}
+\]</span> In fact when computing we often replace the symbols with 0 <span class="math inline">\(\bot\)</span> and 1 <span class="math inline">\(\top\)</span> and notice this is the multiplication rules of these numbers</p>
+<p><span class="math display">\[
+\begin{array}{|c|cc|}
+\hline
+* &amp; 1 &amp; 0 \\
+\hline
+1&amp; 1 &amp; 0 \\
+0 &amp; 0 &amp; 0\\
+\hline
+\end{array}
+\]</span></p>
+<p>Notice we could be using very different algorithms to calculate AND through semantics. We might be looking things up in a table or multiplying integers, or using transistors in special configuration called a logic-gate. The point is, if we look at AND as is values instead of its syntax we have the freedom to engineer how we actually apply AND. That can be a powerful feature.</p>
+</section>
+<section id="many-valued-logical-and" class="level4" data-fa-icon="fa-solid fa-book-open">
+<h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="many-valued-logical-and"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Many valued logical AND</h4>
+<p>Finally, much of life is not so certain and while we may describe some things as true <span class="math inline">\(\top\)</span> we might struggle to conclude that all other things are false <span class="math inline">\(\bot\)</span>. For that many logics have been created that use further values. Sometimes it is a U for “Unknown”. Some times a “M” for mixed” (maybe a concept that has elements of truth and falsity), or “F(x)” for a “fuzzy truth $0x$” to measure quantities that vary continuously.</p>
+<p>I like to use the symbol <span class="math inline">\(+\)</span> because it seems typographically between <span class="math inline">\(\top\)</span> and <span class="math inline">\(\bot\)</span> and reminds me we could slide the bar up or down to introduce many subdivisions of “truth”. Obeying the rule of and: ONLY TRUE AND TRUE IS TRUE, we are still permitted to assign the remains values in different ways. For example, perhaps <span class="math inline">\(\top \wedge +\)</span> should be <span class="math inline">\(+\)</span>, meaning, if you have something true and something partially true, then the whole thing is partially true. Of course context gets to decide what will count as the new meaning of AND. We close by detailing one of the ANDs as defined by the logician Kleene.</p>
+<p><span class="math display">\[
+\begin{array}{|c|ccc|}
+\hline
+\wedge &amp; \top &amp; + &amp; \bot \\
+\hline
+\top &amp; \top &amp; + &amp; \bot \\
++ &amp; + &amp; +  &amp; \bot \\
+\bot &amp; \bot &amp; \bot &amp; \bot\\
+\hline
+\end{array}
+\]</span></p>
+<p>In words: truth and truth is true; truth and partial truth is partially true but any value and a falsity is false. There are clearly many ways that this captures the mode of a logic for AND even when we cannot be certain that our data is good enough to make things exactly true or false. And to make this semantics into arithmetic, suppose we used 1 for <span class="math inline">\(\top\)</span>, 0 for <span class="math inline">\(+\)</span>, and -1 of <span class="math inline">\(\bot\)</span>. Then <span class="math inline">\(P\wedge Q\)</span> becomes merely <span class="math inline">\(\min(P,Q)\)</span>. For example <span class="math inline">\(\min(1,0)=0\)</span> which is what it means to have True and Partially true being only Partially true.</p>
+<p>As you develop your logic you may have many other ways to approach operators like this one. But resist the urge to call it an AND unless it obey the main rule: Only True and True is True.</p>
+<hr>
+<div class="circuit this">
+
+</div>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

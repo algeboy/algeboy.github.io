@@ -1,3 +1,10 @@
+/* index.qmd owns its title inside the computing clock. Quarto emits two
+ * title-header fragments for a book homepage (title and metadata), so hide
+ * both only when the root page's Quarto body class is present. */
+body.homepage #title-block-header {
+  display: none;
+}
+
 #computing-clock {
   position: relative;
   overflow: visible;

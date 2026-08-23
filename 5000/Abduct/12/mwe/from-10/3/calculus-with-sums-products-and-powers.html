@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>calculus-with-sums-products-and-powers – 5000 Years of Modern Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../../">
+<script src="../../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+/*
+ * Quarto loads MathJax after this header.  Keep \text{...} in mathematical
+ * expressions in the document's native text face rather than MathJax's
+ * fallback math text face, whose metrics can make mixed text/math rows look
+ * vertically uneven.
+ */
+window.MathJax = {
+	chtml: {
+		mtextInheritFont: true
+	}
+};
+
+/* Circuit labels are inserted after Quarto's initial MathJax pass. Wait for
+ * startup, then typeset only the newly generated circuit region. */
+window.typesetDynamicMath = function (roots, attempts = 50) {
+	const targets = Array.from(roots || []).filter(Boolean);
+	if (!targets.length) return Promise.resolve();
+	const mathJax = window.MathJax;
+	if (mathJax?.startup?.promise) {
+		return mathJax.startup.promise
+			.then(() => mathJax.typesetPromise?.(targets))
+			.catch(() => undefined);
+	}
+	if (typeof mathJax?.typesetPromise === 'function') {
+		return mathJax.typesetPromise(targets).catch(() => undefined);
+	}
+	if (attempts <= 0) return Promise.resolve();
+	return new Promise(resolve => {
+		setTimeout(() => resolve(window.typesetDynamicMath(targets, attempts - 1)), 100);
+	});
+};
+</script>
+<script>
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/book-enhancements.js' },
+		{ src: 'scripts/link-icons.js' },
+		{ src: 'scripts/topic-graph.js' },
+		{ src: 'scripts/inline-compass.js' },
+		{ src: 'scripts/toc-compass.js' },
+		{ src: 'assets/quick-check.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
+</script>
+
+
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/inline-compass.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/topic-graph.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/styles/circuit-content.css">
+<link rel="stylesheet" href="../../../../../quarto-runtime/assets/quick-check.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      5000 Years of Modern Computing
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../../../">5000 Years of Modern Computing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../Deduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../Induct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../Abduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../../TopicMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic Map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#b-some-practical-integrals" id="toc-b-some-practical-integrals" class="nav-link active" data-scroll-target="#b-some-practical-integrals"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> 12.2.b Some practical Integrals</a>
+  <ul class="collapse">
+  <li><a href="#measuring-lengths-areas-and-volumes" id="toc-measuring-lengths-areas-and-volumes" class="nav-link" data-scroll-target="#measuring-lengths-areas-and-volumes"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Measuring lengths, areas, and volumes</a></li>
+  <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Quick Check</a></li>
+  <li><a href="#newton-leibnizs-interval-measurement-theorem." id="toc-newton-leibnizs-interval-measurement-theorem." class="nav-link" data-scroll-target="#newton-leibnizs-interval-measurement-theorem."><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Newton-Leibniz’s Interval measurement Theorem.</a></li>
+  <li><a href="#proof-lebesgue-latex-newton-leibniz" id="toc-proof-lebesgue-latex-newton-leibniz" class="nav-link" data-scroll-target="#proof-lebesgue-latex-newton-leibniz"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Proof Lebesgue <img src="https://colostate.instructure.com/equation_images/%255Cvdash?scale=1.125" class="img-fluid" alt="LaTeX: "> Newton-Leibniz**</a></li>
+  <li><a href="#newton-leibniz-can-fail-for-non-interval-measures-counting-latex-newton-leibniz" id="toc-newton-leibniz-can-fail-for-non-interval-measures-counting-latex-newton-leibniz" class="nav-link" data-scroll-target="#newton-leibniz-can-fail-for-non-interval-measures-counting-latex-newton-leibniz"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Newton-Leibniz’ Can Fail for non-interval measures: Counting <img src="https://colostate.instructure.com/equation_images/%255Cnot%255CvDash?scale=1.125" class="img-fluid" alt="LaTeX: "> Newton-Leibniz</a></li>
+  <li><a href="#power-rule-with-areas-and-volumes" id="toc-power-rule-with-areas-and-volumes" class="nav-link" data-scroll-target="#power-rule-with-areas-and-volumes"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Power Rule with Areas and Volumes</a></li>
+  <li><a href="#video" id="toc-video" class="nav-link" data-scroll-target="#video"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Video</a></li>
+  <li><a href="#summary-facts" id="toc-summary-facts" class="nav-link" data-scroll-target="#summary-facts"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary Facts</a></li>
+  <li><a href="#probability-measures" id="toc-probability-measures" class="nav-link" data-scroll-target="#probability-measures"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Probability Measures</a></li>
+  <li><a href="#warning" id="toc-warning" class="nav-link" data-scroll-target="#warning"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Warning</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>10.3 Calculus with Sums, Products, and Powers</p>
+<section id="b-some-practical-integrals" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="b-some-practical-integrals"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> 12.2.b Some practical Integrals</h2>
+<section id="measuring-lengths-areas-and-volumes" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="measuring-lengths-areas-and-volumes"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Measuring lengths, areas, and volumes</h3>
+<p>Let’s focus on a special case of measurement where we measure like a carpenter, that is, we look at the starting point and the ending points and we assume everything in between is part of the length. This means we only need to know how to measure intervals ((a,b)= {xa&lt;x&lt;b}). The standard Lebesgue interval measure for this is</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520m%255CBig((a%252Cb)%255CBig)%2520%253A%253D%2520b-a?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: m((a,b)) := b-a</figcaption>
+</figure>
+</div>
+<p>If we level up to area then we measure rectangles which have corners ((x_1,x_2), (c,b), (c,d),(a,d)), we write this as ((x_1,x_2)(y_1, y_2))</p>
+<p>(m((x_1,x_2)(y_1,y_2)) = (x_2-x_1) (y_2-y_1) = m((x_1,x_2))m( (y_1,y_2)))</p>
+</section>
+<section id="quick-check" class="level3 quick-check" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="quick-check"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Quick Check</h3>
+<div class="quick-check-question">
+<p>To measure volumes we use which of these. - A product of three intervals: <img src="https://colostate.instructure.com/equation_images/m%255CBig((x_1%252Cx_2)%255Ctimes%2520(y_1%252Cy_2)%255Ctimes%2520(z_1%252Cz_2)%255CBig)%253Dm%255CBig((x_1%252Cx_2)%255CBig)%2520%255Ccdot%2520m%255CBig((y_1%252Cy_2)%255CBig)%255Ccdot%2520m%255CBig((z_1%252Cz_2)%255CBig)?scale=1.png" class="img-fluid" alt="LaTeX: m((x_1,x_2)(y_1,y_2)(z_1,z_2))=m((x_1,x_2)) m((y_1,y_2))m((z_1,z_2))"> *</p>
+</div>
+<div class="quick-check-answer">
+<p><strong>Correct: but there is a better answer.</strong> - Area of the base times the height: <img src="https://colostate.instructure.com/equation_images/m%255CBig((x_1%252Cx_2)%255Ctimes%2520(y_1%252Cy_2)%255Ctimes%2520(z_1%252Cz_2)%255CBig)%253Dm%255CBig((x_1%252Cx_2)%255Ctimes%2520(y_1%252Cy_2)%255CBig)%2520%255Ccdot%2520m%255CBig((z_1%252Cz_2)%255CBig)?scale=1.png" class="img-fluid" alt="LaTeX: m((x_1,x_2)(y_1,y_2)(z_1,z_2))=m((x_1,x_2)(y_1,y_2)) m((z_1,z_2))"> *</p>
+<p><strong>Correct: </strong>but there is a better answer. - Any one of the above. *</p>
+<p><strong>Correct: </strong>this is the best answer. If we look at how length x width x height or area of base x height each work out they all expand eventually into a product of all interval sides.</p>
+</div>
+</section>
+<section id="newton-leibnizs-interval-measurement-theorem." class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="newton-leibnizs-interval-measurement-theorem."><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Newton-Leibniz’s Interval measurement Theorem.</h3>
+<p>For the Lebesgue integral measure <img src="https://colostate.instructure.com/equation_images/m%255CBig((a%252Cb)%255CBig)%253Db-a?scale=1.png" class="img-fluid" alt="LaTeX: m((a,b))=b-a"> and Lebesgue measurable function <img src="https://colostate.instructure.com/equation_images/f%253A(a%252Cb)%255Cto%2520%255B-%255Cinfty%252C%255Cinfty%255D?scale=1.png" class="img-fluid" alt="LaTeX: f:(a,b)"> then for <img src="https://colostate.instructure.com/equation_images/a%253Cx_1%253Cx_2%253Cb?scale=1.png" class="img-fluid" alt="LaTeX: a<x_1<x_2<b"></p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520F(x_2)-F(x_1)%2520%253D%2520%255Cint_%257B(x_1%252Cx_2)%257D%2520f%255C%252C%2520dm?scale=1.png" class="img-fluid" alt="LaTeX: F(x_2)-F(x_1) = _{(x_1,x_2)} f, dm"> where <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520F(x)%2520%253A%253D%2520%255Cint_%257B(a%252Cx)%257D%2520f%255C%252C%2520dm?scale=1.png" class="img-fluid" alt="LaTeX: F(x) := _{(a,x)} f, dm">.</p>
+<p>Said in the more classical interval notation this means</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520F(x)%255Cbigg%257C_%257Bx_1%257D%255E%257Bx_2%257D%253DF(x_2)-F(x_1)%2520%253D%2520%255Cint_%257Bx_1%257D%255E%257Bx_2%257D%2520f(t)%2520%255C%252C%2520dt?scale=1.png" class="img-fluid" alt="LaTeX: F(x)|{x_1}^{x_2}=F(x_2)-F(x_1) = {x_1}^{x_2} f(t) , dt"> wherever <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520F(x)%2520%253A%253D%2520%255Cint%2520f(t)%255C%252C%2520dt?scale=1.png" class="img-fluid" alt="LaTeX: F(x) := f(t), dt">, equivalently <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257BdF%257D%257Bdx%257D%253Df(x)?scale=1.png" class="img-fluid" alt="LaTeX: =f(x)">.</p>
+</section>
+<section id="proof-lebesgue-latex-newton-leibniz" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="proof-lebesgue-latex-newton-leibniz"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Proof Lebesgue <img src="https://colostate.instructure.com/equation_images/%255Cvdash?scale=1.125" class="img-fluid" alt="LaTeX: "> Newton-Leibniz**</h3>
+<p>We want to learn about (<em>{(x_1,x_2)} f, dm) in terms of (F(x)=</em>{(a,x)} f, dm). So we can start with</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250AF(x_2)%2520%2526%2520%253D%2520%255Cint_%257B(a%252Cx_2)%257D%2520f%255C%252C%2520dm%2520%2520%2526%2520%255Ctext%257B%2520break%2520into%2520disjoint%2520intervals%257D%255C%255C%250A%2526%2520%253D%2520%255Cint_%257B(a%252Cx_1)%255Csqcup%2520(x_1%252Cx_1)%255Csqcup%2520(x_1%252Cx_2)%257D%2520f%255C%252Cd%2520m%2520%2526%2520%255Ctext%257Bmeasure%2520on%2520disjoint%2520intervals%257D%255C%255C%250A%2526%2520%253D%2520%255Cint_%257B(a%252Cx_1)%257Df%255C%252C%2520dm%2520%252B%2520%255Cint_%257B%255Bx_1%252Cx_1%255D%257D%2520f%255C%252Cdm%2520%252B%2520%255Cint_%257B(x_1%252Cx_2)%257D%2520f%255C%252Cd%2520m%2520%2526%2520%255Ctext%257Bnotice%2520%257D%255Cbegin%257Barray%257D%257Bc%257Dm(%255Bx_1%252Cx_1%255D)%253D0%255C%255C%2520F(x_1)%253D%255Cint_%257B(a%252Cx_1)%257D%2520fdm%255Cend%257Barray%257D%255C%255C%250A%2526%2520%253D%2520F(x_1)%2520%252B%25200%2520%252B%2520%255Cint_%257B(x_1%252Cx_2)%257D%2520f%255C%252Cd%2520m.%250A%255Cend%257Baligned%257D?scale=1" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+<p>Now we just solve for the term we want to know about</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B(x_1%252Cx_2)%257D%2520f%255C%252C%2520dm%2520%253D%2520F(x_2)-F(x_1)?scale=1.png" class="img-fluid" alt="LaTeX: _{(x_1,x_2)} f, dm = F(x_2)-F(x_1)">.</p>
+</section>
+<section id="newton-leibniz-can-fail-for-non-interval-measures-counting-latex-newton-leibniz" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="newton-leibniz-can-fail-for-non-interval-measures-counting-latex-newton-leibniz"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Newton-Leibniz’ Can Fail for non-interval measures: Counting <img src="https://colostate.instructure.com/equation_images/%255Cnot%255CvDash?scale=1.125" class="img-fluid" alt="LaTeX: "> Newton-Leibniz</h3>
+<p>Now let’s change measures just to demonstrate that this claim is very much about the condition of the interval measure. We need only create a model (example) where the claim fails, so this is a <img src="https://colostate.instructure.com/equation_images/%255CvDash?scale=1.png" class="img-fluid" alt="LaTeX: "> situation. Let us use the function (f(x)=x) and choose (a=0&lt;x_1=1&lt;x_2&lt;2).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Cint_%257B(1%252C2)%257D%2520x%255C%252C%2520d%255Cmu%2520%2526%2520%253D%25200%2520%2526%2520%255Ctext%257B%2520because%2520%257D%255Cmu%255CBig((1%252C2)%255CBig)%253D0%255C%255C%250AF(2)%2520-%2520F(1)%2520%2526%2520%253D%2520%255Cint_%257B(0%252C2)%257D%2520x%255C%252C%2520d%255Cmu%2520%2520-%2520%255Cint_%257B(0%252C1)%257Dx%2520%255C%252C%2520d%255Cmu%2520%255C%255C%250A%2526%2520%253D%2520%255Cint_%257B%255B1%252C1%255D%257D%2520x%255C%252Cd%255Cmu%2520%2520%2526%2520%255Ctext%257Bbecause%2520%257D%255Cmu((0%252C1))%253D0%253D%255Cmu((1%252C2))%252C%2520%255Ctext%257B%2520and%257D%2520%255Cmu(%255B1%252C1%255D)%253D1%255C%255C%250A%2526%2520%253D%25201%2520%250A%255Cend%257Baligned%257D?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+<p>So <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B(1%252C2)%257D%2520x%255C%252Cd%255Cmu%2520%253D0%255Cneq%2520x%255Cbigg%257C_%257B1%257D%255E%257B2%257D%253D2-1%253D1?scale=1.png" class="img-fluid" alt="LaTeX: {(1,2)} x,dx|{1}^{2}=2-1=1">. What went wrong? Nothing. We simply used a measure where (([x_1,x_2])) and so a measurement that vanished for intervals no longer vanishes.</p>
+<p><strong>Always make sure you are using an interval measure when applying the Newton-Leibniz Theorem.</strong></p>
+</section>
+<section id="power-rule-with-areas-and-volumes" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="power-rule-with-areas-and-volumes"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Power Rule with Areas and Volumes</h3>
+</section>
+<section id="video" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="video"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Video</h3>
+<p><a href="https://www.youtube-nocookie.com/embed/MicitT_lH4A?feature=oembed&amp;rel=0">Measurement Predicts Calculus</a></p>
+</section>
+<section id="summary-facts" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="summary-facts"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary Facts</h3>
+<p>Let us summarize and compare integral measurements on the real number line made by different measures. Remember the integral may only be defined for domains (E) and functions (f) that are that are measurable. Most of these you can use as reference, but for the ones with the icon * you should attempt to learn and memorize as these are very common.</p>
+<p><strong>Measure <img src="https://colostate.instructure.com/equation_images/%255Cmu?scale=1.png" class="img-fluid" alt="LaTeX: ">Lebesgue / Interval Measure </strong><img src="https://colostate.instructure.com/equation_images/m%255Cbig((a%252Cb)%255Cbig)%253Db-a%252C%255Cquad%2520E%253D(a%252Cb)?scale=1.png" class="img-fluid" alt="LaTeX: m((a,b))=b-a,E=(a,b)"></p>
+<p><strong>Counting measure</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Czeta(E)%253D%257C%255Cmathbb%257BZ%257D%255Ccap%2520E%257C?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: (E)=|E|</figcaption>
+</figure>
+</div>
+<p><strong>Atomic Measure</strong></p>
+<p><strong>concentrated at (c)</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdelta_c(E)%253D%255Cbegin%257Bcases%257D%25201%2520%2526%2520c%255Cin%2520E%255C%255C%25200%2520%2526%2520c%255Cnotin%2520E%255Cend%257Bcases%257D?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _c(E)=</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520f%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _E f,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520f%255C%252C%2520dm%2520%253D%255Cint_a%255Eb%2520f(x)%255C%252Cdx?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _E f, dm =_a^b f(x),dx</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257BE%257D%2520f%255C%252Cd%255Czeta%253D%2520%255Csum_%257Bn%255Cin%2520%255Cmathbb%257BZ%257D%255Ccap%2520E%257D%2520f(n)?scale=1.png" class="img-fluid" alt="LaTeX: {E} f,d= {nE} f(n)"> <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520f%255C%252C%2520d%255Cdelta_c%2520%253D%255Cbegin%257Bcases%257D%2520f(c)%2520%2526%2520c%255Cin%2520E%255C%255C%25200%2520%2526%2520c%255Cnotin%2520E%255Cend%257Bcases%257D?scale=1.png" class="img-fluid" alt="LaTeX: _E f, d_c ="></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520(f%252Bg)%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _E (f+g),d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_a%255Eb%2520f%255C%252Cdx%252B%255Cint_a%255Eb%2520g%255C%252Cdx?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _a^b f,dx+_a^b g,dx</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Csum_%257Bn%255Cin%2520%255Cmathbb%257BZ%257D%255Ccap%2520E%257D%2520f(n)%252B%255Csum_%257Bn%255Cin%2520%255Cmathbb%257BZ%257D%255Ccap%2520E%257D%2520g(n)?scale=1.png" class="img-fluid" alt="LaTeX: {nE} f(n)+{nE} g(n)"> <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cbegin%257Bcases%257D%2520f(c)%252Bg(c)%2520%2526%2520c%255Cin%2520E%255C%255C%25200%2520%2526%2520%255Ctext%257Belse%257D%255Cend%257Bcases%257D?scale=1.png" class="img-fluid" alt="LaTeX: "></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520%255Clambda%2520f%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _E f,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Clambda%2520%255Cint_a%255Eb%2520f%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _a^b f,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Clambda%2520%255Csum_%257Bn%255Cin%2520%255Cmathbb%257BZ%257D%255Ccap%2520E%257D%2520f(n)?scale=1.png" class="img-fluid" alt="LaTeX: _{nE} f(n)"> <img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Bcases%257D%2520%255Clambda%2520f(c)%2520%2526%2520c%255Cin%2520E%255C%255C%25200%2520%2526%2520c%255Cnotin%2520E%255Cend%257Bcases%257D?scale=1.png" class="img-fluid" alt="LaTeX:"></p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520g%255C%252Cd%255Cphi?scale=1.png" class="img-fluid" alt="LaTeX: _E g,d"> where <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cphi(E)%253A%253D%255Cint_E%2520%2520f%255C%252Cd%255Cmu?scale=1.png" class="img-fluid" alt="LaTeX: (E):=_E f,d">*<img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257Bu(a)%257D%255E%257Bu(b)%257D%2520g%2520du%2520%253D%2520%255Cint_%257Ba%257D%255E%257Bb%257D%2520g(f(x))%2520f'(x)%2520dx?scale=1.png" class="img-fluid" alt="LaTeX: {u(a)}^{u(b)} g du = {a}^{b} g(f(x)) f’(x) dx"></p>
+<p>Special case when (f) is injective</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Csum_%257Bn%255Cin%2520%255Cmathbb%257BZ%257D%255Ccap%2520E%257D%2520g(f(n))%2520%253D%2520%255Csum_%257Bu%255Cin%2520%255Cmathbb%257BZ%257D%255Ccap%2520f(E)%257D%2520g(u)?scale=1.png" class="img-fluid" alt="LaTeX: {nE} g(f(n)) = {uf(E)} g(u)"> Try this yourself.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255Ba%252Cb%255D%257D%2520%2520x%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _{[a,b]} x,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bx%255E2%257D%257B2%257D%255CBig%257C_a%255Eb%253D%255Cfrac%257Bb%255E2%257D%257B2%257D-%255Cfrac%257Ba%255E2%257D%257B2%257D%250A?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: |_a<sup>b=\frac{b</sup>2}{2}-</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bn(n%252B1)%257D%257B2%257D-%255Cfrac%257Bm(m%252B1)%257D%257B2%257D?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: -</figcaption>
+</figure>
+</div>
+<p>where (m=a) and (n=b). <img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Bcases%257D%2520c%2520%2526%2520a%255Cleq%2520c%255Cleq%2520b%255C%255C%25200%2520%2526%2520%255Ctext%257Belse%257D%255Cend%257Bcases%257D?scale=1.png" class="img-fluid" alt="LaTeX:"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255Ba%252Cb%255D%257D%2520%2520x%255E2%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _{[a,b]} x^2,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bx%255E3%257D%257B3%257D%255CBig%257C_a%255Eb%253D%2520%255Cfrac%257Bb%255E3%257D%257B3%257D-%255Cfrac%257Ba%255E3%257D%257B3%257D%250A?scale=1.png" class="img-fluid" alt="LaTeX: |_a^b= -"> <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bn(n%252B1)(2n%252B1)%257D%257B6%257D-%255Cfrac%257Bm(m%252B1)(2m%252B1)%257D%257B6%257D?scale=1.png" class="img-fluid" alt="LaTeX: -"><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Bcases%257D%2520c%255E2%2520%2526%2520a%255Cleq%2520c%255Cleq%2520b%255C%255C%25200%2520%2526%2520%255Ctext%257Belse%257D%255Cend%257Bcases%257D?scale=1.png" class="img-fluid" alt="LaTeX:"></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255Ba%252Cb%255D%257D%2520%2520x%255En%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _{[a,b]} x^n,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bx%255E%257Bn%252B1%257D%257D%257Bn%252B1%257D%255Cbigg%257C_a%255Eb%2520%253D%255Cfrac%257Bb%255E%257Bn%252B1%257D%257D%257Bn%252B1%257D-%255Cfrac%257Ba%255E%257Bn%252B1%257D%257D%257Bn%252B1%257D%250A?scale=1.png" class="img-fluid" alt="LaTeX: |_a^b =-"> <a href="https://www.wolframalpha.com/input?i=sum+n%3Da+to+b+n%5E3">Ask a Wolfram Alpha</a>Try this yourself.</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255Ba%252Cb%255D%257D%2520%2520%255Clambda_n%2520x%255En%252B%255Ccdots%2520%252B%2520%255Clambda_0%2520x%255E0%255C%252Cd%255Cmu?scale=1.png" class="img-fluid" alt="LaTeX: _{[a,b]} _n x^n++ _0 x^0,d">* Combine previous rules</p>
+<p><a href="https://www.wolframalpha.com">Ask a Wolfram Alpha, e.g.&nbsp;</a></p>
+<p><code>sum n=a to b (5*n^3-3*n)</code> Try this yourself.</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255Ba%252Cb%255D%257D%2520%2520%255Cfrac%257B1%257D%257Bx%257D%255C%252Cd%255Cmu?scale=1.png" class="img-fluid" alt="LaTeX: _{[a,b]} ,d">, <img src="https://colostate.instructure.com/equation_images/0%253Ca%2520%253Cb?scale=1.png" class="img-fluid" alt="LaTeX: 0<a <b"></p>
+<ul>
+<li></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cln%2520%255Cfrac%257Bb%257D%257Ba%257D%253D%255Cln%2520b-%255Cln%2520a%250A?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: =b-a</figcaption>
+</figure>
+</div>
+<p><a href="https://www.wolframalpha.com">Ask a Wolfram Alpha</a></p>
+<p><code>sum from n=a to b of 1/n</code> Try this yourself.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_%257B%255Ba%252Cb%255D%257D%2520%2520e%255Ex%255C%252Cd%255Cmu?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: _{[a,b]} e^x,d</figcaption>
+</figure>
+</div>
+<ul>
+<li></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/e%255Ex%255Cbig%257C_a%255Eb%253De%255Eb-e%255Ea?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: e<sup>x|_a</sup>b=e<sup>b-e</sup>a</figcaption>
+</figure>
+</div>
+<p><a href="https://www.wolframalpha.com">Ask a Wolfram Alpha</a></p>
+<p><code>sum from n=a to b of e^n</code> Try this yourself</p>
+<ul>
+<li></li>
+</ul>
+</section>
+<section id="probability-measures" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="probability-measures"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Probability Measures</h3>
+<p>Measures in probability are specialized to have a total measure of 1 on the entire sample space (). The measure on the space is usually called a “probability measure” and we here are denoting it by () though you may see it as (P) or () elsewhere. The measurable functions (X:) in probability are called “random variables” and denoted often as simply (X). They are not variables at all, they are functions, but the term is meant to retain the character of some the original writings on probability.</p>
+<section id="example-single-coin-toss" class="level4" data-fa-icon="fa-solid fa-book-open">
+<h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-single-coin-toss"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example: Single Coin Toss</h4>
+<p>Let’s walk from a casual statement about a fair coin toss to its formal integral interpretation.</p>
+<ul>
+<li>The probability that a random coin toss is heads is 1/2.</li>
+<li>Then in symbols: ((X=H)=).</li>
+<li>Now as an integral (_{} X d=) where (={H,T}) and (X(H)=1), (X(T)=0).</li>
+</ul>
+</section>
+<section id="example-sequence-of-coin-tosses" class="level4" data-fa-icon="fa-solid fa-book-open">
+<h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-sequence-of-coin-tosses"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example: Sequence of Coin Tosses</h4>
+<p>Now lets expand to sequences of coin tosses.</p>
+<ul>
+<li>The probability that after N tosses, every other toss is Heads get close to 0 exponentially fast.</li>
+<li>Then in symbols: ((n.(X_{2n}=H))=).</li>
+<li>Now as an integral, the sample space is (={(a_n)<em>{n=1}^{N} a_n{H,T}}), the random variable is (X((a_n)</em>{n=1}^{N}) = 1) if (n,(a_{2n}=H)) and 0 otherwise, shown as the shaded nodes in the graph below (shown for 4 , and(<em>{} X,d=</em>{12nN} 1)</li>
+</ul>
+<p>Uniform Distribution on (n) points.Gaussian Distribution with mean () and deviation ()</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cmathbb%257BE%257D%255BX%255D%2520%253A%253D%2520%255Cint_%257B%255COmega%257D%2520X%255C%252Cd%255Cmu?scale=1.png" class="img-fluid" alt="LaTeX: [X] := _{} X,d"> where (X) is called “<strong>random variable</strong>”<img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cmathbb%257BE%257D%255BX%255D%2520%253A%253D%2520%255Cfrac%257B1%257D%257B%257C%255COmega%257C%257D%255Csum_%257Bi%255Cin%2520%255COmega%257D%2520X(i)?scale=1.png" class="img-fluid" alt="LaTeX: [X] := _{i} X(i)"><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cmathbb%257BE%257D%255BX%255D%2520%253A%253D%2520%255Cfrac%257B1%257D%257B%255Csqrt%257B2%255Cpi%2520%255Csigma%255E2%257D%257D%255Cint_%257B%255COmega%257D%2520X(t)%2520e%255E%257B-%255Cfrac%257B(t-x)%255E2%257D%257B%255Csigma%255E2%257D%257Ddt?scale=1.png" class="img-fluid" alt="LaTeX: [X] := _{} X(t) e{-\frac{(t-x)2}{^2}}dt"></p>
+<p><strong>Derivative at a point (illustrated with point (x=2.5)Derivative as a formula</strong></p>
+<p>If (f(x)=) then (f’(2.5)=0).<img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(%255Clambda)%2520%253D%25200?scale=1.png" class="img-fluid" alt="LaTeX:  () = 0"></p>
+<p>If (y=mx+b) then (y’(2.5)=m).<img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(x)%2520%253D%25201?scale=1.png" class="img-fluid" alt="LaTeX:  (x) = 1"></p>
+<p>If (f(x)=x^2) then (f’(2.5)=2=5.0).<img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(x%255E2)%2520%253D%25202x?scale=1.png" class="img-fluid" alt="LaTeX:  (x^2) = 2x"></p>
+<p>If (f(x)=x^n) then (f’(2.5)=n(2.5)^{n-1}).<img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(x%255En)%2520%253D%2520nx%255E%257Bn-1%257D?scale=1.png" class="img-fluid" alt="LaTeX:  (x^n) = nx^{n-1}"></p>
+</section>
+<section id="sums-and-products" class="level4" data-fa-icon="fa-solid fa-book-open">
+<h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="sums-and-products"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Sums and Products</h4>
+<p>General Integral Sum and Scalar Laws</p>
+<p><strong>IntegralDerivative</strong></p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cint_E%2520(f%252Bg)%255C%252C%2520d%255Cmu%253D%255Cint_E%2520f%255C%252C%2520d%255Cmu%252B%255Cint_E%2520g%255C%252Cd%255Cmu?scale=1.png" class="img-fluid" alt="LaTeX: _E (f+g), d=_E f, d+_E g,d"><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(f%252Bg)%253D%255Cfrac%257Bd%257D%257Bdx%257D(f)%252B%255Cfrac%257Bd%257D%257Bdx%257D(g)?scale=1.png" class="img-fluid" alt="LaTeX:  (f+g)=(f)+(g)"></p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250Af%255Ccdot%2520g%2520%2526%2520%253D%2520%255Cint_E%2520%255Cfrac%257Bdf%257D%257Bdx%257D%2520%255Ccdot%2520g%255C%252C%2520dx%252B%255Cint_E%2520f%255Ccdot%2520%255Cfrac%257Bdg%257D%257Bdx%257D%255C%252Cdx%255C%255C%250A%2526%2520%253D%2520%255Cint_E%2520g%255C%252C%2520df%252B%255Cint_E%2520f%255C%252C%2520dg%250A%255Cend%257Baligned%257D?scale=1.png" class="img-fluid" alt="LaTeX:"><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(f%255Ccdot%2520g)%253D%255Cfrac%257Bdf%257D%257Bdx%257D%2520%255Ccdot%2520g%252Bf%255Ccdot%2520%255Cfrac%257Bdg%257D%257Bdx%257D?scale=1.png" class="img-fluid" alt="LaTeX:  (fg)= g+f"></p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%2520f%255Ccirc%2520g%2520%2526%2520%253D%2520%255Cint%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(f%255Ccirc%2520g)%255C%252C%2520dx%255C%255C%250A%2526%2520%253D%255Cint%255Cfrac%257Bdf%257D%257Bdg%257D%2520%255Ccdot%2520%255Cfrac%257Bdg%257D%257Bdx%257D%255C%252C%2520dx%255C%255C%250A%2526%2520%253D%255Cint%255Cfrac%257Bdf%257D%257Bdg%257D%255C%252C%2520dg%250A%255Cend%257Baligned%257D?scale=1.png" class="img-fluid" alt="LaTeX:"><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cfrac%257Bd%257D%257Bdx%257D%2520(f%255Ccirc%2520g)%253D%255Cfrac%257Bdf%257D%257Bdg%257D%2520%255Ccdot%2520%255Cfrac%257Bdg%257D%257Bdx%257D?scale=1.png" class="img-fluid" alt="LaTeX:  (fg)= "></p>
+</section>
+</section>
+<section id="warning" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="warning"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Warning</h3>
+<p>Icon Progress Bar (browser only)</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
