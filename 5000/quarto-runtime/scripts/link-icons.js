@@ -114,6 +114,11 @@
   function decorateLinks(manifest) {
     const selector = "#quarto-sidebar a.sidebar-link[href], .quarto-page-breadcrumbs a[href], .pagination-link[href], main a[href]";
     document.querySelectorAll(selector).forEach(anchor => {
+      // Circuit nodes already render their own printed icon and circular LED.
+      // Treating them as ordinary prose links injects a second brass icon into
+      // the same chip, which causes the compact and full-size motifs to
+      // overlap.
+      if (anchor.closest(".topic-graph")) return;
       const raw = anchor.getAttribute("href");
       if (!raw) return;
       let target;
