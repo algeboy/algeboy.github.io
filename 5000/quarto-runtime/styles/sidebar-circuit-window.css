@@ -505,7 +505,7 @@
 /* The map is compact until readers engage it. On hover or keyboard focus it
    overlays part of the reading column, making the whole circuit legible. */
 @media (min-width:992px) {
-  #quarto-sidebar.sidebar-circuit-navigation {
+  #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
     position:fixed;
     top:0;
     bottom:0;
@@ -513,7 +513,7 @@
     z-index:20;
     transition:width .18s ease,box-shadow .18s ease;
   }
-  body.sidebar-schematic-expanded #quarto-sidebar.sidebar-circuit-navigation {
+  body.sidebar-schematic-expanded #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
     width:min(560px,calc(100vw - 48px)) !important;
     box-shadow:inset -4px 0 7px rgba(54,49,38,.28),10px 0 24px rgba(18,28,22,.3);
   }
