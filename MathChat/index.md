@@ -31,7 +31,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
 ## Current viewpoint map
 
 <div class="mathchat-plot-wrap">
-<svg class="mathchat-plot" viewBox="0 0 920 560" role="img" aria-labelledby="plot-title plot-desc">
+<svg id="viewpoint-map" class="mathchat-plot" viewBox="0 0 920 560" role="img" aria-labelledby="plot-title plot-desc">
   <title id="plot-title">AI and mathematics viewpoints</title>
   <desc id="plot-desc">A scatter plot. The horizontal axis is evidence basis from speculative to data-supported. The vertical axis is outlook from anxious to hopeful. Circle size represents provisional source reliability.</desc>
   <rect class="frame" x="105" y="40" width="735" height="400" />
@@ -56,7 +56,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
 </svg>
 </div>
 
-<div class="mathchat-key" aria-label="Source category legend">
+<div id="viewpoint-key" class="mathchat-key" aria-label="Source category legend">
   <button type="button" data-filter="research" aria-pressed="true"><i style="background:#66c5b9"></i>Research mathematics</button>
   <button type="button" data-filter="education" aria-pressed="true"><i style="background:#f3bb4d"></i>Mathematics education</button>
   <button type="button" data-filter="governance" aria-pressed="true"><i style="background:#d981b2"></i>Governance</button>
@@ -65,22 +65,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
   <span>Circle size = source reliability</span>
 </div>
 
-<script>
-(() => {
-  const plot = document.querySelector('.mathchat-plot');
-  if (!plot) return;
-  const labels = { education: ['Su','Economist','Conrad Wolfram','Yahoo','Lanier'], research: ['Bessis','Williamson','Tao','Weinreich','Gowers','Avigad','Tsimerman','Riehl'], governance: ['Leiden'], baseline: ['AI Snake Oil','LeCun','Marcus','S. Wolfram'], media: ['Carroll','Jaimungal','Hossenfelder','Keating','Quanta: Cepelewicz','Quanta: Strogatz'] };
-  const all = [...plot.querySelectorAll('[data-category]')];
-  const text = [...plot.querySelectorAll('.point-label text')];
-  const byCategory = category => [...all.filter(node => node.dataset.category === category), ...text.filter(node => labels[category]?.includes(node.textContent))];
-  document.querySelectorAll('.mathchat-key [data-filter]').forEach(button => {
-    const category = button.dataset.filter, nodes = byCategory(category);
-    button.addEventListener('mouseenter', () => all.forEach(node => { if (node.dataset.category !== category) node.style.opacity = '.18'; }));
-    button.addEventListener('mouseleave', () => all.forEach(node => node.style.opacity = '');
-    button.addEventListener('click', () => { const active = button.getAttribute('aria-pressed') === 'true'; button.setAttribute('aria-pressed', String(!active)); nodes.forEach(node => node.style.display = active ? 'none' : ''); });
-  });
-})();
-</script>
+<script src="/assets/js/mathchat-filters.js" defer></script>
 
 On this first map, **hopeful** means that the source expects AI to have a net positive effect on mathematics or mathematics education—for example, by assisting discovery, explanation, accessibility, or formal verification. It does **not** simply mean “AI can do mathematics,” confidence in artificial general intelligence, or approval of every AI use. Conversely, an anxious score reflects concern about the net effect on learning, proof, research culture, or public institutions.
 
