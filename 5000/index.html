@@ -382,16 +382,33 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return response.json();
   }
 
-  async function circuitMap() {
+  async function circuitBoards() {
     const response = await fetch(new URL("book-circuit.md", siteRoot()), { cache:"no-cache" });
-    if (!response.ok) throw new Error(`Book circuit returned ${response.status}`);
-    let parser = window.SidebarCircuitNavigation?.parseCircuit;
-    for (let attempt = 0; !parser && attempt < 50; attempt += 1) {
-      await new Promise(resolve => window.setTimeout(resolve, 50));
-      parser = window.SidebarCircuitNavigation?.parseCircuit;
-    }
-    if (!parser) throw new Error("Book circuit parser is unavailable");
-    return parser(await response.text());
+    if (!response.ok) return [];
+    const groups = new Map();
+    const stack = [];
+    const links = new Map();
+    const subgraphPattern = /^subgraph\s+([A-Za-z][\w-]*)(?:\s*\[\s*["']([^"']+)["']\s*\])?\s*$/i;
+    const nodePattern = /^\s*([A-Za-z][\w-]*)\s*\[/;
+    const clickPattern = /^\s*click\s+([A-Za-z][\w-]*)\s+(?:href\s+)?["']([^"']+\.qmd)["']/;
+    String(await response.text()).split(/\r?\n/).forEach(original => {
+      const line = original.replace(/%%.*$/, "").trim();
+      const subgraph = line.match(subgraphPattern);
+      if (subgraph) {
+        groups.set(subgraph[1], { label:(subgraph[2] || subgraph[1]).trim(), members:[] });
+        stack.push(subgraph[1]);
+        return;
+      }
+      if (/^end$/i.test(line)) { stack.pop(); return; }
+      const node = line.match(nodePattern);
+      if (node && stack.length) groups.get(stack.at(-1))?.members.push(node[1]);
+      const click = line.match(clickPattern);
+      if (click) links.set(click[1], click[2]);
+    });
+    return [...groups.values()].map(group => ({
+      label:group.label,
+      members:group.members.map(id => links.get(id)).filter(Boolean)
+    })).filter(group => group.members.length > 1);
   }
 
   function buildTrenches(board) {
@@ -440,6 +457,26 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     highlight.setAttribute("transform", "translate(0 -2)");
     highlight.style.stroke = palette.highlight;
     svg.appendChild(highlight);
+  }
+
+  function detailPath(svg, d, palette) {
+    const layers = [
+      ["home-circuit-detail-wire--copper", "#b7652d", null],
+      ["home-circuit-detail-wire--jacket", palette.jacket, null],
+      ["home-circuit-detail-wire--highlight", palette.highlight, "translate(0 -1)"]
+    ];
+    layers.forEach(([className, color, transform], index) => {
+      const path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d);
+      path.setAttribute("class", `home-circuit-detail-wire ${className}`);
+      if (index) {
+        path.setAttribute("pathLength", JACKET_PATH_LENGTH);
+        path.setAttribute("stroke-dasharray", JACKET_PATTERN);
+      }
+      if (transform) path.setAttribute("transform", transform);
+      path.style.stroke = color;
+      svg.appendChild(path);
+    });
   }
 
   function chipBodyObstacles(board) {
@@ -551,6 +588,22 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     throw new Error(`No chip-safe wire route from ${start.x},${start.y} to ${end.x},${end.y}`);
   }
 
+  function drawBoardDetails(svg, { abduct, induct, unit8, unit10, author }, pinUsage, obstacles, bounds) {
+    // These jumper endpoints are real package sockets: each sits one board
+    // pitch past a distinct chip pin and leaves the chip face tangentially.
+    const connections = [
+      [abduct, "left", unit10, "bottom", palettes[0]],
+      [induct, "right", unit8, "top", palettes[2]],
+      [unit8, "bottom", author, "bottom", palettes[1]]
+    ];
+    connections.forEach(([from, fromSide, to, toSide, palette]) => {
+      if (!from || !to) return;
+      const start = pinSocket(from, center(to), pinUsage, fromSide);
+      const end = pinSocket(to, center(from), pinUsage, toSide);
+      detailPath(svg, obstacleRoute(start, end, obstacles, bounds), palette);
+    });
+  }
+
   function pinSides(node) {
     if (node.classList.contains("home-circuit-cpu")) return ["top", "right", "bottom", "left"];
     if (node.classList.contains("home-circuit-page")) return [node.dataset.leadSide || "left"];
@@ -633,11 +686,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   }
 
   function generatedPinCoordinates(node, side) {
-    if (node.classList.contains("home-circuit-page")) {
-      return side === "top" || side === "bottom"
-        ? [node.offsetWidth / 2 - 20, node.offsetWidth / 2 + 20]
-        : [18, 42];
-    }
+    if (node.classList.contains("home-circuit-page")) return [18, 42];
     return pinCenters(side === "top" || side === "bottom" ? node.offsetWidth : node.offsetHeight);
   }
 
@@ -680,92 +729,188 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return link;
   }
 
-  function buildTopology(board, manifest, graph) {
+  function firstDescendantPage(directory, pagesByDirectory, foldersByParent) {
+    const direct = (pagesByDirectory.get(directory) || []).find(page => !page.isIndex);
+    if (direct) return direct;
+    for (const folder of foldersByParent.get(directory) || []) {
+      const page = firstDescendantPage(folder.key, pagesByDirectory, foldersByParent);
+      if (page) return page;
+    }
+    return null;
+  }
+
+  function buildTopology(board, manifest, circuitBoardGroups = []) {
     board.querySelectorAll(".home-circuit-page,.home-circuit-folder,.home-circuit-subboard").forEach(node => node.remove());
-    const metadataBySource = new Map((manifest.pages || []).map(page => [page.source, page]));
-    const elements = new Map([
-      ["Preface", board.querySelector(".home-circuit-cpu")],
-      ["Deduct", board.querySelector('.home-circuit-branch[data-branch="deduct"]')],
-      ["Induct", board.querySelector('.home-circuit-branch[data-branch="induct"]')],
-      ["Abduct", board.querySelector('.home-circuit-branch[data-branch="abduct"]')]
-    ]);
-    const paletteByKind = { survey:palettes[0], details:palettes[2], detour:palettes[1], exception:palettes[3] };
-    const orientationFor = source => source.startsWith("Deduct/") ? "north" : source.startsWith("Induct/") ? "east" : "west";
-    const unitNumber = source => Number(source.match(/^(?:Deduct|Induct|Abduct)\/(\d{2})\//)?.[1]);
+    const foldersByParent = new Map();
+    manifest.folders.forEach(folder => {
+      if (!foldersByParent.has(folder.parent)) foldersByParent.set(folder.parent, []);
+      foldersByParent.get(folder.parent).push(folder);
+    });
+    foldersByParent.forEach(folders => folders.sort((a, b) => a.order - b.order));
+    const pagesByDirectory = new Map();
+    manifest.pages.forEach(page => {
+      if (!pagesByDirectory.has(page.directory)) pagesByDirectory.set(page.directory, []);
+      pagesByDirectory.get(page.directory).push(page);
+    });
+    pagesByDirectory.forEach(pages => pages.sort((a, b) => a.order - b.order));
+    const indexByDirectory = new Map(manifest.pages.filter(page => page.isIndex).map(page => [page.directory, page]));
+    const roots = [
+      { unit:1,key:"Deduct/01",orientation:"north",sector:0 },
+      { unit:2,key:"Deduct/02",orientation:"north",sector:1 },
+      { unit:3,key:"Deduct/03",orientation:"north",sector:2 },
+      { unit:4,key:"Deduct/04",orientation:"north",sector:3 },
+      { unit:5,key:"Induct/05",orientation:"east",sector:0 },
+      { unit:6,key:"Induct/06",orientation:"east",sector:1 },
+      { unit:7,key:"Induct/07",orientation:"east",sector:2 },
+      { unit:8,key:"Induct/08",orientation:"east",sector:3 },
+      { unit:9,key:"Abduct/09",orientation:"west",sector:0 },
+      { unit:10,key:"Abduct/10",orientation:"west",sector:1 },
+      { unit:11,key:"Abduct/11",orientation:"west",sector:2 },
+      { unit:12,key:"Abduct/12",orientation:"west",sector:3 }
+    ];
+    const specs = [];
+    const edgeSpecs = [];
+    const folderGroups = [];
+    const stem = source => source.split("/").pop().replace(/\.qmd$/, "");
+    const segment = key => key.split("/").pop();
 
-    graph.groups.forEach((group, groupId) => {
-      const groupNode = graph.nodes.get(groupId);
-      const unit = board.querySelector(`.home-circuit-unit[data-unit="${unitNumber(groupNode.source)}"]`);
-      if (!unit) return;
-      elements.set(groupId, unit);
-      const orientation = orientationFor(groupNode.source);
-      const pageSpecs = group.members.map((memberId, index) => {
-        const node = graph.nodes.get(memberId);
-        const metadata = metadataBySource.get(node.source) || {};
-        const spec = {
-          kind:"page",
-          key:`circuit:${memberId}`,
-          title:node.label,
-          icon:metadata.titleIcon || metadata.icon,
-          href:node.source.replace(/\.qmd$/, ".html"),
-          source:node.source,
-          orientation,
-          groupId
-        };
-        if (orientation === "north") {
-          spec.x = unit.offsetLeft + (unit.offsetWidth - EXTENSION.pageWidth) / 2;
-          spec.y = unit.offsetTop - 90 - index * 90;
-          spec.leadSide = "bottom";
-        } else if (orientation === "east") {
-          spec.x = unit.offsetLeft + unit.offsetWidth + 60 + index * 240;
-          spec.y = unit.offsetTop + (unit.offsetHeight - EXTENSION.pageHeight) / 2;
-          spec.leadSide = "left";
-        } else {
-          spec.x = unit.offsetLeft - 60 - EXTENSION.pageWidth - index * 240;
-          spec.y = unit.offsetTop + (unit.offsetHeight - EXTENSION.pageHeight) / 2;
-          spec.leadSide = "right";
-        }
-        board.appendChild(generatedEntryElement(spec));
-        spec.element.dataset.circuitGroup = groupId;
-        elements.set(memberId, spec.element);
-        return spec;
+    roots.forEach(root => {
+      const rootElement = board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`);
+      if (!rootElement) return;
+      const groupMap = new Map();
+      const walk = (directory, parentRef, parentDepth) => {
+        const directPages = (pagesByDirectory.get(directory) || []).filter(page => !page.isIndex);
+        const childFolders = foldersByParent.get(directory) || [];
+        const landingByFolder = new Map(childFolders.map(folder => [folder.key,
+          directPages.find(page => stem(page.source) === segment(folder.key) || stem(page.source).startsWith(`${segment(folder.key)}-`)) || null]));
+        const pageSpecs = directPages.map(page => ({
+          kind:"page",key:`page:${page.source}`,title:page.title,icon:page.titleIcon || page.icon,
+          href:page.href,depth:parentDepth + 1,orientation:root.orientation,parentRef,source:page.source
+        }));
+        specs.push(...pageSpecs);
+        const pageBySource = new Map(pageSpecs.map(spec => [spec.source, spec]));
+        let chainParent = parentRef;
+        directPages.forEach(page => {
+          const pageSpec = pageBySource.get(page.source);
+          edgeSpecs.push({ from:chainParent,to:pageSpec,palette:chainParent === parentRef ? palettes[1] : palettes[0] });
+          const isLanding = [...landingByFolder.values()].some(landing => landing?.source === page.source);
+          chainParent = isLanding ? parentRef : pageSpec;
+        });
+        const childFolderSpecs = childFolders.map(folder => {
+          const landing = landingByFolder.get(folder.key);
+          const indexPage = indexByDirectory.get(folder.key);
+          const firstPage = firstDescendantPage(folder.key, pagesByDirectory, foldersByParent);
+          const spec = {
+            kind:"folder",key:`folder:${folder.key}`,folderKey:folder.key,
+            title:indexPage?.title || landing?.title || folder.title || segment(folder.key),
+            icon:indexPage?.titleIcon || indexPage?.icon || landing?.titleIcon || landing?.icon || folder.titleIcon || folder.icon || "fa-solid fa-folder-tree",
+            href:indexPage?.href || folder.href || firstPage?.href || "index.html",
+            depth:parentDepth + (landing ? 2 : 1),orientation:root.orientation,
+            parentRef:landing ? pageBySource.get(landing.source) : parentRef
+          };
+          specs.push(spec);
+          edgeSpecs.push({ from:spec.parentRef,to:spec,palette:palettes[2] });
+          return spec;
+        });
+        if (childFolderSpecs.length > 1) folderGroups.push({ parent:parentRef,key:directory,specs:childFolderSpecs });
+        childFolderSpecs.forEach(spec => walk(spec.folderKey, spec, spec.depth));
+      };
+      walk(root.key, rootElement, 0);
+
+      const rootSpecs = specs.filter(spec => spec.key.startsWith("page:") || spec.key.startsWith("folder:"))
+        .filter(spec => {
+          let ref = spec;
+          while (ref && !(ref instanceof Element)) ref = ref.parentRef;
+          return ref === rootElement;
+        });
+      const levels = new Map();
+      rootSpecs.forEach(spec => {
+        if (!levels.has(spec.depth)) levels.set(spec.depth, []);
+        levels.get(spec.depth).push(spec);
       });
+      let outward = root.orientation === "north" ? EXTENSION.coreY - 180 :
+        root.orientation === "east" ? EXTENSION.coreX + 1500 : EXTENSION.coreX - 180;
+      [...levels.keys()].sort((a,b) => a-b).forEach(depth => {
+        const level = levels.get(depth).sort((a,b) => (a.kind === "folder" ? -1 : 1) - (b.kind === "folder" ? -1 : 1));
+        if (root.orientation === "north") {
+          const columns = 7;
+          const left = root.sector * 1800 + 100;
+          level.forEach((spec,index) => {
+            const row = Math.floor(index / columns), column = index % columns;
+            spec.x = left + column * 235 + (spec.kind === "folder" ? 15 : 0);
+            spec.y = outward - row * 100;
+          });
+          outward -= Math.ceil(level.length / columns) * 100 + 130;
+        } else {
+          const rows = 7;
+          const bandTop = root.sector * 800 + 45;
+          level.forEach((spec,index) => {
+            const column = Math.floor(index / rows), row = index % rows;
+            const width = spec.kind === "page" ? EXTENSION.pageWidth : EXTENSION.folderWidth;
+            spec.x = root.orientation === "east" ? outward + column * 235 : outward - width - column * 235;
+            spec.y = bandTop + row * 100;
+          });
+          const columns = Math.ceil(level.length / rows);
+          outward += (root.orientation === "east" ? 1 : -1) * (columns * 235 + 130);
+        }
+      });
+    });
 
-      if (pageSpecs.length) {
-        const padding = 12;
-        const minX = Math.min(...pageSpecs.map(spec => spec.x)) - padding;
-        const minY = Math.min(...pageSpecs.map(spec => spec.y)) - padding - 10;
-        const maxX = Math.max(...pageSpecs.map(spec => spec.x + EXTENSION.pageWidth)) + padding;
-        const maxY = Math.max(...pageSpecs.map(spec => spec.y + EXTENSION.pageHeight)) + padding;
-        const backplane = document.createElement("span");
-        backplane.className = `home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--${orientation}`;
-        backplane.dataset.circuitGroup = groupId;
-        backplane.style.left = `${minX}px`;
-        backplane.style.top = `${minY}px`;
-        backplane.style.width = `${maxX - minX}px`;
-        backplane.style.height = `${maxY - minY}px`;
-        backplane.setAttribute("aria-hidden", "true");
-        const label = document.createElement("span");
-        label.textContent = `${group.label.toUpperCase()} SUBGRAPH`;
-        backplane.appendChild(label);
-        board.appendChild(backplane);
+    specs.forEach(spec => {
+      const parent = spec.parentRef?.element || spec.parentRef;
+      if (spec.kind === "page") {
+        if (spec.orientation === "east") spec.leadSide = "left";
+        else if (spec.orientation === "west") spec.leadSide = "right";
+        else spec.leadSide = center(parent).x <= spec.x + EXTENSION.pageWidth / 2 ? "left" : "right";
       }
+      board.appendChild(generatedEntryElement(spec));
     });
-
-    const edges = graph.edges.map(edge => ({
-      from:elements.get(edge.from),
-      to:elements.get(edge.to),
-      kind:edge.kind,
-      palette:paletteByKind[edge.kind] || palettes[2]
+    folderGroups.forEach(group => {
+      const placed = group.specs.filter(spec => spec.element);
+      if (placed.length < 2) return;
+      const padding = 28;
+      const minX = Math.min(...placed.map(spec => spec.x)) - padding;
+      const minY = Math.min(...placed.map(spec => spec.y)) - padding;
+      const maxX = Math.max(...placed.map(spec => spec.x + EXTENSION.folderWidth)) + padding;
+      const maxY = Math.max(...placed.map(spec => spec.y + EXTENSION.folderHeight)) + padding;
+      const backplane = document.createElement("span");
+      backplane.className = "home-circuit-subboard";
+      backplane.style.left = `${minX}px`;
+      backplane.style.top = `${minY}px`;
+      backplane.style.width = `${maxX - minX}px`;
+      backplane.style.height = `${maxY - minY}px`;
+      backplane.setAttribute("aria-hidden", "true");
+      const label = document.createElement("span");
+      label.textContent = `${group.key.split("/").pop().toUpperCase()} FOLDER BUS`;
+      backplane.appendChild(label);
+      board.appendChild(backplane);
+    });
+    const specsBySource = new Map(specs.filter(spec => spec.source).map(spec => [spec.source, spec]));
+    circuitBoardGroups.forEach(group => {
+      const placed = group.members.map(source => specsBySource.get(source)).filter(spec => spec?.element);
+      if (placed.length < 2) return;
+      const padding = 28;
+      const minX = Math.min(...placed.map(spec => spec.x)) - padding;
+      const minY = Math.min(...placed.map(spec => spec.y)) - padding;
+      const maxX = Math.max(...placed.map(spec => spec.x + EXTENSION.pageWidth)) + padding;
+      const maxY = Math.max(...placed.map(spec => spec.y + EXTENSION.pageHeight)) + padding;
+      const backplane = document.createElement("span");
+      backplane.className = "home-circuit-subboard home-circuit-subboard--circuit";
+      backplane.style.left = `${minX}px`;
+      backplane.style.top = `${minY}px`;
+      backplane.style.width = `${maxX - minX}px`;
+      backplane.style.height = `${maxY - minY}px`;
+      backplane.setAttribute("aria-hidden", "true");
+      const label = document.createElement("span");
+      label.textContent = `${group.label.toUpperCase()} CIRCUIT BOARD`;
+      backplane.appendChild(label);
+      board.appendChild(backplane);
+    });
+    return edgeSpecs.map(edge => ({
+      from:edge.from.element || edge.from,
+      to:edge.to.element || edge.to,
+      palette:edge.palette
     })).filter(edge => edge.from && edge.to);
-
-    graph.groups.forEach((group, groupId) => {
-      const firstMember = group.members[0];
-      const from = elements.get(groupId);
-      const to = elements.get(firstMember);
-      if (from && to) edges.push({ from, to, kind:"detour", palette:paletteByKind.detour });
-    });
-    return edges;
   }
 
   function curvedConnection(from, to, pinUsage, fromSide, toSide, tangentToPins = false, obstacles = null, bounds = null) {
@@ -793,15 +938,41 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 
   function draw(board) {
     const svg = board.querySelector(".home-circuit-wires");
+    const units = [...board.querySelectorAll(".home-circuit-unit")].sort((a, b) => Number(a.dataset.unit) - Number(b.dataset.unit));
+    const unitByNumber = new Map(units.map(unit => [Number(unit.dataset.unit), unit]));
+    const branches = [...board.querySelectorAll(".home-circuit-branch")];
+    const cpu = board.querySelector(".home-circuit-cpu");
+    const author = board.querySelector(".home-circuit-author");
     const pinUsage = new Map();
     const obstacles = chipBodyObstacles(board);
     const routeBounds = { left:10,right:board.offsetWidth-10,top:10,bottom:board.offsetHeight-10 };
     svg.replaceChildren();
+    drawBoardDetails(svg, {
+      abduct: branches.find(branch => branch.dataset.branch === "abduct"),
+      induct: branches.find(branch => branch.dataset.branch === "induct"),
+      unit8: unitByNumber.get(8),
+      unit10: unitByNumber.get(10),
+      author
+    }, pinUsage, obstacles, routeBounds);
+    branches.forEach((branch, branchIndex) => {
+      const palette = palettes[branchIndex];
+      branch.dataset.units.split(",").map(Number).forEach(unitNumber => {
+        const unit = unitByNumber.get(unitNumber);
+        if (unit) {
+          const active = branch.classList.contains("is-current-path") && unit.classList.contains("is-current-path");
+          svgPath(svg, curvedConnection(branch, unit, pinUsage, null, null, false, obstacles, routeBounds),
+            `home-circuit-wire--topic${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : palette);
+        }
+      });
+    });
+    if (author) {
+      svgPath(svg, curvedConnection(cpu, author, pinUsage, null, null, false, obstacles, routeBounds), "home-circuit-wire--cpu", palettes[3]);
+      svgPath(svg, curvedConnection(cpu, author, pinUsage, null, null, false, obstacles, routeBounds), "home-circuit-wire--cpu", palettes[1]);
+    }
     (board.homeTopologyEdges || []).forEach(edge => {
       const active = board.homeCurrentEdges?.has(edge);
       svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
-        `home-circuit-wire--topic home-circuit-wire--${edge.kind}${active ? " home-circuit-wire--current" : ""}`,
-        active ? activePalette : edge.palette);
+        `home-circuit-wire--topic${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : edge.palette);
     });
   }
 
@@ -898,8 +1069,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     if (!board) return;
     buildTrenches(board);
     try {
-      const [manifest, graph] = await Promise.all([navigation(), circuitMap()]);
-      board.homeTopologyEdges = buildTopology(board, manifest, graph);
+      const [manifest, groups] = await Promise.all([navigation(), circuitBoards()]);
+      board.homeTopologyEdges = buildTopology(board, manifest, groups);
     } catch (error) {
       console.error("Homepage topic topology could not load", error);
       board.homeTopologyEdges = [];

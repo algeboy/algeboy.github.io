@@ -149,10 +149,6 @@ body.homepage main.content { max-width: none; padding-inline: 0; }
 .home-circuit-wire--jacket,
 .home-circuit-wire--highlight { stroke-linecap: butt; }
 .home-circuit-wire--topic { stroke-width: 8px; }
-.home-circuit-wire--survey { stroke-width: 10px; }
-.home-circuit-wire--details { stroke-width: 8px; }
-.home-circuit-wire--detour { stroke-width: 7px; }
-.home-circuit-wire--exception { stroke-width: 7px; }
 .home-circuit-wire--cpu { stroke-width: 10px; filter: drop-shadow(0 2px 1px rgba(39,31,22,.3)); }
 .home-circuit-wire--highlight.home-circuit-wire--topic { stroke-width: 2px; opacity: .94; }
 .home-circuit-wire--highlight.home-circuit-wire--cpu { stroke-width: 2.5px; opacity: .94; }
@@ -302,9 +298,9 @@ body.homepage main.content { max-width: none; padding-inline: 0; }
 .home-circuit-detail-wire--jacket { stroke-width: 5px; stroke-linecap: butt; }
 .home-circuit-detail-wire--highlight { stroke-width: 1.3px; stroke-linecap: butt; opacity: .94; }
 
-/* book-circuit.md topology --------------------------------------------------
- * The twelve fixed memory chips represent Mermaid subgraphs. Their member
- * pages are aluminium capacitors grouped on blue PCB extensions. */
+/* Generated chapter topology ------------------------------------------------
+ * Pages are horizontal aluminium capacitors. Folders are DIP packages; when
+ * several folder chips share one parent, a green PCB backplane groups them. */
 .home-circuit-subboard {
   position: absolute;
   z-index: 1;
@@ -339,7 +335,6 @@ body.homepage main.content { max-width: none; padding-inline: 0; }
     linear-gradient(145deg,#275d87,#173c5b);
 }
 .home-circuit-subboard--circuit > span { color:rgba(205,239,255,.84); }
-.home-circuit-subboard--north > span { left:50%;transform:translateX(-50%);white-space:nowrap; }
 
 .home-circuit-page,
 .home-circuit-folder {
@@ -369,9 +364,6 @@ body.homepage main.content { max-width: none; padding-inline: 0; }
     linear-gradient(to bottom,var(--cap-top,#799294),var(--cap-highlight,#bfd0ca) 10%,var(--cap-upper,#6f898b) 24%,var(--cap-middle,#3e595b) 52%,var(--cap-lower,#789597) 79%,var(--cap-bottom,#d1dfd8));
   text-shadow: 0 1px rgba(18,29,29,.85);
 }
-.home-circuit-page[data-lead-side="right"] { border-radius:7px 18px 18px 7px; }
-.home-circuit-page[data-lead-side="top"],
-.home-circuit-page[data-lead-side="bottom"] { padding-inline:14px;border-radius:12px; }
 .home-circuit-page[data-palette="1"] { --cap-top:#8a7658;--cap-highlight:#d5c6a1;--cap-upper:#826c4d;--cap-middle:#56442f;--cap-lower:#927653;--cap-bottom:#ddcba5;--cap-end-dark:#4d3b29;--cap-end-light:#a8926e; }
 .home-circuit-page[data-palette="2"] { --cap-top:#687ca0;--cap-highlight:#bcc9df;--cap-upper:#607395;--cap-middle:#384b6c;--cap-lower:#7085aa;--cap-bottom:#cbd5e6;--cap-end-dark:#293b5a;--cap-end-light:#8498ba; }
 .home-circuit-page[data-palette="3"] { --cap-top:#88708f;--cap-highlight:#d2c0d7;--cap-upper:#7a6382;--cap-middle:#503b58;--cap-lower:#92759a;--cap-bottom:#ddcbe1;--cap-end-dark:#47304e;--cap-end-light:#a28aaa; }
