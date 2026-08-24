@@ -6,9 +6,9 @@ permalink: /MathChat/
 description: A transparent map of viewpoints on AI in mathematics and mathematics education.
 ---
 
-## AI and mathematics: a transparent viewpoint map
+## AI and math, what are y'all saying?
 
-MathChat compares published viewpoints on artificial intelligence in mathematics and mathematics education. It is a discussion tool for students, faculty, and departments—not a ranking of people or a prediction of AI capability.
+A place to compare blogs and papers on math and AI.  Wrong question? Wrong Data? Submit your improvements, add your name.
 
 <style>
 .mathchat-plot-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
