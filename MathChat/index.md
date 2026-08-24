@@ -22,6 +22,8 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
 .mathchat-key { display: flex; flex-wrap: wrap; gap: .55rem 1rem; margin: .4rem 0 1rem; }
 .mathchat-key span { white-space: nowrap; }
 .mathchat-key i { display: inline-block; width: .8rem; height: .8rem; margin-right: .3rem; border-radius: 50%; vertical-align: -.05rem; }
+#current-review-map + table th:last-child,
+#current-review-map + table td:last-child { padding-left: 1.25rem; }
 </style>
 
 ## Current viewpoint map
