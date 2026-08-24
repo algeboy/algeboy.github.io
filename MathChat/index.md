@@ -121,32 +121,6 @@ This view separates a source's openness to AI use from its teaching or learner-a
 
 The complete provisional scores and rationales are in [teaching-scale-openness.csv](https://github.com/algeboy/MathChat/blob/main/data/teaching-scale-openness.csv).
 
-## Openness and documented context
-
-This small map is a disclosure tool, not a judgment of motivation or bias. It includes only sources with a documented AI-industry role or an explicit public-interest/environmental-safeguard context. Other sources are omitted rather than assigned a presumed position.
-
-<div class="mathchat-plot-wrap">
-<svg class="mathchat-plot" viewBox="0 0 920 560" role="img" aria-labelledby="context-plot-title context-plot-desc">
-  <title id="context-plot-title">AI openness and documented institutional context</title>
-  <desc id="context-plot-desc">A scatter plot of six sources. The horizontal axis is openness to AI use from rejection to active embrace. The vertical axis is documented context from a direct AI-industry role to public-interest or environmental safeguards raised by the source.</desc>
-  <rect class="frame" x="105" y="40" width="735" height="400" />
-  <g class="grid">
-    <line x1="105" y1="40" x2="105" y2="440" /><line x1="289" y1="40" x2="289" y2="440" /><line x1="473" y1="40" x2="473" y2="440" /><line x1="656" y1="40" x2="656" y2="440" /><line x1="840" y1="40" x2="840" y2="440" />
-    <line x1="105" y1="440" x2="840" y2="440" /><line x1="105" y1="340" x2="840" y2="340" /><line x1="105" y1="240" x2="840" y2="240" /><line x1="105" y1="140" x2="840" y2="140" /><line x1="105" y1="40" x2="840" y2="40" />
-  </g>
-  <g class="tick" text-anchor="middle"><text x="105" y="465">0</text><text x="289" y="465">25</text><text x="473" y="465">50</text><text x="656" y="465">75</text><text x="840" y="465">100</text></g>
-  <g class="tick" text-anchor="end"><text x="92" y="444">0</text><text x="92" y="344">25</text><text x="92" y="244">50</text><text x="92" y="144">75</text><text x="92" y="44">100</text></g>
-  <text class="axis-label" x="472" y="520" text-anchor="middle">Openness to AI use: reject (0) → actively embrace (100)</text>
-  <text class="axis-label" x="25" y="240" text-anchor="middle" transform="rotate(-90 25 240)">Documented context: AI-industry role (0) → public-interest/environmental safeguards (100)</text>
-  <g fill="#9b8fe7"><circle class="point" cx="693" cy="420" r="12"><title>Yann LeCun — openness 80, documented AI-industry role 5</title></circle><circle class="point" cx="583" cy="360" r="10"><title>Jaron Lanier — openness 65, documented AI-industry role 20</title></circle><circle class="point" cx="399" cy="340" r="12"><title>Gary Marcus — openness 40, documented AI-industry role 25</title></circle><circle class="point" cx="399" cy="180" r="12"><title>AI Snake Oil — openness 40, public-interest context 65</title></circle><circle class="point" cx="781" cy="420" r="11"><title>Stephen Wolfram — openness 92, documented AI-industry role 5</title></circle></g>
-  <g fill="#f3bb4d"><circle class="point" cx="767" cy="380" r="11"><title>Conrad Wolfram — openness 90, documented AI-industry role 15</title></circle></g>
-  <g fill="#d981b2"><circle class="point" cx="436" cy="120" r="12"><title>Leiden Declaration — openness 45, public-interest/environmental safeguards 80</title></circle></g>
-  <g class="point-label"><text x="705" y="414">LeCun</text><text x="595" y="354">Lanier</text><text x="411" y="334">Marcus</text><text x="411" y="174">AI Snake Oil</text><text x="779" y="374">Conrad Wolfram</text><text x="793" y="414">Stephen Wolfram</text><text x="448" y="114">Leiden</text></g>
-</svg>
-</div>
-
-The evidence links and scoring limits are in [context-openness.csv](https://github.com/algeboy/MathChat/blob/main/data/context-openness.csv).
-
 ## What the map currently suggests
 
 * There is no simple pro-AI/anti-AI divide. Several optimistic sources also insist on verification, disclosure, and human responsibility.
