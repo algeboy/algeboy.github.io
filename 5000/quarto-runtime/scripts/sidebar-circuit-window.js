@@ -366,10 +366,12 @@
 
   function installSchematicExpansion(panel) {
     const expandedClass = "sidebar-schematic-expanded";
+    const sidebar = panel.closest("#quarto-sidebar") || panel.parentElement;
     const drawing = panel.querySelector(".sidebar-schematic-drawing");
     const heading = panel.querySelector(".sidebar-schematic-heading");
     let drag = null;
     let fitTimer = null;
+    let pointerInteracted = false;
     const leaveFitView = () => {
       if (fitTimer) window.clearTimeout(fitTimer);
       panel.classList.remove("is-fit");
@@ -410,10 +412,27 @@
       if (event?.relatedTarget && panel.contains(event.relatedTarget)) return;
       document.body.classList.remove(expandedClass);
     };
+    const collapseForPointer = () => {
+      const focused = document.activeElement;
+      if (pointerInteracted && focused instanceof HTMLElement && panel.contains(focused)) focused.blur();
+      if (!pointerInteracted && panel.contains(document.activeElement)) return;
+      pointerInteracted = false;
+      collapse();
+    };
+    const collapseIfPointerOutside = event => {
+      if (event.target instanceof Node && sidebar?.contains(event.target)) return;
+      collapseForPointer();
+    };
     panel.addEventListener("pointerenter", expand);
-    panel.addEventListener("pointerleave", collapse);
     panel.addEventListener("focusin", expand);
     panel.addEventListener("focusout", collapse);
+    sidebar?.addEventListener("pointerdown", () => { pointerInteracted = true; }, { capture:true, passive:true });
+    sidebar?.addEventListener("pointerleave", collapseForPointer);
+    document.addEventListener("pointermove", collapseIfPointerOutside, { passive:true });
+    window.addEventListener("blur", () => {
+      pointerInteracted = false;
+      collapse();
+    });
     drawing.addEventListener("pointerdown", event => {
       if (event.button !== 0 || event.target.closest?.("a")) return;
       expand(false);
