@@ -19,8 +19,8 @@
   function cpuHeader(root) {
     const link = document.createElement("a");
     link.className = "sidebar-circuit-cpu";
-    link.href = new URL("00/preface.html", root).href;
-    link.setAttribute("aria-label", "Read the preface to 5000 Years of Modern Computing");
+    link.href = new URL("index.html", root).href;
+    link.setAttribute("aria-label", "Open the 5000 Years of Modern Computing homepage");
     link.innerHTML = `
       <span class="sidebar-circuit-cpu__face">
         <span class="sidebar-circuit-cpu__icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
@@ -317,31 +317,31 @@
     svgRoot.appendChild(group);
   }
 
-  function pnpPorts(position, sourceHeight = 48) {
+  function npnPorts(position, sourceHeight = 48) {
     const baseX = 84;
     const baseY = position.y + sourceHeight + 12;
     return {
       baseX,
       baseY,
       baseEntryY: baseY - 12,
-      emitterX: baseX - 24,
+      emitterX: baseX + 24,
       emitterY: baseY + 24,
       collectorX: baseX + 24,
-      collectorY: baseY + 24
+      collectorY: baseY - 24
     };
   }
 
-  function pnpTransition(svgRoot, ports, label) {
+  function npnTransition(svgRoot, ports, label) {
     const { baseX: x, baseY: y } = ports;
-    const group = svg("g", { class: "sidebar-schematic-pnp" });
+    const group = svg("g", { class: "sidebar-schematic-npn" });
     const title = svg("title");
-    title.textContent = `${label}: PNP branch selector; the left-pointing emitter arrow marks the preferred Survey path`;
+    title.textContent = `${label}: NPN branch selector; the emitter arrow points out from the base toward the preferred Survey path`;
     group.append(
       title,
-      svg("path", { class: "sidebar-schematic-pnp__base", d: `M ${x} ${y - 12} L ${x} ${y + 12}` }),
-      svg("path", { class: "sidebar-schematic-pnp__emitter", d: `M ${x - 6} ${y + 6} L ${x - 24} ${y + 24}` }),
-      svg("path", { class: "sidebar-schematic-pnp__collector", d: `M ${x + 6} ${y + 6} L ${x + 24} ${y + 24}` }),
-      svg("path", { class: "sidebar-schematic-pnp__arrow", d: `M ${x - 24} ${y + 24} L ${x - 14} ${y + 18} L ${x - 14} ${y + 30} Z` })
+      svg("path", { class: "sidebar-schematic-npn__base", d: `M ${x} ${y - 12} L ${x} ${y + 12}` }),
+      svg("path", { class: "sidebar-schematic-npn__collector", d: `M ${x + 6} ${y - 6} L ${x + 24} ${y - 24}` }),
+      svg("path", { class: "sidebar-schematic-npn__emitter", d: `M ${x + 6} ${y + 6} L ${x + 24} ${y + 24}` }),
+      svg("path", { class: "sidebar-schematic-npn__arrow", d: `M ${x + 24} ${y + 24} L ${x + 12} ${y + 20} L ${x + 20} ${y + 12} Z` })
     );
     svgRoot.appendChild(group);
   }
@@ -578,11 +578,11 @@
       const branch = topology.branches.find(candidate => candidate.from.id === connection.from.id);
       const fromHeight = surveyNodeHeight(connection.from);
       const targetEntryY = surveyEntryY(connection.to, toPosition);
-      const ports = branch ? pnpPorts(fromPosition, fromHeight) : null;
+      const ports = branch ? npnPorts(fromPosition, fromHeight) : null;
       if (toPosition.y > fromPosition.y) {
         if (ports) {
-          pnpTransition(wires, ports, branch.label);
-          wire(wires, `M ${ports.baseX} ${fromPosition.y + fromHeight} L ${ports.baseX} ${ports.baseEntryY}`, "survey", `${connection.from.label} enters the PNP base`);
+          npnTransition(wires, ports, branch.label);
+          wire(wires, `M ${ports.baseX} ${fromPosition.y + fromHeight} L ${ports.baseX} ${ports.baseEntryY}`, "survey", `${connection.from.label} enters the NPN base`);
           wire(wires, `M ${ports.emitterX} ${ports.emitterY} L ${ports.emitterX} ${targetEntryY - 12} L 84 ${targetEntryY - 12} L 84 ${targetEntryY}`, "survey", `${connection.from.label} to ${connection.to.label}`);
           diode(wires, ports.emitterX, (ports.emitterY + targetEntryY - 12) / 2, 90, "survey", `${connection.from.label} to ${connection.to.label}`);
         } else {
@@ -592,8 +592,8 @@
       } else {
         const returnX = 12 + connectionIndex * 12;
         if (ports) {
-          pnpTransition(wires, ports, branch.label);
-          wire(wires, `M ${ports.baseX} ${fromPosition.y + fromHeight} L ${ports.baseX} ${ports.baseEntryY}`, "survey", `${connection.from.label} enters the PNP base`);
+          npnTransition(wires, ports, branch.label);
+          wire(wires, `M ${ports.baseX} ${fromPosition.y + fromHeight} L ${ports.baseX} ${ports.baseEntryY}`, "survey", `${connection.from.label} enters the NPN base`);
           wire(wires, `M ${ports.emitterX} ${ports.emitterY} L ${returnX} ${ports.emitterY} L ${returnX} ${targetEntryY + 24} L 60 ${targetEntryY + 24}`, "survey", `${connection.from.label} returns to ${connection.to.label}`);
         } else {
           wire(wires, `M 60 ${fromPosition.y + fromHeight / 2} L ${returnX} ${fromPosition.y + fromHeight / 2} L ${returnX} ${targetEntryY + 24} L 60 ${targetEntryY + 24}`, "survey", `${connection.from.label} returns to ${connection.to.label}`);
@@ -608,7 +608,7 @@
       const details = detailLayout(branch, fromPosition.y, sourceHeight);
       const firstDetail = details[0];
       const finalDetail = details.at(-1);
-      const ports = pnpPorts(fromPosition, sourceHeight);
+      const ports = npnPorts(fromPosition, sourceHeight);
       const { collectorX, collectorY } = ports;
       wire(wires, `M ${collectorX} ${collectorY} L 144 ${collectorY}`, "detour", branch.label);
       resistor(wires, 144, collectorY, branch.label);
@@ -632,13 +632,15 @@
       if (!toPosition) {
         wire(wires, `M ${finalDetail.centerX} ${finalDetail.exitY} L ${finalDetail.centerX} ${finalDetail.exitY + 24}`, "detour", `${branch.label} ends at an open circuit terminal`);
       } else if (toPosition.y > fromPosition.y) {
-        const approachX = 108;
-        const approachY = finalDetail.centerY;
-        const targetX = 60;
-        const targetY = finalDetail.centerY + approachX - targetX;
+        // Survey nodes use a 48px circular icon. Aim the incoming detail
+        // trace at its upper-right 45-degree perimeter mark, rather than at
+        // the node box's top-left corner.
+        const circleOffset = Math.round(24 / Math.sqrt(2));
+        const targetX = toPosition.x + 24 + circleOffset;
+        const targetY = toPosition.y + 24 - circleOffset;
         wire(wires, `M ${finalDetail.leftX} ${finalDetail.centerY} L 132 ${finalDetail.centerY}`, "detour", `${branch.label} leaves the final detail component`);
         diode(wires, 120, finalDetail.centerY, 180, "detour", `${branch.label} rejoins ${branch.to.label}`);
-        wire(wires, `M ${approachX} ${approachY} L ${targetX} ${targetY}`, "detour", `${branch.label} enters ${branch.to.label}`);
+        wire(wires, `M 108 ${finalDetail.centerY} L ${targetX} ${targetY}`, "detour", `${branch.label} enters ${branch.to.label} at the 45-degree icon edge`);
       } else {
         const laneX = 420 - branchIndex * 12;
         const inletY = toPosition.y + 24;

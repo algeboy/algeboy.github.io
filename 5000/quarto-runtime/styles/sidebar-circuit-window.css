@@ -354,11 +354,11 @@
 .sidebar-schematic-diode path:last-of-type { fill:none;stroke-width:1.5; }
 .sidebar-schematic-diode--survey path { stroke:var(--schematic-survey); }
 .sidebar-schematic-diode--detour path { stroke:var(--schematic-detour); }
-.sidebar-schematic-pnp path { stroke-linecap:square;stroke-linejoin:miter; }
-.sidebar-schematic-pnp__base { fill:none;stroke:#2d4135;stroke-width:1.6; }
-.sidebar-schematic-pnp__collector { fill:none;stroke:var(--schematic-detour);stroke-width:1.5; }
-.sidebar-schematic-pnp__emitter { fill:none;stroke:var(--schematic-survey);stroke-width:2; }
-.sidebar-schematic-pnp__arrow { fill:var(--schematic-survey);stroke:none; }
+.sidebar-schematic-npn path { stroke-linecap:square;stroke-linejoin:miter; }
+.sidebar-schematic-npn__base { fill:none;stroke:#2d4135;stroke-width:2.2; }
+.sidebar-schematic-npn__collector { fill:none;stroke:var(--schematic-detour);stroke-width:1.8; }
+.sidebar-schematic-npn__emitter { fill:none;stroke:var(--schematic-survey);stroke-width:2.2; }
+.sidebar-schematic-npn__arrow { fill:var(--schematic-survey);stroke:none; }
 .sidebar-schematic-node {
   position:absolute;
   z-index:2;
@@ -506,12 +506,23 @@
    overlays part of the reading column, making the whole circuit legible. */
 @media (min-width:992px) {
   #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
+    --sidebar-circuit-width:clamp(280px,26vw,360px);
     position:fixed;
     top:0;
     bottom:0;
     left:0;
+    width:var(--sidebar-circuit-width) !important;
     z-index:20;
     transition:width .18s ease,box-shadow .18s ease;
+  }
+  /* Fixed navigation is removed from Quarto's page grid. Reserve its normal
+     width explicitly so the article is reflowed beside it instead of being
+     painted underneath it. Keep the expanded schematic as an intentional
+     reading-column overlay. */
+  body.has-sidebar-circuit-window #quarto-content {
+    width:calc(100% - var(--sidebar-circuit-width));
+    max-width:none;
+    margin-left:var(--sidebar-circuit-width);
   }
   body.sidebar-schematic-expanded #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
     width:min(560px,calc(100vw - 48px)) !important;

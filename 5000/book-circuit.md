@@ -122,7 +122,7 @@ flowchart TD
       DefaultLogic["Default logic"]
       click DefaultLogic "Induct/07/using-default-logic.qmd" "Open Default Logic"
       AdaptiveLogic["Adaptive logic"]
-      click AdaptiveLogic "Induct/07/using-adaptive-logic.qmd" "Open Adaptive Logic"
+      click AdaptiveLogic "Induct/07/3-adaptive-and-dynamic-logic.qmd" "Open Adaptive Logic"
 
       ChangingConclusions -.-> DefaultLogic
       DefaultLogic -.-> AdaptiveLogic
