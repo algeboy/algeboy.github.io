@@ -30,7 +30,7 @@ flowchart TD
     end
     click Logic "Deduct/01/index.qmd" "Open Logic"
 
-  Abduct ==> Logic
+  Abduct ==> Deduct
 
     subgraph Operators["Operators"]
       direction TB
