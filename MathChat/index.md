@@ -17,7 +17,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
 .mathchat-plot .frame { fill: none; stroke: var(--chalk-white); stroke-width: 1.25; }
 .mathchat-plot .axis-label { fill: var(--chalk-white); font: 15px system-ui, sans-serif; }
 .mathchat-plot .tick { fill: var(--chalk-white); font: 12px system-ui, sans-serif; }
-.mathchat-plot .point { stroke: #1f2625; stroke-width: 2; opacity: .94; }
+.mathchat-plot .point { stroke: var(--chalk-white); stroke-width: 2; opacity: .94; }
 .mathchat-plot .point-label { fill: var(--chalk-white); font: 12px system-ui, sans-serif; paint-order: stroke; stroke: #1f2625; stroke-width: 3px; stroke-linejoin: round; }
 .mathchat-key { display: flex; flex-wrap: wrap; gap: .55rem 1rem; margin: .4rem 0 1rem; }
 .mathchat-key span { white-space: nowrap; }
@@ -47,7 +47,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
   <g fill="#d981b2"><circle class="point" cx="634" cy="344" r="12"><title>Leiden Declaration — outlook 24, evidence 72, reliability 82</title></circle></g>
   <g fill="#9b8fe7"><circle class="point" cx="678" cy="288" r="12"><title>AI Snake Oil — outlook 38, evidence 78, reliability 82</title></circle><circle class="point" cx="583" cy="180" r="12"><title>Yann LeCun — outlook 65, evidence 65, reliability 84</title></circle><circle class="point" cx="583" cy="312" r="12"><title>Gary Marcus — outlook 32, evidence 65, reliability 84</title></circle></g>
   <!-- Math/science journalism and podcasts -->
-  <g fill="#5aa9e6"><circle class="point" cx="664" cy="184" r="12"><title>Jordana Cepelewicz / Quanta — outlook 64, evidence 76, reliability 82</title></circle><circle class="point" cx="620" cy="200" r="12"><title>Steven Strogatz / Quanta — outlook 60, evidence 70, reliability 84</title></circle><circle class="point" cx="502" cy="220" r="11"><title>Sean Carroll / Mindscape — outlook 55, evidence 54, reliability 76</title></circle><circle class="point" cx="509" cy="136" r="10"><title>Curt Jaimungal / Theories of Everything — outlook 76, evidence 55, reliability 70</title></circle><circle class="point" cx="436" cy="208" r="10"><title>Sabine Hossenfelder — outlook 58, evidence 45, reliability 64</title></circle><circle class="point" cx="531" cy="196" r="11"><title>Brian Keating / Into the Impossible — outlook 61, evidence 58, reliability 74</title></circle></g>
+  <g fill="var(--chalk-white)"><circle class="point" cx="664" cy="184" r="12"><title>Jordana Cepelewicz / Quanta — outlook 64, evidence 76, reliability 82</title></circle><circle class="point" cx="620" cy="200" r="12"><title>Steven Strogatz / Quanta — outlook 60, evidence 70, reliability 84</title></circle><circle class="point" cx="502" cy="220" r="11"><title>Sean Carroll / Mindscape — outlook 55, evidence 54, reliability 76</title></circle><circle class="point" cx="509" cy="136" r="10"><title>Curt Jaimungal / Theories of Everything — outlook 76, evidence 55, reliability 70</title></circle><circle class="point" cx="436" cy="208" r="10"><title>Sabine Hossenfelder — outlook 58, evidence 45, reliability 64</title></circle><circle class="point" cx="531" cy="196" r="11"><title>Brian Keating / Into the Impossible — outlook 61, evidence 58, reliability 74</title></circle></g>
   <g class="point-label"><text x="375" y="105">Su</text><text x="748" y="342">Economist</text><text x="615" y="142">Wolfram</text><text x="630" y="325">Yahoo</text><text x="345" y="193">Lanier</text><text x="397" y="218">Bessis</text><text x="514" y="236">Carroll</text><text x="517" y="130">Jaimungal</text><text x="447" y="204">Hossenfelder</text><text x="542" y="192">Keating</text><text x="574" y="121">Williamson</text><text x="691" y="191">Tao</text><text x="471" y="407">Weinreich</text><text x="721" y="204">Gowers</text><text x="677" y="176">Avigad</text><text x="672" y="171">Quanta: Cepelewicz</text><text x="609" y="214">Quanta: Strogatz</text><text x="521" y="82">Tsimerman</text><text x="750" y="213">Riehl</text><text x="647" y="359">Leiden</text><text x="691" y="303">AI Snake Oil</text><text x="596" y="174">LeCun</text><text x="548" y="306">Marcus</text></g>
 </svg>
 </div>
@@ -57,7 +57,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
   <span><i style="background:#f3bb4d"></i>Mathematics education</span>
   <span><i style="background:#d981b2"></i>Governance</span>
   <span><i style="background:#9b8fe7"></i>Broad-AI baseline</span>
-  <span><i style="background:#5aa9e6"></i>Math/science journalism &amp; podcasts</span>
+  <span><i style="background:var(--chalk-white)"></i>Math/science journalism &amp; podcasts</span>
   <span>Circle size = source reliability</span>
 </div>
 
