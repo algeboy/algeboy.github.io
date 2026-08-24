@@ -34,3 +34,6 @@ exclude:
   - _includes_old
   - _sass_old
   - uploads/css
+  # The authored Markdown and its standalone Reveal.js export share a target;
+  # publish the presentation HTML and keep Jekyll from overwriting it.
+  - 3-Week/L3-Types.md

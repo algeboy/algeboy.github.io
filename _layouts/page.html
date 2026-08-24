@@ -12,26 +12,4 @@ layout: default
   
   {{ content }}
 
-  {% unless page.url == '/publications/' or page.url contains '/publications' %}
-  <div class="publications-bookshelf-desktop" aria-label="Bookshelf links">
-    <a class="bookshelf-chalk-box" href="https://hagoromo.shop/" target="_blank" rel="noopener noreferrer" title="Hagoromo official website" aria-label="Visit Hagoromo official website"></a>
-
-    <div class="bookshelf-squeegee" title="Squeegee" aria-hidden="true">
-      <div class="bookshelf-squeegee-handle"></div>
-      <div class="bookshelf-squeegee-head"></div>
-    </div>
-
-    <div class="bookshelf-spray-bottle" title="Spray bottle" aria-hidden="true">
-      <div class="bookshelf-spray-cap"></div>
-      <div class="bookshelf-spray-nozzle"></div>
-    </div>
-
-    <div class="bookshelf-books">
-      <a class="bookshelf-book-spine bookshelf-book-5000" href="{{ '/5000/' | relative_url }}">5000 Years of Modern Programming</a>
-      <a class="bookshelf-book-spine bookshelf-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data</a>
-    </div>
-
-    <div class="bookshelf-plank" aria-hidden="true"></div>
-  </div>
-  {% endunless %}
 </div>

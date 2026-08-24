@@ -37,8 +37,6 @@ permalink: /publications/
     width: 150px;
     height: 100px;
     border-radius: 8px;
-    <!-- border: 2px solid var(--chalk-blue); -->
-    <!-- background: rgba(100, 181, 246, 0.1); -->
     display: flex;
     align-items: center;
     justify-content: center;
@@ -723,25 +721,4 @@ permalink: /publications/
             <!-- Add image here -->
         </div>
     </div>
-</div>
-
-<div class="publications-bookshelf-desktop" aria-label="Bookshelf links">
-    <a class="bookshelf-chalk-box" href="https://www.ten-spc.co.jp/en/" target="_blank" rel="noopener noreferrer" title="Hagoromo official website" aria-label="Visit Hagoromo official website"></a>
-
-    <div class="bookshelf-squeegee" title="Squeegee" aria-hidden="true">
-        <div class="bookshelf-squeegee-handle"></div>
-        <div class="bookshelf-squeegee-head"></div>
-    </div>
-
-    <div class="bookshelf-spray-bottle" title="Spray bottle" aria-hidden="true">
-        <div class="bookshelf-spray-cap"></div>
-        <div class="bookshelf-spray-nozzle"></div>
-    </div>
-
-    <div class="bookshelf-books">
-        <a class="bookshelf-book-spine bookshelf-book-5000" href="{{ '/5000/' | relative_url }}">5000 Years of Modern Programming</a>
-        <a class="bookshelf-book-spine bookshelf-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data</a>
-    </div>
-
-    <div class="bookshelf-plank" aria-hidden="true"></div>
 </div>

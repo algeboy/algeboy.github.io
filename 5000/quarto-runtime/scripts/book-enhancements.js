@@ -1,3 +1,13 @@
+  // Quarto's generated book pages do not declare a favicon. Set the site's
+  // chalkboard explicitly so nested pages never fall back to another icon.
+  const siteFavicon = document.querySelector('link[rel~="icon"]') || document.createElement('link');
+  siteFavicon.rel = 'icon';
+  siteFavicon.type = 'image/png';
+  siteFavicon.href = '/favicon.png';
+  if (!siteFavicon.parentNode) {
+    document.head.appendChild(siteFavicon);
+  }
+
   const initializeEnhancements = function() {
     const applyCodeWatermarks = function(root) {
       if (!root) {

@@ -62,7 +62,7 @@ let getRepos = () => {
               <div class="tile-people" id="${repo.name}-${id}-contributors-list">
                 <!-- Contributors will be loaded here -->
               </div>
-              <a href="${repo.html_url}#readme" class="tile-link" target="_blank">View Details →</a>
+              <a href="${repo.html_url}#readme" class="tile-link" target="_blank" rel="noopener noreferrer">View Details →</a>
             </div>
           </div>
         `;

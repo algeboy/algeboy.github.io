@@ -10,7 +10,7 @@ permalink: /about/
 * Co-developed <strong>Linear Data</strong> with Professor Emily J. King. A course where Data Science and Linear Algebra are equals.  Take the online course [CSU Online's Data Science Linear Algebra](https://online.colostate.edu/courses/DSCI/DSCI369.dot) [**Or get our Free Book**](https://LinearData.Space). 
 * Industry experience with Intel Corporation 1997-2001 consulting 2009-2020.
 * Gave first <strong>polynomial-time</strong> algorithms for...
-    - Direct and Central product decomposition even in black-box (thesis) [Read more.](_posts/2008-06-16-decompositions.md)
+    - Direct and Central product decomposition even in black-box (thesis) [Read more.]({{ '/2008/06/16/decompositions.html' | relative_url }})
     - Intersecting classical groups (with P.A. Brooksbank) [Read more.]()
     - Isomorphism testing of finite groups of most order (with H. Dietrich) [Read more.]()
  * Responsible for...
@@ -20,7 +20,7 @@ permalink: /about/
 
 ## Random Questions
 * Age?  Yes I am aging, but I am working out now.  Trying to see Haley's Comet twice in my life.
-* YouTube? <a href="#" onclick="openVideoModal('@algeboy')"><strong>My channel @algeboy</strong></a> gathers workshop talks on Tensors by me and my friends and videos of some of my online courses. 
+* YouTube? <a href="https://youtube.com/@algeboy" target="_blank" rel="noopener noreferrer"><strong>My channel @algeboy</strong></a> gathers workshop talks on Tensors by me and my friends and videos of some of my online courses.
 * Take a Course from me?  
  * Coming Summer 2026 is my course on <strong>Math for Computational Science</strong> with Professor Dustin Tucker.
 
@@ -51,11 +51,11 @@ join me here on
 
 ## Positions
 
- * [Colorado State University](www.colostate.edu), Professor, Department of Mathematics, Since August 2011.
+ * [Colorado State University](https://www.colostate.edu/), Professor, Department of Mathematics, Since August 2011.
  * Industrial Consulting: Since 2009
- * [The Ohio State University](www.osu.edu) Zassenhaus Assistant Professor,	Department of Mathematics, September 2008 to August 2011.
- * [University of Oregon](www.uoregon.edu) Graduate Teaching Fellow, Department of Mathematics, September 2002 to June 2008.
- * [Intel Corporation](www.intel.com) Intel Architecture Labs, Jones Farm,  December 1997 to June 2001.
+ * [The Ohio State University](https://www.osu.edu/) Zassenhaus Assistant Professor,	Department of Mathematics, September 2008 to August 2011.
+ * [University of Oregon](https://www.uoregon.edu/) Graduate Teaching Fellow, Department of Mathematics, September 2002 to June 2008.
+ * [Intel Corporation](https://www.intel.com/) Intel Architecture Labs, Jones Farm,  December 1997 to June 2001.
     
 ## Visiting Positions & Special Program Invitations
 <ul>
@@ -74,4 +74,3 @@ join me here on
     <li><b>Trinity University</b>, National Science Foundation	
         Research Experience for Undergraduates in Mathematics, Summer 2001.</li>
 </ul>
-

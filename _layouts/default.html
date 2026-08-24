@@ -9,12 +9,10 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   
   {% if site.favicon %}
-  <link rel="icon" href="{{ site.favicon | relative_url }}">
+  <link rel="icon" type="image/png" href="{{ site.favicon | relative_url }}">
   {% endif %}
   
   <!-- MathJax for math rendering -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
     MathJax = {
       tex: {
@@ -23,6 +21,7 @@
       }
     };
   </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   
   {% if site.google_analytics %}
   <!-- Google Analytics -->
@@ -38,7 +37,7 @@
 <body>
   <!-- Classroom Header -->
   <div class="classroom-header">
-    <button class="hamburger-menu" icon="fa fa-bars" id="hamburger-btn" aria-label="Menu">
+    <button class="hamburger-menu" id="hamburger-btn" aria-label="Menu">
       <span></span>
       <span><i class="fa fa-bars"></i></span>
       <span></span>
@@ -52,7 +51,7 @@
       <li><a href="{{ '/' | relative_url }}">🏠 Home</a></li>
       <li><a href="{{ '/MathChat/' | relative_url }}">🤖 MathChat</a></li>
       <li><a href="{{ '/publications/' | relative_url }}">📚 Publications</a></li>
-      <li><a href="https://youtube.com/@{{ site.social.youtube }}" target="_blank">📺 YouTube</a></li>
+      <li><a href="https://youtube.com/@{{ site.social.youtube }}" target="_blank" rel="noopener noreferrer">📺 YouTube</a></li>
       <li><a href="{{ '/about/' | relative_url }}">👤 About</a></li>
       <li><a href="{{ '/contact/' | relative_url }}">✉️ Contact</a></li>
     </ul>
@@ -61,7 +60,7 @@
       <div class="menu-bookshelf-title">Bookshelf</div>
       <div class="menu-bookshelf">
         <a class="menu-book-spine menu-book-5000" href="{{ '/5000/' | relative_url }}">5000 Years of Modern Programming</a>
-        <a class="menu-book-spine menu-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data</a>
+        <a class="menu-book-spine menu-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data<br><span class="bookshelf-book-authors">King Wilson</span></a>
       </div>
     </div>
   </nav>
@@ -80,7 +79,7 @@
           </div>
           <div class="tv-brand">YouTube</div>
         </div>
-        <div class="tv-base" padding="0"></div>
+        <div class="tv-base"></div>
       </div>
       
       <!-- Projector Screen Overlay -->
@@ -90,7 +89,6 @@
           <div class="youtube-container" id="youtube-container">
             <iframe id="youtube-iframe" 
                     src="about:blank" 
-                    frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
             </iframe>
@@ -149,6 +147,41 @@
       </div>
     </div>
   </div>
+
+  {% if page.layout == 'page' %}
+  <!-- Keep the bookshelf outside .chalkboard-content so Safari does not clip
+       its fixed-position children at the chalkboard's scrolling boundary. -->
+  <div class="publications-bookshelf-desktop" aria-label="Bookshelf links">
+    <a class="bookshelf-chalk-box" href="https://hagoromo.shop/" target="_blank" rel="noopener noreferrer" title="Hagoromo official website" aria-label="Visit Hagoromo official website"></a>
+
+    <div class="bookshelf-squeegee" title="Squeegee" aria-hidden="true">
+      <div class="bookshelf-squeegee-handle"></div>
+      <div class="bookshelf-squeegee-head"></div>
+    </div>
+
+    <div class="bookshelf-spray-bottle" title="Spray bottle" aria-hidden="true">
+      <div class="bookshelf-spray-cap"></div>
+      <div class="bookshelf-spray-nozzle"></div>
+    </div>
+
+    <div class="bookshelf-books">
+      <a class="bookshelf-book-spine bookshelf-book-5000" href="{{ '/5000/' | relative_url }}">5000 Years of Modern Programming</a>
+      <a class="bookshelf-book-spine bookshelf-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data<br><span class="bookshelf-book-authors">King Wilson</span></a>
+    </div>
+
+    <div class="bookshelf-plank" aria-hidden="true"></div>
+  </div>
+
+  <a class="mathchat-water-cooler" href="{{ '/MathChat/' | relative_url }}" aria-label="Open MathChat" title="Open MathChat">
+    <span class="water-cooler-bottle" aria-hidden="true"></span>
+    <span class="water-cooler-body" aria-hidden="true">
+      <span class="water-cooler-label">MathChat</span>
+      <span class="water-cooler-tap water-cooler-tap-cold"></span>
+      <span class="water-cooler-tap water-cooler-tap-hot"></span>
+      <span class="water-cooler-drip-tray"></span>
+    </span>
+  </a>
+  {% endif %}
 
   <!-- Chalkboard Frame -->
   <div class="chalkboard-frame"></div>
@@ -220,9 +253,6 @@
       }
     });
   </script>
-</head>
-<body>
-
   <script>
     console.log('Script tag loaded!');
     

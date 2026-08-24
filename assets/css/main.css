@@ -75,8 +75,9 @@ body {
 }
 
 .classroom-header::before {
-  content: 'P R O F.  J A M E S  B.  W I L S O N';
+  content: 'PROF. JAMES B. WILSON';
   opacity: 0.9;
+  word-spacing: 0.55em;
 }
 
 .classroom-header:hover {
@@ -1622,26 +1623,25 @@ footer {
 /* Publications bookshelf */
 .publications-bookshelf-desktop {
   position: fixed;
-  left: 65%;
+  right: 200px;
   bottom: 22px;
-  transform: translateX(-50%);
   z-index: 850;
-  display: flex;
-  align-items: flex-end;
-  gap: 16px;
+  display: block;
   pointer-events: none;
-  flex-wrap: wrap;
   width: 360px;
-  row-gap: 0;
+  height: 210px;
+  overflow: visible;
 }
 
 .bookshelf-books {
+  position: absolute;
+  right: 18px;
+  bottom: 20px;
   pointer-events: auto;
   display: flex;
   align-items: flex-end;
   gap: 8px;
-  margin-bottom: 0;
-  margin-left: auto;
+  z-index: 2;
 }
 
 .bookshelf-book-spine {
@@ -1676,39 +1676,62 @@ footer {
   background: linear-gradient(180deg, #345b2f 0%, #24401f 100%);
 }
 
+.bookshelf-book-authors {
+  font-size: 0.72em;
+  letter-spacing: 0;
+  opacity: 0.88;
+}
+
 .bookshelf-chalk-box {
   width: 72px;
   height: 38px;
   display: block;
   pointer-events: auto;
-  border-radius: 8px;
-  background: linear-gradient(180deg, #f8e58a 0%, #ebd66d 100%);
+  border-radius: 5px 5px 8px 8px;
+  background: linear-gradient(180deg, #f5df72 0 30%, #dfbd43 31% 100%);
   border: 2px solid #b99d3e;
-  box-shadow: 0 5px 0 #8b7430;
-  position: relative;
-  margin-bottom: 0;
+  box-shadow: 0 5px 0 #8b7430, inset 0 4px 0 rgba(255, 248, 185, 0.7);
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  z-index: 1;
   text-decoration: none;
 }
 
-.bookshelf-chalk-box::before,
+.bookshelf-chalk-box::before {
+  content: 'CHALK';
+  position: absolute;
+  left: 9px;
+  right: 9px;
+  bottom: 4px;
+  height: 14px;
+  border: 1px solid #9c7c25;
+  border-radius: 2px;
+  background: #fff9d7;
+  color: #80641e;
+  font: 700 8px/13px Arial, sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  z-index: 2;
+}
+
 .bookshelf-chalk-box::after {
   content: '';
   position: absolute;
-  bottom: 12px;
-  width: 24px;
-  height: 7px;
-  border-radius: 6px;
-  background: #fffef4;
-  box-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
-}
-
-.bookshelf-chalk-box::before {
   left: 8px;
-}
-
-.bookshelf-chalk-box::after {
-  right: 8px;
-  background: #e9f7ff;
+  top: -9px;
+  width: 9px;
+  height: 22px;
+  border: 1px solid rgba(90, 80, 55, 0.28);
+  border-radius: 5px 5px 3px 3px;
+  background: #fffef4;
+  box-shadow:
+    15px 1px 0 #b9e7ff,
+    30px -1px 0 #f3a7b6,
+    45px 1px 0 #f5e36d,
+    0 1px 3px rgba(0, 0, 0, 0.35);
+  transform: rotate(-3deg);
+  z-index: 1;
 }
 
 .bookshelf-chalk-box::selection {
@@ -1727,59 +1750,103 @@ footer {
 .bookshelf-spray-bottle {
   width: 50px;
   height: 92px;
-  border-radius: 16px 16px 14px 14px;
-  background: linear-gradient(180deg, #9ce6ff 0%, #56abd2 55%, #2c7ca4 100%);
+  border-radius: 13px 13px 16px 16px;
+  background: linear-gradient(90deg, #4b9bc2 0%, #9ee8ff 20%, #62bddf 58%, #2c7ca4 100%);
   border: 2px solid #215570;
-  box-shadow: 0 6px 0 #1d4760;
-  position: relative;
-  margin-bottom: 0;
+  box-shadow: 0 6px 0 #1d4760, inset 5px 0 7px rgba(255, 255, 255, 0.28);
+  position: absolute;
+  left: 106px;
+  bottom: 20px;
+  z-index: 1;
+}
+
+.bookshelf-spray-bottle::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: -11px;
+  width: 18px;
+  height: 14px;
+  border: 2px solid #4f5560;
+  border-radius: 4px 4px 2px 2px;
+  background: #e7ebf0;
+  z-index: 1;
+}
+
+.bookshelf-spray-bottle::after {
+  content: 'WATER';
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  top: 35px;
+  height: 25px;
+  border: 1px solid rgba(24, 85, 112, 0.55);
+  border-radius: 7px;
+  background: rgba(232, 249, 255, 0.72);
+  color: #246985;
+  font: 700 7px/24px Arial, sans-serif;
+  letter-spacing: 0.7px;
+  text-align: center;
 }
 
 .bookshelf-spray-cap {
   position: absolute;
-  width: 26px;
-  height: 18px;
+  width: 24px;
+  height: 10px;
   background: #f0f2f6;
   border: 2px solid #4f5560;
-  border-radius: 6px 6px 3px 3px;
-  top: -16px;
-  left: 10px;
+  border-radius: 4px 4px 2px 2px;
+  top: -15px;
+  left: 11px;
+  z-index: 2;
 }
 
 .bookshelf-spray-nozzle {
   position: absolute;
-  width: 32px;
+  width: 30px;
   height: 18px;
   background: linear-gradient(180deg, #f5f7fa 0%, #d7dde6 100%);
   border: 2px solid #4f5560;
-  border-radius: 7px;
-  top: -13px;
-  right: -20px;
+  border-radius: 8px 8px 4px 4px;
+  top: -29px;
+  left: 8px;
+  z-index: 3;
 }
 
 .bookshelf-spray-nozzle::before {
-  content: none;
+  content: '';
+  position: absolute;
+  right: -24px;
+  top: 2px;
+  width: 27px;
+  height: 8px;
+  border: 2px solid #4f5560;
+  border-radius: 2px 7px 7px 2px;
+  background: linear-gradient(180deg, #f5f7fa 0%, #c8ced7 100%);
 }
 
 .bookshelf-spray-nozzle::after {
   content: '';
   position: absolute;
-  width: 10px;
-  height: 20px;
-  left: 8px;
+  width: 9px;
+  height: 23px;
+  left: 17px;
   top: 14px;
   border-radius: 0 0 7px 7px;
   background: #d74a4a;
   border: 2px solid #8f2525;
   border-top: 0;
+  transform: rotate(-10deg);
+  transform-origin: top center;
 }
 
 .bookshelf-squeegee {
   width: 52px;
   height: 98px;
-  position: relative;
-  margin-bottom: 0;
-  margin-right: -10px;
+  position: absolute;
+  left: 174px;
+  bottom: 20px;
+  z-index: 1;
   transform: rotate(14deg);
   transform-origin: bottom right;
 }
@@ -1787,12 +1854,13 @@ footer {
 .bookshelf-squeegee-handle {
   position: absolute;
   left: 22px;
-  top: 2px;
+  top: 0;
   width: 6px;
-  height: 72px;
+  height: 82px;
   border-radius: 4px;
   background: linear-gradient(180deg, #d19b57 0%, #8a582d 100%);
   border: 1px solid #4f2f16;
+  z-index: 1;
 }
 
 .bookshelf-squeegee-head {
@@ -1805,15 +1873,201 @@ footer {
   background: linear-gradient(180deg, #d6d9df 0%, #9ca3ad 100%);
   border: 2px solid #565d67;
   box-shadow: inset 0 -4px 0 #2f3540;
+  z-index: 2;
+}
+
+.bookshelf-squeegee-head::before {
+  content: '';
+  position: absolute;
+  left: 17px;
+  top: -8px;
+  width: 10px;
+  height: 11px;
+  border: 2px solid #565d67;
+  border-bottom: 0;
+  border-radius: 4px 4px 0 0;
+  background: #aeb4bc;
 }
 
 .bookshelf-plank {
+  position: absolute;
+  left: 0;
+  bottom: 0;
   width: 100%;
   height: 20px;
   border-radius: 0;
   background: #6d4323;
   border: 2px solid #3b2213;
   box-shadow: 0 6px 0 #2f190c;
+  z-index: 1;
+}
+
+/* Wide-screen MathChat water cooler */
+.mathchat-water-cooler {
+  position: fixed;
+  left: -38px;
+  bottom: -26px;
+  z-index: 850;
+  display: none;
+  width: 150px;
+  height: 334px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  color: #183b4d;
+  text-decoration: none;
+  filter: drop-shadow(0 7px 5px rgba(0, 0, 0, 0.38));
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.mathchat-water-cooler:hover,
+.mathchat-water-cooler:focus-visible {
+  transform: translateY(-5px);
+  filter: drop-shadow(0 11px 7px rgba(0, 0, 0, 0.42)) brightness(1.05);
+}
+
+.mathchat-water-cooler:focus-visible {
+  outline: none;
+}
+
+.mathchat-water-cooler:focus-visible .water-cooler-label {
+  outline: 3px solid var(--chalk-yellow);
+  outline-offset: 2px;
+}
+
+.water-cooler-bottle {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  width: 100px;
+  height: 154px;
+  border: 4px solid #276f91;
+  border-radius: 12px 12px 28px 28px / 9px 9px 24px 24px;
+  background:
+    radial-gradient(circle at 27% 17%, rgba(255, 255, 255, 0.85) 0 7px, transparent 8px),
+    repeating-linear-gradient(0deg, transparent 0 18px, rgba(24, 105, 145, 0.2) 19px 22px),
+    linear-gradient(90deg, rgba(53, 150, 190, 0.82), rgba(167, 235, 255, 0.9) 38%, rgba(56, 157, 199, 0.85));
+  box-shadow: inset 13px 0 14px rgba(255, 255, 255, 0.28);
+}
+
+.water-cooler-bottle::before {
+  content: '';
+  position: absolute;
+  left: 32px;
+  bottom: -17px;
+  width: 28px;
+  height: 21px;
+  border: 4px solid #276f91;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: #74cbe8;
+}
+
+.water-cooler-bottle::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 20px;
+  height: 3px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.62);
+  box-shadow: 0 -20px 0 rgba(255, 255, 255, 0.3);
+}
+
+.water-cooler-body {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 150px;
+  height: 200px;
+  border: 4px solid #4d5961;
+  border-radius: 16px 16px 9px 9px;
+  background: linear-gradient(90deg, #cbd2d6 0%, #f2f5f6 45%, #aeb8bd 100%);
+  box-shadow: inset 0 -9px 0 #8e999f;
+}
+
+.water-cooler-label {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  right: 20px;
+  height: 32px;
+  border: 1px solid #829097;
+  border-radius: 5px;
+  background: #eef9fc;
+  color: #245d75;
+  font: 700 15px/30px Arial, sans-serif;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+.water-cooler-tap {
+  position: absolute;
+  top: 66px;
+  width: 34px;
+  height: 15px;
+  border: 2px solid #515a60;
+  border-radius: 5px 5px 2px 2px;
+  background: #e9edef;
+}
+
+.water-cooler-tap::after {
+  content: '';
+  position: absolute;
+  left: 11px;
+  top: 12px;
+  width: 9px;
+  height: 18px;
+  border: 2px solid #515a60;
+  border-top: 0;
+  border-radius: 0 0 4px 4px;
+  background: #bfc7cb;
+}
+
+.water-cooler-tap-cold {
+  left: 27px;
+  border-top: 5px solid #3f9ed0;
+}
+
+.water-cooler-tap-hot {
+  right: 27px;
+  border-top: 5px solid #d65b52;
+}
+
+.water-cooler-drip-tray {
+  position: absolute;
+  left: 25px;
+  bottom: 22px;
+  width: 92px;
+  height: 28px;
+  border: 3px solid #59656b;
+  border-radius: 4px 4px 9px 9px;
+  background: repeating-linear-gradient(90deg, #717d83 0 3px, #aab3b7 3px 7px);
+}
+
+@media (min-width: 1101px) {
+  .mathchat-water-cooler {
+    display: block;
+  }
+}
+
+/* Preserve the book links when the cabinet leaves too little horizontal room
+   for the decorative cleaning supplies. */
+@media (min-width: 769px) and (max-width: 1100px) {
+  .publications-bookshelf-desktop {
+    width: 140px;
+  }
+
+  .bookshelf-chalk-box,
+  .bookshelf-spray-bottle,
+  .bookshelf-squeegee {
+    display: none;
+  }
+
+  .bookshelf-books {
+    right: 10px;
+  }
 }
 
 /* Mobile pop-out menu bookshelf */

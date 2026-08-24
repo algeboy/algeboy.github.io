@@ -7,7 +7,7 @@
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="./products_files/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 .flex-container {
     display: -webkit-flex;
@@ -440,7 +440,7 @@ The hint above may remind you if you forgot.
 	</ul>
 </div>
 
-<div id="preprint">
+<div id="shelved-projects">
 <h4>Projects set to the side which have drafts I might share with you privately if you ask.</h4>
 <div class="container">
 <ul>
@@ -474,9 +474,9 @@ The hint above may remind you if you forgot.
 	Software for refining isomorphism to smaller tests.
 	</p>
 	<p>
-	<a href="https://github.com/joshmaglione/Filters" target="_blank">
+	<a href="https://github.com/joshmaglione/Filters" target="_blank" rel="noopener noreferrer">
 	on GitHub
-	<img src="./products_files/GitHub-Mark-32px.png" height="20"> under MIT License.</a>
+	under MIT License.</a>
 	</p>
 </li>
 <li>
@@ -486,9 +486,9 @@ The hint above may remind you if you forgot.
 	Software for high-speed isomorphism for tame representations.
 	</p>
 	<p>
-	<a href="https://github.com/algeboy/TameGenus" target="_blank">
+	<a href="https://github.com/algeboy/TameGenus" target="_blank" rel="noopener noreferrer">
 	on GitHub
-	<img src="./products_files/GitHub-Mark-32px.png" height="20"> under MIT License.</a>
+	under MIT License.</a>
 	</p>
 </li>
 <li>
@@ -500,9 +500,9 @@ The hint above may remind you if you forgot.
 	high-dimensional tensors.	
 	</p>
 	<p>
-	<a href="https://github.com/algeboy/eMAGma" target="_blank">
+	<a href="https://github.com/algeboy/eMAGma" target="_blank" rel="noopener noreferrer">
 	V1.x and higher on GitHub
-	<img src="./products_files/GitHub-Mark-32px.png" height="20"> under MIT License.</a>
+	under MIT License.</a>
 	<br>
 	<a href="http://magma.maths.usyd.edu.au/magma/handbook/multilinear_algebra">
 	V1.0 in MAGMA System.
@@ -517,9 +517,9 @@ The hint above may remind you if you forgot.
 	non-associative algebras, composition algebras, and Jordan algebras.
 	</p>
 	<p>
-	<a href="https://github.com/algeboy/eMAGma" target="_blank">
+	<a href="https://github.com/algeboy/eMAGma" target="_blank" rel="noopener noreferrer">
 	V1.x and higher on GitHub
-	<img src="./products_files/GitHub-Mark-32px.png" height="20"> under MIT License.</a>
+	under MIT License.</a>
 	<br>
 	<a href="http://magma.maths.usyd.edu.au/magma/handbook/non_associative_algebras">
 	V1.0 in MAGMA System.
@@ -534,9 +534,9 @@ The hint above may remind you if you forgot.
 	algebras with involutions, isometry groups, and intersections of isometry groups.
 	</p>
 	<p>
-	<a href="https://github.com/algeboy/StarAlge" target="_blank">
+	<a href="https://github.com/algeboy/StarAlge" target="_blank" rel="noopener noreferrer">
 	V1.x and higher on GitHub
-	<img src="./products_files/GitHub-Mark-32px.png" height="20"> under MIT License.</a>
+	under MIT License.</a>
 	<br>
 	<a href="http://magma.maths.usyd.edu.au/magma/handbook/algebras_with_involution">
 	V1.0 in MAGMA System.
@@ -552,7 +552,7 @@ The hint above may remind you if you forgot.
 	Lead developer for internent connectivity of Intel Web Tablet, a for-runner
 	to tablet computing a decade before Apple's iPad (tm), just saying.  Here's
 	a video of one
-	<a href="https://www.cnet.com/news/before-apples-ipad-there-was-the-intel-ipad-seriously/" target="_blank"> Intel Web Tablet 
+	<a href="https://www.cnet.com/news/before-apples-ipad-there-was-the-intel-ipad-seriously/" target="_blank" rel="noopener noreferrer"> Intel Web Tablet
 (www.intelfreepress.com/news/the-original-ipad/98/)</a>
 	Patent granted.
 	</p>
@@ -637,29 +637,30 @@ The hint above may remind you if you forgot.
 
 <script>
 function showPass() {
-   var x = document.getElementById( "#unlock-rules" );
-   x.style.display = "block";
-   x.slideDown("slow");
-
+    var x = document.getElementById('unlock-rules');
+    if (x) {
+        x.style.display = 'block';
+    }
 }
-function reveal()
-	var x = document.getElementById('#print');
-    if (x.style.display === 'none') {
-        x.style.display = 'block';
-    } else {
-        x.style.display = 'none';
-    }
-} 
+function reveal() {
+    var x = document.getElementById('print');
+    if (x) {
+        x.style.display = x.style.display === 'none' ? 'block' : 'none';
+    }
+}
 
-$(document).ready(function(){
-    $("#unlock").click(function(){
-        $("#unlock-rules").slideDown("slow");
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    var unlock = document.getElementById('unlock');
+    var rules = document.getElementById('unlock-rules');
+    if (unlock) {
+        unlock.addEventListener('click', showPass);
+    }
+    if (rules) {
+        rules.addEventListener('click', function() {
+            rules.style.display = 'none';
+        });
+    }
 });
-
-$("#unlock-rules").click(function(){
-    $("#unlock-rules").slideUp("slow");
-}); 
 
 </script>
 
