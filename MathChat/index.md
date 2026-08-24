@@ -48,7 +48,7 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
   <g fill="#9b8fe7"><circle class="point" cx="678" cy="288" r="12"><title>AI Snake Oil — outlook 38, evidence 78, reliability 82</title></circle><circle class="point" cx="583" cy="180" r="12"><title>Yann LeCun — outlook 65, evidence 65, reliability 84</title></circle><circle class="point" cx="583" cy="312" r="12"><title>Gary Marcus — outlook 32, evidence 65, reliability 84</title></circle></g>
   <!-- Math/science journalism and podcasts -->
   <g fill="#5aa9e6"><circle class="point" cx="664" cy="184" r="12"><title>Jordana Cepelewicz / Quanta — outlook 64, evidence 76, reliability 82</title></circle><circle class="point" cx="620" cy="200" r="12"><title>Steven Strogatz / Quanta — outlook 60, evidence 70, reliability 84</title></circle><circle class="point" cx="502" cy="220" r="11"><title>Sean Carroll / Mindscape — outlook 55, evidence 54, reliability 76</title></circle><circle class="point" cx="509" cy="136" r="10"><title>Curt Jaimungal / Theories of Everything — outlook 76, evidence 55, reliability 70</title></circle><circle class="point" cx="436" cy="208" r="10"><title>Sabine Hossenfelder — outlook 58, evidence 45, reliability 64</title></circle><circle class="point" cx="531" cy="196" r="11"><title>Brian Keating / Into the Impossible — outlook 61, evidence 58, reliability 74</title></circle></g>
-  <g class="point-label"><text x="375" y="105">Su</text><text x="748" y="342">Economist</text><text x="615" y="142">Wolfram</text><text x="630" y="325">Yahoo</text><text x="345" y="193">Lanier</text><text x="397" y="218">Bessis</text><text x="514" y="236">Carroll</text><text x="517" y="130">Jaimungal</text><text x="447" y="204">Hossenfelder</text><text x="542" y="192">Keating</text><text x="574" y="121">Williamson</text><text x="691" y="191">Tao</text><text x="471" y="407">Weinreich</text><text x="721" y="204">Gowers</text><text x="677" y="176">Avigad</text><text x="672" y="171">Cepelewicz</text><text x="609" y="214">Strogatz</text><text x="521" y="82">Tsimerman</text><text x="750" y="213">Riehl</text><text x="647" y="359">Leiden</text><text x="691" y="303">AI Snake Oil</text><text x="596" y="174">LeCun</text><text x="548" y="306">Marcus</text></g>
+  <g class="point-label"><text x="375" y="105">Su</text><text x="748" y="342">Economist</text><text x="615" y="142">Wolfram</text><text x="630" y="325">Yahoo</text><text x="345" y="193">Lanier</text><text x="397" y="218">Bessis</text><text x="514" y="236">Carroll</text><text x="517" y="130">Jaimungal</text><text x="447" y="204">Hossenfelder</text><text x="542" y="192">Keating</text><text x="574" y="121">Williamson</text><text x="691" y="191">Tao</text><text x="471" y="407">Weinreich</text><text x="721" y="204">Gowers</text><text x="677" y="176">Avigad</text><text x="672" y="171">Quanta: Cepelewicz</text><text x="609" y="214">Quanta: Strogatz</text><text x="521" y="82">Tsimerman</text><text x="750" y="213">Riehl</text><text x="647" y="359">Leiden</text><text x="691" y="303">AI Snake Oil</text><text x="596" y="174">LeCun</text><text x="548" y="306">Marcus</text></g>
 </svg>
 </div>
 
@@ -85,7 +85,7 @@ The numbers are deliberately open to revision. They describe a particular source
 | Max Weinreich | 12 | 48 | 65 | Argues against AI-generated mathematics. |
 | Jacob Tsimerman | 88 | 55 | 76 | Strongly future-facing research-mathematics forecast. |
 | Terence Tao | 61 | 78 | 88 | Conditional analysis of mathematical values, verification, and practice. |
-| Steven Strogatz | 60 | 70 | 84 | Podcast interview on black-box models, uncertainty, and statistical reasoning. |
+| Steven Strogatz (Quanta) | 60 | 70 | 84 | Podcast interview on black-box models, uncertainty, and statistical reasoning. |
 | Francis Su | 82 | 35 | 60 | Humanistic case for mathematics and learning. |
 | Emily Riehl | 56 | 86 | 90 | Tests and verification for meaningful AI contribution to mathematics. |
 | Gary Marcus | 32 | 65 | 84 | LLM reasoning can be brittle; plausible output is not robust abstraction. |
@@ -97,7 +97,7 @@ The numbers are deliberately open to revision. They describe a particular source
 | Sabine Hossenfelder | 58 | 45 | 64 | Explainer on claimed AI mathematics breakthroughs; full transcript pending public access. |
 | Timothy Gowers | 58 | 82 | 90 | Separates verified mathematical progress from AI hype. |
 | The Economist | 28 | 86 | 72 | Reports recent evidence on AI use and secondary-school learning. |
-| Jordana Cepelewicz | 64 | 76 | 82 | Quanta's reported synthesis of AI-assisted proof and changing mathematical practice. |
+| Jordana Cepelewicz (Quanta) | 64 | 76 | 82 | Quanta's reported synthesis of AI-assisted proof and changing mathematical practice. |
 | Sean Carroll | 55 | 54 | 76 | Podcast discussion of neural-network mathematics and the limits of data-hungry models. |
 | David Bessis | 54 | 38 | 68 | Mathematical understanding matters beyond theorem production. |
 | Jeremy Avigad | 64 | 76 | 88 | Formalization, proof, and responsible mathematical practice. |
