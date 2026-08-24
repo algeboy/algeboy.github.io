@@ -842,6 +842,44 @@ footer::before {
   }
 }
 
+/* iPhone/iPad landscape: use the visible viewport and let the site header
+   scroll away instead of applying the desktop 90vh layout. */
+@media (orientation: landscape) and (max-height: 600px) {
+  .classroom-header {
+    position: absolute;
+    height: 50px;
+    font-size: 1.2em;
+    letter-spacing: 4px;
+  }
+
+  .classroom-header::before {
+    content: 'PROF. J.B. WILSON';
+  }
+
+  .hamburger-menu {
+    top: 9px;
+    right: 15px;
+  }
+
+  .chalkboard-frame {
+    top: 0;
+    width: 95%;
+    height: 100vh;
+    height: 100dvh;
+    border-width: 10px;
+  }
+
+  .chalkboard-content {
+    top: 0;
+    left: 0;
+    width: 95%;
+    height: 100vh;
+    height: 100dvh;
+    padding: 15px;
+    padding-bottom: 70px;
+  }
+}
+
 /* Text selection with chalk effect */
 ::selection {
   background: var(--chalk-yellow);
