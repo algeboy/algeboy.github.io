@@ -22,6 +22,8 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
 .mathchat-key { display: flex; flex-wrap: wrap; gap: .55rem 1rem; margin: .4rem 0 1rem; }
 .mathchat-key span { white-space: nowrap; }
 .mathchat-key i { display: inline-block; width: .8rem; height: .8rem; margin-right: .3rem; border-radius: 50%; vertical-align: -.05rem; }
+.mathchat-key button { color: inherit; background: transparent; border: 0; padding: 0; cursor: pointer; font: inherit; }
+.mathchat-key button[aria-pressed="false"] { opacity: .38; text-decoration: line-through; }
 #current-review-map + table th:last-child,
 #current-review-map + table td:last-child { padding-left: 1.25rem; }
 </style>
@@ -42,28 +44,45 @@ MathChat compares published viewpoints on artificial intelligence in mathematics
   <text class="axis-label" x="472" y="520" text-anchor="middle">Evidence basis: speculative (0) → data-supported (100)</text>
   <text class="axis-label" x="25" y="240" text-anchor="middle" transform="rotate(-90 25 240)">Outlook: anxious (0) → hopeful (100)</text>
   <!-- Education sources -->
-  <g fill="#f3bb4d"><circle class="point" cx="362" cy="112" r="10"><title>Francis Su — outlook 82, evidence 35, reliability 60</title></circle><circle class="point" cx="737" cy="328" r="11"><title>The Economist — outlook 28, evidence 86, reliability 72</title></circle><circle class="point" cx="605" cy="152" r="11"><title>Conrad Wolfram — outlook 72, evidence 68, reliability 78</title></circle><circle class="point" cx="620" cy="320" r="9"><title>Yahoo report — outlook 30, evidence 70, reliability 55</title></circle><circle class="point" cx="370" cy="200" r="10"><title>Jaron Lanier — outlook 60, evidence 36, reliability 64</title></circle></g>
+  <g data-category="education" fill="#f3bb4d"><circle class="point" cx="362" cy="112" r="10"><title>Francis Su — outlook 82, evidence 35, reliability 60</title></circle><circle class="point" cx="737" cy="328" r="11"><title>The Economist — outlook 28, evidence 86, reliability 72</title></circle><circle class="point" cx="605" cy="152" r="11"><title>Conrad Wolfram — outlook 72, evidence 68, reliability 78</title></circle><circle class="point" cx="620" cy="320" r="9"><title>Yahoo report — outlook 30, evidence 70, reliability 55</title></circle><circle class="point" cx="370" cy="200" r="10"><title>Jaron Lanier — outlook 60, evidence 36, reliability 64</title></circle></g>
   <!-- Research mathematics sources -->
-  <g fill="#66c5b9"><circle class="point" cx="384" cy="224" r="10"><title>David Bessis — outlook 54, evidence 38, reliability 68</title></circle><circle class="point" cx="561" cy="128" r="12"><title>Geordie Williamson — outlook 78, evidence 62, reliability 80</title></circle><circle class="point" cx="678" cy="196" r="13"><title>Terence Tao — outlook 61, evidence 78, reliability 88</title></circle><circle class="point" cx="458" cy="392" r="10"><title>Max Weinreich — outlook 12, evidence 48, reliability 65</title></circle><circle class="point" cx="708" cy="208" r="13"><title>Timothy Gowers — outlook 58, evidence 82, reliability 90</title></circle><circle class="point" cx="664" cy="184" r="13"><title>Jeremy Avigad — outlook 64, evidence 76, reliability 88</title></circle><circle class="point" cx="509" cy="88" r="11"><title>Jacob Tsimerman — outlook 88, evidence 55, reliability 76</title></circle><circle class="point" cx="737" cy="216" r="13"><title>Emily Riehl — outlook 56, evidence 86, reliability 90</title></circle></g>
+  <g data-category="research" fill="#66c5b9"><circle class="point" cx="384" cy="224" r="10"><title>David Bessis — outlook 54, evidence 38, reliability 68</title></circle><circle class="point" cx="561" cy="128" r="12"><title>Geordie Williamson — outlook 78, evidence 62, reliability 80</title></circle><circle class="point" cx="678" cy="196" r="13"><title>Terence Tao — outlook 61, evidence 78, reliability 88</title></circle><circle class="point" cx="458" cy="392" r="10"><title>Max Weinreich — outlook 12, evidence 48, reliability 65</title></circle><circle class="point" cx="708" cy="208" r="13"><title>Timothy Gowers — outlook 58, evidence 82, reliability 90</title></circle><circle class="point" cx="664" cy="184" r="13"><title>Jeremy Avigad — outlook 64, evidence 76, reliability 88</title></circle><circle class="point" cx="509" cy="88" r="11"><title>Jacob Tsimerman — outlook 88, evidence 55, reliability 76</title></circle><circle class="point" cx="737" cy="216" r="13"><title>Emily Riehl — outlook 56, evidence 86, reliability 90</title></circle></g>
   <!-- Governance and broad-AI baselines -->
-  <g fill="#d981b2"><circle class="point" cx="634" cy="344" r="12"><title>Leiden Declaration — outlook 24, evidence 72, reliability 82</title></circle></g>
-  <g fill="#9b8fe7"><circle class="point" cx="678" cy="288" r="12"><title>AI Snake Oil — outlook 38, evidence 78, reliability 82</title></circle><circle class="point" cx="583" cy="180" r="12"><title>Yann LeCun — outlook 65, evidence 65, reliability 84</title></circle><circle class="point" cx="583" cy="312" r="12"><title>Gary Marcus — outlook 32, evidence 65, reliability 84</title></circle><circle class="point" cx="509" cy="128" r="11"><title>Stephen Wolfram — outlook 78, evidence 55, reliability 74</title></circle></g>
+  <g data-category="governance" fill="#d981b2"><circle class="point" cx="634" cy="344" r="12"><title>Leiden Declaration — outlook 24, evidence 72, reliability 82</title></circle></g>
+  <g data-category="baseline" fill="#9b8fe7"><circle class="point" cx="678" cy="288" r="12"><title>AI Snake Oil — outlook 38, evidence 78, reliability 82</title></circle><circle class="point" cx="583" cy="180" r="12"><title>Yann LeCun — outlook 65, evidence 65, reliability 84</title></circle><circle class="point" cx="583" cy="312" r="12"><title>Gary Marcus — outlook 32, evidence 65, reliability 84</title></circle><circle class="point" cx="509" cy="128" r="11"><title>Stephen Wolfram — outlook 78, evidence 55, reliability 74</title></circle></g>
   <!-- Math/science journalism and podcasts -->
-  <g fill="var(--chalk-white)"><circle class="point" cx="664" cy="184" r="12"><title>Jordana Cepelewicz / Quanta — outlook 64, evidence 76, reliability 82</title></circle><circle class="point" cx="620" cy="200" r="12"><title>Steven Strogatz / Quanta — outlook 60, evidence 70, reliability 84</title></circle><circle class="point" cx="502" cy="220" r="11"><title>Sean Carroll / Mindscape — outlook 55, evidence 54, reliability 76</title></circle><circle class="point" cx="509" cy="136" r="10"><title>Curt Jaimungal / Theories of Everything — outlook 76, evidence 55, reliability 70</title></circle><circle class="point" cx="436" cy="208" r="10"><title>Sabine Hossenfelder — outlook 58, evidence 45, reliability 64</title></circle><circle class="point" cx="531" cy="196" r="11"><title>Brian Keating / Into the Impossible — outlook 61, evidence 58, reliability 74</title></circle></g>
+  <g data-category="media" fill="var(--chalk-white)"><circle class="point" cx="664" cy="184" r="12"><title>Jordana Cepelewicz / Quanta — outlook 64, evidence 76, reliability 82</title></circle><circle class="point" cx="620" cy="200" r="12"><title>Steven Strogatz / Quanta — outlook 60, evidence 70, reliability 84</title></circle><circle class="point" cx="502" cy="220" r="11"><title>Sean Carroll / Mindscape — outlook 55, evidence 54, reliability 76</title></circle><circle class="point" cx="509" cy="136" r="10"><title>Curt Jaimungal / Theories of Everything — outlook 76, evidence 55, reliability 70</title></circle><circle class="point" cx="436" cy="208" r="10"><title>Sabine Hossenfelder — outlook 58, evidence 45, reliability 64</title></circle><circle class="point" cx="531" cy="196" r="11"><title>Brian Keating / Into the Impossible — outlook 61, evidence 58, reliability 74</title></circle></g>
   <g class="point-label"><text x="375" y="105">Su</text><text x="748" y="342">Economist</text><text x="615" y="142">Conrad Wolfram</text><text x="630" y="325">Yahoo</text><text x="345" y="193">Lanier</text><text x="397" y="218">Bessis</text><text x="514" y="236">Carroll</text><text x="517" y="130">Jaimungal</text><text x="447" y="204">Hossenfelder</text><text x="542" y="192">Keating</text><text x="574" y="121">Williamson</text><text x="691" y="191">Tao</text><text x="471" y="407">Weinreich</text><text x="721" y="204">Gowers</text><text x="677" y="176">Avigad</text><text x="672" y="171">Quanta: Cepelewicz</text><text x="609" y="214">Quanta: Strogatz</text><text x="521" y="82">Tsimerman</text><text x="750" y="213">Riehl</text><text x="647" y="359">Leiden</text><text x="691" y="303">AI Snake Oil</text><text x="596" y="174">LeCun</text><text x="430" y="123">S. Wolfram</text><text x="548" y="306">Marcus</text></g>
 </svg>
 </div>
 
-On this first map, **hopeful** means that the source expects AI to have a net positive effect on mathematics or mathematics education—for example, by assisting discovery, explanation, accessibility, or formal verification. It does **not** simply mean “AI can do mathematics,” confidence in artificial general intelligence, or approval of every AI use. Conversely, an anxious score reflects concern about the net effect on learning, proof, research culture, or public institutions.
-
 <div class="mathchat-key" aria-label="Source category legend">
-  <span><i style="background:#66c5b9"></i>Research mathematics</span>
-  <span><i style="background:#f3bb4d"></i>Mathematics education</span>
-  <span><i style="background:#d981b2"></i>Governance</span>
-  <span><i style="background:#9b8fe7"></i>Broad-AI baseline</span>
-  <span><i style="background:var(--chalk-white)"></i>Math/science journalism &amp; podcasts</span>
+  <button type="button" data-filter="research" aria-pressed="true"><i style="background:#66c5b9"></i>Research mathematics</button>
+  <button type="button" data-filter="education" aria-pressed="true"><i style="background:#f3bb4d"></i>Mathematics education</button>
+  <button type="button" data-filter="governance" aria-pressed="true"><i style="background:#d981b2"></i>Governance</button>
+  <button type="button" data-filter="baseline" aria-pressed="true"><i style="background:#9b8fe7"></i>Broad-AI baseline</button>
+  <button type="button" data-filter="media" aria-pressed="true"><i style="background:var(--chalk-white)"></i>Math/science journalism &amp; podcasts</button>
   <span>Circle size = source reliability</span>
 </div>
+
+<script>
+(() => {
+  const plot = document.querySelector('.mathchat-plot');
+  if (!plot) return;
+  const labels = { education: ['Su','Economist','Conrad Wolfram','Yahoo','Lanier'], research: ['Bessis','Williamson','Tao','Weinreich','Gowers','Avigad','Tsimerman','Riehl'], governance: ['Leiden'], baseline: ['AI Snake Oil','LeCun','Marcus','S. Wolfram'], media: ['Carroll','Jaimungal','Hossenfelder','Keating','Quanta: Cepelewicz','Quanta: Strogatz'] };
+  const all = [...plot.querySelectorAll('[data-category]')];
+  const text = [...plot.querySelectorAll('.point-label text')];
+  const byCategory = category => [...all.filter(node => node.dataset.category === category), ...text.filter(node => labels[category]?.includes(node.textContent))];
+  document.querySelectorAll('.mathchat-key [data-filter]').forEach(button => {
+    const category = button.dataset.filter, nodes = byCategory(category);
+    button.addEventListener('mouseenter', () => all.forEach(node => { if (node.dataset.category !== category) node.style.opacity = '.18'; }));
+    button.addEventListener('mouseleave', () => all.forEach(node => node.style.opacity = '');
+    button.addEventListener('click', () => { const active = button.getAttribute('aria-pressed') === 'true'; button.setAttribute('aria-pressed', String(!active)); nodes.forEach(node => node.style.display = active ? 'none' : ''); });
+  });
+})();
+</script>
+
+On this first map, **hopeful** means that the source expects AI to have a net positive effect on mathematics or mathematics education—for example, by assisting discovery, explanation, accessibility, or formal verification. It does **not** simply mean “AI can do mathematics,” confidence in artificial general intelligence, or approval of every AI use. Conversely, an anxious score reflects concern about the net effect on learning, proof, research culture, or public institutions.
 
 Each source is reviewed along three provisional dimensions:
 
