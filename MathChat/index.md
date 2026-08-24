@@ -18,6 +18,54 @@ Each source is reviewed along three provisional dimensions:
 
 The numbers are deliberately open to revision. They describe a particular source's argument, never an author's worth or status.
 
+<style>
+.mathchat-plot-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
+.mathchat-plot { display: block; width: 100%; min-width: 760px; height: auto; }
+.mathchat-plot .grid { stroke: rgba(255,255,255,.18); stroke-width: 1; }
+.mathchat-plot .frame { fill: none; stroke: var(--chalk-white); stroke-width: 1.25; }
+.mathchat-plot .axis-label { fill: var(--chalk-white); font: 15px system-ui, sans-serif; }
+.mathchat-plot .tick { fill: var(--chalk-white); font: 12px system-ui, sans-serif; }
+.mathchat-plot .point { stroke: #1f2625; stroke-width: 2; opacity: .94; }
+.mathchat-plot .point-label { fill: var(--chalk-white); font: 12px system-ui, sans-serif; paint-order: stroke; stroke: #1f2625; stroke-width: 3px; stroke-linejoin: round; }
+.mathchat-key { display: flex; flex-wrap: wrap; gap: .55rem 1rem; margin: .4rem 0 1rem; }
+.mathchat-key span { white-space: nowrap; }
+.mathchat-key i { display: inline-block; width: .8rem; height: .8rem; margin-right: .3rem; border-radius: 50%; vertical-align: -.05rem; }
+</style>
+
+## Current viewpoint map
+
+<div class="mathchat-plot-wrap">
+<svg class="mathchat-plot" viewBox="0 0 920 560" role="img" aria-labelledby="plot-title plot-desc">
+  <title id="plot-title">AI and mathematics viewpoints</title>
+  <desc id="plot-desc">A scatter plot. The horizontal axis is evidence basis from speculative to data-supported. The vertical axis is outlook from anxious to hopeful. Circle size represents provisional source reliability.</desc>
+  <rect class="frame" x="105" y="40" width="735" height="400" />
+  <g class="grid">
+    <line x1="105" y1="40" x2="105" y2="440" /><line x1="289" y1="40" x2="289" y2="440" /><line x1="473" y1="40" x2="473" y2="440" /><line x1="656" y1="40" x2="656" y2="440" /><line x1="840" y1="40" x2="840" y2="440" />
+    <line x1="105" y1="440" x2="840" y2="440" /><line x1="105" y1="340" x2="840" y2="340" /><line x1="105" y1="240" x2="840" y2="240" /><line x1="105" y1="140" x2="840" y2="140" /><line x1="105" y1="40" x2="840" y2="40" />
+  </g>
+  <g class="tick" text-anchor="middle"><text x="105" y="465">0</text><text x="289" y="465">25</text><text x="473" y="465">50</text><text x="656" y="465">75</text><text x="840" y="465">100</text></g>
+  <g class="tick" text-anchor="end"><text x="92" y="444">0</text><text x="92" y="344">25</text><text x="92" y="244">50</text><text x="92" y="144">75</text><text x="92" y="44">100</text></g>
+  <text class="axis-label" x="472" y="520" text-anchor="middle">Evidence basis: speculative (0) → data-supported (100)</text>
+  <text class="axis-label" x="25" y="240" text-anchor="middle" transform="rotate(-90 25 240)">Outlook: anxious (0) → hopeful (100)</text>
+  <!-- Education sources -->
+  <g fill="#f3bb4d"><circle class="point" cx="362" cy="112" r="10"><title>Francis Su — outlook 82, evidence 35, reliability 60</title></circle><circle class="point" cx="737" cy="328" r="11"><title>The Economist — outlook 28, evidence 86, reliability 72</title></circle><circle class="point" cx="605" cy="152" r="11"><title>Conrad Wolfram — outlook 72, evidence 68, reliability 78</title></circle><circle class="point" cx="620" cy="320" r="9"><title>Yahoo report — outlook 30, evidence 70, reliability 55</title></circle></g>
+  <!-- Research mathematics sources -->
+  <g fill="#66c5b9"><circle class="point" cx="384" cy="224" r="10"><title>David Bessis — outlook 54, evidence 38, reliability 68</title></circle><circle class="point" cx="561" cy="128" r="12"><title>Geordie Williamson — outlook 78, evidence 62, reliability 80</title></circle><circle class="point" cx="678" cy="196" r="13"><title>Terence Tao — outlook 61, evidence 78, reliability 88</title></circle><circle class="point" cx="458" cy="392" r="10"><title>Max Weinreich — outlook 12, evidence 48, reliability 65</title></circle><circle class="point" cx="708" cy="208" r="13"><title>Timothy Gowers — outlook 58, evidence 82, reliability 90</title></circle><circle class="point" cx="664" cy="184" r="13"><title>Jeremy Avigad — outlook 64, evidence 76, reliability 88</title></circle><circle class="point" cx="509" cy="88" r="11"><title>Jacob Tsimerman — outlook 88, evidence 55, reliability 76</title></circle><circle class="point" cx="737" cy="216" r="13"><title>Emily Riehl — outlook 56, evidence 86, reliability 90</title></circle></g>
+  <!-- Governance and broad-AI baselines -->
+  <g fill="#d981b2"><circle class="point" cx="634" cy="344" r="12"><title>Leiden Declaration — outlook 24, evidence 72, reliability 82</title></circle></g>
+  <g fill="#9b8fe7"><circle class="point" cx="678" cy="288" r="12"><title>AI Snake Oil — outlook 38, evidence 78, reliability 82</title></circle><circle class="point" cx="583" cy="180" r="12"><title>Yann LeCun — outlook 65, evidence 65, reliability 84</title></circle></g>
+  <g class="point-label"><text x="375" y="105">Su</text><text x="748" y="342">Economist</text><text x="615" y="142">Wolfram</text><text x="630" y="325">Yahoo</text><text x="397" y="218">Bessis</text><text x="574" y="121">Williamson</text><text x="691" y="191">Tao</text><text x="471" y="407">Weinreich</text><text x="721" y="204">Gowers</text><text x="677" y="176">Avigad</text><text x="521" y="82">Tsimerman</text><text x="750" y="213">Riehl</text><text x="647" y="359">Leiden</text><text x="691" y="303">AI Snake Oil</text><text x="596" y="174">LeCun</text></g>
+</svg>
+</div>
+
+<div class="mathchat-key" aria-label="Source category legend">
+  <span><i style="background:#66c5b9"></i>Research mathematics</span>
+  <span><i style="background:#f3bb4d"></i>Mathematics education</span>
+  <span><i style="background:#d981b2"></i>Governance</span>
+  <span><i style="background:#9b8fe7"></i>Broad-AI baseline</span>
+  <span>Circle size = source reliability</span>
+</div>
+
 ## What the map currently suggests
 
 * There is no simple pro-AI/anti-AI divide. Several optimistic sources also insist on verification, disclosure, and human responsibility.
@@ -32,10 +80,12 @@ The numbers are deliberately open to revision. They describe a particular source
 | Francis Su | 82 | 35 | 60 | Humanistic case for mathematics and learning. |
 | David Bessis | 54 | 38 | 68 | Mathematical understanding matters beyond theorem production. |
 | The Economist | 28 | 86 | 72 | Reports recent evidence on AI use and secondary-school learning. |
+| Yahoo report | 30 | 70 | 55 | Secondary reporting on student-learning evidence. |
 | Geordie Williamson | 78 | 62 | 80 | AI may contribute to mathematical discovery. |
 | Terence Tao | 61 | 78 | 88 | Conditional analysis of mathematical values, verification, and practice. |
 | Max Weinreich | 12 | 48 | 65 | Argues against AI-generated mathematics. |
 | Leiden Declaration | 24 | 72 | 82 | Governance, responsibility, and peer-review proposals. |
+| AI Snake Oil | 38 | 78 | 82 | Evidence-oriented education baseline, not mathematics-specific. |
 | Timothy Gowers | 58 | 82 | 90 | Separates verified mathematical progress from AI hype. |
 | Jeremy Avigad | 64 | 76 | 88 | Formalization, proof, and responsible mathematical practice. |
 | Conrad Wolfram | 72 | 68 | 78 | Mathematics-education reform for the AI age. |
