@@ -11,11 +11,23 @@
   const NODE_HEIGHT = 80;
   const PINS_PER_SIDE = 8;
   const PIN_COUNT = PINS_PER_SIDE * 2;
+  const JACKET_PATH_LENGTH = 100;
+  const END_GAP = 4;
+  const JACKET_DASH = JACKET_PATH_LENGTH - END_GAP * 2;
+  const JACKET_PATTERN = `0 ${END_GAP} ${JACKET_DASH} ${END_GAP}`;
+  // Reader-facing circuit drawing parameters. `orthogonal` routes every wire
+  // on the dotted grid with straight horizontal and vertical segments. Set
+  // `neighboringRoute` to `curved` and raise `cornerRadius` to restore softer
+  // jumper-wire geometry without changing authored circuit edges.
+  const CIRCUIT_DESIGN = Object.freeze({
+    neighboringRoute: "orthogonal",
+    cornerRadius: 0
+  });
   const WIRE_TYPES = Object.freeze({
-    "-->": { kind: "survey", label: "Survey", color: "#24833b" },
-    "==>": { kind: "details", label: "Details", color: "#bd2d2d" },
-    "-.->": { kind: "detour", label: "Detour", color: "#246bb2" },
-    "=.=>": { kind: "rant", label: "Rant", color: "#d3a900" }
+    "-->": { kind: "survey", label: "Survey" },
+    "==>": { kind: "details", label: "Details" },
+    "-.->": { kind: "detour", label: "Detour" },
+    "=.=>": { kind: "rant", label: "Rant" }
   });
   // A coordinate is a component slot. Both dimensions are exact multiples of
   // the ten-pixel breadboard pitch, while leaving enough room for a chip.
@@ -315,6 +327,30 @@
     return element;
   }
 
+  function appendWireLayers(wires, route, edge, markerEnd) {
+    const copperD = route.copperD || route.d;
+    const jacketD = route.jacketD || route.d;
+    const typeClass = `topic-graph-wire--${edge.kind}`;
+    // The full copper path reaches the package pin. The jacket starts at the
+    // existing route socket and its normalized dash leaves equal bare ends on
+    // every straight, rounded, Bezier, and range-expanded connection.
+    wires.appendChild(svg("path", { d: copperD, class: "topic-graph-wire topic-graph-wire--copper" }));
+    wires.appendChild(svg("path", {
+      d: jacketD,
+      class: `topic-graph-wire topic-graph-wire--jacket ${typeClass}`,
+      pathLength: JACKET_PATH_LENGTH,
+      "stroke-dasharray": JACKET_PATTERN,
+      markerEnd
+    }));
+    wires.appendChild(svg("path", {
+      d: jacketD,
+      class: `topic-graph-wire topic-graph-wire--highlight ${typeClass}`,
+      pathLength: JACKET_PATH_LENGTH,
+      "stroke-dasharray": JACKET_PATTERN,
+      transform: "translate(0 -2)"
+    }));
+  }
+
   function nodeElement(node, entry) {
     const link = document.createElement("a");
     link.className = `topic-graph-node${node.active ? " topic-graph-node--active" : ""}`;
@@ -544,8 +580,14 @@
     return layer;
   }
 
-  function roundedPath(points) {
+  function roundedPath(points, radiusLimit = CIRCUIT_DESIGN.cornerRadius) {
     if (points.length < 2) return "";
+    if (radiusLimit <= 0) {
+      return points.slice(1).reduce(
+        (path, point) => `${path} L ${point.x} ${point.y}`,
+        `M ${points[0].x} ${points[0].y}`
+      );
+    }
     let path = `M ${points[0].x} ${points[0].y}`;
     for (let index = 1; index < points.length - 1; index += 1) {
       const before = points[index - 1], corner = points[index], after = points[index + 1];
@@ -554,7 +596,7 @@
       // Give jumper wire a generous three-hole bend. Short approach segments
       // automatically reduce the radius so a curve never overshoots a pin or
       // an obstacle-routing waypoint.
-      const radius = Math.min(30, incoming / 2, outgoing / 2);
+      const radius = Math.min(radiusLimit, incoming / 2, outgoing / 2);
       const enter = {
         x: corner.x - ((corner.x - before.x) / incoming) * radius,
         y: corner.y - ((corner.y - before.y) / incoming) * radius
@@ -573,15 +615,17 @@
     const start = pinPoint(from, fromPin);
     const end = pinPoint(to, toPin);
     if (!start || !end) return edgePath(from, to);
-    if (chipsAdjacent(from, to)) return directBezierPath(start, end);
+    if (chipsAdjacent(from, to) && CIRCUIT_DESIGN.neighboringRoute === "curved") {
+      return directBezierPath(start, end);
+    }
     const jacketStart = wirePoint(start);
     const jacketEnd = wirePoint(end);
     const points = gridRoute(jacketStart, jacketEnd, obstacles, bounds, occupied);
-    const curve = roundedPath(points);
+    const path = roundedPath(points);
     const middle = points[Math.floor(points.length / 2)];
     return {
-      copperD: `M ${start.x} ${start.y} L ${jacketStart.x} ${jacketStart.y} ${curve.replace(/^M\s+[^ ]+\s+[^ ]+/, "")} L ${end.x} ${end.y}`,
-      jacketD: curve,
+      copperD: `M ${start.x} ${start.y} L ${jacketStart.x} ${jacketStart.y} ${path.replace(/^M\s+[^ ]+\s+[^ ]+/, "")} L ${end.x} ${end.y}`,
+      jacketD: path,
       points,
       x: middle.x,
       y: middle.y
@@ -678,7 +722,7 @@
     const markerRoot = `topic-graph-arrow-${Math.random().toString(36).slice(2)}`;
     Object.values(WIRE_TYPES).forEach(type => {
       const marker = svg("marker", { id: `${markerRoot}-${type.kind}`, markerWidth: 8, markerHeight: 8, refX: 7, refY: 4, orient: "auto", markerUnits: "strokeWidth" });
-      marker.appendChild(svg("path", { d: "M 0 0 L 8 4 L 0 8 z", fill: type.color }));
+      marker.appendChild(svg("path", { d: "M 0 0 L 8 4 L 0 8 z", class: `topic-graph-arrow topic-graph-wire--${type.kind}` }));
       defs.appendChild(marker);
     });
     wires.appendChild(defs);
@@ -690,12 +734,7 @@
       const route = pinnedEdgePath(from, edge.fromPin, to, edge.toPin, obstacles, routeBounds, occupiedWires);
       if (route.points) reserveRoute(route.points, occupiedWires);
       if (route.samples) route.samples.forEach(point => occupiedWires.add(`${point.x},${point.y}`));
-      if (route.copperD) {
-        wires.appendChild(svg("path", { d: route.copperD, class: "topic-graph-wire topic-graph-wire--copper" }));
-        wires.appendChild(svg("path", { d: route.jacketD, class: `topic-graph-wire topic-graph-wire--jacket topic-graph-wire--${edge.kind}`, markerEnd: `url(#${markerRoot}-${edge.kind})` }));
-      } else {
-        wires.appendChild(svg("path", { d: route.d, class: `topic-graph-wire topic-graph-wire--jacket topic-graph-wire--${edge.kind}`, markerEnd: `url(#${markerRoot}-${edge.kind})` }));
-      }
+      appendWireLayers(wires, route, edge, `url(#${markerRoot}-${edge.kind})`);
       const item = document.createElement("li");
       item.textContent = dynamicMathTitle(`${bySource.get(canonicalSource(from.path)).title}: ${edge.label} → ${bySource.get(canonicalSource(to.path)).title}`);
       relations.appendChild(item);
@@ -742,7 +781,9 @@
     decorationLayer,
     roundedPath,
     pinnedEdgePath,
+    appendWireLayers,
     automaticGraph,
+    design: CIRCUIT_DESIGN,
     pinCount: PIN_COUNT,
     wireTypes: WIRE_TYPES
   });

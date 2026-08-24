@@ -1,13 +1,3 @@
-  // Quarto's generated book pages do not declare a favicon. Set the site's
-  // chalkboard explicitly so nested pages never fall back to another icon.
-  const siteFavicon = document.querySelector('link[rel~="icon"]') || document.createElement('link');
-  siteFavicon.rel = 'icon';
-  siteFavicon.type = 'image/png';
-  siteFavicon.href = '/favicon.png';
-  if (!siteFavicon.parentNode) {
-    document.head.appendChild(siteFavicon);
-  }
-
   const initializeEnhancements = function() {
     const applyCodeWatermarks = function(root) {
       if (!root) {
@@ -248,6 +238,14 @@
       }
 
       const skipTags = new Set(['A', 'CODE', 'PRE', 'SCRIPT', 'STYLE', 'TEXTAREA', 'SVG']);
+      // Chip labels are UI, not prose. Keep glossary autolinking out of both
+      // the homepage circuit and reusable circuit/topic widgets so their
+      // deliberately chosen display fonts and icons remain intact.
+      const glossarySkipSelector = [
+        '.home-circuit-board', '.home-circuit-unit', '.home-circuit-branch',
+        '.home-circuit-cpu', '.home-circuit-author', '.home-circuit-memory-card',
+        '.home-circuit-detail', '.topic-graph', '.circuit'
+      ].join(', ');
       const terms = glossaryEntries
         .map(function(entry) { return entry.term; })
         .filter(Boolean)
@@ -283,6 +281,9 @@
           continue;
         }
         if (parent.closest('.mermaid, .sourceCode, .python-shaded')) {
+          continue;
+        }
+        if (parent.closest(glossarySkipSelector)) {
           continue;
         }
         if (!node.nodeValue || !node.nodeValue.trim()) {
@@ -349,6 +350,15 @@
     };
 
     const applyReadingStats = function(root) {
+      // The homepage is itself a visual circuit navigator rather than a
+      // reading page. A word-count banner competes with the board and reports
+      // mostly component labels, so omit the reading chrome there.
+      if (document.body.classList.contains('homepage')) {
+        root.querySelectorAll('[data-reading-stats]').forEach(function(node) {
+          node.remove();
+        });
+        return;
+      }
       const contentArea = root.querySelector('main.content, #quarto-document-content, article, #quarto-content, .quarto-content') || root;
       if (!contentArea) {
         return;
@@ -362,23 +372,21 @@
         statsNode.setAttribute('aria-label', 'Reading statistics');
       }
 
-      const clone = contentArea.cloneNode(true);
-      clone.querySelectorAll('[data-reading-stats], script, style, pre, code, nav.page-navigation, .quarto-title-block').forEach(function(node) {
-        node.remove();
-      });
+      if (!window.BookStudyTime) {
+        return;
+      }
 
-      const text = (clone.textContent || '')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-      const wordCount = text ? text.split(' ').filter(Boolean).length : 0;
-      const minutes = Math.max(1, Math.ceil(wordCount / 120));
-      const minuteLabel = minutes === 1 ? 'minute' : 'minutes';
+      const metrics = window.BookStudyTime.collectStudyMetrics(contentArea);
+      const estimate = window.BookStudyTime.calculateStudyTime(metrics);
+      const hasActivities = estimate.activitySeconds > 0;
 
       statsNode.innerHTML =
         '<span class="reading-stats__inner">' +
-          '<span class="reading-stats__time">' + wordCount.toLocaleString() + ' words • ' + minutes + ' ' + minuteLabel + ' to read</span>' +
-        '</span>';
+          '<span><span class="reading-stats__time">About ' + estimate.totalMinutes + ' minutes to study</span>' +
+          (hasActivities
+            ? '<br><span> ' + estimate.readingMinutes + ' minutes reading · ' + estimate.activityMinutes + ' additional minutes for activities</span>'
+            : '') +
+          '</span></span>';
 
       const pageNav = document.querySelector('nav.page-navigation');
       const insertTarget = pageNav && pageNav.parentNode ? pageNav.parentNode : contentArea;

@@ -118,7 +118,7 @@
       // Treating them as ordinary prose links injects a second brass icon into
       // the same chip, which causes the compact and full-size motifs to
       // overlap.
-      if (anchor.closest(".topic-graph")) return;
+      if (anchor.closest(".topic-graph, .home-circuit-board")) return;
       const raw = anchor.getAttribute("href");
       if (!raw) return;
       let target;

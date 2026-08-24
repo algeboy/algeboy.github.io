@@ -1,5 +1,27 @@
 .topic-graph {
-  --topic-board-pitch: 10px;
+  --circuit-grid-pitch: 10px;
+  --circuit-grid-dot-color: #74746e;
+  --circuit-grid-ring-color: #d2d0c5;
+  /* Circuit design parameters. Keep relation semantics in the authoring
+     operators and tune their appearance here. A line remains solid unless a
+     future schematic profile explicitly supplies a dash pattern. */
+  --circuit-copper-color: #b7652d;
+  --circuit-survey-color: #165d2d;
+  --circuit-survey-highlight: #c9e95a;
+  --circuit-survey-width: 8px;
+  --circuit-survey-highlight-width: 2px;
+  --circuit-details-color: #8f2420;
+  --circuit-details-highlight: #ff9a32;
+  --circuit-details-width: 7px;
+  --circuit-details-highlight-width: 2px;
+  --circuit-detour-color: #174f91;
+  --circuit-detour-highlight: #4de3f2;
+  --circuit-detour-width: 4px;
+  --circuit-detour-highlight-width: 1px;
+  --circuit-rant-color: #8b6500;
+  --circuit-rant-highlight: #ffe46b;
+  --circuit-rant-width: 7px;
+  --circuit-rant-highlight-width: 2px;
   position: relative;
   max-width: 100%;
   margin: 1.5rem 0;
@@ -7,9 +29,9 @@
   border: 1px solid #b9b6aa;
   border-radius: 0.65rem;
   background-color: #f4f2e9;
-  background-image: radial-gradient(circle at center, #74746e 0 2px, #d2d0c5 2.2px 3.3px, transparent 3.5px);
+  background-image: radial-gradient(circle at center, var(--circuit-grid-dot-color) 0 2px, var(--circuit-grid-ring-color) 2.2px 3.3px, transparent 3.5px);
   background-position: 0 0;
-  background-size: var(--topic-board-pitch) var(--topic-board-pitch);
+  background-size: var(--circuit-grid-pitch) var(--circuit-grid-pitch);
   box-shadow: inset 0 1px #fff, inset 0 -1px rgba(62, 59, 48, 0.18);
 }
 .topic-graph__canvas { position: relative; min-width: 100%; }
@@ -91,13 +113,24 @@
   border-radius: 4px;
   background: linear-gradient(#182726 0 68%, #d7d8cf 68% 80%, #172321 80%);
 }
-.topic-graph-wire { fill: none; stroke-linejoin: round; stroke-linecap: round; }
-.topic-graph-wire--copper { stroke: #b7652d; stroke-width: 4; }
-.topic-graph-wire--jacket { stroke-width: 7; }
-.topic-graph-wire--survey { stroke: #24833b; }
-.topic-graph-wire--details { stroke: #bd2d2d; }
-.topic-graph-wire--detour { stroke: #246bb2; }
-.topic-graph-wire--rant { stroke: #d3a900; }
+.topic-graph-wire { fill: none; stroke-linejoin: round; }
+/* Copper remains hidden under the wide jacket except at its deliberately bare
+   ends; this avoids a copper halo along the routed contour. */
+.topic-graph-wire--copper { stroke: var(--circuit-copper-color); stroke-width: 4; stroke-linecap: round; }
+.topic-graph-wire--jacket,
+.topic-graph-wire--highlight { stroke-linecap: butt; }
+.topic-graph-wire--jacket.topic-graph-wire--survey { stroke: var(--circuit-survey-color); stroke-width: var(--circuit-survey-width); }
+.topic-graph-wire--jacket.topic-graph-wire--details { stroke: var(--circuit-details-color); stroke-width: var(--circuit-details-width); }
+.topic-graph-wire--jacket.topic-graph-wire--detour { stroke: var(--circuit-detour-color); stroke-width: var(--circuit-detour-width); }
+.topic-graph-wire--jacket.topic-graph-wire--rant { stroke: var(--circuit-rant-color); stroke-width: var(--circuit-rant-width); }
+.topic-graph-wire--highlight.topic-graph-wire--survey { stroke: var(--circuit-survey-highlight); stroke-width: var(--circuit-survey-highlight-width); }
+.topic-graph-wire--highlight.topic-graph-wire--details { stroke: var(--circuit-details-highlight); stroke-width: var(--circuit-details-highlight-width); }
+.topic-graph-wire--highlight.topic-graph-wire--detour { stroke: var(--circuit-detour-highlight); stroke-width: var(--circuit-detour-highlight-width); }
+.topic-graph-wire--highlight.topic-graph-wire--rant { stroke: var(--circuit-rant-highlight); stroke-width: var(--circuit-rant-highlight-width); }
+.topic-graph-arrow.topic-graph-wire--survey { fill: var(--circuit-survey-color); }
+.topic-graph-arrow.topic-graph-wire--details { fill: var(--circuit-details-color); }
+.topic-graph-arrow.topic-graph-wire--detour { fill: var(--circuit-detour-color); }
+.topic-graph-arrow.topic-graph-wire--rant { fill: var(--circuit-rant-color); }
 
 .topic-graph-key {
   position: sticky;
@@ -120,24 +153,23 @@
   position: relative;
   display: inline-block;
   width: 54px;
-  height: 7px;
   border-radius: 5px;
 }
 .topic-graph-key__wire::before,
 .topic-graph-key__wire::after {
   position: absolute;
-  top: 2px;
+  top: calc(50% - 1.5px);
   width: 9px;
   height: 3px;
   content: "";
-  background: #b7652d;
+  background: var(--circuit-copper-color);
 }
 .topic-graph-key__wire::before { right: 100%; }
 .topic-graph-key__wire::after { left: 100%; }
-.topic-graph-key__wire--survey { background: #24833b; }
-.topic-graph-key__wire--details { background: #bd2d2d; }
-.topic-graph-key__wire--detour { background: #246bb2; }
-.topic-graph-key__wire--rant { background: #d3a900; }
+.topic-graph-key__wire--survey { height: var(--circuit-survey-width); background: linear-gradient(to bottom,var(--circuit-survey-highlight) 0 var(--circuit-survey-highlight-width),var(--circuit-survey-color) var(--circuit-survey-highlight-width)); }
+.topic-graph-key__wire--details { height: var(--circuit-details-width); background: linear-gradient(to bottom,var(--circuit-details-highlight) 0 var(--circuit-details-highlight-width),var(--circuit-details-color) var(--circuit-details-highlight-width)); }
+.topic-graph-key__wire--detour { height: var(--circuit-detour-width); background: linear-gradient(to bottom,var(--circuit-detour-highlight) 0 var(--circuit-detour-highlight-width),var(--circuit-detour-color) var(--circuit-detour-highlight-width)); }
+.topic-graph-key__wire--rant { height: var(--circuit-rant-width); background: linear-gradient(to bottom,var(--circuit-rant-highlight) 0 var(--circuit-rant-highlight-width),var(--circuit-rant-color) var(--circuit-rant-highlight-width)); }
 
 .topic-graph-node {
   position: absolute;
@@ -224,7 +256,7 @@
   .topic-graph-node:focus-visible .topic-graph-node__badge { color: HighlightText; background: Highlight; border-color: Highlight; box-shadow: none; }
   .topic-graph-node--active .topic-graph-node__badge,
   .topic-graph-node__badge[data-led="on"] { color: HighlightText; background: Highlight; border-color: Highlight; }
-  .topic-graph-wire--copper, .topic-graph-wire--jacket { stroke: CanvasText; }
+  .topic-graph-wire--copper, .topic-graph-wire--jacket, .topic-graph-wire--highlight { stroke: CanvasText; }
   .topic-graph-part::before,
   .topic-graph-part::after { background: Canvas; border: 1px solid CanvasText; box-shadow: none; }
 }

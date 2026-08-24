@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -39,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,11 +113,14 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 	const assets = [
 		{ src: 'assets/mermaid.min.js' },
 		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/study-time.js' },
 		{ src: 'scripts/book-enhancements.js' },
 		{ src: 'scripts/link-icons.js' },
 		{ src: 'scripts/topic-graph.js' },
 		{ src: 'scripts/inline-compass.js' },
 		{ src: 'scripts/toc-compass.js' },
+		{ src: 'scripts/navigation-score.js' },
+		{ src: 'scripts/sidebar-circuit-window.js' },
 		{ src: 'assets/quick-check.js' }
 	];
 
@@ -136,6 +142,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 <link rel="stylesheet" href="../../../quarto-runtime/styles/Homepage.css">
 <link rel="stylesheet" href="../../../quarto-runtime/styles/Matrix.css">
 <link rel="stylesheet" href="../../../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/sidebar-circuit-window.css">
 <link rel="stylesheet" href="../../../quarto-runtime/styles/inline-compass.css">
 <link rel="stylesheet" href="../../../quarto-runtime/styles/topic-graph.css">
 <link rel="stylesheet" href="../../../quarto-runtime/styles/circuit-content.css">
@@ -223,11 +230,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-cauchys-limits" id="toc-part-1-cauchys-limits" class="nav-link active" data-scroll-target="#part-1-cauchys-limits"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Part 1 Cauchy’s Limits</a>
+  <li><a href="#cauchys-limits" id="toc-cauchys-limits" class="nav-link active" data-scroll-target="#cauchys-limits"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Cauchy’s Limits</a>
   <ul class="collapse">
-  <li><a href="#iron-filings-on-magnet" id="toc-iron-filings-on-magnet" class="nav-link" data-scroll-target="#iron-filings-on-magnet"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Iron Filings on Magnet</a></li>
-  <li><a href="#eagles-nest" id="toc-eagles-nest" class="nav-link" data-scroll-target="#eagles-nest"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Eagles’ nest</a></li>
-  <li><a href="#hand-writing-recognition" id="toc-hand-writing-recognition" class="nav-link" data-scroll-target="#hand-writing-recognition"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Hand writing Recognition</a></li>
   <li><a href="#so-what-is-infinity" id="toc-so-what-is-infinity" class="nav-link" data-scroll-target="#so-what-is-infinity"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> So what is “infinity?</a></li>
   <li><a href="#match-items" id="toc-match-items" class="nav-link" data-scroll-target="#match-items"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Match Items</a></li>
   <li><a href="#how-to-tame-infinity-limits" id="toc-how-to-tame-infinity-limits" class="nav-link" data-scroll-target="#how-to-tame-infinity-limits"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> How to Tame Infinity: Limits</a></li>
@@ -248,10 +252,10 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 
 
 
-<p>09.1 Cauchy’s Limits</p>
-<section id="part-1-cauchys-limits" class="level2" data-fa-icon="fa-solid fa-book-open">
-<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="part-1-cauchys-limits"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Part 1 Cauchy’s Limits</h2>
+<section id="cauchys-limits" class="level1" data-fa-icon="fa-solid fa-book-open">
+<h1 data-fa-icon="fa-solid fa-book-open"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Cauchy’s Limits</h1>
 <p>Below are three samples of data that are in a sense “infinite” and which encode patterns in a process known as “convergence to a limit”.</p>
+<div class="nav-pils">
 <section id="iron-filings-on-magnet" class="level3" data-fa-icon="fa-solid fa-book-open">
 <h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="iron-filings-on-magnet"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Iron Filings on Magnet</h3>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Horseshoe_Magnetic_Filings_%28Flipped_180%29.jpg/500px-Horseshoe_Magnetic_Filings_%28Flipped_180%29.jpg" class="img-fluid" alt="Horseshoe Magnetic With Iron Filings"> A photograph of iron filings distributed on a sheet of paper. While each iron filing is sprinkled out at random, the effects of a magnet organize it and pull them into clusters along line and especially on the outline of the U shaped magnet hidden underneath the paper. While there are many iron filings spread round the magnet, by far most are clumped on the magnet. We could say that they are <strong>converging</strong> towards the magnet and the magnetic field lines.</p>
@@ -259,18 +263,19 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 <section id="eagles-nest" class="level3" data-fa-icon="fa-solid fa-book-open">
 <h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="eagles-nest"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Eagles’ nest</h3>
 <p><a href="https://www.youtube.com/embed/OY4V_AppZ6s">Fraser Point Bald Eagle Nest 2 powered by EXPLORE.org</a></p>
-<p>This video will take you to an eagle’s nest. Depending on when you see it you might see nothing really changing. I saw it on a morning when the eagle was feeding its newly hatched eaglets. The background didn’t change, the nest didn’t move, only the living things were moving. Everything else we could say had “<strong>converged</strong>”. The point is that sometimes convergence is what we ignore so we can spot interesting divergence. (If sometime in the future this camera is taken down, just try Explore.Org and choose a live camera of nature of any kind you like and you’ll see the same effect. Lots of things not changing!)<img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Screenshot 2026-04-07 at 9.55.20 AM.png" class="img-fluid" alt="Eagle feeding an Eagret in the morning."></p>
+<p>This video will take you to an eagle’s nest. Depending on when you see it you might see nothing really changing. I saw it on a morning when the eagle was feeding its newly hatched eaglets. The background didn’t change, the nest didn’t move, only the living things were moving. Everything else we could say had “<strong>converged</strong>”. The point is that sometimes convergence is what we ignore so we can spot interesting divergence. (If sometime in the future this camera is taken down, just try Explore.Org and choose a live camera of nature of any kind you like and you’ll see the same effect. Lots of things not changing!)<img src="Eagle.png" class="img-fluid" alt="Eagle feeding an Eagret in the morning."></p>
 </section>
 <section id="hand-writing-recognition" class="level3" data-fa-icon="fa-solid fa-book-open">
 <h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="hand-writing-recognition"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Hand writing Recognition</h3>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/image-5.png" class="img-fluid figure-img"></p>
+<p><img src="clusters.png" class="img-fluid figure-img"></p>
 <figcaption>Features of Hand written numerals plotted in 2D.</figcaption>
 </figure>
 </div>
 <p>Here we show the results of PenDigits, a study of hand written digits 0,1,2,3,4,5,6,7,8,9 which have been marked for features. The features are too many to show but we can project down to a combination of two features creating a plot in 2-D. Above are two such plots. While individual handwriting differs, and therefore we do not get precise points but instead clouds of data, we also still see that the digits are very well separated, representing that they are different numbers. We can say that the random variations are <strong>converging</strong> towards a pattern. If label these patterns we might use this to do handwriting recognition. This is a key step in Machine Learning.</p>
 </section>
+</div>
 <section id="so-what-is-infinity" class="level3" data-fa-icon="fa-solid fa-book-open">
 <h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="so-what-is-infinity"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> So what is “infinity?</h3>
 <p>In our multi-logical context we want to capture infinity by its uses within context. These might include the following options.</p>

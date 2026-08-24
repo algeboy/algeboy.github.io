@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,10 +12,13 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
-code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -39,10 +42,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,11 +113,14 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 	const assets = [
 		{ src: 'assets/mermaid.min.js' },
 		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/study-time.js' },
 		{ src: 'scripts/book-enhancements.js' },
 		{ src: 'scripts/link-icons.js' },
 		{ src: 'scripts/topic-graph.js' },
 		{ src: 'scripts/inline-compass.js' },
 		{ src: 'scripts/toc-compass.js' },
+		{ src: 'scripts/navigation-score.js' },
+		{ src: 'scripts/sidebar-circuit-window.js' },
 		{ src: 'assets/quick-check.js' }
 	];
 
@@ -136,6 +142,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 <link rel="stylesheet" href="../quarto-runtime/styles/Homepage.css">
 <link rel="stylesheet" href="../quarto-runtime/styles/Matrix.css">
 <link rel="stylesheet" href="../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/sidebar-circuit-window.css">
 <link rel="stylesheet" href="../quarto-runtime/styles/inline-compass.css">
 <link rel="stylesheet" href="../quarto-runtime/styles/topic-graph.css">
 <link rel="stylesheet" href="../quarto-runtime/styles/circuit-content.css">
@@ -241,7 +248,46 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </header>
 
 
-<p>Deductive reasoning is to systematically argue from your evidence. That brings up many questions, for starters, whose “system” and what counts as “evidence”? You have several options from here. You can follow the green wire path to explore other general systems of reasoning such as inductive and abductive reasoning. Or you can follow the red and blue wires to dig deeper in the properties of a deductive reasoning.</p>
+<p>When we peddle clockwise (when facing the gears) on a bicycle we know the bike will move forward. It is a deduction that one proposition (peddling clockwise) leads to a specific outcome (the bike moves forward).<br>
+<img src="Bike_chain_guard_part.jpeg" class="img-fluid" alt="CC-BY-SA bukk, Wikicommons"></p>
+<p>We can even argue why. We could establish that the motion moves a chain clockwise which moves a gear on the rear wheel clockwise which moves the attached wheel clockwise which means the back of the bike pushes forward. It all locks into place as a solid deduction.</p>
+<p>Now what happens if we peddle counterclockwise? If you have experience riding or watching bicycles you know this becomes a delicate question. The argument we just made could be reversed to suggest the bicycle would move backward. But many who have witnessed a bicycle ride will notice peddling backwards does not generally change the direction. Nor does it matter if you stop peddling once in motion. Those conclusions are far less deductive. Those need some intervening knowledge that our photographic evidence has not provided. This is the point of deductive reasoning versus other forms of reasoning. Deduction should proceed from the evidence. Peddling clockwise offers enough evidence for such a <strong>deduction</strong>. Peddling backwards likely does not (we might using inductive reasoning instead).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While it is a tangent, who would want to leave this discussion without exploring why bikes behave so differently based on clockwise and counter-clockwise rotation. Modern bicycles have a freewheel mechanism that allows the rear wheel to continue spinning even when the pedals are not being turned and only engage in the clockwise direction. This is why peddling backwards does not generally make the bicycle move backward.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Freewheel_en.png" class="img-fluid figure-img"></p>
+<figcaption>Public Domain, Wikicommons</figcaption>
+</figure>
+</div>
+<p>Meanwhile, a unicycle (or fixed wheel bicycle) will move backward if you peddle counterclockwise, as there is no freewheel mechanism to prevent the reverse motion. That gives the unicycle its ability to perform clever tricks like rocking back and forth in place.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Woman_in_unicycle_playing_accordion.jpg" class="img-fluid figure-img" width="250"></p>
+<figcaption>CC-BY-SA Fora do Eixo</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
+<pre><code>Since we are having some fun here is your challenge.  What happens if you rest a bicycle against a wall facing the chain with the peddle in the down position and you pull backwards on that lower peddle which rotates the gear clockwise as before?  As a warning, this author was once humiliated in front of a room of PhD professors for guessing the wrong answer and attempting the experiment live.  Over confidence will get you far, sometimes too far.
+
+- (The bicycle will move forward)(No, but you wont be able to explain why without actually trying this experiment or having someone else perform it.)
+- [The bicycle will move backward][Right.  It is not obvious from the science.  You really ought to just do an experiment to find out, making this not a deduction but a proper induction.  If I had to guess, I'd say the reason this defies the earlier claim that peddling clockwise moves the bike forward is due to the lack of weight sitting on the bike which removes friction the prevents the wheel from taking the tiny bit of backward force and activating the free wheel to allow it to roll backwards.  That is the reality of deduction.  It is really rare to have enough evidence to make a deduction and we often end up with a mix.&lt;br/&gt;       I now share this with you as a challenge to have with anyone you know who is twice as smart as everyone else and half of what they know is right.]</code></pre>
+</div>
+<div class="callout-note defn callout-defn" data-callout-family="defn">
+<p><strong>Deductive Reasoning</strong> is to systematically argue from your evidence to what is necessary.</p>
+</div>
+<p>Having a definition brings up new questions, for instance, whose “system” do we accept and what counts as “evidence”? You might want to first continue the green loop to explore the two other forms of reasoning (inductive and deductive) or you can take the harder blue track now of digging into how we reason deductively.</p>
 <div class="circuit">
 <pre><code>Curry["00/preface.qmd"] @ (0,3)
 *Deduct["Deduct/index.qmd"] @ (1,2)
