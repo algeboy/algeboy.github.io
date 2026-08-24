@@ -77,21 +77,21 @@ The numbers are deliberately open to revision. They describe a particular source
 
 | Source | Outlook | Evidence basis | Reliability | Main contribution |
 |---|---:|---:|---:|---|
-| Francis Su | 82 | 35 | 60 | Humanistic case for mathematics and learning. |
-| David Bessis | 54 | 38 | 68 | Mathematical understanding matters beyond theorem production. |
-| The Economist | 28 | 86 | 72 | Reports recent evidence on AI use and secondary-school learning. |
-| Yahoo report | 30 | 70 | 55 | Secondary reporting on student-learning evidence. |
-| Geordie Williamson | 78 | 62 | 80 | AI may contribute to mathematical discovery. |
-| Terence Tao | 61 | 78 | 88 | Conditional analysis of mathematical values, verification, and practice. |
-| Max Weinreich | 12 | 48 | 65 | Argues against AI-generated mathematics. |
-| Leiden Declaration | 24 | 72 | 82 | Governance, responsibility, and peer-review proposals. |
-| AI Snake Oil | 38 | 78 | 82 | Evidence-oriented education baseline, not mathematics-specific. |
-| Timothy Gowers | 58 | 82 | 90 | Separates verified mathematical progress from AI hype. |
-| Jeremy Avigad | 64 | 76 | 88 | Formalization, proof, and responsible mathematical practice. |
 | Conrad Wolfram | 72 | 68 | 78 | Mathematics-education reform for the AI age. |
+| Geordie Williamson | 78 | 62 | 80 | AI may contribute to mathematical discovery. |
+| Max Weinreich | 12 | 48 | 65 | Argues against AI-generated mathematics. |
 | Jacob Tsimerman | 88 | 55 | 76 | Strongly future-facing research-mathematics forecast. |
-| Yann LeCun | 65 | 65 | 84 | Broad-AI baseline: limits of current language models and future architectures. |
+| Terence Tao | 61 | 78 | 88 | Conditional analysis of mathematical values, verification, and practice. |
+| Francis Su | 82 | 35 | 60 | Humanistic case for mathematics and learning. |
 | Emily Riehl | 56 | 86 | 90 | Tests and verification for meaningful AI contribution to mathematics. |
+| Yann LeCun | 65 | 65 | 84 | Broad-AI baseline: limits of current language models and future architectures. |
+| Leiden Declaration | 24 | 72 | 82 | Governance, responsibility, and peer-review proposals. |
+| Timothy Gowers | 58 | 82 | 90 | Separates verified mathematical progress from AI hype. |
+| The Economist | 28 | 86 | 72 | Reports recent evidence on AI use and secondary-school learning. |
+| David Bessis | 54 | 38 | 68 | Mathematical understanding matters beyond theorem production. |
+| Jeremy Avigad | 64 | 76 | 88 | Formalization, proof, and responsible mathematical practice. |
+| AI Snake Oil | 38 | 78 | 82 | Evidence-oriented education baseline, not mathematics-specific. |
+| Yahoo report | 30 | 70 | 55 | Secondary reporting on student-learning evidence. |
 
 ## Explore, challenge, or extend the review
 
