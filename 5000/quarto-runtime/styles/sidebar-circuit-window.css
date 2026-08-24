@@ -4,6 +4,7 @@
   flex-direction:column;
   height: 100vh;
   overflow: hidden !important;
+  overscroll-behavior: contain;
   background: #d7d2c3;
   border-right: 6px solid #aaa493;
   box-shadow: inset -4px 0 7px rgba(54,49,38,.28);
@@ -305,7 +306,7 @@
 .sidebar-circuit-modes__button:focus-visible { outline:2px solid #1c7e45;outline-offset:2px; }
 .sidebar-circuit-panel { flex:1 1 auto;min-height:0; }
 .sidebar-circuit-panel[hidden] { display:none !important; }
-.sidebar-circuit-panel--contents { overflow:auto;background:#ece9df; }
+.sidebar-circuit-panel--contents { overflow:auto;overscroll-behavior:contain;background:#ece9df; }
 .sidebar-circuit-panel--contents .sidebar-menu-container { display:block !important;padding:8px 10px; }
 .sidebar-circuit-panel--board.sidebar-circuit-window { height:100%;margin-top:0;border-top:0; }
 .sidebar-circuit-panel--error { padding:18px;color:#64251f;background:#f4e7dc;font:700 11px/1.4 Georgia,serif; }
@@ -321,6 +322,7 @@
   --schematic-ground:#bd9400;
   --schematic-exception:#b6322d;
   overflow:auto;
+  overscroll-behavior:contain;
   color:#183126;
   background-color:var(--schematic-background);
   background-image:radial-gradient(circle,var(--schematic-grid-dot) 0 .65px,transparent .9px);
@@ -504,7 +506,10 @@
    overlays part of the reading column, making the whole circuit legible. */
 @media (min-width:992px) {
   #quarto-sidebar.sidebar-circuit-navigation {
-    position:relative;
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
     z-index:20;
     transition:width .18s ease,box-shadow .18s ease;
   }
