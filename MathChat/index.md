@@ -6,11 +6,7 @@ permalink: /MathChat/
 description: A transparent map of viewpoints on AI in mathematics and mathematics education.
 ---
 
-## AI and math, what are y'all saying?
-
-A place to compare blogs and papers on math and AI.  Wrong question? Wrong Data? Submit your improvements, add your name.
-
-[Try your own source](/MathChat/score-your-source/) to receive a provisional browser-only comparison, without adding it to the public map. You can then explicitly opt in to prepare an appendix submission for review.
+A living, transparent map of published viewpoints on AI in mathematics and mathematics education.
 
 <style>
 .mathchat-plot-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
@@ -26,6 +22,9 @@ A place to compare blogs and papers on math and AI.  Wrong question? Wrong Data?
 .mathchat-key i { display: inline-block; width: .8rem; height: .8rem; margin-right: .3rem; border-radius: 50%; vertical-align: -.05rem; }
 .mathchat-key button { color: inherit; background: transparent; border: 0; padding: 0; cursor: pointer; font: inherit; }
 .mathchat-key button[aria-pressed="false"] { opacity: .38; text-decoration: line-through; }
+.mathchat-actions { display:flex; flex-wrap:wrap; gap:.8rem; margin:1.5rem 0 2.5rem; }
+.mathchat-actions a { display:inline-block; padding:.55rem .85rem; color:var(--chalk-white); text-decoration:none; border:2px solid var(--chalk-white); border-radius:.35rem; }
+.mathchat-actions a:hover { color:var(--chalk-yellow); border-color:var(--chalk-yellow); }
 #current-review-map + table th:last-child,
 #current-review-map + table td:last-child { padding-left: 1.25rem; }
 </style>
@@ -65,6 +64,11 @@ A place to compare blogs and papers on math and AI.  Wrong question? Wrong Data?
   <button type="button" data-filter="baseline" aria-pressed="true"><i style="background:#9b8fe7"></i>Broad-AI baseline</button>
   <button type="button" data-filter="media" aria-pressed="true"><i style="background:var(--chalk-white)"></i>Math/science journalism &amp; podcasts</button>
   <span>Circle size = source reliability</span>
+</div>
+
+<div class="mathchat-actions" aria-label="Ways to participate">
+  <a href="/MathChat/score-your-source/">Add your own source for scoring</a>
+  <a href="#leave-a-message">Join the discussion board</a>
 </div>
 
 <script src="/assets/js/mathchat-filters.js" defer></script>
