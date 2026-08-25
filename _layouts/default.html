@@ -407,19 +407,40 @@
             initAudio();
             audioContext.resume();
             const now = audioContext.currentTime;
-            const oscillator = audioContext.createOscillator();
-            const gain = audioContext.createGain();
-            oscillator.type = 'sawtooth';
-            oscillator.frequency.setValueAtTime(620, now);
-            oscillator.frequency.linearRampToValueAtTime(1120, now + 0.22);
-            oscillator.frequency.linearRampToValueAtTime(470, now + 0.68);
-            gain.gain.setValueAtTime(0.0001, now);
-            gain.gain.exponentialRampToValueAtTime(0.24, now + 0.02);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.72);
-            oscillator.connect(gain);
-            gain.connect(audioContext.destination);
-            oscillator.start(now);
-            oscillator.stop(now + 0.74);
+            const duration = 0.78;
+            const buffer = audioContext.createBuffer(1, audioContext.sampleRate * duration, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * 0.24;
+            const rub = audioContext.createBufferSource();
+            const rubFilter = audioContext.createBiquadFilter();
+            const rubGain = audioContext.createGain();
+            rubFilter.type = 'bandpass';
+            rubFilter.frequency.value = 730;
+            rubFilter.Q.value = 0.45;
+            rubGain.gain.setValueAtTime(0.0001, now);
+            rubGain.gain.linearRampToValueAtTime(0.18, now + 0.06);
+            rubGain.gain.linearRampToValueAtTime(0.1, now + 0.58);
+            rubGain.gain.linearRampToValueAtTime(0.0001, now + duration);
+            rub.buffer = buffer;
+            rub.connect(rubFilter);
+            rubFilter.connect(rubGain);
+            rubGain.connect(audioContext.destination);
+            rub.start(now);
+
+            [0.08, 0.31, 0.55].forEach(function(offset, index) {
+                const squeak = audioContext.createOscillator();
+                const squeakGain = audioContext.createGain();
+                squeak.type = 'triangle';
+                squeak.frequency.setValueAtTime(1020 + index * 120, now + offset);
+                squeak.frequency.exponentialRampToValueAtTime(670 + index * 80, now + offset + 0.16);
+                squeakGain.gain.setValueAtTime(0.0001, now + offset);
+                squeakGain.gain.exponentialRampToValueAtTime(0.13, now + offset + 0.018);
+                squeakGain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.18);
+                squeak.connect(squeakGain);
+                squeakGain.connect(audioContext.destination);
+                squeak.start(now + offset);
+                squeak.stop(now + offset + 0.19);
+            });
         } catch (error) {
             console.log('Squeegee sound not available:', error);
         }
