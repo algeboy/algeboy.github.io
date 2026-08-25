@@ -1961,10 +1961,18 @@ button.bookshelf-chalk-box {
   pointer-events: auto;
 }
 
+.bookshelf-squeegee,
+.bookshelf-squeegee:hover,
 .bookshelf-squeegee:focus,
+.bookshelf-squeegee:focus-visible,
 .bookshelf-squeegee:active {
   background: transparent;
+  border: 0;
+  box-shadow: none;
+  color: inherit;
+  margin: 0;
   outline: none;
+  text-shadow: none;
 }
 
 .bookshelf-squeegee.ready {
