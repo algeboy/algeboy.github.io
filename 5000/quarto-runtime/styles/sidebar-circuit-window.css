@@ -343,7 +343,14 @@
   letter-spacing:.08em;
 }
 .sidebar-schematic-heading span { color:#7fc59f;font-size:10pt;letter-spacing:.04em; }
-.sidebar-schematic-drawing { position:relative;width:430px;min-width:100%;cursor:grab;touch-action:none; }
+.sidebar-schematic-drawing {
+  position:relative;
+  width:430px;
+  min-width:0;
+  zoom:.72;
+  cursor:grab;
+  touch-action:none;
+}
 .sidebar-schematic-drawing > svg { position:absolute;inset:0;width:430px;overflow:visible; }
 .sidebar-schematic-wire { fill:none;stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-wire--survey { stroke:var(--schematic-survey);stroke-width:var(--schematic-survey-width); }
@@ -505,8 +512,10 @@
 /* The map is compact until readers engage it. On hover or keyboard focus it
    overlays part of the reading column, making the whole circuit legible. */
 @media (min-width:992px) {
+  body.has-sidebar-circuit-window {
+    --sidebar-circuit-width:clamp(260px,22vw,320px);
+  }
   #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
-    --sidebar-circuit-width:clamp(280px,26vw,360px);
     position:fixed;
     top:0;
     bottom:0;
@@ -523,6 +532,9 @@
     width:calc(100% - var(--sidebar-circuit-width));
     max-width:none;
     margin-left:var(--sidebar-circuit-width);
+    grid-template-columns:
+      [screen-start] 0 [body-start] 1.5rem [body-content-start]
+      minmax(0,1fr) [body-content-end] 1.5rem [body-end] 0 [screen-end];
   }
   body.sidebar-schematic-expanded #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
     width:min(560px,calc(100vw - 48px)) !important;
