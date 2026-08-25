@@ -1947,6 +1947,12 @@ button.bookshelf-chalk-box {
   pointer-events: auto;
 }
 
+.bookshelf-squeegee:focus,
+.bookshelf-squeegee:active {
+  background: transparent;
+  outline: none;
+}
+
 .bookshelf-squeegee.ready { cursor: pointer; }
 
 body.chalkboard-soaked .chalkboard-content {
@@ -1961,16 +1967,19 @@ body.chalkboard-sprayed .chalkboard-content {
 }
 
 body.chalkboard-wiped-one .chalkboard-content {
+  filter: blur(2px) saturate(0.45);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0 33%, #000 34%);
   mask-image: linear-gradient(to bottom, transparent 0 33%, #000 34%);
 }
 
 body.chalkboard-wiped-two .chalkboard-content {
+  filter: blur(1px) saturate(0.25);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0 66%, #000 67%);
   mask-image: linear-gradient(to bottom, transparent 0 66%, #000 67%);
 }
 
 body.chalkboard-wiping .chalkboard-content {
+  filter: none;
   animation: chalkboard-wipe 0.76s ease-in forwards;
 }
 
