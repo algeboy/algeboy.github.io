@@ -1880,6 +1880,20 @@ button.bookshelf-chalk-box {
   text-align: center;
 }
 
+.bookshelf-spray-bottle.empty {
+  background: linear-gradient(90deg, #668394 0%, #d8e2e6 24%, #9db3bc 58%, #597784 100%);
+  border-color: #4c6875;
+  box-shadow: 0 6px 0 #405c68, inset 5px 0 7px rgba(255, 255, 255, 0.42);
+  cursor: default;
+}
+
+.bookshelf-spray-bottle.empty::after {
+  content: 'EMPTY';
+  border-color: rgba(66, 93, 105, 0.6);
+  background: rgba(239, 245, 246, 0.6);
+  color: #496b78;
+}
+
 .bookshelf-spray-cap {
   position: absolute;
   width: 24px;
@@ -1953,7 +1967,15 @@ button.bookshelf-chalk-box {
   outline: none;
 }
 
-.bookshelf-squeegee.ready { cursor: pointer; }
+.bookshelf-squeegee.ready {
+  cursor: pointer;
+  animation: squeegee-entice 0.68s ease-in-out infinite alternate;
+}
+
+@keyframes squeegee-entice {
+  from { transform: rotate(13deg) translateY(0); }
+  to { transform: rotate(20deg) translateY(-5px); }
+}
 
 body.chalkboard-soaked .chalkboard-content {
   filter: hue-rotate(135deg) saturate(1.75) brightness(0.86) blur(1.5px);

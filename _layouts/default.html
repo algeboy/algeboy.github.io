@@ -582,20 +582,26 @@
             let boardIsWiping = false;
 
             function sprayBoard() {
-                if (boardIsWiping || sprayStage > 1) return;
+                if (boardIsWiping || sprayStage > 2) return;
                 sprayStage += 1;
                 playSpraySound();
                 if (sprayStage === 1) {
                     document.body.classList.add('chalkboard-soaked');
                     return;
                 }
-                document.body.classList.add('chalkboard-sprayed');
+                if (sprayStage === 2) {
+                    document.body.classList.add('chalkboard-sprayed');
+                    return;
+                }
+                sprayBottle.classList.add('empty');
+                sprayBottle.setAttribute('aria-label', 'Empty water bottle');
+                sprayBottle.setAttribute('title', 'The bottle is empty');
                 squeegee.disabled = false;
                 squeegee.classList.add('ready');
             }
 
             function wipeBoard() {
-                if (sprayStage !== 2 || boardIsWiping) return;
+                if (sprayStage !== 3 || boardIsWiping) return;
                 wipeStage += 1;
                 playSqueegeeSound();
                 if (wipeStage === 1) {
