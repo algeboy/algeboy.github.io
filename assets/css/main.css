@@ -1684,6 +1684,10 @@ footer {
 }
 
 .bookshelf-book-spine {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
   width: 52px;
   height: 170px;
   border-radius: 4px 4px 2px 2px;
@@ -1709,16 +1713,50 @@ footer {
 
 .bookshelf-book-5000 {
   background: linear-gradient(180deg, #284a74 0%, #183455 100%);
+  justify-content: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 0.86;
+  text-orientation: upright;
 }
 
 .bookshelf-book-lineardata {
+  width: 64px;
+  height: 190px;
   background: linear-gradient(180deg, #345b2f 0%, #24401f 100%);
+  justify-content: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+.bookshelf-book-title {
+  position: absolute;
+  top: 10px;
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.25rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 
 .bookshelf-book-authors {
-  font-size: 0.72em;
-  letter-spacing: 0;
-  opacity: 0.88;
+  position: absolute;
+  right: 3px;
+  bottom: 6px;
+  left: 3px;
+  writing-mode: horizontal-tb;
+  text-orientation: mixed;
+  text-align: center;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  opacity: 0.96;
 }
 
 .bookshelf-chalk-box {
@@ -1735,6 +1773,16 @@ footer {
   bottom: 20px;
   z-index: 1;
   text-decoration: none;
+}
+
+button.bookshelf-chalk-box {
+  padding: 0;
+  cursor: pointer;
+}
+
+.bookshelf-chalk-box.chalk-color-selector {
+  outline: 3px solid var(--selected-chalk, var(--chalk-white));
+  outline-offset: 3px;
 }
 
 .bookshelf-chalk-box::before {
@@ -1797,6 +1845,10 @@ footer {
   left: 106px;
   bottom: 20px;
   z-index: 1;
+  pointer-events: auto;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
 }
 
 .bookshelf-spray-bottle::before {
@@ -1881,22 +1933,58 @@ footer {
 
 .bookshelf-squeegee {
   width: 52px;
-  height: 98px;
+  height: 112px;
   position: absolute;
-  left: 174px;
+  left: 164px;
   bottom: 20px;
-  z-index: 1;
-  transform: rotate(14deg);
+  z-index: 3;
+  transform: rotate(16deg);
   transform-origin: bottom right;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: not-allowed;
+  pointer-events: auto;
+}
+
+.bookshelf-squeegee.ready { cursor: pointer; }
+
+body.chalkboard-soaked .chalkboard-content {
+  filter: hue-rotate(135deg) saturate(1.75) brightness(0.86) blur(1.5px);
+  transition: filter 0.65s ease, opacity 0.8s ease;
+}
+
+body.chalkboard-sprayed .chalkboard-content {
+  filter: blur(3px) saturate(0.65);
+  opacity: 0.52;
+  transition: filter 0.8s ease, opacity 0.8s ease;
+}
+
+body.chalkboard-wiped-one .chalkboard-content {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0 33%, #000 34%);
+  mask-image: linear-gradient(to bottom, transparent 0 33%, #000 34%);
+}
+
+body.chalkboard-wiped-two .chalkboard-content {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0 66%, #000 67%);
+  mask-image: linear-gradient(to bottom, transparent 0 66%, #000 67%);
+}
+
+body.chalkboard-wiping .chalkboard-content {
+  animation: chalkboard-wipe 0.76s ease-in forwards;
+}
+
+@keyframes chalkboard-wipe {
+  to { filter: blur(12px) brightness(1.6); opacity: 0; transform: translateX(-18px); }
 }
 
 .bookshelf-squeegee-handle {
   position: absolute;
-  left: 22px;
+  left: 20px;
   top: 0;
-  width: 6px;
-  height: 82px;
-  border-radius: 4px;
+  width: 10px;
+  height: 96px;
+  border-radius: 5px;
   background: linear-gradient(180deg, #d19b57 0%, #8a582d 100%);
   border: 1px solid #4f2f16;
   z-index: 1;

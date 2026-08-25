@@ -152,21 +152,21 @@
   <!-- Keep the bookshelf outside .chalkboard-content so Safari does not clip
        its fixed-position children at the chalkboard's scrolling boundary. -->
   <div class="publications-bookshelf-desktop" aria-label="Bookshelf links">
-    <a class="bookshelf-chalk-box" href="https://hagoromo.shop/" target="_blank" rel="noopener noreferrer" title="Hagoromo official website" aria-label="Visit Hagoromo official website"></a>
+    <button class="bookshelf-chalk-box chalk-color-selector" id="chalk-color-selector" type="button" title="Choose chalk color" aria-label="Choose chalk color: white"></button>
 
-    <div class="bookshelf-squeegee" title="Squeegee" aria-hidden="true">
+    <button class="bookshelf-squeegee" type="button" title="Wipe the board clean" aria-label="Wipe the board clean" aria-controls="chalkboard-content" disabled>
       <div class="bookshelf-squeegee-handle"></div>
       <div class="bookshelf-squeegee-head"></div>
-    </div>
+    </button>
 
-    <div class="bookshelf-spray-bottle" title="Spray bottle" aria-hidden="true">
+    <button class="bookshelf-spray-bottle" type="button" title="Spray the board" aria-label="Spray the board to clear it" aria-controls="chalkboard-content">
       <div class="bookshelf-spray-cap"></div>
       <div class="bookshelf-spray-nozzle"></div>
-    </div>
+    </button>
 
     <div class="bookshelf-books">
-      <a class="bookshelf-book-spine bookshelf-book-5000" href="{{ '/5000/' | relative_url }}">5000 Years of Modern Programming</a>
-      <a class="bookshelf-book-spine bookshelf-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer">Linear Data<br><span class="bookshelf-book-authors">King Wilson</span></a>
+      <a class="bookshelf-book-spine bookshelf-book-5000" href="{{ '/5000/' | relative_url }}" aria-label="5000 Years of Modern Programming">5000</a>
+      <a class="bookshelf-book-spine bookshelf-book-lineardata" href="https://lineardata.space" target="_blank" rel="noopener noreferrer"><span class="bookshelf-book-title">Linear Data</span><span class="bookshelf-book-authors">King<br>Wilson</span></a>
     </div>
 
     <div class="bookshelf-plank" aria-hidden="true"></div>
@@ -187,7 +187,7 @@
   <div class="chalkboard-frame"></div>
   
   <!-- Scrollable Content Inside Chalkboard -->
-  <div class="chalkboard-content">
+  <div class="chalkboard-content" id="chalkboard-content">
     <header>
       <div class="container">
         <nav class="desktop-nav">
@@ -326,6 +326,104 @@
             console.log('Audio not available:', error);
         }
     }
+
+    // Short, gentle interface sounds made with the Web Audio API. They only
+    // start after a visitor points at an interactive classroom object.
+    function playWaterGlug() {
+        try {
+            initAudio();
+            audioContext.resume();
+            const now = audioContext.currentTime;
+            [0, 0.16, 0.32, 0.82].forEach((offset, index) => {
+                const oscillator = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(index === 0 ? 145 : 185, now + offset);
+                oscillator.frequency.exponentialRampToValueAtTime(index === 0 ? 82 : 105, now + offset + 0.18);
+                gain.gain.setValueAtTime(0.0001, now + offset);
+                gain.gain.exponentialRampToValueAtTime(0.42, now + offset + 0.025);
+                gain.gain.exponentialRampToValueAtTime(0.0001, now + offset + 0.22);
+                oscillator.connect(gain);
+                gain.connect(audioContext.destination);
+                oscillator.start(now + offset);
+                oscillator.stop(now + offset + 0.23);
+            });
+        } catch (error) {
+            console.log('Water sound not available:', error);
+        }
+    }
+
+    function playDrawerOpenSound() {
+        try {
+            initAudio();
+            audioContext.resume();
+            const now = audioContext.currentTime;
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            oscillator.type = 'triangle';
+            oscillator.frequency.setValueAtTime(105, now);
+            oscillator.frequency.exponentialRampToValueAtTime(62, now + 0.18);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.38, now + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.24);
+            oscillator.connect(gain);
+            gain.connect(audioContext.destination);
+            oscillator.start(now);
+            oscillator.stop(now + 0.25);
+        } catch (error) {
+            console.log('Drawer sound not available:', error);
+        }
+    }
+
+    function playSpraySound() {
+        try {
+            initAudio();
+            audioContext.resume();
+            const duration = 0.78;
+            const buffer = audioContext.createBuffer(1, audioContext.sampleRate * duration, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            for (let i = 0; i < data.length; i += 1) data[i] = (Math.random() * 2 - 1) * 0.55;
+            const source = audioContext.createBufferSource();
+            const filter = audioContext.createBiquadFilter();
+            const gain = audioContext.createGain();
+            filter.type = 'bandpass';
+            filter.frequency.value = 1450;
+            filter.Q.value = 0.7;
+            gain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.32, audioContext.currentTime + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + duration);
+            source.buffer = buffer;
+            source.connect(filter);
+            filter.connect(gain);
+            gain.connect(audioContext.destination);
+            source.start();
+        } catch (error) {
+            console.log('Spray sound not available:', error);
+        }
+    }
+
+    function playSqueegeeSound() {
+        try {
+            initAudio();
+            audioContext.resume();
+            const now = audioContext.currentTime;
+            const oscillator = audioContext.createOscillator();
+            const gain = audioContext.createGain();
+            oscillator.type = 'sawtooth';
+            oscillator.frequency.setValueAtTime(620, now);
+            oscillator.frequency.linearRampToValueAtTime(1120, now + 0.22);
+            oscillator.frequency.linearRampToValueAtTime(470, now + 0.68);
+            gain.gain.setValueAtTime(0.0001, now);
+            gain.gain.exponentialRampToValueAtTime(0.24, now + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.72);
+            oscillator.connect(gain);
+            gain.connect(audioContext.destination);
+            oscillator.start(now);
+            oscillator.stop(now + 0.74);
+        } catch (error) {
+            console.log('Squeegee sound not available:', error);
+        }
+    }
     
     // Filing Cabinet and TV functionality
     document.addEventListener('DOMContentLoaded', function() {
@@ -445,6 +543,80 @@
                 console.log('Professional drawer event listener attached');
             } else {
                 console.error('Professional drawer not found!');
+            }
+
+            document.querySelectorAll('.drawer').forEach(function(drawer) {
+                drawer.addEventListener('pointerenter', playDrawerOpenSound);
+            });
+
+            const waterCooler = document.querySelector('.mathchat-water-cooler');
+            if (waterCooler) {
+                waterCooler.addEventListener('pointerenter', playWaterGlug);
+            }
+
+            const sprayBottle = document.querySelector('.bookshelf-spray-bottle');
+            const squeegee = document.querySelector('.bookshelf-squeegee');
+            let sprayStage = 0;
+            let wipeStage = 0;
+            let boardIsWiping = false;
+
+            function sprayBoard() {
+                if (boardIsWiping || sprayStage > 1) return;
+                sprayStage += 1;
+                playSpraySound();
+                if (sprayStage === 1) {
+                    document.body.classList.add('chalkboard-soaked');
+                    return;
+                }
+                document.body.classList.add('chalkboard-sprayed');
+                squeegee.disabled = false;
+                squeegee.classList.add('ready');
+            }
+
+            function wipeBoard() {
+                if (sprayStage !== 2 || boardIsWiping) return;
+                wipeStage += 1;
+                playSqueegeeSound();
+                if (wipeStage === 1) {
+                    document.body.classList.add('chalkboard-wiped-one');
+                    return;
+                }
+                if (wipeStage === 2) {
+                    document.body.classList.add('chalkboard-wiped-two');
+                    return;
+                }
+                boardIsWiping = true;
+                document.body.classList.add('chalkboard-wiping');
+                window.setTimeout(function() {
+                    window.location.href = '{{ "/leave-a-message/" | relative_url }}';
+                }, 760);
+            }
+
+            if (sprayBottle && squeegee) {
+                sprayBottle.addEventListener('click', sprayBoard);
+                squeegee.addEventListener('click', wipeBoard);
+            }
+
+            const colorSelector = document.getElementById('chalk-color-selector');
+            if (colorSelector) {
+                const chalkChoices = [
+                    { name: 'white', color: 'var(--chalk-white)' },
+                    { name: 'yellow', color: 'var(--chalk-yellow)' },
+                    { name: 'blue', color: 'var(--chalk-blue)' },
+                    { name: 'pink', color: 'var(--chalk-pink)' },
+                    { name: 'green', color: 'var(--chalk-green)' }
+                ];
+                let chalkChoice = Number(window.localStorage.getItem('selected-chalk')) || 0;
+                function setChalkColor(index) {
+                    chalkChoice = index % chalkChoices.length;
+                    const choice = chalkChoices[chalkChoice];
+                    colorSelector.style.setProperty('--selected-chalk', choice.color);
+                    colorSelector.setAttribute('aria-label', 'Choose chalk color: ' + choice.name);
+                    window.localStorage.setItem('selected-chalk', chalkChoice);
+                    window.dispatchEvent(new CustomEvent('chalkcolorchange', { detail: choice }));
+                }
+                setChalkColor(chalkChoice);
+                colorSelector.addEventListener('click', function() { setChalkColor(chalkChoice + 1); });
             }
 
             console.log('Filing cabinet and projector initialization complete');
