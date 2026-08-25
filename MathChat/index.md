@@ -3,10 +3,10 @@ layout: page
 width: expand
 title: MathChat
 permalink: /MathChat/
-description: A transparent map of viewpoints on AI in mathematics and mathematics education.
+description: Public Viewpoints on AI in mathematics and mathematics education.
 ---
 
-A living, transparent map of published viewpoints on AI in mathematics and mathematics education.
+What are people saying about AI & Math?
 
 <style>
 .mathchat-plot-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
