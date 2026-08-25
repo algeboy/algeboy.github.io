@@ -12,7 +12,7 @@ permalink: /leave-a-message/
 </style>
 
 <section class="message-board">
-  <h1>Fine, what did YOU want to talk about instead? (Publically)</h1>
+  <h1>What'd YOU want to talk about?</h1>
   <div class="message-wall" aria-label="Public chalkboard wall">
     <script src="https://giscus.app/client.js"
             data-repo="algeboy/algeboy.github.io"
