@@ -10,6 +10,8 @@ description: A transparent map of viewpoints on AI in mathematics and mathematic
 
 A place to compare blogs and papers on math and AI.  Wrong question? Wrong Data? Submit your improvements, add your name.
 
+[Try your own source](/MathChat/score-your-source/) to receive a provisional browser-only comparison, without adding it to the public map. You can then explicitly opt in to prepare an appendix submission for review.
+
 <style>
 .mathchat-plot-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
 .mathchat-plot { display: block; width: 100%; min-width: 760px; height: auto; }
@@ -146,4 +148,4 @@ The complete public record includes the source ledger, scoring methodology, prom
 
 ### Add an author or correct the map
 
-Please use the [author or source suggestion form](https://github.com/algeboy/MathChat/issues/new?template=author-suggestion.yml) to propose a specific source, challenge a score, or point to better evidence. Source snapshots in the repository preserve links, access notes, and review summaries without republishing third-party articles.
+Please use the [author or source suggestion form](https://github.com/algeboy/MathChat/issues/new?template=author-suggestion.yml) to propose a specific source, challenge a score, or point to better evidence. Keep submissions tidy, polite, and apolitical. Source snapshots in the repository preserve links, access notes, and review summaries without republishing third-party articles.
