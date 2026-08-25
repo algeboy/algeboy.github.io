@@ -149,3 +149,31 @@ The complete public record includes the source ledger, scoring methodology, prom
 ### Add an author or correct the map
 
 Please use the [author or source suggestion form](https://github.com/algeboy/MathChat/issues/new?template=author-suggestion.yml) to propose a specific source, challenge a score, or point to better evidence. Keep submissions tidy, polite, and apolitical. Source snapshots in the repository preserve links, access notes, and review summaries without republishing third-party articles.
+
+## Leave a message
+
+Questions, source leads, score challenges, and constructive corrections are welcome. Keep the discussion tidy, polite, and apolitical.
+
+<style>
+.mathchat-message-wall { padding:24px; border:3px dashed var(--chalk-white); border-radius:12px; background:rgba(16,58,43,.32); box-shadow:inset 0 0 22px rgba(0,0,0,.24); }
+.mathchat-message-wall .giscus, .mathchat-message-wall .giscus-frame { width:100%; }
+</style>
+
+<div class="mathchat-message-wall" aria-label="MathChat public discussion board">
+  <script src="https://giscus.app/client.js"
+          data-repo="algeboy/algeboy.github.io"
+          data-repo-id="R_kgDOLIw4gQ"
+          data-category="General"
+          data-category-id="DIC_kwDOLIw4gc4DELD0"
+          data-mapping="specific"
+          data-term="MathChat discussion board"
+          data-strict="0"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="noborder_dark"
+          data-lang="en"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
