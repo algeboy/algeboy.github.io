@@ -3,6 +3,15 @@ flowchart TD
   %% Declare a readable Mermaid node, then link it to its project-root QMD.
   Preface["Curry-Howard-Lambek"]
   click Preface "00/preface.qmd" "Open Preface"
+
+  Tech["Technology"]
+  click Tech "00/01-Technology.qmd" "Open Technology"
+  Stories["Stories"]
+  click Stories "00/02-Stories.qmd" "Open Stories"
+
+  Preface --> Tech
+  Preface --> Stories
+
   Deduct["Deduct"]
   click Deduct "Deduct/index.qmd" "Open Deduct"
   Induct["Induct"]
@@ -12,6 +21,8 @@ flowchart TD
 
   %% Thick green Survey circuit.
   Preface ==> Deduct
+  Preface ==> Induct
+  Preface ==> Abduct
   Deduct ==> Induct
   Induct ==> Abduct
 
@@ -101,7 +112,7 @@ flowchart TD
     end
     click Patterns "Induct/05/index.qmd" "Open Patterns"
 
-    subgraph RelationsPath["Relations"]
+    subgraph Relations["Relations"]
       direction TB
       RelationsOrders["Relations and orders"]
       click RelationsOrders "Induct/06/relations-and-orders.qmd" "Open Relations and Orders"
@@ -115,7 +126,7 @@ flowchart TD
     end
     click Relations "Induct/06/index.qmd" "Open Relations"
 
-    subgraph Revision["Revision"]
+    subgraph Defaults["Defaults"]
       direction TB
       ChangingConclusions["Changing conclusions"]
       click ChangingConclusions "Induct/07/Changing-your-answers.qmd" "Open Changing Conclusions"
@@ -127,7 +138,7 @@ flowchart TD
       ChangingConclusions -.-> DefaultLogic
       DefaultLogic -.-> AdaptiveLogic
     end
-    click Revision "Induct/07/index.qmd" "Open Revision"
+    click Defaults "Induct/07/index.qmd" "Open Defaults"
 
     subgraph Probability["Probability"]
       direction TB
@@ -145,8 +156,8 @@ flowchart TD
 
     Induct --> Patterns
     Patterns --> Relations
-    Relations --> Revision
-    Revision --> Probability
+    Relations --> Defaults
+    Defaults --> Probability
     Probability --> Abduct
 
     subgraph Approximation["Approximation"]

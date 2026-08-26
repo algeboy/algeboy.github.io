@@ -1,9 +1,13 @@
 {
-  "00/Acknowledgments.html": {
-    "icon": "fa-solid fa-building-columns",
-    "titleIcon": null
+  "00/01-Technology.html": {
+    "icon": "fa-solid fa-compass-drafting",
+    "titleIcon": "fa-solid fa-compass-drafting"
   },
-  "00/markdown.html": {
+  "00/02-Stories.html": {
+    "icon": "fa-solid fa-microchip",
+    "titleIcon": "fa-solid fa-microchip"
+  },
+  "00/Acknowledgments.html": {
     "icon": "fa-solid fa-building-columns",
     "titleIcon": null
   },
@@ -576,8 +580,8 @@
     "titleIcon": "fa-solid fa-car-burst"
   },
   "Deduct/01/01-Logic-Library.html": {
-    "icon": "fa-solid fa-table-tennis",
-    "titleIcon": "fa-solid fa-table-tennis"
+    "icon": "fa-solid fa-gamepad fa-la",
+    "titleIcon": null
   },
   "Deduct/01/01/01-Context.html": {
     "icon": "fa-solid fa-chalkboard",
@@ -603,12 +607,12 @@
     "icon": "fa-solid fa-microchip",
     "titleIcon": null
   },
-  "Deduct/01/03/09-Chp-Summary.html": {
-    "icon": "fa-solid fa-clipboard-list",
-    "titleIcon": null
-  },
   "Deduct/01/03/Curry-Howard-Lambek.html": {
     "icon": "fa-solid fa-gamepad",
+    "titleIcon": null
+  },
+  "Deduct/01/09-Chp-Summary.html": {
+    "icon": "fa-solid fa-clipboard-list",
     "titleIcon": null
   },
   "Deduct/01/index.html": {
@@ -692,7 +696,7 @@
     "titleIcon": null
   },
   "Deduct/03/3-exponential-and-dependent-types.html": {
-    "icon": "fa-solid fa-group-arrows-rotate",
+    "icon": "fa-solid fa-screwdriver-wrench",
     "titleIcon": null
   },
   "Deduct/03/MakingTypes.html": {
@@ -836,8 +840,8 @@
     "titleIcon": null
   },
   "Deduct/index.html": {
-    "icon": "fa-solid fa-table-tennis",
-    "titleIcon": "fa-solid fa-table-tennis"
+    "icon": "fa-solid fa-bicycle",
+    "titleIcon": "fa-solid fa-bicycle"
   },
   "Induct/05/0-patterns-and-induction-overview.html": {
     "icon": "fa-solid fa-code-branch",

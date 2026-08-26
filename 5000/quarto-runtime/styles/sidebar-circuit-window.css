@@ -325,47 +325,32 @@
   overscroll-behavior:contain;
   color:#183126;
   background-color:var(--schematic-background);
-  background-image:radial-gradient(circle,var(--schematic-grid-dot) 0 .65px,transparent .9px);
-  background-size:var(--schematic-grid-pitch) var(--schematic-grid-pitch);
   box-shadow:inset 0 3px 7px rgba(37,49,42,.2);
 }
-.sidebar-schematic-heading {
-  position:sticky;
-  z-index:5;
-  top:0;
-  display:grid;
-  gap:2px;
-  padding:8px 10px;
-  color:#caffb8;
-  border-bottom:1px solid #286c48;
-  background:rgba(7,31,23,.94);
-  font:700 10pt/1.2 "Courier New",monospace;
-  letter-spacing:.08em;
-}
-.sidebar-schematic-heading span { color:#7fc59f;font-size:10pt;letter-spacing:.04em; }
 .sidebar-schematic-drawing {
   position:relative;
-  width:430px;
+  width:500px;
   min-width:0;
+  background-color:var(--schematic-background);
+  background-image:radial-gradient(circle,var(--schematic-grid-dot) 0 .65px,transparent .9px);
+  background-position:0 0;
+  background-size:var(--schematic-grid-pitch) var(--schematic-grid-pitch);
   zoom:.72;
   cursor:grab;
   touch-action:none;
 }
-.sidebar-schematic-drawing > svg { position:absolute;inset:0;width:430px;overflow:visible; }
+.sidebar-schematic-drawing > svg { position:absolute;inset:0;width:500px;overflow:visible; }
 .sidebar-schematic-wire { fill:none;stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-wire--survey { stroke:var(--schematic-survey);stroke-width:var(--schematic-survey-width); }
 .sidebar-schematic-wire--detour { stroke:var(--schematic-detour);stroke-width:var(--schematic-detour-width); }
+.sidebar-schematic-junction { fill:var(--schematic-detour);stroke:var(--schematic-background);stroke-width:1px; }
 .sidebar-schematic-resistor path { fill:none;stroke:var(--schematic-detour);stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-diode path { stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-diode path:first-of-type { fill:var(--schematic-background,#edf0e8);stroke-width:1.5; }
 .sidebar-schematic-diode path:last-of-type { fill:none;stroke-width:1.5; }
 .sidebar-schematic-diode--survey path { stroke:var(--schematic-survey); }
 .sidebar-schematic-diode--detour path { stroke:var(--schematic-detour); }
-.sidebar-schematic-npn path { stroke-linecap:square;stroke-linejoin:miter; }
-.sidebar-schematic-npn__base { fill:none;stroke:#2d4135;stroke-width:2.2; }
-.sidebar-schematic-npn__collector { fill:none;stroke:var(--schematic-detour);stroke-width:1.8; }
-.sidebar-schematic-npn__emitter { fill:none;stroke:var(--schematic-survey);stroke-width:2.2; }
-.sidebar-schematic-npn__arrow { fill:var(--schematic-survey);stroke:none; }
+.sidebar-schematic-ground path { fill:none;stroke:var(--schematic-detour);stroke-width:1.5;stroke-linecap:square; }
 .sidebar-schematic-node {
   position:absolute;
   z-index:2;
@@ -376,8 +361,65 @@
   height:44px;
   color:#183126 !important;
   text-decoration:none !important;
-  font:700 10pt/1.1 "Courier New",monospace;
+  font:700 15pt/1.1 "Courier New",monospace;
 }
+.sidebar-schematic-unit {
+  position:absolute;
+  z-index:3;
+  left:var(--x);
+  top:var(--y);
+  width:155px;
+  height:80px;
+}
+.sidebar-schematic-unit .sidebar-schematic-node { left:0;top:0; }
+.sidebar-schematic-node--toggle {
+  padding:0;
+  text-align:left;
+  cursor:pointer;
+  border:0;
+  background:transparent;
+}
+.sidebar-schematic-transistor {
+  position:absolute;
+  box-sizing:border-box;
+  top:66px;
+  left:42px;
+  display:block;
+  width:36px;
+  height:36px;
+  color:#111 !important;
+  text-decoration:none !important;
+  border:2px solid currentColor;
+  border-radius:50%;
+  background:transparent;
+  box-shadow:none;
+  transition:opacity .14s ease,transform .14s ease,filter .14s ease,box-shadow .14s ease;
+}
+.sidebar-schematic-unit:not(.is-open) .sidebar-schematic-transistor {
+  pointer-events:none;
+  opacity:0;
+  transform:scale(.72);
+}
+.sidebar-schematic-transistor span,
+.sidebar-schematic-transistor i {
+  position:absolute;
+  display:block;
+  box-sizing:border-box;
+}
+.sidebar-schematic-transistor__radial { top:5px;left:5px;width:18px;height:2px;background:#111;transform:rotate(45deg);transform-origin:left center; }
+.sidebar-schematic-transistor__base { top:16px;left:4px;width:28px;height:3px;background:currentColor;transform:rotate(-45deg);transform-origin:center; }
+.sidebar-schematic-transistor__collector { top:16px;left:18px;width:18px;height:2px;background:currentColor; }
+.sidebar-schematic-transistor__emitter { top:18px;left:17px;width:2px;height:18px;background:currentColor; }
+/* The only arrow sits on the bottom vertical terminal and points down. */
+.sidebar-schematic-transistor__emitter i { top:9px;left:-5px;width:0;height:0;border-top:8px solid currentColor;border-right:6px solid transparent;border-left:6px solid transparent; }
+.sidebar-schematic-transistor:hover,.sidebar-schematic-transistor:focus-visible {
+  color:#087329 !important;
+  outline:0;
+  background:transparent;
+  box-shadow:0 0 7px rgba(119,247,135,.75);
+  filter:brightness(1.16);
+}
+.sidebar-schematic-branch { position:absolute;inset:0; }
 .sidebar-schematic-node__icon {
   display:grid;
   box-sizing:border-box;
@@ -389,25 +431,47 @@
   border-radius:50%;
   background:#14241d;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 2px 4px rgba(32,40,35,.25);
-  font-size:1.15em;
+  font-size:16.8pt;
+}
+/* The three method nodes are disclosure controls. Leave them hollow until
+   their selected branch is open, then energize the matching icon. */
+.sidebar-schematic-node--deduct .sidebar-schematic-node__icon,
+.sidebar-schematic-node--communications .sidebar-schematic-node__icon,
+.sidebar-schematic-node--abduct .sidebar-schematic-node__icon {
+  color:var(--schematic-detour);
+  border-color:var(--schematic-detour);
+  background:transparent;
+  box-shadow:inset 0 0 0 1px rgba(33,104,165,.16),0 2px 4px rgba(32,40,35,.18);
+}
+.sidebar-schematic-unit.is-open .sidebar-schematic-node--deduct .sidebar-schematic-node__icon,
+.sidebar-schematic-unit.is-open .sidebar-schematic-node--communications .sidebar-schematic-node__icon,
+.sidebar-schematic-unit.is-open .sidebar-schematic-node--abduct .sidebar-schematic-node__icon {
+  color:#effff1;
+  border-color:#72e895;
+  background:#14241d;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 7px rgba(47,220,115,.55);
 }
 .sidebar-schematic-node__label {
   position:absolute;
   top:50%;
   left:50px;
-  width:105px;
+  display:inline-block;
+  width:max-content;
+  padding:2px 4px;
   transform:translateY(-50%);
   color:#183126;
-  font:700 10pt/1.1 "Courier New",monospace;
+  font:700 12pt/1.1 "Courier New",monospace;
+  white-space:nowrap;
+  background:var(--schematic-background);
   text-shadow:0 1px 0 rgba(255,255,255,.82),1px 0 0 rgba(237,240,232,.86),-1px 0 0 rgba(237,240,232,.86);
 }
 .sidebar-schematic-node--survey .sidebar-schematic-node__icon { border-color:var(--schematic-survey); }
 .sidebar-schematic-node--survey { height:48px; }
-.sidebar-schematic-node--survey .sidebar-schematic-node__icon { width:48px;height:48px;font-size:1.35em; }
+.sidebar-schematic-node--survey .sidebar-schematic-node__icon { width:48px;height:48px;font-size:19.2pt; }
 .sidebar-schematic-node--survey .sidebar-schematic-node__label { left:58px; }
 .sidebar-schematic-node--detail { height:24px; }
-.sidebar-schematic-node--detail .sidebar-schematic-node__icon { width:24px;height:24px;border-color:var(--schematic-detour);font-size:10pt; }
-.sidebar-schematic-node--detail .sidebar-schematic-node__label { left:34px;width:120px; }
+.sidebar-schematic-node--detail .sidebar-schematic-node__icon { width:24px;height:24px;border-color:var(--schematic-detour);font-size:13pt; }
+.sidebar-schematic-node--detail .sidebar-schematic-node__label { left:34px; }
 .sidebar-schematic-subgraph {
   position:absolute;
   z-index:2;
@@ -426,11 +490,18 @@
 .sidebar-schematic-subgraph__label {
   position:absolute;
   top:0;
-  left:60px;
-  width:112px;
+  left:calc(100% + 12px);
+  right:auto;
+  width:max-content;
+  text-align:left;
+  white-space:nowrap;
+  transform:rotate(90deg);
+  transform-origin:left top;
   color:#0d3020 !important;
   text-decoration:none !important;
-  font:700 10pt/1.1 "Courier New",monospace;
+  padding:2px 4px;
+  font:700 15pt/1.1 "Courier New",monospace;
+  background:var(--schematic-background);
   text-shadow:0 1px 0 rgba(255,255,255,.86),1px 0 0 rgba(237,240,232,.88),-1px 0 0 rgba(237,240,232,.88);
 }
 .sidebar-schematic-subgraph__member {
@@ -453,16 +524,22 @@
   border-radius:50%;
   background:#14241d;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 1px 3px rgba(32,40,35,.25);
-  font-size:10pt;
+  font-size:13pt;
 }
 .sidebar-schematic-subgraph__member-label {
   position:absolute;
   top:50%;
-  left:36px;
-  width:112px;
+  left:auto;
+  right:calc(100% + 12px);
+  display:inline-block;
+  width:max-content;
+  text-align:right;
+  white-space:nowrap;
   transform:translateY(-50%);
   color:#183126;
-  font:700 10pt/1.1 "Courier New",monospace;
+  padding:2px 4px;
+  font:700 15pt/1.1 "Courier New",monospace;
+  background:var(--schematic-background);
   text-shadow:0 1px 0 rgba(255,255,255,.82),1px 0 0 rgba(237,240,232,.86),-1px 0 0 rgba(237,240,232,.86);
 }
 .sidebar-schematic-subgraph__label:hover,.sidebar-schematic-subgraph__label:focus-visible,.sidebar-schematic-subgraph__member:hover,.sidebar-schematic-subgraph__member:focus-visible { outline:0; }
@@ -479,28 +556,6 @@
 }
 .sidebar-schematic-node.is-current .sidebar-schematic-node__icon { color:#172b1f;background:#aaf29b;border-color:#6fec80;box-shadow:0 0 5px #65ef7d,0 0 12px rgba(40,215,83,.62); }
 .sidebar-schematic-node.is-current .sidebar-schematic-node__label { color:#081b10; }
-.sidebar-schematic-key {
-  position:absolute;
-  right:10px;
-  bottom:8px;
-  left:10px;
-  z-index:3;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:5px 8px;
-  padding:7px 8px;
-  color:#d9f3df;
-  border:1px solid #456d57;
-  border-radius:3px;
-  background:rgba(10,35,25,.94);
-  font:700 10pt/1.1 "Courier New",monospace;
-}
-.sidebar-schematic-key__item { display:flex;align-items:center;gap:5px; }
-.sidebar-schematic-key__line { display:inline-block;flex:0 0 22px;height:2px;background:currentColor; }
-.sidebar-schematic-key__line--survey { height:4px;color:var(--schematic-survey); }
-.sidebar-schematic-key__line--detour { color:var(--schematic-detour); }
-.sidebar-schematic-key__line--ground { color:var(--schematic-ground); }
-.sidebar-schematic-key__line--exception { color:var(--schematic-exception); }
 .sidebar-circuit-panel--schematic.is-dragging,
 .sidebar-circuit-panel--schematic.is-dragging .sidebar-schematic-drawing { cursor:grabbing; }
 .sidebar-circuit-panel--schematic.is-fit { overflow:hidden; }
@@ -532,9 +587,10 @@
     width:calc(100% - var(--sidebar-circuit-width));
     max-width:none;
     margin-left:var(--sidebar-circuit-width);
+    /* Keep prose, equations, and callouts stable on ultrawide displays. */
     grid-template-columns:
-      [screen-start] 0 [body-start] 1.5rem [body-content-start]
-      minmax(0,1fr) [body-content-end] 1.5rem [body-end] 0 [screen-end];
+      [screen-start] 0 [body-start] minmax(1.5rem,1fr) [body-content-start]
+      minmax(0,60rem) [body-content-end] minmax(1.5rem,1fr) [body-end] 0 [screen-end];
   }
   body.sidebar-schematic-expanded #quarto-sidebar.sidebar-circuit-navigation:not(.sidebar-circuit-navigation--home) {
     width:min(560px,calc(100vw - 48px)) !important;
@@ -546,6 +602,28 @@
   body.sidebar-schematic-expanded .sidebar-schematic-drawing {
     zoom:1.15;
   }
+}
+
+/* The expanded view has room on the incoming side of each symbol. Keep this
+   outside the desktop media query so the same expanded layout works in a
+   narrow viewport or an embedded preview. */
+body.sidebar-schematic-expanded .sidebar-schematic-node__label {
+  left:auto;
+  right:100%;
+  width:max-content;
+  text-align:right;
+}
+body.sidebar-schematic-expanded .sidebar-schematic-subgraph__label {
+  left:calc(100% + 12px);
+  right:auto;
+  width:max-content;
+  text-align:left;
+}
+body.sidebar-schematic-expanded .sidebar-schematic-subgraph__member-label {
+  left:auto;
+  right:calc(100% + 12px);
+  width:max-content;
+  text-align:right;
 }
 
 /* The homepage is the circuit itself.  Keep the CPU and search, but do not

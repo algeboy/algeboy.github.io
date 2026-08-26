@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +169,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -348,8 +345,8 @@ window.Quarto = {
 <li>“Inhabitant” <span class="math inline">\(x\)</span> of a type <span class="math inline">\(T\)</span>, denoted <span class="math inline">\(x:T\)</span>, <code>x::T</code>, and <code>T x</code>.</li>
 <li>“Object” <span class="math inline">\(X\)</span> in a category <span class="math inline">\(\mathcal{C}\)</span>, denoted <span class="math inline">\(X\in \text{Obj}(\mathcal{C})\)</span> or as a node in a diagram:</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a> graph LR</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>   X--&gt;Y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a> graph LR</span>
+<span id="cb1-2"><a href="#cb1-2"></a>   X--&gt;Y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Some sciences add their own vocabularies such as “species in a genus/order/phylum/kingdom” or “chemicals in a family/series”.</p>
 </div>
 </div>
@@ -363,15 +360,15 @@ Explicit context in programs is thankfully much easier to spot. Most programming
 <code>include, import, using, from</code>
 </center>
 <p>to declare explicit context. These are followed by names of other software described as “packages, libraries, modules” or other similar names. For instance:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="im">using</span> <span class="bu">Probability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">using</span> <span class="bu">Probability</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If you are using an Integrated Development Environment (IDE) then you will be given further support with the keywords changing colors or fonts and the system searching that the right information to be included.</p>
 <div class="callout-tip example callout-example" title="House rules for explicit context" data-callout-family="example">
 <p>Some software lets us personalize our logic by selecting new names, e.g.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>or including only a small portion of an otherwise large package like this:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="im">from</span> TensorFlow <span class="im">import</span> Tensor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">from</span> TensorFlow <span class="im">import</span> Tensor</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the next example we switch to a software package called LaTeX that makes fancy scientific fonts and images. That logic lets us personalize such things as what we want to name our colors.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource latex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="fu">\includepackage</span>[dvipsnames]{xcolor}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource latex number-lines code-with-copy"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">\includepackage</span>[dvipsnames]{xcolor}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The <code>xcolor</code> package loads a context for controlling colors and the option <code>dvipsnames</code> lets us choose a convention for color names what we prefer.</p>
 <p>Even in mathematics you will find whims and personal conventions. Here are some common options authors choose for themselves.</p>
 <ul>
@@ -381,7 +378,7 @@ Explicit context in programs is thankfully much easier to spot. Most programming
 </div>
 <div class="callout-tip example callout-example" title="Wildcards" data-callout-family="example">
 <p>Symbols like <code>*</code>, <code>_</code>, and <code>...</code> are known as <strong>wildcards</strong> and they typically signal that you are assuming everything from that package.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">awt</span><span class="op">.</span><span class="im">swing</span><span class="op">.*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">import</span> <span class="im">java</span><span class="op">.</span><span class="im">awt</span><span class="op">.</span><span class="im">swing</span><span class="op">.*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Wildcards in science are often made in phrases like</p>
 <blockquote class="blockquote">
 <p>We follow the notation of <em>Halliday-Resnick-Walker</em> (replace with the authors of your favorite reference book).</p>
@@ -390,13 +387,13 @@ Explicit context in programs is thankfully much easier to spot. Most programming
 </div>
 <div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <p>A programmer has written the some code indicating context.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a><span class="im">using</span> <span class="bu">CSV</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>A <span class="op">=</span> <span class="fu">random</span>(<span class="fl">900</span>, <span class="fl">1000</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>b <span class="op">=</span> <span class="fu">random</span>(<span class="fl">900</span>)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>x <span class="op">=</span> A <span class="op">\</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="im">using</span> <span class="bu">Statistics</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="im">using</span> <span class="bu">CSV</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>A <span class="op">=</span> <span class="fu">random</span>(<span class="fl">900</span>, <span class="fl">1000</span>)</span>
+<span id="cb7-6"><a href="#cb7-6"></a>b <span class="op">=</span> <span class="fu">random</span>(<span class="fl">900</span>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a>x <span class="op">=</span> A <span class="op">\</span> b</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>What are the explicit context clues? What are some items you might need to find in the implicit context?</p>
 </div>
 </section>

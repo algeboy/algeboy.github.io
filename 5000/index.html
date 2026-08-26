@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-445d6e69d5592f526fd0e67fbadcff18.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-d814eda269f4b1522e97d8ee6030875f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -238,6 +235,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="quarto-runtime/scripts/circuit-link-navigation.js"></script>
 
 <section class="home-circuit-viewport" aria-label="5000 Years of Modern Computing topic map. Escape toggles the complete-board overview; arrow keys move between components." aria-keyshortcuts="Escape ArrowLeft ArrowRight ArrowUp ArrowDown Home">
   <div id="home-circuit-board" class="home-circuit-board">
@@ -257,15 +255,6 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     <span class="home-circuit-memory-card home-circuit-memory-card--abduct" aria-hidden="true"><span>ABDUCT MEMORY</span></span>
 
     <svg class="home-circuit-wires" width="7200" height="3300" viewbox="0 0 7200 3300" aria-hidden="true"></svg>
-    <span class="home-circuit-details" aria-hidden="true">
-      <span class="home-circuit-detail home-circuit-detail--resistor" style="--x:390px;--y:370px"><i></i><b></b><b></b><b></b></span>
-      <span class="home-circuit-detail home-circuit-detail--diode" style="--x:880px;--y:740px"><i></i></span>
-      <span class="home-circuit-detail home-circuit-detail--led home-circuit-detail--led-green" style="--x:515px;--y:695px"><i></i></span>
-      <span class="home-circuit-detail home-circuit-detail--led home-circuit-detail--led-amber" style="--x:805px;--y:405px"><i></i></span>
-      <span class="home-circuit-detail home-circuit-detail--capacitor" style="--x:925px;--y:820px"><i></i></span>
-      <span class="home-circuit-detail home-circuit-detail--coil" style="--x:515px;--y:405px"><i></i></span>
-    </span>
-
     <a class="home-circuit-cpu" href="00/preface.html" aria-label="Read the preface to 5000 Years of Modern Computing">
       <span class="home-circuit-cpu__face">
         <span class="home-circuit-cpu__icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
@@ -281,7 +270,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     </a>
 
     <a class="home-circuit-branch home-circuit-branch--deduct" data-branch="deduct" data-units="1,2,3,4" style="--x:535px;--y:295px" href="Deduct/index.html">
-      <span class="home-circuit-branch__face"><span class="home-circuit-branch__icon"><i class="fa-solid fa-table-tennis-paddle-ball"></i></span><span class="home-circuit-branch__title">Deduction</span></span>
+      <span class="home-circuit-branch__face"><span class="home-circuit-branch__icon"><i class="fa-solid fa-bicycle"></i></span><span class="home-circuit-branch__title">Deduction</span></span>
     </a>
     <a class="home-circuit-branch home-circuit-branch--induct" data-branch="induct" data-units="5,6,7,8" style="--x:815px;--y:425px" href="Induct/index.html">
       <span class="home-circuit-branch__face"><span class="home-circuit-branch__icon"><i class="fa-solid fa-tower-cell"></i></span><span class="home-circuit-branch__title">Induction</span></span>
@@ -345,14 +334,27 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   const END_GAP = 4;
   const JACKET_DASH = JACKET_PATH_LENGTH - END_GAP * 2;
   const JACKET_PATTERN = `0 ${END_GAP} ${JACKET_DASH} ${END_GAP}`;
-  const INTERACTIVE_SELECTOR = ".home-circuit-cpu,.home-circuit-author,.home-circuit-branch,.home-circuit-unit,.home-circuit-page,.home-circuit-folder";
+  const INTERACTIVE_SELECTOR = ".home-circuit-cpu,.home-circuit-author,.home-circuit-branch,.home-circuit-unit,.home-circuit-page,.home-circuit-folder,.home-circuit-smd";
   const palettes = [
     { jacket: "#165d2d", highlight: "#c9e95a" },
     { jacket: "#8f2420", highlight: "#ff9a32" },
     { jacket: "#174f91", highlight: "#4de3f2" },
     { jacket: "#8b6500", highlight: "#ffe46b" }
   ];
+  // Physical hierarchy colors: the inner Deduct/Induct/Abduct chips feed
+  // their surrounding unit chips in green; those outer unit chips extend to
+  // their capacitor chains in blue.
+  const innerChipPalette = palettes[0];
+  const capacitorPalette = palettes[2];
+  // The two Library reference chips use visibly red, striped local-detail
+  // leads—not the orange/brown colour of the capacitor's vertical chain.
+  const libraryPalette = { jacket: "#a51f28", highlight: "#ff8277" };
   const activePalette = { jacket: "#087329", highlight: "#a6ff8c" };
+  const readingPalette = { jacket: "#111310", highlight: "#5d625b" };
+  // Mermaid's thick Survey links (==>) are the main circuit's blue bus.
+  // Keep the ordinary --> reading links black so the authored distinction is
+  // visible on the board instead of being lost during rendering.
+  const surveyPalette = { jacket: "#125aa0", highlight: "#68d8ff" };
   const EXTENSION = Object.freeze({
     boardWidth: 7200,
     boardHeight: 3300,
@@ -375,6 +377,18 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       .replace(/\/$/, "");
   }
 
+  function canonicalSource(value) {
+    return decodeURIComponent(String(value || ""))
+      .replace(/^\.?\//, "")
+      .replace(/\\/g, "/")
+      .replace(/\.html(?=$|[?#])/, ".qmd")
+      .replace(/[?#].*$/, "");
+  }
+
+  function sourceToPublishedHref(source) {
+    return canonicalSource(source).replace(/\.qmd$/i, ".html");
+  }
+
   async function navigation() {
     const url = new URL("quarto-runtime/assets/book-navigation.json", siteRoot());
     const response = await fetch(url, { cache: "no-cache" });
@@ -388,14 +402,16 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     const groups = new Map();
     const stack = [];
     const links = new Map();
+    const readingLinks = [];
     const subgraphPattern = /^subgraph\s+([A-Za-z][\w-]*)(?:\s*\[\s*["']([^"']+)["']\s*\])?\s*$/i;
     const nodePattern = /^\s*([A-Za-z][\w-]*)\s*\[/;
     const clickPattern = /^\s*click\s+([A-Za-z][\w-]*)\s+(?:href\s+)?["']([^"']+\.qmd)["']/;
+    const readingLinkPattern = /^([A-Za-z][\w-]*)\s*(-->|==>)\s*([A-Za-z][\w-]*)(?:\s|$)/;
     String(await response.text()).split(/\r?\n/).forEach(original => {
       const line = original.replace(/%%.*$/, "").trim();
       const subgraph = line.match(subgraphPattern);
       if (subgraph) {
-        groups.set(subgraph[1], { label:(subgraph[2] || subgraph[1]).trim(), members:[] });
+        groups.set(subgraph[1], { id:subgraph[1], label:(subgraph[2] || subgraph[1]).trim(), members:[] });
         stack.push(subgraph[1]);
         return;
       }
@@ -404,11 +420,21 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       if (node && stack.length) groups.get(stack.at(-1))?.members.push(node[1]);
       const click = line.match(clickPattern);
       if (click) links.set(click[1], click[2]);
+      const readingLink = line.match(readingLinkPattern);
+      if (readingLink) readingLinks.push({ from:readingLink[1], operator:readingLink[2], to:readingLink[3] });
     });
-    return [...groups.values()].map(group => ({
+    const boards = [...groups.values()].map(group => ({
+      id:group.id,
       label:group.label,
+      source:links.get(group.id) || null,
       members:group.members.map(id => links.get(id)).filter(Boolean)
-    })).filter(group => group.members.length > 1);
+    })).filter(group => group.source && group.members.length > 1);
+    return {
+      boards,
+      allowedSources:new Set(boards.flatMap(group => group.members.map(canonicalSource))),
+      nodeSources:links,
+      readingLinks
+    };
   }
 
   function buildTrenches(board) {
@@ -588,25 +614,15 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     throw new Error(`No chip-safe wire route from ${start.x},${start.y} to ${end.x},${end.y}`);
   }
 
-  function drawBoardDetails(svg, { abduct, induct, unit8, unit10, author }, pinUsage, obstacles, bounds) {
-    // These jumper endpoints are real package sockets: each sits one board
-    // pitch past a distinct chip pin and leaves the chip face tangentially.
-    const connections = [
-      [abduct, "left", unit10, "bottom", palettes[0]],
-      [induct, "right", unit8, "top", palettes[2]],
-      [unit8, "bottom", author, "bottom", palettes[1]]
-    ];
-    connections.forEach(([from, fromSide, to, toSide, palette]) => {
-      if (!from || !to) return;
-      const start = pinSocket(from, center(to), pinUsage, fromSide);
-      const end = pinSocket(to, center(from), pinUsage, toSide);
-      detailPath(svg, obstacleRoute(start, end, obstacles, bounds), palette);
-    });
-  }
-
   function pinSides(node) {
     if (node.classList.contains("home-circuit-cpu")) return ["top", "right", "bottom", "left"];
-    if (node.classList.contains("home-circuit-page")) return [node.dataset.leadSide || "left"];
+    if (node.classList.contains("home-circuit-page")) {
+      // Capacitor chips are daisy-chain links: reserve an inlet and outlet on
+      // opposite ends so each link can line up with its neighboring lead.
+      const leadSide = node.dataset.leadSide || "left";
+      return [leadSide, { left:"right", right:"left", top:"bottom", bottom:"top" }[leadSide]];
+    }
+    if (node.classList.contains("home-circuit-smd")) return ["left", "right"];
     if (node.classList.contains("home-circuit-folder")) return ["top", "right", "bottom", "left"];
     if (node.classList.contains("home-circuit-branch--induct") ||
         node.classList.contains("home-circuit-branch--abduct")) return ["left", "right"];
@@ -621,9 +637,20 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return centers;
   }
 
+  // SVG wires are positioned in board coordinates, while SMDs are positioned
+  // inside nested blue boards.  Accumulate their offset-parent positions so a
+  // wire ends at the actual component rather than at its board-local offset.
+  function boardPosition(node) {
+    let x = 0, y = 0;
+    for (let current = node; current && !current.classList.contains("home-circuit-board"); current = current.offsetParent) {
+      x += current.offsetLeft;
+      y += current.offsetTop;
+    }
+    return { x, y };
+  }
+
   function facingSide(node, toward) {
-    const x = node.offsetLeft;
-    const y = node.offsetTop;
+    const { x, y } = boardPosition(node);
     const width = node.offsetWidth;
     const height = node.offsetHeight;
     const dx = toward.x - (x + width / 2);
@@ -638,12 +665,11 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   }
 
   function pinSocket(node, toward, pinUsage, sideOverride) {
-    const x = node.offsetLeft;
-    const y = node.offsetTop;
+    const { x, y } = boardPosition(node);
     const width = node.offsetWidth;
     const height = node.offsetHeight;
-    const nodeKey = node.dataset.unit || node.dataset.branch ||
-      node.dataset.homeNodeKey || (node.classList.contains("home-circuit-cpu") ? "cpu" : "author");
+    const nodeKey = node.dataset.unit || node.dataset.branch || node.dataset.homeNodeKey ||
+      node.dataset.homeSource || (node.classList.contains("home-circuit-cpu") ? "cpu" : "author");
     const preferred = facingSide(node, toward);
     const sides = sideOverride ? [sideOverride] : [preferred, ...pinSides(node).filter(side => side !== preferred)];
     let side = sides[0], coordinate = null, used = null, usageKey = null;
@@ -673,7 +699,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   }
 
   function center(node) {
-    return { x: node.offsetLeft + node.offsetWidth / 2, y: node.offsetTop + node.offsetHeight / 2 };
+    const { x, y } = boardPosition(node);
+    return { x: x + node.offsetWidth / 2, y: y + node.offsetHeight / 2 };
   }
 
   function stableHash(value) {
@@ -711,9 +738,13 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     link.style.top = `${spec.y}px`;
     link.setAttribute("aria-label", `${spec.title}. Open topic.`);
     if (spec.kind === "page") {
-      link.dataset.palette = String(stableHash(spec.key) % 5);
+      // Mermaid subgraphs are the conceptual groupings on the board.  Their
+      // capacitors share one body colour; ungrouped fallback pages retain a
+      // stable per-page colour.
+      link.dataset.palette = spec.palette ?? String(stableHash(spec.key) % 5);
       link.dataset.leadSide = spec.leadSide;
     }
+    if (spec.source) link.dataset.homeSource = canonicalSource(spec.source);
     const icon = document.createElement("span");
     icon.className = spec.kind === "page" ? "home-circuit-page__icon" : "home-circuit-folder__icon";
     icon.setAttribute("aria-hidden", "true");
@@ -724,9 +755,177 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     title.className = spec.kind === "page" ? "home-circuit-page__title" : "home-circuit-folder__title";
     title.textContent = spec.title;
     link.append(icon, title);
-    appendGeneratedPins(link, spec.kind === "page" ? [spec.leadSide] : ["top", "right", "bottom", "left"]);
+    appendGeneratedPins(link, spec.kind === "page" ? pinSides(link) : ["top", "right", "bottom", "left"]);
     spec.element = link;
     return link;
+  }
+
+  // The Library page has two short, foundational follow-ups. Keep them on a
+  // separate blue PCB so they read as a nearby expansion of that capacitor,
+  // rather than another vertical link in the main Logic sequence.
+  function buildLibrarySmdBoard(board) {
+    board.querySelectorAll(".home-circuit-subboard--library,.home-circuit-smd").forEach(node => node.remove());
+    board.homeLibraryEdges = [];
+    const library = board.querySelector('[data-home-source="Deduct/01/01-Logic-Library.qmd"]');
+    if (!library) return;
+    // The ordinary capacitor chain uses its vertical leads.  Give this
+    // capacitor two dedicated left leads for the two local Library references.
+    if (!library.querySelector(".home-circuit-generated-pin--left")) {
+      appendGeneratedPins(library, ["left"]);
+    }
+
+    const subboard = document.createElement("section");
+    subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--library";
+    // A narrow horizontal board keeps the two Library SMDs in line with the
+    // capacitor they expand, with their silkscreen labels below each package.
+    // Leave enough exposed trace length for both red reference wires—most
+    // importantly the nearby Judgment SMD—to read as intentional mappings.
+    subboard.style.left = `${library.offsetLeft - 330}px`;
+    subboard.style.top = `${library.offsetTop - 25}px`;
+    subboard.style.width = "230px";
+    subboard.style.height = "110px";
+    subboard.setAttribute("aria-label", "A Library of Logic circuit board");
+
+    [
+      { title:"Context", source:"Deduct/01/01/01-Context.qmd", href:"Deduct/01/01/01-Context.html", icon:"fa-solid fa-chalkboard", route:"below-board" },
+      { title:"Judgment", source:"Deduct/01/01/02-Judgment.qmd", href:"Deduct/01/01/02-Judgment.html", icon:"fa-solid fa-gavel" }
+    ].forEach((entry, index) => {
+      const boardLabel = document.createElement("span");
+      boardLabel.className = "home-circuit-smd-label home-circuit-smd-label--library";
+      boardLabel.style.left = `${20 + index * 108}px`;
+      boardLabel.style.top = "92px";
+      boardLabel.setAttribute("aria-hidden", "true");
+      boardLabel.textContent = entry.title;
+      subboard.appendChild(boardLabel);
+      const link = document.createElement("a");
+      link.className = "home-circuit-smd home-circuit-smd--library";
+      link.dataset.homeSource = entry.source;
+      link.href = new URL(entry.href, siteRoot()).href;
+      link.setAttribute("aria-label", `${entry.title}. Open topic.`);
+      link.style.left = `${20 + index * 108}px`;
+      link.style.top = "18px";
+      const icon = document.createElement("span");
+      icon.className = "home-circuit-smd__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = `<i class="${entry.icon}"></i>`;
+      link.append(icon);
+      appendGeneratedPins(link, ["left", "right"]);
+      subboard.appendChild(link);
+      board.homeLibraryEdges.push({ from:library, to:link, route:entry.route || null });
+    });
+    board.appendChild(subboard);
+  }
+
+  // The next two capacitor pages have compact local folders of their own.
+  // Keep these boards east of the northbound capacitor chain, in parallel
+  // vertical stacks, so their red detail wires stay short and legible.
+  function buildDeductDetailBoards(board) {
+    board.querySelectorAll(".home-circuit-subboard--detail,.home-circuit-smd--detail").forEach(node => node.remove());
+    board.homeDetailEdges = [];
+    [
+      {
+        parentSource:"Deduct/01/02-Writing-down-a-logic.qmd",
+        west:true, horizontal:true, offsetX:-330, offsetY:-35, width:230, height:110,
+        entries:[{ title:"Trees", source:"Deduct/01/02/01-Trees.qmd", href:"Deduct/01/02/01-Trees.html", icon:"fa-solid fa-share-nodes" }]
+      },
+      {
+        parentSource:"Deduct/01/03-Sub-Var-Func.qmd",
+        horizontal:true, offsetX:-330, offsetY:-45, width:230, height:110,
+        entries:[
+          { title:"CHL", source:"Deduct/01/03/Curry-Howard-Lambek.qmd", href:"Deduct/01/03/Curry-Howard-Lambek.html", icon:"fa-solid fa-diagram-project", route:"around-board" },
+          { title:"Combinators", source:"Deduct/01/03/08-Combinators.qmd", href:"Deduct/01/03/08-Combinators.html", icon:"fa-solid fa-microchip" }
+        ]
+      }
+    ].forEach(config => {
+      const parent = board.querySelector(`[data-home-source="${config.parentSource}"]`);
+      if (!parent) return;
+      const subboard = document.createElement("section");
+      subboard.className = `home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--detail${config.horizontal ? " home-circuit-subboard--horizontal" : ""}`;
+      subboard.style.left = `${config.horizontal || config.west ? parent.offsetLeft + config.offsetX : parent.offsetLeft + parent.offsetWidth + (config.offsetX || 42)}px`;
+      subboard.style.top = `${parent.offsetTop + config.offsetY}px`;
+      subboard.style.width = `${config.width || 390}px`;
+      subboard.style.height = `${config.height}px`;
+      subboard.setAttribute("aria-label", `${parent.getAttribute("aria-label") || "Detail"} reference board`);
+      config.entries.forEach((entry, index) => {
+        const boardLabel = document.createElement("span");
+        boardLabel.className = `home-circuit-smd-label${config.horizontal ? " home-circuit-smd-label--horizontal" : ""}`;
+        if (config.horizontal) {
+          boardLabel.style.left = `${config.entries.length === 1 ? 65 : 11 + index * 108}px`;
+          boardLabel.style.top = "92px";
+        } else {
+          boardLabel.style.top = `${89 + index * 94}px`;
+        }
+        boardLabel.setAttribute("aria-hidden", "true");
+        boardLabel.textContent = entry.title;
+        subboard.appendChild(boardLabel);
+        const link = document.createElement("a");
+        link.className = `home-circuit-smd home-circuit-smd--detail${config.horizontal ? " home-circuit-smd--horizontal" : ""}`;
+        link.dataset.homeSource = entry.source;
+        link.href = new URL(entry.href, siteRoot()).href;
+        link.setAttribute("aria-label", `${entry.title}. Open topic.`);
+        if (config.horizontal) {
+          link.style.left = `${config.entries.length === 1 ? 74 : 20 + index * 108}px`;
+          link.style.top = "18px";
+        } else {
+          link.style.top = `${16 + index * 94}px`;
+        }
+        const icon = document.createElement("span");
+        icon.className = "home-circuit-smd__icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.innerHTML = `<i class="${entry.icon}"></i>`;
+        link.append(icon);
+        appendGeneratedPins(link, ["left", "right"]);
+        subboard.appendChild(link);
+        board.homeDetailEdges.push({ from:parent, to:link, horizontal:Boolean(config.horizontal || config.west), route:entry.route || null });
+      });
+      if ((config.horizontal || config.west) && !parent.querySelector(".home-circuit-generated-pin--left")) {
+        appendGeneratedPins(parent, ["left"]);
+      }
+      board.appendChild(subboard);
+    });
+  }
+
+  function buildPrefaceSmdBoard(board) {
+    board.querySelectorAll(".home-circuit-subboard--preface,.home-circuit-preface-smd").forEach(node => node.remove());
+    board.homePrefaceEdges = [];
+    const cpu = board.querySelector(".home-circuit-cpu");
+    const author = board.querySelector(".home-circuit-author");
+    if (!cpu || !author) return;
+    const subboard = document.createElement("section");
+    subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--preface";
+    subboard.style.left = `${author.offsetLeft + 10}px`;
+    subboard.style.top = `${author.offsetTop + author.offsetHeight + 30}px`;
+    subboard.style.width = "230px";
+    subboard.style.height = "110px";
+    subboard.setAttribute("aria-label", "Preface topics circuit board");
+    [
+      { title:"Technology", source:"00/01-Technology.qmd", href:"00/01-Technology.html", icon:"fa-solid fa-microchip", route:"west" },
+      { title:"Stories", source:"00/02-Stories.qmd", href:"00/02-Stories.html", icon:"fa-solid fa-book-open", route:"east" }
+    ].forEach((entry, index) => {
+      const boardLabel = document.createElement("span");
+      boardLabel.className = "home-circuit-smd-label home-circuit-smd-label--library";
+      boardLabel.style.left = `${20 + index * 108}px`;
+      boardLabel.style.top = "92px";
+      boardLabel.setAttribute("aria-hidden", "true");
+      boardLabel.textContent = entry.title;
+      subboard.appendChild(boardLabel);
+      const link = document.createElement("a");
+      link.className = `home-circuit-smd home-circuit-smd--library home-circuit-preface-smd home-circuit-preface-smd--${entry.route}`;
+      link.dataset.homeSource = entry.source;
+      link.href = new URL(entry.href, siteRoot()).href;
+      link.setAttribute("aria-label", `${entry.title}. Open topic.`);
+      link.style.left = `${20 + index * 108}px`;
+      link.style.top = "18px";
+      const icon = document.createElement("span");
+      icon.className = "home-circuit-smd__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = `<i class="${entry.icon}"></i>`;
+      link.append(icon);
+      appendGeneratedPins(link, ["left", "right"]);
+      subboard.appendChild(link);
+      board.homePrefaceEdges.push({ from:cpu, to:link, route:entry.route });
+    });
+    board.appendChild(subboard);
   }
 
   function firstDescendantPage(directory, pagesByDirectory, foldersByParent) {
@@ -739,7 +938,9 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return null;
   }
 
-  function buildTopology(board, manifest, circuitBoardGroups = []) {
+  function buildTopology(board, manifest, circuitData = {}) {
+    const circuitBoardGroups = circuitData.boards || [];
+    const allowedSources = circuitData.allowedSources || new Set();
     board.querySelectorAll(".home-circuit-page,.home-circuit-folder,.home-circuit-subboard").forEach(node => node.remove());
     const foldersByParent = new Map();
     manifest.folders.forEach(folder => {
@@ -774,7 +975,47 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     const stem = source => source.split("/").pop().replace(/\.qmd$/, "");
     const segment = key => key.split("/").pop();
 
-    roots.forEach(root => {
+    // The Mermaid circuit is the publication boundary for the homepage map.
+    // Its subgraph is already represented by the matching memory-card unit.
+    // Link that one chip directly to its pages, rendered as a capacitor chain.
+    // The older manifest walk remains as a fallback for previews that do not
+    // yet ship book-circuit.md.
+    if (allowedSources.size) {
+      const pagesBySource = new Map(manifest.pages.map(page => [canonicalSource(page.source), page]));
+      roots.forEach(root => {
+        const rootElement = board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`);
+        if (!rootElement) return;
+        const group = circuitBoardGroups.find(candidate => canonicalSource(candidate.source) === `${root.key}/index.qmd`);
+        if (!group) return;
+        const pageSpecs = group.members.map((source,index) => {
+          const canonical = canonicalSource(source);
+          const page = pagesBySource.get(canonical);
+          const title = page?.title || canonical.split("/").pop().replace(/\.qmd$/, "").replace(/-/g, " ");
+          const spec = {
+            kind:"page",key:`page:${canonical}`,title,icon:page?.titleIcon || page?.icon,
+            href:sourceToPublishedHref(canonical),depth:index + 1,
+            orientation:root.orientation,parentRef:rootElement,source:canonical,
+            palette:String(stableHash(group.id) % 5)
+          };
+          if (root.orientation === "north") {
+            spec.x = rootElement.offsetLeft + (rootElement.offsetWidth - EXTENSION.pageWidth) / 2;
+            spec.y = rootElement.offsetTop - 150 - 110 * index;
+          } else {
+            const direction = root.orientation === "east" ? 1 : -1;
+            spec.x = rootElement.offsetLeft + direction * (240 * (index + 1) + 20) +
+              (direction < 0 ? rootElement.offsetWidth - EXTENSION.pageWidth : 0);
+            spec.y = rootElement.offsetTop + (rootElement.offsetHeight - EXTENSION.pageHeight) / 2;
+          }
+          return spec;
+        });
+        specs.push(...pageSpecs);
+        let chainParent = rootElement;
+        pageSpecs.forEach(spec => {
+          edgeSpecs.push({ from:chainParent,to:spec,palette:capacitorPalette });
+          chainParent = spec;
+        });
+      });
+    } else roots.forEach(root => {
       const rootElement = board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`);
       if (!rootElement) return;
       const groupMap = new Map();
@@ -857,11 +1098,10 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     });
 
     specs.forEach(spec => {
-      const parent = spec.parentRef?.element || spec.parentRef;
       if (spec.kind === "page") {
         if (spec.orientation === "east") spec.leadSide = "left";
         else if (spec.orientation === "west") spec.leadSide = "right";
-        else spec.leadSide = center(parent).x <= spec.x + EXTENSION.pageWidth / 2 ? "left" : "right";
+        else spec.leadSide = "bottom";
       }
       board.appendChild(generatedEntryElement(spec));
     });
@@ -885,32 +1125,55 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       backplane.appendChild(label);
       board.appendChild(backplane);
     });
-    const specsBySource = new Map(specs.filter(spec => spec.source).map(spec => [spec.source, spec]));
-    circuitBoardGroups.forEach(group => {
-      const placed = group.members.map(source => specsBySource.get(source)).filter(spec => spec?.element);
-      if (placed.length < 2) return;
-      const padding = 28;
-      const minX = Math.min(...placed.map(spec => spec.x)) - padding;
-      const minY = Math.min(...placed.map(spec => spec.y)) - padding;
-      const maxX = Math.max(...placed.map(spec => spec.x + EXTENSION.pageWidth)) + padding;
-      const maxY = Math.max(...placed.map(spec => spec.y + EXTENSION.pageHeight)) + padding;
-      const backplane = document.createElement("span");
-      backplane.className = "home-circuit-subboard home-circuit-subboard--circuit";
-      backplane.style.left = `${minX}px`;
-      backplane.style.top = `${minY}px`;
-      backplane.style.width = `${maxX - minX}px`;
-      backplane.style.height = `${maxY - minY}px`;
-      backplane.setAttribute("aria-hidden", "true");
-      const label = document.createElement("span");
-      label.textContent = `${group.label.toUpperCase()} CIRCUIT BOARD`;
-      backplane.appendChild(label);
-      board.appendChild(backplane);
-    });
+    buildLibrarySmdBoard(board);
+    buildDeductDetailBoards(board);
+    buildPrefaceSmdBoard(board);
+    board.homeReadingEdges = readingPathEdges(board, circuitData, roots);
     return edgeSpecs.map(edge => ({
       from:edge.from.element || edge.from,
       to:edge.to.element || edge.to,
       palette:edge.palette
     })).filter(edge => edge.from && edge.to);
+  }
+
+  function readingPathEdges(board, circuitData, roots) {
+    const nodeSources = circuitData.nodeSources || new Map();
+    const sourceElements = new Map();
+    const register = (source, element) => {
+      if (source && element) sourceElements.set(canonicalSource(source), element);
+    };
+    register("00/preface.qmd", board.querySelector(".home-circuit-cpu"));
+    [
+      ["Deduct/index.qmd", ".home-circuit-branch--deduct"],
+      ["Induct/index.qmd", ".home-circuit-branch--induct"],
+      ["Abduct/index.qmd", ".home-circuit-branch--abduct"]
+    ].forEach(([source, selector]) => register(source, board.querySelector(selector)));
+    roots.forEach(root => register(`${root.key}/index.qmd`,
+      board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`)));
+    board.querySelectorAll(".home-circuit-page[data-home-source],.home-circuit-folder[data-home-source]")
+      .forEach(element => register(element.dataset.homeSource, element));
+
+    return (circuitData.readingLinks || []).map(link => ({
+      from:sourceElements.get(canonicalSource(nodeSources.get(link.from))),
+      to:sourceElements.get(canonicalSource(nodeSources.get(link.to))),
+      operator:link.operator
+    })).filter(link => link.from && link.to && link.from !== link.to);
+  }
+
+  function readingWireStyle(edge) {
+    // The authored thick Survey arrows remain a distinct blue bus.
+    if (edge.operator === "==>") {
+      return { className:"home-circuit-wire--survey", palette:surveyPalette };
+    }
+    // Directed routes leaving an inner method chip are its green feed. A
+    // route arriving at a capacitor belongs to the blue outer-chip circuit.
+    if (edge.from.classList.contains("home-circuit-branch")) {
+      return { className:"home-circuit-wire--inner", palette:innerChipPalette };
+    }
+    if (edge.to.classList.contains("home-circuit-page")) {
+      return { className:"home-circuit-wire--capacitor", palette:capacitorPalette };
+    }
+    return { className:"home-circuit-wire--reading", palette:readingPalette };
   }
 
   function curvedConnection(from, to, pinUsage, fromSide, toSide, tangentToPins = false, obstacles = null, bounds = null) {
@@ -936,6 +1199,57 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return `M ${start.x} ${start.y} C ${start.x} ${start.y + Math.sign(dy) * bend}, ${end.x} ${end.y - Math.sign(dy) * bend}, ${end.x} ${end.y}`;
   }
 
+  // Library references are deliberately orthogonal nets.  Their right-angle
+  // fan-out makes the destination lead on Context or Judgment unambiguous.
+  function libraryLeadPath(edge, pinUsage) {
+    if (edge.route === "below-board") {
+      const start = pinSocket(edge.from, center(edge.to), pinUsage, "left");
+      const end = pinSocket(edge.to, center(edge.from), pinUsage, "left");
+      const subboard = edge.to.offsetParent;
+      const board = boardPosition(subboard);
+      const gapLane = board.x + subboard.offsetWidth + 20;
+      const bottomLane = board.y + subboard.offsetHeight + 20;
+      const westLane = board.x - 20;
+      return `M ${start.x} ${start.y} H ${gapLane} V ${bottomLane} H ${westLane} V ${end.y} H ${end.x}`;
+    }
+    const start = pinSocket(edge.from, center(edge.to), pinUsage, "left");
+    const end = pinSocket(edge.to, center(edge.from), pinUsage, "right");
+    const lane = Math.round((start.x + end.x) / (2 * BOARD_PITCH)) * BOARD_PITCH;
+    return `M ${start.x} ${start.y} H ${lane} V ${end.y} H ${end.x}`;
+  }
+
+  function detailLeadPath(edge, pinUsage, obstacles, routeBounds) {
+    if (edge.route !== "around-board") {
+      return curvedConnection(edge.from, edge.to, pinUsage,
+        edge.horizontal ? "left" : null, edge.horizontal ? "right" : null, true, obstacles, routeBounds);
+    }
+    const start = pinSocket(edge.from, center(edge.to), pinUsage, "left");
+    const end = pinSocket(edge.to, center(edge.from), pinUsage, "left");
+    const subboard = edge.to.offsetParent;
+    const board = boardPosition(subboard);
+    const gapLane = board.x + subboard.offsetWidth + 20;
+    const topLane = board.y - 20;
+    const westLane = board.x - 20;
+    return `M ${start.x} ${start.y} H ${gapLane} V ${topLane} H ${westLane} V ${end.y} H ${end.x}`;
+  }
+
+  // Preface leads leave separate bottom pins on the CPU and travel around the
+  // author readout before entering the Technology and Stories board.
+  function prefaceLeadPath(edge, pinUsage) {
+    const start = pinSocket(edge.from, center(edge.to), pinUsage, "bottom");
+    const side = edge.route === "west" ? "left" : "right";
+    const end = pinSocket(edge.to, center(edge.from), pinUsage, side);
+    const subboard = edge.to.offsetParent;
+    const board = boardPosition(subboard);
+    const laneX = edge.route === "west"
+      ? board.x - 20
+      : board.x + subboard.offsetWidth + 20;
+    const author = edge.from.parentElement?.querySelector?.(".home-circuit-author");
+    const authorPosition = author ? boardPosition(author) : null;
+    const upperLane = authorPosition ? authorPosition.y - 20 : start.y;
+    return `M ${start.x} ${start.y} V ${upperLane} H ${laneX} V ${end.y} H ${end.x}`;
+  }
+
   function draw(board) {
     const svg = board.querySelector(".home-circuit-wires");
     const units = [...board.querySelectorAll(".home-circuit-unit")].sort((a, b) => Number(a.dataset.unit) - Number(b.dataset.unit));
@@ -947,32 +1261,38 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     const obstacles = chipBodyObstacles(board);
     const routeBounds = { left:10,right:board.offsetWidth-10,top:10,bottom:board.offsetHeight-10 };
     svg.replaceChildren();
-    drawBoardDetails(svg, {
-      abduct: branches.find(branch => branch.dataset.branch === "abduct"),
-      induct: branches.find(branch => branch.dataset.branch === "induct"),
-      unit8: unitByNumber.get(8),
-      unit10: unitByNumber.get(10),
-      author
-    }, pinUsage, obstacles, routeBounds);
-    branches.forEach((branch, branchIndex) => {
-      const palette = palettes[branchIndex];
+    branches.forEach(branch => {
       branch.dataset.units.split(",").map(Number).forEach(unitNumber => {
         const unit = unitByNumber.get(unitNumber);
         if (unit) {
           const active = branch.classList.contains("is-current-path") && unit.classList.contains("is-current-path");
           svgPath(svg, curvedConnection(branch, unit, pinUsage, null, null, false, obstacles, routeBounds),
-            `home-circuit-wire--topic${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : palette);
+            `home-circuit-wire--inner${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : innerChipPalette);
         }
       });
     });
-    if (author) {
-      svgPath(svg, curvedConnection(cpu, author, pinUsage, null, null, false, obstacles, routeBounds), "home-circuit-wire--cpu", palettes[3]);
-      svgPath(svg, curvedConnection(cpu, author, pinUsage, null, null, false, obstacles, routeBounds), "home-circuit-wire--cpu", palettes[1]);
-    }
     (board.homeTopologyEdges || []).forEach(edge => {
       const active = board.homeCurrentEdges?.has(edge);
       svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
-        `home-circuit-wire--topic${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : edge.palette);
+        `home-circuit-wire--capacitor${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : capacitorPalette);
+    });
+    (board.homeLibraryEdges || []).forEach(edge => {
+      svgPath(svg, libraryLeadPath(edge, pinUsage),
+        "home-circuit-wire--library", libraryPalette);
+    });
+    (board.homeDetailEdges || []).forEach(edge => {
+      svgPath(svg, detailLeadPath(edge, pinUsage, obstacles, routeBounds),
+        "home-circuit-wire--library", libraryPalette);
+    });
+    (board.homePrefaceEdges || []).forEach(edge => {
+      svgPath(svg, prefaceLeadPath(edge, pinUsage),
+        "home-circuit-wire--library", libraryPalette);
+    });
+    const readingPinUsage = new Map();
+    (board.homeReadingEdges || []).forEach(edge => {
+      const style = readingWireStyle(edge);
+      svgPath(svg, curvedConnection(edge.from, edge.to, readingPinUsage, null, null, true, obstacles, routeBounds),
+        style.className, style.palette);
     });
   }
 
@@ -1022,13 +1342,13 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     viewport.scrollTop = Math.max(0, Math.min(maxScrollY, cpuCenterY - viewport.clientHeight / 2));
   }
 
-  function centerViewportOnNode(viewport, node) {
+  function centerViewportOnNode(viewport, node, verticalOffset = 0) {
     if (!viewport || !node) return;
     const maxScrollX = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
     const maxScrollY = Math.max(0, viewport.scrollHeight - viewport.clientHeight);
     const nodeCenter = center(node);
     viewport.scrollLeft = Math.max(0, Math.min(maxScrollX, nodeCenter.x - viewport.clientWidth / 2));
-    viewport.scrollTop = Math.max(0, Math.min(maxScrollY, nodeCenter.y - viewport.clientHeight / 2));
+    viewport.scrollTop = Math.max(0, Math.min(maxScrollY, nodeCenter.y - viewport.clientHeight / 2 - verticalOffset));
   }
 
   function overviewScale(viewport, board) {
@@ -1069,17 +1389,22 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     if (!board) return;
     buildTrenches(board);
     try {
-      const [manifest, groups] = await Promise.all([navigation(), circuitBoards()]);
-      board.homeTopologyEdges = buildTopology(board, manifest, groups);
+      const [manifest, circuitData] = await Promise.all([navigation(), circuitBoards()]);
+      board.homeTopologyEdges = buildTopology(board, manifest, circuitData);
     } catch (error) {
       console.error("Homepage topic topology could not load", error);
       board.homeTopologyEdges = [];
+      board.homeReadingEdges = [];
     }
     const parameters = new URLSearchParams(location.search);
     const windowMode = parameters.has("circuit-window");
     if (windowMode) {
       document.body.classList.add("home-circuit-window");
-      board.querySelectorAll(INTERACTIVE_SELECTOR).forEach(node => node.target = "_top");
+      board.querySelectorAll(INTERACTIVE_SELECTOR).forEach(node => {
+        try {
+          if (new URL(node.href, document.baseURI).origin === location.origin) node.target = "_top";
+        } catch { /* Ignore a malformed optional link. */ }
+      });
     }
     const viewport = board.closest(".home-circuit-viewport");
     const sidebar = document.getElementById("quarto-sidebar");
@@ -1093,7 +1418,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     const interactiveNodes = () => [...board.querySelectorAll(INTERACTIVE_SELECTOR)];
     const recenter = node => {
       focalNode = node || focalNode || cpu;
-      if (!isOverview) centerViewportOnNode(viewport, focalNode);
+      if (!isOverview) centerViewportOnNode(viewport, focalNode, focalNode === cpu ? 80 : 0);
     };
     const setOverview = (next, focal = focalNode) => {
       isOverview = next;
@@ -1146,19 +1471,29 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
         focalNode = node;
         return;
       }
-      if (isOverview) setOverview(false, node);
-      else recenter(node);
+      // Do not change the board transform while an overview link is being
+      // activated.  Browsers determine an anchor's click target after its
+      // pointer/focus sequence; zooming here moves that target out from under
+      // the pointer and turns the first click into a no-op.
+      if (isOverview) {
+        focalNode = node;
+        return;
+      }
+      recenter(node);
     });
     viewport.addEventListener("pointerdown", event => {
       const node = event.target.closest?.(INTERACTIVE_SELECTOR);
       if (isOverview) {
         if (!node) return;
-        event.preventDefault();
-        suppressActivation = node;
-        setOverview(false, node);
-        node.focus({ preventScroll: true });
+        // Keep the board stable until the anchor's native click completes.
+        // This lets every visible component navigate on its first click.
+        focalNode = node;
         return;
       }
+      // Preserve the anchor's native click sequence. Capturing a pointer that
+      // began on a circuit node retargets its later click to the viewport,
+      // which prevents the link from activating.
+      if (node) return;
       if (!event.isPrimary || event.button !== 0) return;
       pan = {
         pointerId: event.pointerId,
@@ -1193,6 +1528,21 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       if (suppressActivation === "drag" || (node && node === suppressActivation)) {
         event.preventDefault();
         suppressActivation = null;
+        return;
+      }
+      const target = window.HomepageCircuitNavigation?.internalTarget(
+        event, node, document.baseURI, location.origin
+      );
+      if (!target) return;
+      // Navigate explicitly rather than relying on the native default action:
+      // the board may have been scaled, focused, or embedded in a sidebar
+      // frame during the pointer sequence. Modifier and new-tab clicks were
+      // deliberately left to the browser by internalTarget().
+      event.preventDefault();
+      if (windowMode && window.parent !== window) {
+        window.parent.postMessage({ type: "homepage-navigate", href: target.href }, location.origin);
+      } else {
+        window.location.assign(target.href);
       }
     });
     document.addEventListener("keydown", event => {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +169,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -294,7 +291,7 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#substitution-variables-and-functions" id="toc-substitution-variables-and-functions" class="nav-link active" data-scroll-target="#substitution-variables-and-functions"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-square-root-variable"></i></span> Substitution, Variables, and Functions</a>
+  <li><a href="#variable-functions" id="toc-variable-functions" class="nav-link active" data-scroll-target="#variable-functions"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-square-root-variable"></i></span> Variable &amp; Functions</a>
   <ul class="collapse">
   <li><a href="#the-paradox-of-the-trapped-variable" id="toc-the-paradox-of-the-trapped-variable" class="nav-link" data-scroll-target="#the-paradox-of-the-trapped-variable"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> The Paradox of the Trapped Variable</a></li>
   <li><a href="#mappings-functions-and-tuples" id="toc-mappings-functions-and-tuples" class="nav-link" data-scroll-target="#mappings-functions-and-tuples"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Mappings, functions, and tuples</a>
@@ -318,8 +315,8 @@ window.Quarto = {
 
 
 
-<section id="substitution-variables-and-functions" class="level1" data-fa-icon="fa-solid fa-square-root-variable">
-<h1 data-fa-icon="fa-solid fa-square-root-variable"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-square-root-variable"></i></span> Substitution, Variables, and Functions</h1>
+<section id="variable-functions" class="level1" data-fa-icon="fa-solid fa-square-root-variable">
+<h1 data-fa-icon="fa-solid fa-square-root-variable"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-square-root-variable"></i></span> Variable &amp; Functions</h1>
 <p>When you think of a variable like <span class="math inline">\(x\)</span> do you ever think of it like a “fill-in-the-blank” where you get to write values inside?<br>
 <span class="math display">\[
 y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
@@ -411,9 +408,9 @@ y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
 &amp; \vdots
 \end{aligned}
 \]</span> Do not be afraid to draw the arrows in reverse or with wobbles and turns. They just need to point in the right way. For instance the following flowchart will suffice.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>flowchart RL</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    H[Haskell] --&gt; Curry</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    R[Robert] --&gt; Curry</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart RL</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    H[Haskell] --&gt; Curry</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    R[Robert] --&gt; Curry</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If we knew every customer we could write a complete list. Indeed most software platforms include a data structure with names like <code>Map</code> to do just that: store the list of inputs (keys) and outputs (values). You give it the input name and it outputs the value that goes with it.</p>
 <div class="callout-tip example callout-example" title="Explicit Mapping in Code" data-callout-family="example">
 <p>When the list of known customers is finite, we can write the mappings directly.</p>
@@ -421,22 +418,22 @@ y=3x+7 \quad \leadsto \quad y=3\boxed{\phantom{x}}+7
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Java</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">R</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>K_curry <span class="op">=</span> {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    <span class="st">"Haskell"</span>: <span class="st">"Curry"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    <span class="st">"Robert"</span>: <span class="st">"Curry"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>}</span>
-<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="bu">print</span>(K_curry[<span class="st">"Haskell"</span>])  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>K_curry <span class="op">=</span> {</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="st">"Haskell"</span>: <span class="st">"Curry"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="st">"Robert"</span>: <span class="st">"Curry"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="bu">print</span>(K_curry[<span class="st">"Haskell"</span>])  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Languages often decorate their tokens with other information declaring the kind of data they will manage, for example <code>String</code> to indicate strings and quotes around constants like <code>"Curry"</code>. You can get pretty far by simply ignore those details and looking at the shape of the program first coming back later to clarify what those terms do.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span><span class="bu">String</span><span class="op">&gt;</span> K_Curry <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Robert"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>K_Curry<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">);</span> <span class="co">// returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">Map</span><span class="op">&lt;</span><span class="bu">String</span><span class="op">,</span><span class="bu">String</span><span class="op">&gt;</span> K_Curry <span class="op">=</span> <span class="kw">new</span> <span class="bu">HashMap</span><span class="op">&lt;&gt;();</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>K_Curry<span class="op">.</span><span class="fu">put</span><span class="op">(</span><span class="st">"Robert"</span><span class="op">,</span> <span class="st">"Curry"</span><span class="op">);</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>K_Curry<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">"Haskell"</span><span class="op">);</span> <span class="co">// returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>K_curry <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Haskell =</span> <span class="st">"Curry"</span>, <span class="at">Robert =</span> <span class="st">"Curry"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>K_curry[[<span class="st">"Haskell"</span>]]  <span class="co"># returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>K_curry <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">Haskell =</span> <span class="st">"Curry"</span>, <span class="at">Robert =</span> <span class="st">"Curry"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>K_curry[[<span class="st">"Haskell"</span>]]  <span class="co"># returns "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -455,14 +452,14 @@ x \mapsto  \text{Curry} \qquad \text{(``$x$ maps to Curry'') }
 </colgroup>
 <tbody>
 <tr class="odd">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="kw">lambda</span> x: <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>x <span class="op">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>x <span class="kw">=&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">lambda</span> x: <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb6-1"><a href="#cb6-1"></a>x <span class="op">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a>x <span class="kw">=&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 <tr class="even">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>\<span class="op">|</span>x\<span class="op">|</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>\x <span class="ot">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a><span class="ot">λ</span> x <span class="ot">→</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource rust number-lines code-with-copy"><code class="sourceCode rust"><span id="cb8-1"><a href="#cb8-1"></a>\<span class="op">|</span>x\<span class="op">|</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource haskell number-lines code-with-copy"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1"></a>\x <span class="ot">-&gt;</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb10-1"><a href="#cb10-1"></a><span class="ot">λ</span> x <span class="ot">→</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -506,24 +503,24 @@ u_i \qquad e^x \qquad x^3\qquad
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">Python</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">JavaScript</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false" href="">Java/C/C++</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false" href="">Agda</a></li></ul>
 <div class="tab-content nav-pills">
 <div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="kw">def</span> K_Curry(x):</span>
-<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> K_Curry(x):</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a><span class="kw">function</span> <span class="fu">konstantCurry</span>(x) {</span>
-<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">function</span> <span class="fu">konstantCurry</span>(x) {</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <p>Languages like Java put the annotation of output before the function which makes sense if we think of the arrows going <span class="math inline">\(M\leftarrowtail x\)</span> instead of <span class="math inline">\(x\mapsto M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a><span class="bu">String</span> <span class="fu">konstantCurry</span><span class="op">(</span><span class="bu">String</span> x<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">String</span> <span class="fu">konstantCurry</span><span class="op">(</span><span class="bu">String</span> x<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span><span class="op">;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <p>Many modern languages allow Unicode so that we have a larger alphabet where we can use Greek letters like <span class="math inline">\(\varphi\)</span> (using the LaTeX command <span class="math inline">\(\varphi\)</span>) and nice arrows like <span class="math inline">\(\to\)</span> (using LaTeX <code>\to</code>). This is useful when matching commands with scientific terms, but can be difficult for others to reproduce since it does not represent standard keyboard letters and so you need intermediate tools like LaTeX or AI code assistant.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a>φ <span class="ot">:</span> String <span class="ot">→</span> String</span>
-<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>φ x <span class="ot">=</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb14-1"><a href="#cb14-1"></a>φ <span class="ot">:</span> String <span class="ot">→</span> String</span>
+<span id="cb14-2"><a href="#cb14-2"></a>φ x <span class="ot">=</span> <span class="st">"Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -547,11 +544,11 @@ m  \mapsto (x\mapsto (b\mapsto mx+b))
 \]</span> Note many software systems will prefer square-brackets to parenthesis, e.g.&nbsp;<code>[m,x,b]</code>. One subtle concern is that if we just read the list we might take this apart in a different order, for example, someone might think we meant this: <span class="math display">\[
 b  \mapsto (x\mapsto (m\mapsto mx+b))
 \]</span> Ultimately it is a choice to read <span class="math inline">\((m,x,b)\)</span> from left-to-right and since it matches the reading order of English it is default choice within English and similar languages. Even so, you may need to check with others before you assume. For example, the data science software <a href="https://julialang.org/">Julia</a> famously interprets <span class="math inline">\((a,b,c)\)</span> as top-to-bottom, not left-to-right. So in Julia the following code</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a>julia<span class="op">&gt;</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]</span>
-<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a><span class="fl">3</span><span class="op">-</span>element <span class="dt">Vector</span>{<span class="dt">Int64</span>}<span class="op">:</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-label="3"></a> <span class="fl">1</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-label="4"></a> <span class="fl">2</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-label="5"></a> <span class="fl">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1"></a>julia<span class="op">&gt;</span> [<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>]</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fl">3</span><span class="op">-</span>element <span class="dt">Vector</span>{<span class="dt">Int64</span>}<span class="op">:</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a> <span class="fl">1</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a> <span class="fl">2</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a> <span class="fl">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Because we read these in order we call these</p>
 <ul>
 <li><strong>ordered pairs</strong> for <span class="math inline">\((a,b)\)</span>,</li>
@@ -564,19 +561,19 @@ b  \mapsto (x\mapsto (m\mapsto mx+b))
 <li><span class="math inline">\(f(x,y) = x^2+y^2\)</span>.</li>
 <li>Python lets multiple inputs be given by tuples.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a><span class="kw">def</span> dist(x,y):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>    <span class="cf">return</span> <span class="bu">abs</span>(x<span class="op">-</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">def</span> dist(x,y):</span>
+<span id="cb16-2"><a href="#cb16-2"></a>    <span class="cf">return</span> <span class="bu">abs</span>(x<span class="op">-</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>In Scala you can have repeated tuples</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource scala number-lines code-with-copy"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a><span class="kw">def</span> <span class="fu">distribute</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">)(</span>z<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-label="2"></a>   x<span class="op">*</span>z<span class="op">+</span>y<span class="op">*</span>z</span>
-<span id="cb17-3"><a href="#cb17-3" aria-label="3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource scala number-lines code-with-copy"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">def</span> <span class="fu">distribute</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">)(</span>z<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a>   x<span class="op">*</span>z<span class="op">+</span>y<span class="op">*</span>z</span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="op">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="4" type="1">
 <li>In Agda multiple inputs are separated by spaces not commas and read left-to-right.</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a>max <span class="ot">:</span> ℕ <span class="ot">→</span> ℕ <span class="ot">→</span> ℕ</span>
-<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a>max x y <span class="ot">=</span> if x &gt; y then x else y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode numberSource agda number-lines code-with-copy"><code class="sourceCode agda"><span id="cb18-1"><a href="#cb18-1"></a>max <span class="ot">:</span> ℕ <span class="ot">→</span> ℕ <span class="ot">→</span> ℕ</span>
+<span id="cb18-2"><a href="#cb18-2"></a>max x y <span class="ot">=</span> if x &gt; y then x else y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -625,40 +622,40 @@ f(x) := \begin{cases}
 \]</span></p>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource algol number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a>begin</span>
-<span id="cb19-2"><a href="#cb19-2" aria-label="2"></a>    string procedure f(x);</span>
-<span id="cb19-3"><a href="#cb19-3" aria-label="3"></a>    string x;</span>
-<span id="cb19-4"><a href="#cb19-4" aria-label="4"></a>    if x = "Haskell" then</span>
-<span id="cb19-5"><a href="#cb19-5" aria-label="5"></a>        f := "Curry"</span>
-<span id="cb19-6"><a href="#cb19-6" aria-label="6"></a>    else if x = "Robert" then</span>
-<span id="cb19-7"><a href="#cb19-7" aria-label="7"></a>        f := "Curry";</span>
-<span id="cb19-8"><a href="#cb19-8" aria-label="8"></a>end</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode numberSource algol number-lines code-with-copy"><code class="sourceCode"><span id="cb19-1"><a href="#cb19-1"></a>begin</span>
+<span id="cb19-2"><a href="#cb19-2"></a>    string procedure f(x);</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    string x;</span>
+<span id="cb19-4"><a href="#cb19-4"></a>    if x = "Haskell" then</span>
+<span id="cb19-5"><a href="#cb19-5"></a>        f := "Curry"</span>
+<span id="cb19-6"><a href="#cb19-6"></a>    else if x = "Robert" then</span>
+<span id="cb19-7"><a href="#cb19-7"></a>        f := "Curry";</span>
+<span id="cb19-8"><a href="#cb19-8"></a>end</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource cobol number-lines code-with-copy"><code class="sourceCode"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a>WORKING-STORAGE SECTION.</span>
-<span id="cb20-2"><a href="#cb20-2" aria-label="2"></a>01 X PIC X(10).</span>
-<span id="cb20-3"><a href="#cb20-3" aria-label="3"></a>01 Y PIC X(10).</span>
-<span id="cb20-4"><a href="#cb20-4" aria-label="4"></a></span>
-<span id="cb20-5"><a href="#cb20-5" aria-label="5"></a>PROCEDURE DIVISION.</span>
-<span id="cb20-6"><a href="#cb20-6" aria-label="6"></a>        EVALUATE TRUE</span>
-<span id="cb20-7"><a href="#cb20-7" aria-label="7"></a>            WHEN X = "Haskell" OR X = "Robert"</span>
-<span id="cb20-8"><a href="#cb20-8" aria-label="8"></a>                MOVE "Curry" TO Y</span>
-<span id="cb20-9"><a href="#cb20-9" aria-label="9"></a>        END-EVALUATE.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode numberSource cobol number-lines code-with-copy"><code class="sourceCode"><span id="cb20-1"><a href="#cb20-1"></a>WORKING-STORAGE SECTION.</span>
+<span id="cb20-2"><a href="#cb20-2"></a>01 X PIC X(10).</span>
+<span id="cb20-3"><a href="#cb20-3"></a>01 Y PIC X(10).</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a>PROCEDURE DIVISION.</span>
+<span id="cb20-6"><a href="#cb20-6"></a>        EVALUATE TRUE</span>
+<span id="cb20-7"><a href="#cb20-7"></a>            WHEN X = "Haskell" OR X = "Robert"</span>
+<span id="cb20-8"><a href="#cb20-8"></a>                MOVE "Curry" TO Y</span>
+<span id="cb20-9"><a href="#cb20-9"></a>        END-EVALUATE.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-4-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource fortran number-lines code-with-copy"><code class="sourceCode fortranfixed"><span id="cb21-1"><a href="#cb21-1" aria-label="1"></a><span class="co">character(len=10) function f(x)</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-label="2"></a><span class="co">character(len=*), intent(in) :: x</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-label="3"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-label="4"></a><span class="kw">if</span> (x <span class="op">==</span> <span class="st">"Haskell"</span> <span class="op">.or.</span> x <span class="op">==</span> <span class="st">"Robert"</span>) <span class="kw">then</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-label="5"></a>    f <span class="kw">=</span> <span class="st">"Curry"</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-label="6"></a><span class="kw">end if</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-label="7"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-label="8"></a><span class="kw">end function</span> f</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode numberSource fortran number-lines code-with-copy"><code class="sourceCode fortranfixed"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">character(len=10) function f(x)</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="co">character(len=*), intent(in) :: x</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="kw">if</span> (x <span class="op">==</span> <span class="st">"Haskell"</span> <span class="op">.or.</span> x <span class="op">==</span> <span class="st">"Robert"</span>) <span class="kw">then</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>    f <span class="kw">=</span> <span class="st">"Curry"</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="kw">end if</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a></span>
+<span id="cb21-8"><a href="#cb21-8"></a><span class="kw">end function</span> f</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-3-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-5-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource lisp number-lines code-with-copy"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a>    (<span class="kw">cond</span> ((<span class="kw">string=</span> x <span class="st">"Haskell"</span>) <span class="st">"Curry"</span>)</span>
-<span id="cb22-3"><a href="#cb22-3" aria-label="3"></a>        ((<span class="kw">string=</span> x <span class="st">"Robert"</span>) <span class="st">"Curry"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode numberSource lisp number-lines code-with-copy"><code class="sourceCode commonlisp"><span id="cb22-1"><a href="#cb22-1"></a>(<span class="kw">defun</span><span class="fu"> f </span>(x)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>    (<span class="kw">cond</span> ((<span class="kw">string=</span> x <span class="st">"Haskell"</span>) <span class="st">"Curry"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>        ((<span class="kw">string=</span> x <span class="st">"Robert"</span>) <span class="st">"Curry"</span>)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -696,21 +693,21 @@ c|_{x:=N}\text{ yields }c \text{ for constants }c.
 </div>
 <div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a>M <span class="op">=</span> <span class="st">"Curry"</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-label="2"></a>x <span class="op">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-label="3"></a><span class="bu">print</span>(M)  <span class="co"># yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>M <span class="op">=</span> <span class="st">"Curry"</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>x <span class="op">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="bu">print</span>(M)  <span class="co"># yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a><span class="bu">String</span> M <span class="op">=</span> <span class="st">"Curry"</span><span class="op">;</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-label="2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-label="3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb24-1"><a href="#cb24-1"></a><span class="bu">String</span> M <span class="op">=</span> <span class="st">"Curry"</span><span class="op">;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-4-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-4-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb25-1"><a href="#cb25-1" aria-label="1"></a><span class="kw">let</span> <span class="va">M</span> <span class="op">=</span> <span class="st">"Curry"</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-label="2"></a><span class="kw">let</span> <span class="va">x</span> <span class="op">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb25-3"><a href="#cb25-3" aria-label="3"></a>print<span class="op">(</span>M<span class="op">)</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode numberSource swift number-lines code-with-copy"><code class="sourceCode swift"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">let</span> <span class="va">M</span> <span class="op">=</span> <span class="st">"Curry"</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="kw">let</span> <span class="va">x</span> <span class="op">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a>print<span class="op">(</span>M<span class="op">)</span>  <span class="co">// yields "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -727,14 +724,14 @@ x|_{x:=N}\text{ yields }N
 <p>For example, <span class="math inline">\(x|_{x:=\text{Haskell}}\)</span> yields <span class="math inline">\(\text{Haskell}\)</span>.</p>
 </div>
 <div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1" aria-label="1"></a><span class="bu">String</span> x<span class="op">;</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-label="2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
-<span id="cb26-3"><a href="#cb26-3" aria-label="3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>x<span class="op">);</span>  <span class="co">// prints "Haskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb26-1"><a href="#cb26-1"></a><span class="bu">String</span> x<span class="op">;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>x<span class="op">);</span>  <span class="co">// prints "Haskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb27-1"><a href="#cb27-1" aria-label="1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">x</span><span class="op">]</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-label="2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-label="3"></a><span class="fu">x</span>  <span class="co">(* yields "Haskell" *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb27"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">x</span><span class="op">]</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="fu">x</span>  <span class="co">(* yields "Haskell" *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -753,15 +750,15 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </div>
 <div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>. However, in software often you cannot have a variable without some actual data, it might just fill in a default value like <span class="math inline">\(0\)</span> or <code>null</code>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb28-1"><a href="#cb28-1" aria-label="1"></a><span class="bu">String</span> M<span class="op">;</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-label="2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-label="3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// prints null </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb28"><pre class="sourceCode numberSource java number-lines code-with-copy"><code class="sourceCode java"><span id="cb28-1"><a href="#cb28-1"></a><span class="bu">String</span> M<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="bu">String</span> x <span class="op">=</span> <span class="st">"Haskell"</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="bu">System</span><span class="op">.</span><span class="fu">out</span><span class="op">.</span><span class="fu">println</span><span class="op">(</span>M<span class="op">);</span>  <span class="co">// prints null </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
 <p><span class="math inline">\(M\)</span> has nothing to do with <span class="math inline">\(x\)</span> so assigning <span class="math inline">\(x\)</span> to <span class="math inline">\(N\)</span> does not change <span class="math inline">\(M\)</span>. In symbolic programming languages you can often keep <span class="math inline">\(M\)</span> as a variable without need for a default value. This is closest to the mathematical idea.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb29-1"><a href="#cb29-1" aria-label="1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">M</span><span class="op">]</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-label="2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-label="3"></a><span class="fu">M</span>  <span class="co">(* yields M *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb29"><pre class="sourceCode numberSource mathematica number-lines code-with-copy"><code class="sourceCode mathematica"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">Clear</span><span class="op">[</span><span class="fu">M</span><span class="op">]</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">x</span> <span class="ex">=</span> <span class="st">"Haskell"</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">M</span>  <span class="co">(* yields M *)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -779,16 +776,16 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </div>
 <div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
 <p>The repeated use of variables in most programming languages use the same value as many times as needed.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-label="1"></a>x <span class="op">=</span> <span class="st">"Haskell"</span>   </span>
-<span id="cb30-2"><a href="#cb30-2" aria-label="2"></a>M <span class="op">=</span> x <span class="op">+</span> x</span>
-<span id="cb30-3"><a href="#cb30-3" aria-label="3"></a><span class="bu">print</span>(M)  <span class="co"># prints "HaskellHaskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>x <span class="op">=</span> <span class="st">"Haskell"</span>   </span>
+<span id="cb30-2"><a href="#cb30-2"></a>M <span class="op">=</span> x <span class="op">+</span> x</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="bu">print</span>(M)  <span class="co"># prints "HaskellHaskell"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
 <p>Be careful. In some modern languages like Rust and Idris you may be limited in how many times you can use a variable. Here is an example where the number 1 tell the system to use the value of <code>x</code> exactly once. If you try to use it more than once the program will not compile.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb31-1"><a href="#cb31-1" aria-label="1"></a><span class="fu">dupFail</span> <span class="ot">:</span> (<span class="dv">1</span> x <span class="ot">:</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-label="2"></a>dupFail x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Will not compile: x is used twice.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb32-1"><a href="#cb32-1" aria-label="1"></a><span class="fu">dupOk</span> <span class="ot">:</span>  <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-label="2"></a>dupOk x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Now succeeds because x is unrestricted.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb31"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">dupFail</span> <span class="ot">:</span> (<span class="dv">1</span> x <span class="ot">:</span> <span class="dt">String</span>) <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a>dupFail x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Will not compile: x is used twice.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb32"><pre class="sourceCode numberSource idris number-lines code-with-copy"><code class="sourceCode idris"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">dupOk</span> <span class="ot">:</span>  <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>dupOk x <span class="fu">=</span> x <span class="fu">++</span> x <span class="co">-- Now succeeds because x is unrestricted.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -798,16 +795,16 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 <p>THe rest of the rules concern substitution into <span class="math inline">\(x\mapsto M\)</span> strings.</p>
 </blockquote>
 <p>Lets begin with a named function <span class="math inline">\(K\)</span> that takes an input <span class="math inline">\(x\)</span> and returns the constant <span class="math inline">\(c\)</span>.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb33-2"><a href="#cb33-2" aria-label="2"></a>    <span class="cf">return</span> c</span>
-<span id="cb33-3"><a href="#cb33-3" aria-label="3"></a>c <span class="op">=</span> <span class="st">"Curry"</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-label="4"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-label="5"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb33"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb33-2"><a href="#cb33-2"></a>    <span class="cf">return</span> c</span>
+<span id="cb33-3"><a href="#cb33-3"></a>c <span class="op">=</span> <span class="st">"Curry"</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>If <span class="math inline">\(M\)</span> is the program <code>return c</code>, then this is simply naming the lambda <span class="math inline">\(x\mapsto c\)</span>. To feed in “Curry” for <span class="math inline">\(c\)</span> we have to assign <span class="math inline">\(c:=\text{Curry}\)</span> which we do in line 3. So after this line we have <span class="math inline">\(x\mapsto \text{Curry}\)</span>. The last line confirmed this by inputting “Robert” for <span class="math inline">\(x\)</span> and getting “Curry” as the output. Thus following line 3 we could think of the program as equal to this.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb34-2"><a href="#cb34-2" aria-label="2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-label="3"></a></span>
-<span id="cb34-4"><a href="#cb34-4" aria-label="4"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb34-2"><a href="#cb34-2"></a>    <span class="cf">return</span> <span class="st">"Curry"</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a></span>
+<span id="cb34-4"><a href="#cb34-4"></a><span class="bu">print</span>(K(<span class="st">"Robert"</span>))  <span class="co"># prints "Curry"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This suggests the following rule. <span class="math display">\[
 \tag{Incorrect Rule}
 (x\mapsto M)|_{c:=N} \text{ yields } x\mapsto (M|_{c:=N})
@@ -834,14 +831,14 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </thead>
 <tbody>
 <tr class="odd">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb35-2"><a href="#cb35-2" aria-label="2"></a>    <span class="cf">return</span> c</span>
-<span id="cb35-3"><a href="#cb35-3" aria-label="3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-label="1"></a><span class="kw">def</span> K(local_x):</span>
-<span id="cb36-2"><a href="#cb36-2" aria-label="2"></a>    <span class="cf">return</span> c</span>
-<span id="cb36-3"><a href="#cb36-3" aria-label="3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-label="1"></a><span class="kw">def</span> K(local_x):</span>
-<span id="cb37-2"><a href="#cb37-2" aria-label="2"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="cf">return</span> c</span>
+<span id="cb35-3"><a href="#cb35-3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb36"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">def</span> K(local_x):</span>
+<span id="cb36-2"><a href="#cb36-2"></a>    <span class="cf">return</span> c</span>
+<span id="cb36-3"><a href="#cb36-3"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">def</span> K(local_x):</span>
+<span id="cb37-2"><a href="#cb37-2"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>
@@ -891,25 +888,25 @@ y|_{x:=N}\text{ yields }y \text{ if } y\neq x.
 </thead>
 <tbody>
 <tr class="odd">
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-label="1"></a><span class="kw">def</span> K(x):</span>
-<span id="cb38-2"><a href="#cb38-2" aria-label="2"></a>  <span class="kw">def</span> L(x):</span>
-<span id="cb38-3"><a href="#cb38-3" aria-label="3"></a>      <span class="cf">return</span> c</span>
-<span id="cb38-4"><a href="#cb38-4" aria-label="4"></a>  <span class="cf">return</span> L</span>
-<span id="cb38-5"><a href="#cb38-5" aria-label="5"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-label="1"></a><span class="kw">def</span> K(x_temp_1):</span>
-<span id="cb39-2"><a href="#cb39-2" aria-label="2"></a>    c <span class="op">=</span> x</span>
-<span id="cb39-3"><a href="#cb39-3" aria-label="3"></a>    <span class="kw">def</span> L(x):</span>
-<span id="cb39-4"><a href="#cb39-4" aria-label="4"></a>        <span class="cf">return</span> c</span>
-<span id="cb39-5"><a href="#cb39-5" aria-label="5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-label="1"></a><span class="kw">def</span> K(x_temp_1):</span>
-<span id="cb40-2"><a href="#cb40-2" aria-label="2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
-<span id="cb40-3"><a href="#cb40-3" aria-label="3"></a>        c <span class="op">=</span> x</span>
-<span id="cb40-4"><a href="#cb40-4" aria-label="4"></a>        <span class="cf">return</span> c</span>
-<span id="cb40-5"><a href="#cb40-5" aria-label="5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
-<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-label="1"></a><span class="kw">def</span> K(x_temp_1):</span>
-<span id="cb41-2"><a href="#cb41-2" aria-label="2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
-<span id="cb41-3"><a href="#cb41-3" aria-label="3"></a>        <span class="cf">return</span> x</span>
-<span id="cb41-4"><a href="#cb41-4" aria-label="4"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">def</span> K(x):</span>
+<span id="cb38-2"><a href="#cb38-2"></a>  <span class="kw">def</span> L(x):</span>
+<span id="cb38-3"><a href="#cb38-3"></a>      <span class="cf">return</span> c</span>
+<span id="cb38-4"><a href="#cb38-4"></a>  <span class="cf">return</span> L</span>
+<span id="cb38-5"><a href="#cb38-5"></a>c <span class="op">=</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">def</span> K(x_temp_1):</span>
+<span id="cb39-2"><a href="#cb39-2"></a>    c <span class="op">=</span> x</span>
+<span id="cb39-3"><a href="#cb39-3"></a>    <span class="kw">def</span> L(x):</span>
+<span id="cb39-4"><a href="#cb39-4"></a>        <span class="cf">return</span> c</span>
+<span id="cb39-5"><a href="#cb39-5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a><span class="kw">def</span> K(x_temp_1):</span>
+<span id="cb40-2"><a href="#cb40-2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
+<span id="cb40-3"><a href="#cb40-3"></a>        c <span class="op">=</span> x</span>
+<span id="cb40-4"><a href="#cb40-4"></a>        <span class="cf">return</span> c</span>
+<span id="cb40-5"><a href="#cb40-5"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
+<td><div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">def</span> K(x_temp_1):</span>
+<span id="cb41-2"><a href="#cb41-2"></a>    <span class="kw">def</span> L(x_temp_2):</span>
+<span id="cb41-3"><a href="#cb41-3"></a>        <span class="cf">return</span> x</span>
+<span id="cb41-4"><a href="#cb41-4"></a>    <span class="cf">return</span> L</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></td>
 </tr>
 </tbody>
 </table>

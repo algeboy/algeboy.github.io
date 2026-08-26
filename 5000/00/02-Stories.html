@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>chp-summary – 5000 Years of Modern Computing</title>
+<title> Archetypes – 5000 Years of Modern Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -29,23 +26,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../../../">
-<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../../site_libs/quarto-html/popper.min.js"></script>
-<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -136,17 +133,46 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 })();
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="../../../quarto-runtime/styles/webllm-chat.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/book-content.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/Homepage.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/Matrix.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/toc-compass.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/sidebar-circuit-window.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/inline-compass.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/topic-graph.css">
-<link rel="stylesheet" href="../../../quarto-runtime/styles/circuit-content.css">
-<link rel="stylesheet" href="../../../quarto-runtime/assets/quick-check.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/sidebar-circuit-window.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/inline-compass.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/topic-graph.css">
+<link rel="stylesheet" href="../quarto-runtime/styles/circuit-content.css">
+<link rel="stylesheet" href="../quarto-runtime/assets/quick-check.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -175,7 +201,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="../../../">5000 Years of Modern Computing</a> 
+      <a href="../">5000 Years of Modern Computing</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -187,19 +213,19 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../Deduct/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../Deduct/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Deductive Reasoning</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../Induct/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../Induct/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Inductive Reasoning</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../Abduct/index.html" class="sidebar-item-text sidebar-link">
+  <a href="../Abduct/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Abductive Reasoning</span></a>
   </div>
 </li>
@@ -214,7 +240,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../../TopicMap.html" class="sidebar-item-text sidebar-link">
+  <a href="../TopicMap.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Topic Map</span></a>
   </div>
 </li>
@@ -230,56 +256,41 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#logical-library-summary" id="toc-logical-library-summary" class="nav-link active" data-scroll-target="#logical-library-summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-clipboard-list"></i></span> Logical Library summary</a>
-  <ul class="collapse">
-  <li><a href="#abstraction-fixes-a-paradox" id="toc-abstraction-fixes-a-paradox" class="nav-link" data-scroll-target="#abstraction-fixes-a-paradox"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Abstraction “Fixes” a paradox</a></li>
-  <li><a href="#community-agreements" id="toc-community-agreements" class="nav-link" data-scroll-target="#community-agreements"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Community agreements</a></li>
-  </ul></li>
+  <li><a href="#archetypes-and-why-i-tell-stories" id="toc-archetypes-and-why-i-tell-stories" class="nav-link active" data-scroll-target="#archetypes-and-why-i-tell-stories"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Archetypes and why I tell stories</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
 
-
-
-
-<section id="logical-library-summary" class="level1" data-fa-icon="fa-solid fa-clipboard-list">
-<h1 data-fa-icon="fa-solid fa-clipboard-list"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-clipboard-list"></i></span> Logical Library summary</h1>
-<section id="abstraction-fixes-a-paradox" class="level2" data-fa-icon="fa-solid fa-book-open">
-<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="abstraction-fixes-a-paradox"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Abstraction “Fixes” a paradox</h2>
-<p>A common feature of “fixing” a paradox is that we agree to give up on something. In this example, to give up on constants and variables is to give up a lot of the ways we have learned to talk about science. Yet to put rules on what substitution looks like, goes against the “fill-in-the-box” intuition we spent years building for ourselves.</p>
-<p>Whenever we encounter a situation where we limit our thinking by rules we have what is called an <strong>abstraction.</strong></p>
-<div class="callout-definition" title="Abstraction">
-<p>An <strong>abstraction</strong> is to limit a topic by rules.</p>
-</div>
-<p>We will have many opportunities to explore abstraction within computation, but the word is so common you might benefit from some outside examples to connect your learning with what you already experience. In economics, workers do many different jobs but to make it possible to compare their productivity we can limit their jobs to how much money they earn. The money is the abstraction.</p>
-<div class="callout-tip example callout-example" title="" data-callout-family="example">
-<p>An abstract painting such as Marcel Duchamp’s <em>Nude Descending a Staircase</em> the nude figure is limited to having a head, arms, and legs. This allowed the subject of the abstract art to consider the locomotion of descending a staircase rather than the details of a specific person.</p>
-<div class="quarto-figure quarto-figure-left">
-<figure class="figure">
-<p><img src="../Duchamp-Nude_Descending_a_Staircase.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Nude Descending a Staircase, by Marcel Duchamp (1887-1968) - Philadelphia Museum of Art, PD-US</figcaption>
-</figure>
-</div>
-</div>
-<p>Possibly here is a place to imagine how data we collect for computations is typically an abstraction of whatever we want to explore. You have some control in creating abstractions when you compute. Choose your rules wisely, they will have consequences.</p>
-</section>
-<section id="community-agreements" class="level2" data-fa-icon="fa-solid fa-book-open">
-<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="community-agreements"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Community agreements</h2>
-<p>Despite the wildly different options for logic there are some, just as we can cluster games into styles we structure logic in styles as well and for the most part in this book you can forget specific names for individual logics and think broadly about these three options.</p>
-<ul>
-<li>Theoretical Logic: great for models, precise and non-overlapping concept of truth.</li>
-<li>Computational Logic: requires evidence to make a deduction, models scientific experiments and computation fairly well.</li>
-<li>Practical Logic: admits the inevitability of contradictory information, good for data and realistic information.</li>
-</ul>
-<hr>
-<div class="circuit this">
-
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="fa-brass-icon" aria-hidden="true" data-title-icon="fa-solid fa-microchip"><i class="fa-solid fa-microchip"></i></span> Archetypes</h1>
 </div>
 
 
-</section>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="archetypes-and-why-i-tell-stories" class="level1" data-fa-icon="fa-solid fa-book-open">
+<h1 data-fa-icon="fa-solid fa-book-open"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Archetypes and why I tell stories</h1>
+<p>You must be asking yourself how reading about division using a tiles is going to prepare you to work with Artificial Intelligence, Data Science, or anything else modern. After all, almost every programming language already lets you divide by typing <code>m/n</code> or <code>m div n</code> or with a button <span class="math inline">\(\div\)</span>. In fact an operation this basic would be etched into the silicon of modern micro-processors “chips”. So why even discuss division?</p>
+<p>Firstly, the Babylonians built giant pyramids called ziggurats, fountains, gardens, predicted eclipses well into the future, and yes laid tile-bricks like those in marvelous Ishtar gates still on display thousands of years later. So having division on the mind is not a sign of intellectual weakness.<br>
+<img src="Berlin_Museo_de_Pergamo_05.jpg" class="img-fluid" alt="Ishtar Gate, Photo by LBM1948 - Own work, CC BY-SA 4.0, Wikimedia commons"></p>
+<p>Secondly, be assured that these articles focus on many state-of-the-art topics in mathematics, computation, and data science. Examples like division are chosen as enduring examples, known as <em>archetypes</em>, which use stories of events that are so familiar they are easily personalized. Think for a moment about the same story but where we replace tiles with eggs in cartons, or the products manufactured in an assembly line. Production will be successful if it can fill the packaging with a remainder large enough to cover the expected number of rejects. Want a computer related story? Shift to discussing the transmission of a file in fixed-size packets with an expected error rate in the transmissions. The story of tiling is not one story, but a skeleton to retell your own way.</p>
+<p>Always be prepared to give an account of what you know in the language your audience wants to know it. The first time might be in an interview that lands you the job. Later you can use that skill to get the trust of a boss or client. You may become a mentor or teacher. And finally we should not forget those friends and family who just want to connect with what we do. Surely it is up to the person who understands to make the larger effort to be understood. These stories are for others. Use them, personalize them, and you might find your own understanding deepened as well.</p>
+
+
 </section>
 
 </main> <!-- /main -->

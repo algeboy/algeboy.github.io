@@ -2,23 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title> Deductive Reasoning – 5000 Years of Modern Computing</title>
+<title>logic-library – 5000 Years of Modern Computing</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -42,10 +39,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -137,7 +134,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -266,31 +263,17 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#what-does-artificial-intelligence-think" id="toc-what-does-artificial-intelligence-think" class="nav-link" data-scroll-target="#what-does-artificial-intelligence-think"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> What does Artificial Intelligence think?</a></li>
   </ul></li>
+  <li><a href="#judgment-types-broadly" id="toc-judgment-types-broadly" class="nav-link" data-scroll-target="#judgment-types-broadly"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Judgment types broadly</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</a></li>
   <li><a href="#where-to-next" id="toc-where-to-next" class="nav-link" data-scroll-target="#where-to-next"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Where to next?</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="fa-brass-icon" aria-hidden="true" data-title-icon="fa-solid fa-table-tennis"><i class="fa-solid fa-table-tennis"></i></span> Deductive Reasoning</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <section id="choosing-a-logic" class="level1" data-fa-icon="fa-solid fa-gamepad fa-la">
@@ -358,6 +341,7 @@ A &amp; \not\to &amp;  B \text{ and } C.
 <div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
 <p>Makes up a scenarios that the Rule of Implied Conjunction is true and another scenario where the Fallacy of Implied Conjunction is true. What are the differences between the two scenarios?</p>
 </div>
+<p>When you start to look for context you might not find it in an obvious place. Often, the context is <strong>implicit</strong> meaning no one bothered to tell you, so it must be dug up from experience and observation. Fortunately in computation we do a better job of signalling context explicitly often with keywords like <code>import</code>. But be warned about wildcards like <code>*</code> which often abbreviate explicit context leaving us to hunt amongst a lot of possible files.</p>
 </section>
 <section id="different-logics-in-programs" class="level2" data-fa-icon="fa-solid fa-book-open">
 <h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="different-logics-in-programs"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Different logics in programs</h2>
@@ -577,24 +561,31 @@ Just as some games will be more popular than others, so too some logics and prog
 </div>
 </div></section>
 </section>
-<section id="where-to-next" class="level2" data-fa-icon="fa-solid fa-book-open">
-<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="where-to-next"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Where to next?</h2>
-<p>If context is so important we should put some thought into how to detect and communicate context. There is also the question of what do you mean by “truth” if logic gets to decide. Both the blue wires will take you through those ideas. Stay on the red to go on to logical operators</p>
-<p>Follow the blue wires to learn Programming has many useful lessons that other sciences could learn from on that topic. Another topic to reach for is what flavors of logic you might find within a context. If you prefer to see what to do with a logic skip the details of context and judgment and go straight to how to write down a logic.</p>
-<p>Deductive reasoning is to systematically argue from your evidence. That brings up many questions, for starters, whose “system” and what counts as “evidence”? You have several options from here. You can follow the green wire path to explore other general systems of reasoning such as inductive and abductive reasoning. Or you can follow the red and blue wires to dig deeper in the properties of a deductive reasoning.</p>
-<div class="circuit this">
-<hr>
-<section id="summary" class="level1" data-fa-icon="fa-solid fa-book-open">
-<h1 data-fa-icon="fa-solid fa-book-open"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</h1>
+<section id="judgment-types-broadly" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="judgment-types-broadly"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Judgment types broadly</h2>
+<ul>
+<li><strong>Computational judgments</strong>: Concerned with what can be computed or derived within a formal system.</li>
+<li><strong>Practical judgments</strong>: Concerned with decisions and actions in real-world contexts.</li>
+<li><strong>Theoretical judgments</strong>: Concerned with abstract reasoning and the pursuit of knowledge for its own sake.</li>
+</ul>
+</section>
+<section id="summary" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</h2>
 <ul>
 <li>Judgments are assigning truth values to propositions.</li>
 <li>Flavors of judgment include computational, practical, and theoretical.</li>
 <li>The styles of judgement are organized around deductive, inductive, and abductive reasoning.</li>
 </ul>
-
-
+<hr>
 </section>
+<section id="where-to-next" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="where-to-next"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Where to next?</h2>
+<p>You came this far I would follow the blue wire. Or if I was daring the red wires to get better look at context and judgment.</p>
+<div class="circuit this">
+
 </div>
+
+
 </section>
 </section>
 

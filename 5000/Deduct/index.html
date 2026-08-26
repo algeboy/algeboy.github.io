@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,19 +12,51 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -42,10 +74,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -223,15 +255,21 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#computational-impact" id="toc-computational-impact" class="nav-link active" data-scroll-target="#computational-impact"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Computational Impact</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="fa-brass-icon" aria-hidden="true" data-title-icon="fa-solid fa-table-tennis"><i class="fa-solid fa-table-tennis"></i></span> Deductive Reasoning</h1>
+<h1 class="title"><span class="fa-brass-icon" aria-hidden="true" data-title-icon="fa-solid fa-bicycle"><i class="fa-solid fa-bicycle"></i></span> Deductive Reasoning</h1>
 </div>
 
 
@@ -250,7 +288,15 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 
 <p>When we peddle clockwise (when facing the gears) on a bicycle we know the bike will move forward. It is a deduction that one proposition (peddling clockwise) leads to a specific outcome (the bike moves forward).<br>
 <img src="Bike_chain_guard_part.jpeg" class="img-fluid" alt="CC-BY-SA bukk, Wikicommons"></p>
-<p>We can even argue why. We could establish that the motion moves a chain clockwise which moves a gear on the rear wheel clockwise which moves the attached wheel clockwise which means the back of the bike pushes forward. It all locks into place as a solid deduction.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>graph TD</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    A[Peddle clockwise] --&gt; B[Chain moves clockwise]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We can even argue why. We could establish that the motion moves a chain clockwise which moves a gear on the rear wheel clockwise which moves the attached wheel clockwise which means the back of the bike pushes forward. It all locks into place as a solid deduction. We can insert these steps to refine our earlier judgment.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>graph TD</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    A[Peddle clockwise] --&gt; B[Chain moves clockwise]</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    B --&gt; C[Rear gear moves clockwise]</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    C --&gt; D[Rear wheel moves clockwise]</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    D --&gt; E[Back of bike pushes forward]</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    A --&gt; E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Now what happens if we peddle counterclockwise? If you have experience riding or watching bicycles you know this becomes a delicate question. The argument we just made could be reversed to suggest the bicycle would move backward. But many who have witnessed a bicycle ride will notice peddling backwards does not generally change the direction. Nor does it matter if you stop peddling once in motion. Those conclusions are far less deductive. Those need some intervening knowledge that our photographic evidence has not provided. This is the point of deductive reasoning versus other forms of reasoning. Deduction should proceed from the evidence. Peddling clockwise offers enough evidence for such a <strong>deduction</strong>. Peddling backwards likely does not (we might using inductive reasoning instead).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -279,45 +325,67 @@ Note
 </div>
 </div>
 <div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
-<pre><code>Since we are having some fun here is your challenge.  What happens if you rest a bicycle against a wall facing the chain with the peddle in the down position and you pull backwards on that lower peddle which rotates the gear clockwise as before?  As a warning, this author was once humiliated in front of a room of PhD professors for guessing the wrong answer and attempting the experiment live.  Over confidence will get you far, sometimes too far.
+<p>Since we are having some fun here is your challenge. What happens if you rest a bicycle against a wall facing the chain with the peddle in the down position and you pull backwards on that lower peddle which rotates the gear clockwise as before?</p>
+<p>(As a warning, this author was once humiliated in front of a room of PhD professors for guessing the wrong answer and attempting the experiment live. Over confidence will get you far, sometimes too far.)</p>
+<div class="logic-quiz" id="logic-quiz-1"><form class="logic-quiz__form"><div class="logic-quiz__option"><input type="radio" id="logic-quiz-1-option-1" name="logic-quiz-1" data-correct="false" data-reason="No, but you wont be able to explain why without actually trying this experiment or having someone else perform it."><label for="logic-quiz-1-option-1">The bicycle will move forward</label></div><div class="logic-quiz__option"><input type="radio" id="logic-quiz-1-option-2" name="logic-quiz-1" data-correct="true" data-reason="It is not obvious, and seems to argue against our earlier deduction. You really ought to just do an experiment to find out, making this not a deduction but a proper induction. Something subtle is different and the point it makes is that rare do we have enough evidence to make a pure deduction and we often end up with a mix reasoning techniques. I share this with you as a challenge to have with anyone you know who is twice as smart as everyone else and half of what they say is right."><label for="logic-quiz-1-option-2">The bicycle will move backward</label></div><button type="button" class="logic-quiz__check">Check answer</button><p class="logic-quiz__feedback" aria-live="polite"></p></form></div>
+<script>
+(function () {
+  if (window.__logicQuizInit) return;
+  window.__logicQuizInit = true;
 
-- (The bicycle will move forward)(No, but you wont be able to explain why without actually trying this experiment or having someone else perform it.)
-- [The bicycle will move backward][Right.  It is not obvious from the science.  You really ought to just do an experiment to find out, making this not a deduction but a proper induction.  If I had to guess, I'd say the reason this defies the earlier claim that peddling clockwise moves the bike forward is due to the lack of weight sitting on the bike which removes friction the prevents the wheel from taking the tiny bit of backward force and activating the free wheel to allow it to roll backwards.  That is the reality of deduction.  It is really rare to have enough evidence to make a deduction and we often end up with a mix.&lt;br/&gt;       I now share this with you as a challenge to have with anyone you know who is twice as smart as everyone else and half of what they know is right.]</code></pre>
+  document.addEventListener("click", function (event) {
+    var button = event.target.closest(".logic-quiz__check");
+    if (!button) return;
+
+    var quiz = button.closest(".logic-quiz");
+    if (!quiz) return;
+
+    var selected = quiz.querySelector('input[type="radio"]:checked');
+    var feedback = quiz.querySelector(".logic-quiz__feedback");
+    if (!feedback) return;
+
+    if (!selected) {
+      feedback.textContent = "Select one answer before checking.";
+      feedback.style.color = "#7a3d00";
+      return;
+    }
+
+    var isCorrect = selected.dataset.correct === "true";
+    var reason = selected.dataset.reason || "";
+
+    if (isCorrect) {
+      feedback.textContent = "Correct. " + reason;
+      feedback.style.color = "#0f5132";
+    } else {
+      feedback.textContent = "Not quite. " + reason;
+      feedback.style.color = "#842029";
+    }
+  });
+})();
+</script>
+
 </div>
 <div class="callout-note defn callout-defn" data-callout-family="defn">
 <p><strong>Deductive Reasoning</strong> is to systematically argue from your evidence to what is necessary.</p>
 </div>
+<section id="computational-impact" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="computational-impact"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Computational Impact</h2>
+<p>Deduction was one of the first forms of reasoning converted into computation and you may already see why. If you have data that backs up a claim and that claim leads to another claim you will in effect be transforming your input data into output data. This is what you might call a function. This is a deduction made computational and the first leg of the Curry-Howard-Lambek correspondence.</p>
 <p>Having a definition brings up new questions, for instance, whose “system” do we accept and what counts as “evidence”? You might want to first continue the green loop to explore the two other forms of reasoning (inductive and deductive) or you can take the harder blue track now of digging into how we reason deductively.</p>
 <div class="circuit">
-<pre><code>Curry["00/preface.qmd"] @ (0,3)
-*Deduct["Deduct/index.qmd"] @ (1,2)
-Induct["Induct/index.qmd"] @ (1,1)
-Abduct["Abduct/index.qmd"] @ (1,0)
-Logic["Deduct/01/index.qmd"] @ (2,3)
-Ops["Deduct/02/index.qmd"] @ (2,2)
-Types["Deduct/03/index.qmd"] @ (2,1)
-Sets["Deduct/04/index.qmd"] @ (2,0)
-Library["Deduct/01/01-Logic-Library.qmd"] @ (3,3)
-Writing["Deduct/01/02-Writing-down-a-logic.qmd"] @ (3,2)
-Substitution["Deduct/01/03-Sub-Var-Func.qmd"] @ (3,1)
+<pre><code>Curry["00/preface.qmd"] @ (0,1)
+*Deduct["Deduct/index.qmd"] @ (1,1)
+Induct["Induct/index.qmd"] @ (1,0)
+Logic["Deduct/01/index.qmd"] @ (2,1)
 
 Curry.9-10 -.-&gt; Deduct.3-4
 Deduct.9-10 --&gt; Induct.4-5
-Induct.9-10 --&gt; Abduct.3-4
-Abduct.14 --&gt; Deduct.1
 
-Deduct.6 ==&gt; Logic.3
-Logic.9 ==&gt; Ops.6
-Ops.10 ==&gt; Types.5
-Types.11 ==&gt; Sets.7
-Sets.12 --&gt; Induct.8
-
-Logic.7 -.-&gt; Library.3
-Logic.15 -.-&gt; Writing.1
-Logic.16 -.-&gt; Substitution.9</code></pre>
+Deduct.6 ==&gt; Logic.3</code></pre>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +169,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -294,10 +291,11 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#exponential-and-dependent-types" id="toc-exponential-and-dependent-types" class="nav-link active" data-scroll-target="#exponential-and-dependent-types"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-group-arrows-rotate"></i></span> Exponential and Dependent Types</a>
+  <li><a href="#exponential-and-dependent-types" id="toc-exponential-and-dependent-types" class="nav-link active" data-scroll-target="#exponential-and-dependent-types"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Exponential and Dependent Types</a>
   <ul class="collapse">
   <li><a href="#learning-materials" id="toc-learning-materials" class="nav-link" data-scroll-target="#learning-materials"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Learning Materials</a></li>
   <li><a href="#match-reference" id="toc-match-reference" class="nav-link" data-scroll-target="#match-reference"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Match Reference</a></li>
+  </ul></li>
   <li><a href="#math156-dual-logic-and-programs" id="toc-math156-dual-logic-and-programs" class="nav-link" data-scroll-target="#math156-dual-logic-and-programs"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Math156 Dual logic and Programs</a>
   <ul class="collapse">
   <li><a href="#objectives" id="toc-objectives" class="nav-link" data-scroll-target="#objectives"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Objectives</a></li>
@@ -305,7 +303,6 @@ window.Quarto = {
   <li><a href="#diagram-logic-of-or-and-its-dual-and" id="toc-diagram-logic-of-or-and-its-dual-and" class="nav-link" data-scroll-target="#diagram-logic-of-or-and-its-dual-and"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Diagram logic of OR and its dual AND</a></li>
   <li><a href="#data-types-for-quantifiers" id="toc-data-types-for-quantifiers" class="nav-link" data-scroll-target="#data-types-for-quantifiers"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Data types for quantifiers</a></li>
   <li><a href="#universal-property-of-pairs" id="toc-universal-property-of-pairs" class="nav-link" data-scroll-target="#universal-property-of-pairs"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Universal Property of Pairs</a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -316,8 +313,9 @@ window.Quarto = {
 
 
 
-<section id="exponential-and-dependent-types" class="level1" data-fa-icon="fa-solid fa-group-arrows-rotate">
-<h1 data-fa-icon="fa-solid fa-group-arrows-rotate"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-group-arrows-rotate"></i></span> Exponential and Dependent Types</h1>
+<p>03-3 Exponential &amp; Dependent Types</p>
+<section id="exponential-and-dependent-types" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="exponential-and-dependent-types"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Exponential and Dependent Types</h2>
 <p>After following And and Or to universal programs, implication, for-all, and exists complete dependent type theory in the tradition of Per Martin-Lof.</p>
 <section id="learning-materials" class="level3" data-fa-icon="fa-solid fa-book-open">
 <h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="learning-materials"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Learning Materials</h3>
@@ -331,6 +329,7 @@ window.Quarto = {
 <p><span class="math inline">\(\forall x.P(x)\)</span> corresponds to a <span class="math inline">\(\prod\)</span>-type; <span class="math inline">\(\exists x.P(x)\)</span> to a <span class="math inline">\(\sum\)</span>-type; and evaluation is exponential, with <span class="math inline">\(f:A\to B\)</span> applied to <span class="math inline">\(x:A\)</span>.</p>
 <hr>
 <p>(30 mins) Dual logic and Programs</p>
+</section>
 </section>
 <section id="math156-dual-logic-and-programs" class="level2" data-fa-icon="fa-solid fa-book-open">
 <h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="math156-dual-logic-and-programs"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Math156 Dual logic and Programs</h2>
@@ -372,22 +371,22 @@ window.Quarto = {
 <figcaption>Formation of a dependent pair.</figcaption>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="in">```mermaid</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>flowchart TD</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>I[<span class="ot">"</span><span class="st">i:I</span><span class="ot">"</span>]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>X[<span class="ot">"</span><span class="st">X(i)</span><span class="ot">"</span>]<span class="ot">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="in">```mermaid</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>flowchart TD</span>
+<span id="cb1-3"><a href="#cb1-3"></a>I[<span class="ot">"</span><span class="st">i:I</span><span class="ot">"</span>]</span>
+<span id="cb1-4"><a href="#cb1-4"></a>X[<span class="ot">"</span><span class="st">X(i)</span><span class="ot">"</span>]<span class="ot">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/DepPair-2026-02-01-185621.png" class="img-fluid figure-img"></p>
 <figcaption>Dependent pair introduction</figcaption>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="in">```mermaid</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>flowchart TD</span>
-<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>I[<span class="ot">"</span><span class="st">i:I</span><span class="ot">"</span>]</span>
-<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>X[<span class="ot">"</span><span class="st">X(i)</span><span class="ot">"</span>]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>T[<span class="ot">"</span><span class="st">Dependent_Pair</span><span class="ot">"</span>]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>X --&gt;|<span class="ot">"</span><span class="st">in_i(x)</span><span class="ot">"</span>| T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="in">```mermaid</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>flowchart TD</span>
+<span id="cb2-3"><a href="#cb2-3"></a>I[<span class="ot">"</span><span class="st">i:I</span><span class="ot">"</span>]</span>
+<span id="cb2-4"><a href="#cb2-4"></a>X[<span class="ot">"</span><span class="st">X(i)</span><span class="ot">"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5"></a>T[<span class="ot">"</span><span class="st">Dependent_Pair</span><span class="ot">"</span>]</span>
+<span id="cb2-6"><a href="#cb2-6"></a>X --&gt;|<span class="ot">"</span><span class="st">in_i(x)</span><span class="ot">"</span>| T</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <pre><code>
 ![Dependent Pair faces a consumer]($IMS-CC-FILEBASE$/Uploaded%20Media%202/DepPair-2026-02-01-185607.png)
 
@@ -404,13 +403,13 @@ X --&gt;|"in_i(x)"| T```</code></pre>
 <figcaption>Dependent pair diagram</figcaption>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="in">```mermaid</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>flowchart TD</span>
-<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>I[<span class="ot">"</span><span class="st">i:I</span><span class="ot">"</span>]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>X[<span class="ot">"</span><span class="st">X(i)</span><span class="ot">"</span>]    T[<span class="ot">"</span><span class="st">Dependent_Pair</span><span class="ot">"</span>]      C[<span class="ot">"</span><span class="st">Consume</span><span class="ot">"</span>]</span>
-<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>T --&gt;|<span class="ot">"</span><span class="st">from_any(p)&lt;br/&gt;p=in_i(x)</span><span class="ot">"</span>| C</span>
-<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>X --&gt;|<span class="ot">"</span><span class="st">from_i(x)</span><span class="ot">"</span>| C</span>
-<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>X --&gt;|<span class="ot">"</span><span class="st">in_i(x)</span><span class="ot">"</span>| T<span class="ot">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="in">```mermaid</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>flowchart TD</span>
+<span id="cb4-3"><a href="#cb4-3"></a>I[<span class="ot">"</span><span class="st">i:I</span><span class="ot">"</span>]</span>
+<span id="cb4-4"><a href="#cb4-4"></a>X[<span class="ot">"</span><span class="st">X(i)</span><span class="ot">"</span>]    T[<span class="ot">"</span><span class="st">Dependent_Pair</span><span class="ot">"</span>]      C[<span class="ot">"</span><span class="st">Consume</span><span class="ot">"</span>]</span>
+<span id="cb4-5"><a href="#cb4-5"></a>T --&gt;|<span class="ot">"</span><span class="st">from_any(p)&lt;br/&gt;p=in_i(x)</span><span class="ot">"</span>| C</span>
+<span id="cb4-6"><a href="#cb4-6"></a>X --&gt;|<span class="ot">"</span><span class="st">from_i(x)</span><span class="ot">"</span>| C</span>
+<span id="cb4-7"><a href="#cb4-7"></a>X --&gt;|<span class="ot">"</span><span class="st">in_i(x)</span><span class="ot">"</span>| T<span class="ot">```</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="co-universal-program-design" class="level4" data-fa-icon="fa-solid fa-book-open">
 <h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="co-universal-program-design"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Co-Universal Program Design</h4>
@@ -428,7 +427,6 @@ X --&gt;|"in_i(x)"| T```</code></pre>
 </ul>
 
 
-</section>
 </section>
 </section>
 </section>

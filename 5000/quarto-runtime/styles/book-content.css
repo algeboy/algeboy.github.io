@@ -258,7 +258,44 @@
   }
 
   .mermaid-auto-tabset .nav-tabs {
-    margin-bottom: 0.65rem;
+    display: inline-flex;
+    margin-bottom: 0.35rem;
+    border-bottom: 0;
+    gap: 0;
+    border: 1px solid #1f211d;
+    background: #f7f3e8;
+  }
+
+  .mermaid-auto-tabset .nav-item {
+    margin-bottom: 0;
+  }
+
+  .mermaid-auto-tabset .nav-tabs .nav-link {
+    font-size: 0.7rem;
+    line-height: 1;
+    padding: 0.28rem 0.52rem;
+    border: 0;
+    border-right: 1px solid #1f211d;
+    border-radius: 0;
+    color: #1f211d;
+    background: transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.045em;
+  }
+
+  .mermaid-auto-tabset .nav-tabs .nav-item:last-child .nav-link {
+    border-right: 0;
+  }
+
+  .mermaid-auto-tabset .nav-tabs .nav-link:hover,
+  .mermaid-auto-tabset .nav-tabs .nav-link:focus {
+    color: #ffffff;
+    background: #245a73;
+  }
+
+  .mermaid-auto-tabset .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background: #d94b35;
   }
 
   .mermaid-auto-tabset .tab-pane pre {

@@ -350,7 +350,7 @@ body.nav-fixed.toc-compass-mobile-active {
  */
 .fa-brass-icon > i:is(
   .fa-book-open, .fa-compass, .fa-house, .fa-check,
-  .fa-wifi, .fa-wifi-exclamation, .fa-wifi-slash, .fa-table-tennis,
+  .fa-wifi, .fa-wifi-exclamation, .fa-wifi-slash, .fa-bicycle,
   .fa-address-card, .fa-bullseye, .fa-car-burst, .fa-chalkboard,
   .fa-clipboard-list, .fa-code-branch, .fa-dice, .fa-exclamation,
   .fa-face-grin-beam-sweat, .fa-flag, .fa-gamepad, .fa-gavel,
@@ -382,7 +382,7 @@ body.nav-fixed.toc-compass-mobile-active {
  */
 .fa-brass-icon > i:is(
   .fa-book-open, .fa-compass, .fa-house, .fa-check,
-  .fa-wifi, .fa-wifi-exclamation, .fa-wifi-slash, .fa-table-tennis,
+  .fa-wifi, .fa-wifi-exclamation, .fa-wifi-slash, .fa-bicycle,
   .fa-address-card, .fa-bullseye, .fa-car-burst, .fa-chalkboard,
   .fa-clipboard-list, .fa-code-branch, .fa-dice, .fa-exclamation,
   .fa-face-grin-beam-sweat, .fa-flag, .fa-gamepad, .fa-gavel,
@@ -402,7 +402,7 @@ body.nav-fixed.toc-compass-mobile-active {
 .fa-brass-icon > i.fa-wifi,
 .fa-brass-icon > i.fa-wifi-exclamation,
 .fa-brass-icon > i.fa-wifi-slash { -webkit-mask-image: url("../assets/fontawesome/solid/wifi.svg"); mask-image: url("../assets/fontawesome/solid/wifi.svg"); }
-.fa-brass-icon > i.fa-table-tennis { -webkit-mask-image: url("../assets/fontawesome/solid/table-tennis-paddle-ball.svg"); mask-image: url("../assets/fontawesome/solid/table-tennis-paddle-ball.svg"); }
+.fa-brass-icon > i.fa-bicycle { -webkit-mask-image: url("../assets/fontawesome/solid/bicycle.svg"); mask-image: url("../assets/fontawesome/solid/bicycle.svg"); }
 .fa-brass-icon > i.fa-address-card { -webkit-mask-image: url("../assets/fontawesome/solid/address-card.svg"); mask-image: url("../assets/fontawesome/solid/address-card.svg"); }
 .fa-brass-icon > i.fa-bullseye { -webkit-mask-image: url("../assets/fontawesome/solid/bullseye.svg"); mask-image: url("../assets/fontawesome/solid/bullseye.svg"); }
 .fa-brass-icon > i.fa-car-burst { -webkit-mask-image: url("../assets/fontawesome/solid/car-burst.svg"); mask-image: url("../assets/fontawesome/solid/car-burst.svg"); }

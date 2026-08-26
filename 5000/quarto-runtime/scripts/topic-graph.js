@@ -166,6 +166,37 @@
     return response.json();
   }
 
+  function homepageNavigator(widget) {
+    const homepage = new URL("index.html", siteRoot());
+    homepage.searchParams.set("circuit-window", "1");
+    // The homepage resolves this URL to its existing component and applies
+    // the same current-path illumination it uses for the sidebar board.
+    homepage.searchParams.set("focus", window.location.href);
+
+    widget.textContent = "";
+    widget.className = "topic-graph topic-graph--homepage-navigator";
+    widget.setAttribute("role", "group");
+    widget.setAttribute("aria-label", "Homepage navigator centered on this page");
+    const frame = document.createElement("iframe");
+    frame.className = "topic-graph__homepage-frame";
+    frame.src = homepage.href;
+    frame.title = "Homepage navigator centered on this page";
+    frame.loading = "eager";
+    frame.setAttribute("referrerpolicy", "same-origin");
+    widget.appendChild(frame);
+  }
+
+  function installHomepageNavigatorNavigation() {
+    window.addEventListener("message", event => {
+      if (event.origin !== location.origin || event.data?.type !== "homepage-navigate") return;
+      let target;
+      try { target = new URL(event.data.href, location.href); } catch { return; }
+      if (target.origin !== location.origin) return;
+      target.pathname = target.pathname.replace(/\.qmd$/i, ".html");
+      window.location.assign(target.href);
+    });
+  }
+
   function automaticGraph(manifest, currentHref = window.location.href) {
     const currentUrl = new URL(currentHref, document.baseURI);
     const comparablePath = pathname => decodeURIComponent(pathname).replace(/index\.html$/, "").replace(/\/$/, "");
@@ -632,24 +663,6 @@
     };
   }
 
-  function legend() {
-    const key = document.createElement("div");
-    key.className = "topic-graph-key";
-    key.setAttribute("aria-label", "Circuit wire key");
-    Object.values(WIRE_TYPES).forEach(type => {
-      const item = document.createElement("span");
-      item.className = "topic-graph-key__item";
-      const sample = document.createElement("span");
-      sample.className = `topic-graph-key__wire topic-graph-key__wire--${type.kind}`;
-      sample.setAttribute("aria-hidden", "true");
-      const caption = document.createElement("span");
-      caption.textContent = type.label;
-      item.append(sample, caption);
-      key.appendChild(item);
-    });
-    return key;
-  }
-
   function render(widget, graph, manifest) {
     const bySource = new Map([...manifest.pages, ...(graph.entries || [])].map(entry => [canonicalSource(entry.source), entry]));
     const unresolved = graph.nodes.filter(node => !node.path || !bySource.has(canonicalSource(node.path)));
@@ -742,7 +755,7 @@
     canvas.appendChild(decorationLayer(graph, width, height, obstacles, occupiedWires, chipRows));
     positions.forEach(node => canvas.appendChild(nodeElement(node, bySource.get(canonicalSource(node.path)))));
     canvas.appendChild(wires);
-    widget.append(canvas, legend(), relations);
+    widget.append(canvas, relations);
     window.typesetDynamicMath?.([widget]);
   }
 
@@ -750,15 +763,20 @@
     const widgets = [...document.querySelectorAll(".circuit")].filter(widget =>
       widget.textContent.trim() || widget.classList.contains("this") || widget.hasAttribute("this") || widget.hasAttribute("data-this"));
     if (!widgets.length) return;
+    const automaticWidgets = widgets.filter(widget =>
+      widget.classList.contains("this") || widget.hasAttribute("this") || widget.hasAttribute("data-this"));
+    automaticWidgets.forEach(homepageNavigator);
+    installHomepageNavigatorNavigation();
+    const authoredWidgets = widgets.filter(widget => !automaticWidgets.includes(widget));
+    if (!authoredWidgets.length) return;
     let manifest;
     try { manifest = await navigation(); }
     catch {
-      widgets.forEach(widget => { widget.className = "topic-graph topic-graph--error"; widget.textContent = "Topic graph metadata is unavailable in this preview."; });
+      authoredWidgets.forEach(widget => { widget.className = "topic-graph topic-graph--error"; widget.textContent = "Topic graph metadata is unavailable in this preview."; });
       return;
     }
-    widgets.forEach(widget => {
-      const automatic = widget.classList.contains("this") || widget.hasAttribute("this") || widget.hasAttribute("data-this");
-      const graph = automatic ? automaticGraph(manifest) : parse(widget.textContent);
+    authoredWidgets.forEach(widget => {
+      const graph = parse(widget.textContent);
       if (!graph.edges.length) {
         widget.className = "topic-graph topic-graph--error";
         widget.textContent = graph.errors.length

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +169,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -338,25 +335,25 @@ m=qn+r\text{ and }r&lt;n.
 <div class="tab-content nav-pills">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <center>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>---</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>title: Dividing m tiles into n tiles per row.</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>---</span>
-<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>flowchart TD </span>
-<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    %% Nodes</span>
-<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    Start[q=0, r=m]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>    Ask{Is r less than n?}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    Yes[Stop]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>    No[Replace r with r-n]</span>
-<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>    Update[Increment q by 1]</span>
-<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>    %% Arrows</span>
-<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>    Start --&gt; Ask</span>
-<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>    Ask --&gt;|True| Yes</span>
-<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>    Ask --&gt;|False| No</span>
-<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>    No --&gt; Update</span>
-<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>    Update --&gt; Ask</span>
-<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>    %% Optional colors and shapes</span>
-<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>    classDef stopNode fill:FireBrick,stroke:DarkRed,color:white,stroke-width:2px</span>
-<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>    class Yes stopNode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>---</span>
+<span id="cb1-2"><a href="#cb1-2"></a>title: Dividing m tiles into n tiles per row.</span>
+<span id="cb1-3"><a href="#cb1-3"></a>---</span>
+<span id="cb1-4"><a href="#cb1-4"></a>flowchart TD </span>
+<span id="cb1-5"><a href="#cb1-5"></a>    %% Nodes</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    Start[q=0, r=m]</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    Ask{Is r less than n?}</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    Yes[Stop]</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    No[Replace r with r-n]</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    Update[Increment q by 1]</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    %% Arrows</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    Start --&gt; Ask</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    Ask --&gt;|True| Yes</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    Ask --&gt;|False| No</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    No --&gt; Update</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    Update --&gt; Ask</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    %% Optional colors and shapes</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    classDef stopNode fill:FireBrick,stroke:DarkRed,color:white,stroke-width:2px</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    class Yes stopNode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </center>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -415,19 +412,19 @@ flowchart TD
 \]</span> So we can tile 5 rows high with 36 tiles remaining. The real savings here is the ability wall off (:eye_roll:) steps and solve them independently. That way if you have more than one way to solve it you can simply choose the solution you find most efficient. By invoking the previous day’s lesson of dividing <span class="math inline">\(440\)</span> tiles by <span class="math inline">\(101\)</span>, we save time and effort in solving the current problem.</p>
 If we wanted to emphasize the steps instead of the outcomes we could put these in a diagram where events lead from one state to another. <strong>State</strong> here is a term used to mean where everything is, for example, “my house is in such a messy state” is a way to saying the items in your home our not where they belong. The state in our division problem refers to all our numbers and equations.
 <center>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    A[541 tiles, 101 wide]</span>
-<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    B[440 tiles, 101 wide]</span>
-<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    C[440=4*101+36]</span>
-<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    D["541=(1+4)*101+36"]</span>
-<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>    A --&gt;|subtract 101 from 541| B</span>
-<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>    B --&gt;|divide 440 by 101| C</span>
-<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>    C --&gt;|increment q=4, keep r=36| D</span>
-<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>    classDef greenNode fill:HoneyDew,stroke:ForestGreen,color:ForestGreen,stroke-width:2px</span>
-<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a>    classDef redNode fill:MistyRose,stroke:FireBrick,color:FireBrick,stroke-width:2px</span>
-<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a>    class A,B,C,D redNode</span>
-<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a>    linkStyle 0,1,2 stroke:FireBrick,stroke-width:2px,color:FireBrick</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>flowchart TD</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    A[541 tiles, 101 wide]</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    B[440 tiles, 101 wide]</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    C[440=4*101+36]</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    D["541=(1+4)*101+36"]</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    A --&gt;|subtract 101 from 541| B</span>
+<span id="cb3-7"><a href="#cb3-7"></a>    B --&gt;|divide 440 by 101| C</span>
+<span id="cb3-8"><a href="#cb3-8"></a>    C --&gt;|increment q=4, keep r=36| D</span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a>    classDef greenNode fill:HoneyDew,stroke:ForestGreen,color:ForestGreen,stroke-width:2px</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    classDef redNode fill:MistyRose,stroke:FireBrick,color:FireBrick,stroke-width:2px</span>
+<span id="cb3-12"><a href="#cb3-12"></a>    class A,B,C,D redNode</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    linkStyle 0,1,2 stroke:FireBrick,stroke-width:2px,color:FireBrick</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </center>
 <p>The Babylonian clay tablets are their memos for division. To use them you first subtract the denominator from your numerator until you find the ratio on the clay table memo which has recorded with it the division result for that pair. You then take that known result and add back what you subtracted to get your answer. In our example <span class="math inline">\(541/101\)</span> was reduced to <span class="math inline">\(440/101\)</span> which had a memo <span class="math inline">\(4+36/101\)</span>. As we subtracted only <span class="math inline">\(1\)</span> denominator we now add it back to get <span class="math inline">\(541/101=1+4+36/101=5+36/101\)</span>.</p>
 <p>Programming where you save facts as memos to speed up future work is called <strong>memoization</strong>, closely related to <em>memorization</em> though the latter is the word that captures all the different tricks, mnemonics, and repetition techniques humans use to recall information.</p>
@@ -534,22 +531,22 @@ If we wanted to emphasize the steps instead of the outcomes we could put these i
 </div><div class="column">
 <div class="cell-block">
 <center>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    T[True: m is less than n]</span>
-<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    E[m=qn+r with r less than n]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    T --&gt;|q=0, r=m| E</span>
-<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    classDef greenNode fill:HoneyDew,stroke:ForestGreen,color:ForestGreen,stroke-width:2px</span>
-<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    class T greenNode</span>
-<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>    linkStyle 0 stroke:ForestGreen,stroke-width:2px,color:ForestGreen</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>flowchart TD</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    T[True: m is less than n]</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    E[m=qn+r with r less than n]</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    T --&gt;|q=0, r=m| E</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    classDef greenNode fill:HoneyDew,stroke:ForestGreen,color:ForestGreen,stroke-width:2px</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    class T greenNode</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    linkStyle 0 stroke:ForestGreen,stroke-width:2px,color:ForestGreen</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </center>
 </div>
 </div><div class="column">
 <div class="cell-block">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="co"># Case: m &lt; n</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>q<span class="op">=</span><span class="dv">0</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>r<span class="op">=</span>m</span>
-<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a><span class="at">@assert</span> m<span class="op">==</span>q<span class="op">*</span>n<span class="op">+</span>r</span>
-<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a><span class="at">@assert</span> r <span class="op">&lt;</span> n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Case: m &lt; n</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>q<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>r<span class="op">=</span>m</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="at">@assert</span> m<span class="op">==</span>q<span class="op">*</span>n<span class="op">+</span>r</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="at">@assert</span> r <span class="op">&lt;</span> n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -581,33 +578,33 @@ m &amp; = n+ k  \\
 </div><div class="column">
 <div class="cell-block">
 <center>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    F[False: m is not less than n]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>    C[m-n tiles, n wide]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    D["m-n = qn+r with r less than n"]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    E[m=qn+r with r less than n]</span>
-<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>    F --&gt;|subtract n from m| C</span>
-<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>    C --&gt;|"div(m-n, n)"| D</span>
-<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>    D --&gt;|step q to q+1, keep r=r| E</span>
-<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>    classDef redNode fill:MistyRose,stroke:FireBrick,color:FireBrick,stroke-width:2px</span>
-<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>    class F,C,D redNode</span>
-<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a>    linkStyle 0,1,2 stroke:FireBrick,stroke-width:2px,color:FireBrick</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>flowchart TD</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    F[False: m is not less than n]</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    C[m-n tiles, n wide]</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    D["m-n = qn+r with r less than n"]</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    E[m=qn+r with r less than n]</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    F --&gt;|subtract n from m| C</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    C --&gt;|"div(m-n, n)"| D</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    D --&gt;|step q to q+1, keep r=r| E</span>
+<span id="cb6-9"><a href="#cb6-9"></a>    classDef redNode fill:MistyRose,stroke:FireBrick,color:FireBrick,stroke-width:2px</span>
+<span id="cb6-10"><a href="#cb6-10"></a>    class F,C,D redNode</span>
+<span id="cb6-11"><a href="#cb6-11"></a>    linkStyle 0,1,2 stroke:FireBrick,stroke-width:2px,color:FireBrick</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </center>
 </div>
 </div><div class="column">
 <div class="cell-block">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>k<span class="op">=</span>m<span class="op">-</span>n</span>
-<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a><span class="at">@assert</span> k<span class="op">&gt;=</span><span class="dv">0</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a><span class="at">@assert</span> m<span class="op">&gt;</span>k</span>
-<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a></span>
-<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a><span class="co"># subproblem</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>q_k, r_k <span class="op">=</span> div(k,n)</span>
-<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a><span class="at">@assert</span> k<span class="op">==</span>q_k<span class="op">*</span>n<span class="op">+</span>r_k</span>
-<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a><span class="at">@assert</span> r_k <span class="op">&lt;</span> n</span>
-<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a>q <span class="op">=</span> <span class="dv">1</span><span class="op">+</span>q_k, r <span class="op">=</span> r_k</span>
-<span id="cb7-11"><a href="#cb7-11" aria-label="11"></a><span class="at">@assert</span> m<span class="op">==</span>q<span class="op">*</span>n<span class="op">+</span>r</span>
-<span id="cb7-12"><a href="#cb7-12" aria-label="12"></a><span class="at">@assert</span> r <span class="op">&lt;</span> n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>k<span class="op">=</span>m<span class="op">-</span>n</span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="at">@assert</span> k<span class="op">&gt;=</span><span class="dv">0</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="at">@assert</span> m<span class="op">&gt;</span>k</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># subproblem</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>q_k, r_k <span class="op">=</span> div(k,n)</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="at">@assert</span> k<span class="op">==</span>q_k<span class="op">*</span>n<span class="op">+</span>r_k</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="at">@assert</span> r_k <span class="op">&lt;</span> n</span>
+<span id="cb7-9"><a href="#cb7-9"></a></span>
+<span id="cb7-10"><a href="#cb7-10"></a>q <span class="op">=</span> <span class="dv">1</span><span class="op">+</span>q_k, r <span class="op">=</span> r_k</span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="at">@assert</span> m<span class="op">==</span>q<span class="op">*</span>n<span class="op">+</span>r</span>
+<span id="cb7-12"><a href="#cb7-12"></a><span class="at">@assert</span> r <span class="op">&lt;</span> n</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
@@ -635,34 +632,34 @@ m = n+ k  = n+qn + r  = (1+q)n + r
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <p>In this complex diagram any two paths with the same start and end points represent equal results. We call this a <strong>commutative diagram</strong>. Like a bike ride from you home to the office, you can take different paths but the commutes are the same.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    M[Test m tiles, n = m + j + 1 wide]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    N[Test m = n + k tiles, n wide]</span>
-<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    T[True]</span>
-<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    A[m tiles, n wide]</span>
-<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>    B[True or False]</span>
-<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>    F[False]</span>
-<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>    C[m - n tiles, n wide]</span>
-<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>    D[m - n = qn + r, with r &lt; n]</span>
-<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>    E[m = qn + r, with r &lt; n]</span>
-<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>    M -.-&gt; T</span>
-<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a>    M -.-&gt; A</span>
-<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a>    N -.-&gt; F</span>
-<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a>    N -.-&gt; A</span>
-<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a>    T --&gt; B</span>
-<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a>    A --&gt;|Is m less than n?| B</span>
-<span id="cb8-17"><a href="#cb8-17" aria-label="17"></a>    F --&gt; B</span>
-<span id="cb8-18"><a href="#cb8-18" aria-label="18"></a>    T --&gt;|q = 0, m = r| E</span>
-<span id="cb8-19"><a href="#cb8-19" aria-label="19"></a>    B --&gt;|choose left or right| E</span>
-<span id="cb8-20"><a href="#cb8-20" aria-label="20"></a>    F --&gt;|subtract n from m| C</span>
-<span id="cb8-21"><a href="#cb8-21" aria-label="21"></a>    C --&gt;|div| D</span>
-<span id="cb8-22"><a href="#cb8-22" aria-label="22"></a>    D --&gt;|replace q with q + 1, keep r| E</span>
-<span id="cb8-23"><a href="#cb8-23" aria-label="23"></a>    classDef greenNode fill:HoneyDew,stroke:ForestGreen,color:ForestGreen,stroke-width:2px</span>
-<span id="cb8-24"><a href="#cb8-24" aria-label="24"></a>    classDef redNode fill:MistyRose,stroke:FireBrick,color:FireBrick,stroke-width:2px</span>
-<span id="cb8-25"><a href="#cb8-25" aria-label="25"></a>    class M,T greenNode</span>
-<span id="cb8-26"><a href="#cb8-26" aria-label="26"></a>    class N,F,C,D redNode</span>
-<span id="cb8-27"><a href="#cb8-27" aria-label="27"></a>    linkStyle 7 stroke:ForestGreen,stroke-width:2px,color:ForestGreen</span>
-<span id="cb8-28"><a href="#cb8-28" aria-label="28"></a>    linkStyle 9,10,11 stroke:FireBrick,stroke-width:2px,color:FireBrick </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>flowchart TD</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    M[Test m tiles, n = m + j + 1 wide]</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    N[Test m = n + k tiles, n wide]</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    T[True]</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    A[m tiles, n wide]</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    B[True or False]</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    F[False]</span>
+<span id="cb8-8"><a href="#cb8-8"></a>    C[m - n tiles, n wide]</span>
+<span id="cb8-9"><a href="#cb8-9"></a>    D[m - n = qn + r, with r &lt; n]</span>
+<span id="cb8-10"><a href="#cb8-10"></a>    E[m = qn + r, with r &lt; n]</span>
+<span id="cb8-11"><a href="#cb8-11"></a>    M -.-&gt; T</span>
+<span id="cb8-12"><a href="#cb8-12"></a>    M -.-&gt; A</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    N -.-&gt; F</span>
+<span id="cb8-14"><a href="#cb8-14"></a>    N -.-&gt; A</span>
+<span id="cb8-15"><a href="#cb8-15"></a>    T --&gt; B</span>
+<span id="cb8-16"><a href="#cb8-16"></a>    A --&gt;|Is m less than n?| B</span>
+<span id="cb8-17"><a href="#cb8-17"></a>    F --&gt; B</span>
+<span id="cb8-18"><a href="#cb8-18"></a>    T --&gt;|q = 0, m = r| E</span>
+<span id="cb8-19"><a href="#cb8-19"></a>    B --&gt;|choose left or right| E</span>
+<span id="cb8-20"><a href="#cb8-20"></a>    F --&gt;|subtract n from m| C</span>
+<span id="cb8-21"><a href="#cb8-21"></a>    C --&gt;|div| D</span>
+<span id="cb8-22"><a href="#cb8-22"></a>    D --&gt;|replace q with q + 1, keep r| E</span>
+<span id="cb8-23"><a href="#cb8-23"></a>    classDef greenNode fill:HoneyDew,stroke:ForestGreen,color:ForestGreen,stroke-width:2px</span>
+<span id="cb8-24"><a href="#cb8-24"></a>    classDef redNode fill:MistyRose,stroke:FireBrick,color:FireBrick,stroke-width:2px</span>
+<span id="cb8-25"><a href="#cb8-25"></a>    class M,T greenNode</span>
+<span id="cb8-26"><a href="#cb8-26"></a>    class N,F,C,D redNode</span>
+<span id="cb8-27"><a href="#cb8-27"></a>    linkStyle 7 stroke:ForestGreen,stroke-width:2px,color:ForestGreen</span>
+<span id="cb8-28"><a href="#cb8-28"></a>    linkStyle 9,10,11 stroke:FireBrick,stroke-width:2px,color:FireBrick </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <pre class="python-shaded"><code>

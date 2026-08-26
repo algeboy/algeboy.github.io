@@ -1,7 +1,7 @@
 /*
  * An original procedural navigation score.  It deliberately uses no sampled
- * music, melodies, or external audio: a subdued pulse, bass interval, and
- * filtered drone are created with the browser's Web Audio primitives.
+ * music, melodies, samples, or external audio.  Its uneven clock, shifting
+ * timbres, and slowly moving drone are all created with Web Audio primitives.
  */
 (() => {
   "use strict";
@@ -27,16 +27,36 @@
   let master = null;
   let drone = [];
   let scheduler = null;
-  let nextBeat = 0;
-  let beat = 0;
+  let nextEvent = 0;
+  let step = 0;
+  let phrase = 0;
   let desired = false;
   let suspendedByVisibility = false;
   const audioContext = window.AudioContext || window.webkitAudioContext;
   let unavailable = !audioContext;
-  const tempo = 104;
-  const secondsPerBeat = 60 / tempo;
-  const pattern = [0, 7, 10, 14, 10, 7, 3, 10];
+  const tempo = 92;
+  const secondsPerPulse = 60 / tempo;
   const root = 55;
+  // Short/long cells deliberately do not sum to a familiar bar.  Each phrase
+  // takes a different offset through them, so the clock has a recognizable
+  // character without settling into a loop.
+  const clockCells = [0.43, 0.71, 0.29, 0.57, 0.36, 0.64, 0.48, 0.82, 0.33, 0.55, 0.39];
+  const pitchFields = [
+    [0, 1, 7, 10, 14, 17],
+    [0, 3, 8, 10, 15, 19],
+    [0, 2, 6, 11, 13, 18],
+    [0, 5, 7, 12, 16, 20]
+  ];
+  let randomState = ((Date.now() ^ Math.floor(performance.now() * 1000)) >>> 0) || 0x6d2b79f5;
+
+  function random() {
+    // A local generator avoids an externally visible global random sequence
+    // while making every listening session take a distinct route.
+    randomState ^= randomState << 13;
+    randomState ^= randomState >>> 17;
+    randomState ^= randomState << 5;
+    return (randomState >>> 0) / 4294967296;
+  }
 
   function isHomepage() {
     return document.body?.classList.contains("homepage");
@@ -77,16 +97,18 @@
     return gain;
   }
 
-  function note(time, frequency, duration, type = "triangle", volume = 0.035) {
+  function note(time, frequency, duration, type = "triangle", volume = 0.035, colour = 1200) {
     if (!context || !master) return;
     const oscillator = context.createOscillator();
     const filter = context.createBiquadFilter();
     const envelope = gainAt(0.0001, time);
     oscillator.type = type;
     oscillator.frequency.setValueAtTime(frequency, time);
+    oscillator.detune.setValueAtTime((random() - 0.5) * 18, time);
     filter.type = "lowpass";
-    filter.frequency.setValueAtTime(type === "sine" ? 300 : 1650, time);
-    filter.Q.value = 1.4;
+    filter.frequency.setValueAtTime(colour, time);
+    filter.frequency.exponentialRampToValueAtTime(Math.max(90, colour * (0.32 + random() * 0.35)), time + duration);
+    filter.Q.value = 0.7 + random() * 4.5;
     envelope.gain.exponentialRampToValueAtTime(volume, time + 0.014);
     envelope.gain.exponentialRampToValueAtTime(0.0001, time + duration);
     oscillator.connect(filter).connect(envelope).connect(master);
@@ -94,20 +116,49 @@
     oscillator.stop(time + duration + 0.03);
   }
 
-  function scheduleBeat(time) {
-    const interval = pattern[beat % pattern.length];
+  function noiseTick(time, duration, volume, colour) {
+    const length = Math.max(1, Math.ceil(context.sampleRate * duration));
+    const buffer = context.createBuffer(1, length, context.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let index = 0; index < length; index += 1) data[index] = (random() * 2 - 1) * (1 - index / length);
+    const source = context.createBufferSource();
+    const filter = context.createBiquadFilter();
+    const envelope = gainAt(0.0001, time);
+    filter.type = "bandpass";
+    filter.frequency.setValueAtTime(colour, time);
+    filter.Q.value = 2 + random() * 9;
+    envelope.gain.exponentialRampToValueAtTime(volume, time + 0.003);
+    envelope.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+    source.connect(filter).connect(envelope).connect(master);
+    source.start(time);
+    source.stop(time + duration + 0.02);
+  }
+
+  function scheduleEvent(time) {
+    const field = pitchFields[phrase % pitchFields.length];
+    const interval = field[Math.floor(random() * field.length)];
     const frequency = root * 2 ** (interval / 12);
-    note(time, frequency * 2, secondsPerBeat * 0.72, "triangle", 0.030);
-    if (beat % 4 === 0) note(time, root / 2, secondsPerBeat * 1.42, "sine", 0.048);
-    if (beat % 8 === 6) note(time + secondsPerBeat * 0.5, frequency * 1.5, secondsPerBeat * 0.3, "sine", 0.016);
-    beat += 1;
+    const density = phrase % 5 === 3 ? 0.52 : 0.74;
+    const duration = secondsPerPulse * (0.14 + random() * 0.46);
+
+    if (random() < density) {
+      note(time, frequency * (random() < 0.18 ? 0.5 : 2), duration, random() < 0.58 ? "triangle" : "sine", 0.012 + random() * 0.022, 320 + random() * 2400);
+    }
+    if (random() < 0.46) noiseTick(time + random() * secondsPerPulse * 0.08, 0.016 + random() * 0.065, 0.003 + random() * 0.011, 500 + random() * 5200);
+    // Sparse sub tones make an occasional landing point, not a regular kick.
+    if (step % 7 === 0 || (step % 11 === 5 && random() < 0.45)) {
+      note(time, root / 2 * 2 ** ((phrase % 3) / 12), secondsPerPulse * (0.48 + random() * 0.66), "sine", 0.026, 240);
+    }
+
+    step += 1;
+    if (step % clockCells.length === 0) phrase += 1;
+    return secondsPerPulse * clockCells[(step + phrase * 3) % clockCells.length] * (0.9 + random() * 0.22);
   }
 
   function schedulerTick() {
     if (!context || context.state !== "running") return;
-    while (nextBeat < context.currentTime + 0.16) {
-      scheduleBeat(nextBeat);
-      nextBeat += secondsPerBeat;
+    while (nextEvent < context.currentTime + 0.16) {
+      nextEvent += scheduleEvent(nextEvent);
     }
   }
 
@@ -115,18 +166,32 @@
     const filter = context.createBiquadFilter();
     const level = gainAt(0.019, context.currentTime);
     filter.type = "lowpass";
-    filter.frequency.value = 260;
-    filter.Q.value = 0.7;
+    filter.frequency.value = 180;
+    filter.Q.value = 1.1;
     filter.connect(level).connect(master);
-    drone = [root / 2, root].map((frequency, index) => {
+    const filterLfo = context.createOscillator();
+    const filterDepth = gainAt(120, context.currentTime);
+    filterLfo.type = "sine";
+    filterLfo.frequency.value = 0.023;
+    filterLfo.connect(filterDepth).connect(filter.frequency);
+    filterLfo.start();
+    const voices = [filterLfo];
+    voices.push(...[root / 2, root].flatMap((frequency, index) => {
       const oscillator = context.createOscillator();
+      const lfo = context.createOscillator();
+      const lfoDepth = gainAt(index ? 5 : 9, context.currentTime);
       oscillator.type = index ? "triangle" : "sine";
       oscillator.frequency.value = frequency;
       oscillator.detune.value = index ? -7 : 4;
+      lfo.type = "sine";
+      lfo.frequency.value = index ? 0.031 : 0.017;
+      lfo.connect(lfoDepth).connect(oscillator.detune);
       oscillator.connect(filter);
       oscillator.start();
-      return oscillator;
-    });
+      lfo.start();
+      return [oscillator, lfo];
+    }));
+    drone = voices;
   }
 
   async function ensureRunning() {
@@ -142,8 +207,9 @@
         master.gain.value = 0.68;
         master.connect(context.destination);
         buildDrone();
-        nextBeat = context.currentTime + 0.06;
-        beat = 0;
+        nextEvent = context.currentTime + 0.06;
+        step = 0;
+        phrase = 0;
         scheduler = window.setInterval(schedulerTick, 90);
       }
       await context.resume();
@@ -184,7 +250,7 @@
     persist();
     if (scheduler) window.clearInterval(scheduler);
     scheduler = null;
-    drone.forEach(oscillator => { try { oscillator.stop(); } catch { /* Already stopped. */ } });
+    drone.flat().forEach(oscillator => { try { oscillator.stop(); } catch { /* Already stopped. */ } });
     drone = [];
     if (context && context.state !== "closed") {
       try { await context.close(); } catch { /* Closing is best effort. */ }
@@ -204,8 +270,8 @@
   function navigationPulse() {
     if (!context || context.state !== "running" || !master) return;
     const time = context.currentTime;
-    note(time, root * 4, 0.12, "sine", 0.017);
-    note(time + 0.035, root * 5, 0.16, "triangle", 0.012);
+    note(time, root * (3 + random() * 2), 0.12, "sine", 0.014, 700 + random() * 1700);
+    if (random() < 0.7) note(time + 0.025 + random() * 0.045, root * (4 + random() * 2), 0.16, "triangle", 0.010, 1000 + random() * 2200);
   }
 
   function sidebarHover(kind = "node") {

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +169,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -300,8 +297,6 @@ window.Quarto = {
   <li><a href="#what-was-on-the-clay-tablets" id="toc-what-was-on-the-clay-tablets" class="nav-link" data-scroll-target="#what-was-on-the-clay-tablets"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> What was on the clay tablets?</a></li>
   </ul></li>
   <li><a href="#division-was-never-the-point-the-curry-howard-lambeck-correspondence-was." id="toc-division-was-never-the-point-the-curry-howard-lambeck-correspondence-was." class="nav-link" data-scroll-target="#division-was-never-the-point-the-curry-howard-lambeck-correspondence-was."><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Division was never the point, the Curry-Howard-Lambeck correspondence was.</a></li>
-  <li><a href="#angle-trisection-and-the-limits-of-avoiding-technology" id="toc-angle-trisection-and-the-limits-of-avoiding-technology" class="nav-link" data-scroll-target="#angle-trisection-and-the-limits-of-avoiding-technology"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Angle Trisection and the limits of avoiding technology</a></li>
-  <li><a href="#archetypes-and-why-i-tell-stories" id="toc-archetypes-and-why-i-tell-stories" class="nav-link" data-scroll-target="#archetypes-and-why-i-tell-stories"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Archetypes and why I tell stories</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</a></li>
   <li><a href="#where-to-go-next-deductive-inductive-and-abductive-reasoning" id="toc-where-to-go-next-deductive-inductive-and-abductive-reasoning" class="nav-link" data-scroll-target="#where-to-go-next-deductive-inductive-and-abductive-reasoning"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Where to go next: Deductive, Inductive, and Abductive reasoning</a></li>
   </ul>
@@ -356,31 +351,31 @@ By Osama Shukir Muhammed Amin FRCP(Glasg) - Own work, CC BY-SA 4.0, Wikimedia Co
 <p>Probably you can imagine this working with <span class="math inline">\(m\)</span> tiles spread out <span class="math inline">\(n\)</span> tiles wide. The goal would be to predict the number of rows <span class="math inline">\(q\)</span> and the number of tiles <span class="math inline">\(r\)</span> left over such that <span class="math display">\[
 m = q\cdot n + r \text{ and } 0 \le r &lt; n.
 \]</span> Despite the low-tech brick-layer story, a surprising amount of mathematics and programming has occurred here which might be better expressed by diagramming the stages. Think of the diagram as a system of pipes with filters. Material or data can flow from one shape to the next along the direction of the arrow so long as it matches the conditions of the label. Once we arrive at a shape we follow the instruction of the shape’s label before continuing. If you are unable to see the diagram you can select the source option which reads out the shapes and arrows and their labels.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>---</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>title: Dividing m tiles into n tiles per row.</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>---</span>
-<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>flowchart TD </span>
-<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    %% Nodes</span>
-<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    Start[q=0, r=m]</span>
-<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>    First_Question{Is r less than n?}</span>
-<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    First_Yes[Stop]</span>
-<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>    First_No_Second_Question{Already know r = q' n + r' with r' &lt; n?}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>    Second_Yes[Set q to q+q', r to r']</span>
-<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>    Stop[Stop]</span>
-<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>    Second_No[Replace r with r-n]</span>
-<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>    Update[Increase q by 1]</span>
-<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>    %% Arrows</span>
-<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>    Start --&gt; First_Question</span>
-<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>    First_Question --&gt;|True| First_Yes</span>
-<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>    First_Question --&gt;|False| First_No_Second_Question</span>
-<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>    First_No_Second_Question --&gt;|True| Second_Yes</span>
-<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>    First_No_Second_Question --&gt;|False| Second_No</span>
-<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>    Second_No --&gt; Update</span>
-<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>    Update --&gt; First_Question</span>
-<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>    Second_Yes --&gt; Stop</span>
-<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a>    %% Optional colors and shapes</span>
-<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a>    classDef stopNode fill:FireBrick,stroke:DarkRed,color:white,stroke-width:2px</span>
-<span id="cb1-25"><a href="#cb1-25" aria-label="25"></a>    class First_Yes,Stop stopNode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>---</span>
+<span id="cb1-2"><a href="#cb1-2"></a>title: Dividing m tiles into n tiles per row.</span>
+<span id="cb1-3"><a href="#cb1-3"></a>---</span>
+<span id="cb1-4"><a href="#cb1-4"></a>flowchart TD </span>
+<span id="cb1-5"><a href="#cb1-5"></a>    %% Nodes</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    Start[q=0, r=m]</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    First_Question{Is r less than n?}</span>
+<span id="cb1-8"><a href="#cb1-8"></a>    First_Yes[Stop]</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    First_No_Second_Question{Already know r = q' n + r' with r' &lt; n?}</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    Second_Yes[Set q to q+q', r to r']</span>
+<span id="cb1-11"><a href="#cb1-11"></a>    Stop[Stop]</span>
+<span id="cb1-12"><a href="#cb1-12"></a>    Second_No[Replace r with r-n]</span>
+<span id="cb1-13"><a href="#cb1-13"></a>    Update[Increase q by 1]</span>
+<span id="cb1-14"><a href="#cb1-14"></a>    %% Arrows</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    Start --&gt; First_Question</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    First_Question --&gt;|True| First_Yes</span>
+<span id="cb1-17"><a href="#cb1-17"></a>    First_Question --&gt;|False| First_No_Second_Question</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    First_No_Second_Question --&gt;|True| Second_Yes</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    First_No_Second_Question --&gt;|False| Second_No</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    Second_No --&gt; Update</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    Update --&gt; First_Question</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    Second_Yes --&gt; Stop</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    %% Optional colors and shapes</span>
+<span id="cb1-24"><a href="#cb1-24"></a>    classDef stopNode fill:FireBrick,stroke:DarkRed,color:white,stroke-width:2px</span>
+<span id="cb1-25"><a href="#cb1-25"></a>    class First_Yes,Stop stopNode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <section id="are-flow-charts-pictures" class="level3" data-fa-icon="fa-solid fa-book-open">
 <h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="are-flow-charts-pictures"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Are flow-charts pictures?</h3>
 <p>A flow-chart need not be thought of as picture. In fact the picture is intentionally meant to allow for a lot of variability. You can move a node in a flow-chart to another location without interrupting the flow. So the flow-chart is actually the collection of relationships and their labels. So it is a language which might be written in words, spoken allowed, or drawn in pictures.</p>
@@ -426,34 +421,6 @@ This is either profound or wrong!
 <p>–Anonymous colleague of the Hausdorff Institute for Mathematics.</p>
 </blockquote>
 <p>In the coming articles more details will be added to ensure that what we exploit is factual. Yet, I warn you now that it wont be my purpose to defend this correspondence to the extent that the three named authors have. You can take that up in followup studies. These articles will focus instead on the impacts of the correspondence in improving day-to-day problem solving with computation as a support.</p>
-</section>
-<section id="angle-trisection-and-the-limits-of-avoiding-technology" class="level2" data-fa-icon="fa-solid fa-book-open">
-<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="angle-trisection-and-the-limits-of-avoiding-technology"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Angle Trisection and the limits of avoiding technology</h2>
-<p>Having brought up AI and the inter-operability of proofs, programs, and diagrams; there may be some fears about how to compete with the speed and scale of a machine. To offer some perspective, let us close with a story where mathematics could not have been done without new technology. I don’t mean something with huge numbers and minute details where our life spans and fragile bodies are the problem. I mean problems which eventually humans managed to show <em>could never be done no mater how long we or machines work</em>. Perhaps you have heard of some of these “impossible” problems, such as</p>
-<ul>
-<li><a href="https://en.wikipedia.org/wiki/Angle_trisection">Trisecting angle</a>: can you use a ruler and compass to divide any angle into thirds?</li>
-<li><a href="https://en.wikipedia.org/wiki/Squaring_the_circle">Squaring the circle</a>: can you start with a circle and construct a square with the same area using only a ruler and compass.</li>
-<li><a href="https://en.wikipedia.org/wiki/Quintic_function#Solvability">Solving quintic equations</a>: can you find a general solution for polynomial equations of degree five using radicals like <span class="math inline">\(\sqrt{x}\)</span>, <span class="math inline">\(\sqrt[3]{x}\)</span>, etc.?</li>
-</ul>
-<p>At different stages in history these and many problems like them were brought up and found no solution. Only in the last 200 years have we found that the mathematics necessary to explain why they were not solvable. They were “unsolvable”. It is a beautiful story in human achievement to dream up problems that cannot be solved and to be able to prove that they cannot be solved. But that is not the story I want to tell.</p>
-<p>Instead I want to point out that life did not require that we only use a ruler and compass, nor that we limit ourselves to formulas that only involve <span class="math inline">\(n\)</span>-th roots and arithmetic. We are far more creative species. And with that creativity we invented other tools. It turns out that if you draw an angle on paper there are simple rules to <em>fold</em> the angle into thirds! The limitation was the ruler and compass.</p>
-<p>See for yourself and try it on your own angles.</p>
-<iframe width="100%" height="560" src="https://www.youtube.com/embed/SL2lYcggGpc" title="YouTube demonstration: Angle Trisection (Origami)" style="border:1px solid #888; border-radius: 6px;" allowfullscreen="">
-</iframe>
-<p>And here is an interactive proof for why it works.</p>
-<p><strong>Angle Trisection with Origami</strong> (Tim Brzezinski’s GeoGebra demonstration of Hisashi Abe’s angle trisection fold.)</p>
-<iframe src="https://www.geogebra.org/material/iframe/id/YJZw6Asv/width/900/height/560/border/888888/sfsb/true/smb/false/stb/false/stbh/true/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" width="100%" height="560" style="border:1px solid #888; border-radius: 6px;" allowfullscreen="">
-</iframe>
-<p>In fact, Archimedes had found a method to trisect an angle using a <em>marked</em> ruler and compass already in 200 BC. A similar fate befell the other “unsolvable” problems of antiquity. They were not actually “unsolvable” as problems so much as they were lessons that if you limit your toolbox you might get stuck.</p>
-<p>Technology is not just about making things faster, cheaper, and more precise. Sometimes it is the switch between the impossible and the possible.</p>
-</section>
-<section id="archetypes-and-why-i-tell-stories" class="level2" data-fa-icon="fa-solid fa-book-open">
-<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="archetypes-and-why-i-tell-stories"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Archetypes and why I tell stories</h2>
-<p>You must be asking yourself how reading about division using a tiles is going to prepare you to work with Artificial Intelligence, Data Science, or anything else modern. After all, almost every programming language already lets you divide by typing <code>m/n</code> or <code>m div n</code> or with a button <span class="math inline">\(\div\)</span>. In fact an operation this basic would be etched into the silicon of modern micro-processors “chips”. So why even discuss division?</p>
-<p>Firstly, the Babylonians built giant pyramids called ziggurats, fountains, gardens, predicted eclipses well into the future, and yes laid tile-bricks like those in marvelous Ishtar gates still on display thousands of years later. So having division on the mind is not a sign of intellectual weakness.<br>
-<img src="Berlin_Museo_de_Pergamo_05.jpg" class="img-fluid" alt="Ishtar Gate, Photo by LBM1948 - Own work, CC BY-SA 4.0, Wikimedia commons"></p>
-<p>Secondly, be assured that these articles focus on many state-of-the-art topics in mathematics, computation, and data science. Examples like division are chosen as enduring examples, known as <em>archetypes</em>, which use stories of events that are so familiar they are easily personalized. Think for a moment about the same story but where we replace tiles with eggs in cartons, or the products manufactured in an assembly line. Production will be successful if it can fill the packaging with a remainder large enough to cover the expected number of rejects. Want a computer related story? Shift to discussing the transmission of a file in fixed-size packets with an expected error rate in the transmissions. The story of tiling is not one story, but a skeleton to retell your own way.</p>
-<p>Always be prepared to give an account of what you know in the language your audience wants to know it. The first time might be in an interview that lands you the job. Later you can use that skill to get the trust of a boss or client. You may become a mentor or teacher. And finally we should not forget those friends and family who just want to connect with what we do. Surely it is up to the person who understands to make the larger effort to be understood. These stories are for others. Use them, personalize them, and you might find your own understanding deepened as well.</p>
 </section>
 <section id="summary" class="level2" data-fa-icon="fa-solid fa-book-open">
 <h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</h2>

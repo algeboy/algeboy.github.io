@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.18">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -12,13 +12,10 @@
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
 */
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -77,10 +74,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-1bdbca75b362e6c5a8c09207907ff998.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -172,7 +169,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
 </script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -321,27 +318,27 @@ window.Quarto = {
 <p>A <strong>directed acyclic graph</strong> (DAG) is a diagram of nodes and oriented edges in which we cannot go in circles following the direction of any arrows.</p>
 </div>
 <div class="callout-tip example callout-example" data-callout-family="example">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    A --- B</span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    A --- C</span>
-<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    B --- D</span>
-<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    B --- E</span>
-<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    E --- C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>flowchart LR</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    A --- B</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    A --- C</span>
+<span id="cb1-4"><a href="#cb1-4"></a>    B --- D</span>
+<span id="cb1-5"><a href="#cb1-5"></a>    B --- E</span>
+<span id="cb1-6"><a href="#cb1-6"></a>    E --- C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In the graph above there are two different paths from A to E, the first through B and the second through C. So this is not a tree. But if we remove even one edge on one of these two paths then we get a tree. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    A --- B</span>
-<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    A --- C</span>
-<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    B --- D</span>
-<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>    B --- E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="#cb2-1"></a>flowchart LR</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    A --- B</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    A --- C</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    B --- D</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    B --- E</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout-tip example callout-example" data-callout-family="example">
 <p>When we add direction to the edges of a graph we can consider paths that only follow the arrows and so a graph which is not a tree can nevertheless become a directed acyclic graph (DAG) that is not a tree. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    A --&gt; B</span>
-<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    A --&gt; C</span>
-<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    B --&gt; D</span>
-<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    B --&gt; E</span>
-<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>    E --&gt; C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="#cb3-1"></a>flowchart LR</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    A --&gt; B</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    A --&gt; C</span>
+<span id="cb3-4"><a href="#cb3-4"></a>    B --&gt; D</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    B --&gt; E</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    E --&gt; C</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout-tip example callout-example" data-callout-family="example">
 <p>The non-redundant paths in a proper maze (one in which there are no alternate paths) form a tree.</p>
@@ -351,12 +348,12 @@ window.Quarto = {
 <figcaption>Start to A, option to turn left or continue straight. From left curve around a wall to trap 1. Continuing straight to B. Option to turn right or continue straight. If right reach trap 2. Continue straight weaves around a corner to the exit.</figcaption>
 </figure>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>flowchart LR</span>
-<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    Start --- a</span>
-<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    a --- Trap1["Trap 1"]</span>
-<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    a --- b</span>
-<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    b --- Trap2["Trap 2"]</span>
-<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    b --- End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>flowchart LR</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    Start --- a</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    a --- Trap1["Trap 1"]</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    a --- b</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    b --- Trap2["Trap 2"]</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    b --- End</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Note that the non-redundant paths in an improper maze (one in which there can be alternate paths) form a DAG.</p>
 </div>
 <p>The point of trees is that they have unique paths so when we given instructions between two nodes these cannot be misinterpreted. So when it comes to understanding logic, if we can organize the grammar to only build trees then we are guaranteed that everyone who reads the logic in that grammar understands it the exact same way we meant it. No double meanings and no ambiguity can exist. This is a perfect property to have if we can get it. Fortunately context-free grammars do exactly that. The only missing element is to know where to begin reading nodes of the tree. So let us choose one node as the start.</p>
@@ -395,12 +392,12 @@ n^2=(2k)^2=2(k\cdot 2\cdot k)
 </div>
 </div>
 <p>As a diagram this proof is the following tree:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    Premise1["n is even"] ---|evidence k| Result1["n=2k"]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>    Premise2["m=ab"] ---|"Associative x(yz)=(xy)z"| Result2["m^2=a(bab)"]</span>
-<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    Result1 ---|sub m=n, a=2,b=k| Result3["n^2 = 2j"]</span>
-<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    Result2 ---|sub j=bab| Result3</span>
-<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    Result3 ---|definition| Result4["n^2 is even"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>flowchart TD</span>
+<span id="cb5-2"><a href="#cb5-2"></a>    Premise1["n is even"] ---|evidence k| Result1["n=2k"]</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    Premise2["m=ab"] ---|"Associative x(yz)=(xy)z"| Result2["m^2=a(bab)"]</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    Result1 ---|sub m=n, a=2,b=k| Result3["n^2 = 2j"]</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    Result2 ---|sub j=bab| Result3</span>
+<span id="cb5-6"><a href="#cb5-6"></a>    Result3 ---|definition| Result4["n^2 is even"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>By writing the proof as a tree we start to notice that we got information from context of natural numbers, such as the associative property of multiplication. The combination of events ends with the claim we want.</p>
 <div class="callout-note defn callout-defn" data-callout-family="defn">
 <p>A proof by <strong>Natural Deduction</strong> is a whose diagram is a tree rooted at the conclusion. The leaves of the proof tree are called the <strong>premises</strong> and the internal nodes are called <strong>deductions</strong>.</p>
@@ -409,21 +406,21 @@ n^2=(2k)^2=2(k\cdot 2\cdot k)
 <section id="classical-logic-proofs-may-be-given-as-dags" class="level2" data-fa-icon="fa-solid fa-book-open">
 <h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="classical-logic-proofs-may-be-given-as-dags"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Classical Logic Proofs may be given as DAGs</h2>
 <p>In many forms of logic we are permitted to reuse a premise multiple times in a proof. You saw that in our earlier example of the properties of administrators who can both add and remove users. Yet it was not always true as we saw with resources like a USB port which can only be used by one device. Now when a judgment style is allowed to reuse a premise we often do not bother to track how many uses we make. The effect can be that within the writing of a proof we simply state the premise we use once and extract from it multiple facts. Strictly speaking this does not diagram as a tree. For example:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    Premise["P"] --&gt;|use 1| Result1["Q"]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>    Premise --&gt;|use 2| Result2["R"]</span>
-<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    Result1 --&gt;|combine| Result3["S"]</span>
-<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    Result2 --&gt;|combine| Result3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>flowchart TD</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    Premise["P"] --&gt;|use 1| Result1["Q"]</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    Premise --&gt;|use 2| Result2["R"]</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    Result1 --&gt;|combine| Result3["S"]</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    Result2 --&gt;|combine| Result3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This is however a directed acyclic graph (DAG) since there is no cycle in the diagram. So the implicit assumption made by the author is that we are permitted to copy a premise for reuse. Doing so separates the DAG into a proof tree as required. Here’s the above DAG converted into a tree by copying the premise:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    Premise1["P"] --&gt;|use 1| Result1["Q"]</span>
-<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    Premise1Copy["P"] --&gt;|use 2| Result2["R"]</span>
-<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>    Result1 --&gt;|combine| Result3["S"]</span>
-<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>    Result2 --&gt;|combine| Result3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>flowchart TD</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    Premise1["P"] --&gt;|use 1| Result1["Q"]</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    Premise1Copy["P"] --&gt;|use 2| Result2["R"]</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    Result1 --&gt;|combine| Result3["S"]</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    Result2 --&gt;|combine| Result3</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>This brings up the question of how important it is to insist on only one conclusion to a list of premises. If we have a lot of facts that follow why not simply list them all?</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>flowchart TD</span>
-<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    Premise["P"] --&gt;|use 1| Result1["Q"]</span>
-<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    Premise --&gt;|use 2| Result2["R"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="#cb8-1"></a>flowchart TD</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    Premise["P"] --&gt;|use 1| Result1["Q"]</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    Premise --&gt;|use 2| Result2["R"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>In reality this is a perfectly standard form of proof. Mathematics often follows a proof in natural deduction with “Corollaries” or “scholia” which are just terms meant to say that we extract a different consequence form the existing argument. Since the interpretation of DAG verses tree is immaterial to many systems of judgment this causes relatively little harm to clarity. Yet be on the look out for those judgments that consider the total number of uses of our premise. Some things do not last forever and there the reuse of a premise can be highly illogical.</p>
 <div class="callout-caution exercise callout-exercise" data-callout-family="exercise">
 <p>Below is a proof of the Division Algorithm we created in our first topic. Draw the proof tree for this proof.</p>

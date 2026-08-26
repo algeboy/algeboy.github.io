@@ -35,7 +35,7 @@
    *   id    – key used to look up topic folders in TOPICS
    */
   const PARTS = [
-    { id: "deduct", icon: "fa-table-tennis", label: "D", title: "Deductive Reasoning", href: ROOT_URL + "Deduct/index.html" },
+    { id: "deduct", icon: "fa-bicycle", label: "D", title: "Deductive Reasoning", href: ROOT_URL + "Deduct/index.html" },
     { id: "induct", icon: "fa-tower-cell", label: "I", title: "Inductive Reasoning", href: ROOT_URL + "Induct/index.html" },
     { id: "abduct", icon: "fa-car-burst", label: "A", title: "Abductive Reasoning", href: ROOT_URL + "Abduct/index.html" },
   ];

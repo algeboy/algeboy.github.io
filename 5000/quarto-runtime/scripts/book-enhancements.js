@@ -680,7 +680,30 @@
       // Initialize mermaid when available. If loading fails,
       // source tabs still work for accessibility.
       if (window.mermaid && typeof window.mermaid.initialize === 'function') {
-        window.mermaid.initialize({ startOnLoad: false, theme: 'default', securityLevel: 'loose' });
+        window.mermaid.initialize({
+          startOnLoad: false,
+          theme: 'base',
+          securityLevel: 'loose',
+          themeVariables: {
+            background: '#f7f3e8',
+            primaryColor: '#f7f3e8',
+            primaryTextColor: '#1f211d',
+            primaryBorderColor: '#1f211d',
+            secondaryColor: '#e5b52f',
+            secondaryTextColor: '#1f211d',
+            secondaryBorderColor: '#1f211d',
+            tertiaryColor: '#d94b35',
+            tertiaryTextColor: '#ffffff',
+            tertiaryBorderColor: '#1f211d',
+            lineColor: '#1f211d',
+            textColor: '#1f211d',
+            mainBkg: '#f7f3e8',
+            nodeBorder: '#1f211d',
+            clusterBkg: '#d9e4e5',
+            clusterBorder: '#245a73',
+            edgeLabelBackground: '#f7f3e8'
+          }
+        });
       }
       renderMermaid(document);
       linkPartHeadersToPartHomepages();
