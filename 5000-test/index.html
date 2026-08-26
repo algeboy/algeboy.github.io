@@ -263,15 +263,6 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       </span>
     </a>
 
-    <a class="home-circuit-page home-circuit-artifact home-circuit-artifact--technology" data-home-source="00/01-Technology.qmd" data-palette="2" href="00/01-Technology.html" aria-label="Technology. Open topic.">
-      <span class="home-circuit-page__icon" aria-hidden="true"><i class="fa-solid fa-microchip"></i></span>
-      <span class="home-circuit-page__title">Technology</span>
-    </a>
-    <a class="home-circuit-page home-circuit-artifact home-circuit-artifact--stories" data-home-source="00/02-Stories.qmd" data-palette="3" href="00/02-Stories.html" aria-label="Stories. Open topic.">
-      <span class="home-circuit-page__icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
-      <span class="home-circuit-page__title">Stories</span>
-    </a>
-
     <a class="home-circuit-author" href="https://pleasedistribute.org" target="_blank" rel="noopener noreferrer" aria-label="Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University">
       <span class="home-circuit-author__display" aria-hidden="true">
         <span class="home-circuit-author__track"><span>Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University</span><span>Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University</span></span>
@@ -355,8 +346,9 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   // their capacitor chains in blue.
   const innerChipPalette = palettes[0];
   const capacitorPalette = palettes[2];
-  // The two Library reference chips are a red local-detail circuit.
-  const libraryPalette = palettes[1];
+  // The two Library reference chips use visibly red, striped local-detail
+  // leads—not the orange/brown colour of the capacitor's vertical chain.
+  const libraryPalette = { jacket: "#a51f28", highlight: "#ff8277" };
   const activePalette = { jacket: "#087329", highlight: "#a6ff8c" };
   const readingPalette = { jacket: "#111310", highlight: "#5d625b" };
   // Mermaid's thick Survey links (==>) are the main circuit's blue bus.
@@ -630,6 +622,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       const leadSide = node.dataset.leadSide || "left";
       return [leadSide, { left:"right", right:"left", top:"bottom", bottom:"top" }[leadSide]];
     }
+    if (node.classList.contains("home-circuit-smd")) return ["left", "right"];
     if (node.classList.contains("home-circuit-folder")) return ["top", "right", "bottom", "left"];
     if (node.classList.contains("home-circuit-branch--induct") ||
         node.classList.contains("home-circuit-branch--abduct")) return ["left", "right"];
@@ -644,9 +637,20 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return centers;
   }
 
+  // SVG wires are positioned in board coordinates, while SMDs are positioned
+  // inside nested blue boards.  Accumulate their offset-parent positions so a
+  // wire ends at the actual component rather than at its board-local offset.
+  function boardPosition(node) {
+    let x = 0, y = 0;
+    for (let current = node; current && !current.classList.contains("home-circuit-board"); current = current.offsetParent) {
+      x += current.offsetLeft;
+      y += current.offsetTop;
+    }
+    return { x, y };
+  }
+
   function facingSide(node, toward) {
-    const x = node.offsetLeft;
-    const y = node.offsetTop;
+    const { x, y } = boardPosition(node);
     const width = node.offsetWidth;
     const height = node.offsetHeight;
     const dx = toward.x - (x + width / 2);
@@ -661,12 +665,11 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   }
 
   function pinSocket(node, toward, pinUsage, sideOverride) {
-    const x = node.offsetLeft;
-    const y = node.offsetTop;
+    const { x, y } = boardPosition(node);
     const width = node.offsetWidth;
     const height = node.offsetHeight;
-    const nodeKey = node.dataset.unit || node.dataset.branch ||
-      node.dataset.homeNodeKey || (node.classList.contains("home-circuit-cpu") ? "cpu" : "author");
+    const nodeKey = node.dataset.unit || node.dataset.branch || node.dataset.homeNodeKey ||
+      node.dataset.homeSource || (node.classList.contains("home-circuit-cpu") ? "cpu" : "author");
     const preferred = facingSide(node, toward);
     const sides = sideOverride ? [sideOverride] : [preferred, ...pinSides(node).filter(side => side !== preferred)];
     let side = sides[0], coordinate = null, used = null, usageKey = null;
@@ -696,7 +699,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   }
 
   function center(node) {
-    return { x: node.offsetLeft + node.offsetWidth / 2, y: node.offsetTop + node.offsetHeight / 2 };
+    const { x, y } = boardPosition(node);
+    return { x: x + node.offsetWidth / 2, y: y + node.offsetHeight / 2 };
   }
 
   function stableHash(value) {
@@ -764,35 +768,42 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     board.homeLibraryEdges = [];
     const library = board.querySelector('[data-home-source="Deduct/01/01-Logic-Library.qmd"]');
     if (!library) return;
+    // The ordinary capacitor chain uses its vertical leads.  Give this
+    // capacitor two dedicated left leads for the two local Library references.
+    if (!library.querySelector(".home-circuit-generated-pin--left")) {
+      appendGeneratedPins(library, ["left"]);
+    }
 
     const subboard = document.createElement("section");
     subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--library";
-    subboard.style.left = `${library.offsetLeft - 430}px`;
-    subboard.style.top = `${library.offsetTop - 130}px`;
-    subboard.style.width = "390px";
-    subboard.style.height = "250px";
+    // A narrow horizontal board keeps the two Library SMDs in line with the
+    // capacitor they expand, with their silkscreen labels below each package.
+    // Leave enough exposed trace length for both red reference wires—most
+    // importantly the nearby Judgment SMD—to read as intentional mappings.
+    subboard.style.left = `${library.offsetLeft - 330}px`;
+    subboard.style.top = `${library.offsetTop - 25}px`;
+    subboard.style.width = "230px";
+    subboard.style.height = "110px";
     subboard.setAttribute("aria-label", "A Library of Logic circuit board");
-    const label = document.createElement("span");
-    label.className = "home-circuit-subboard__etching";
-    label.textContent = "A LIBRARY OF LOGIC · 01";
-    subboard.appendChild(label);
 
     [
-      { title:"Context", source:"Deduct/01/01/01-Context.qmd", href:"Deduct/01/01/01-Context.html", icon:"fa-solid fa-chalkboard" },
+      { title:"Context", source:"Deduct/01/01/01-Context.qmd", href:"Deduct/01/01/01-Context.html", icon:"fa-solid fa-chalkboard", route:"below-board" },
       { title:"Judgment", source:"Deduct/01/01/02-Judgment.qmd", href:"Deduct/01/01/02-Judgment.html", icon:"fa-solid fa-gavel" }
     ].forEach((entry, index) => {
       const boardLabel = document.createElement("span");
-      boardLabel.className = "home-circuit-smd-label";
-      boardLabel.style.top = `${84 + index * 94}px`;
+      boardLabel.className = "home-circuit-smd-label home-circuit-smd-label--library";
+      boardLabel.style.left = `${20 + index * 108}px`;
+      boardLabel.style.top = "92px";
       boardLabel.setAttribute("aria-hidden", "true");
       boardLabel.textContent = entry.title;
       subboard.appendChild(boardLabel);
       const link = document.createElement("a");
-      link.className = "home-circuit-smd";
+      link.className = "home-circuit-smd home-circuit-smd--library";
       link.dataset.homeSource = entry.source;
       link.href = new URL(entry.href, siteRoot()).href;
       link.setAttribute("aria-label", `${entry.title}. Open topic.`);
-      link.style.top = `${55 + index * 94}px`;
+      link.style.left = `${20 + index * 108}px`;
+      link.style.top = "18px";
       const icon = document.createElement("span");
       icon.className = "home-circuit-smd__icon";
       icon.setAttribute("aria-hidden", "true");
@@ -800,7 +811,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       link.append(icon);
       appendGeneratedPins(link, ["left", "right"]);
       subboard.appendChild(link);
-      board.homeLibraryEdges.push({ from:library, to:link });
+      board.homeLibraryEdges.push({ from:library, to:link, route:entry.route || null });
     });
     board.appendChild(subboard);
   }
@@ -813,15 +824,15 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     board.homeDetailEdges = [];
     [
       {
-        parentSource:"Deduct/01/02-Writing-down-a-logic.qmd", etching:"WRITING A LOGIC · 02",
-        offsetY:-58, height:156,
+        parentSource:"Deduct/01/02-Writing-down-a-logic.qmd",
+        west:true, horizontal:true, offsetX:-330, offsetY:-35, width:230, height:110,
         entries:[{ title:"Trees", source:"Deduct/01/02/01-Trees.qmd", href:"Deduct/01/02/01-Trees.html", icon:"fa-solid fa-share-nodes" }]
       },
       {
-        parentSource:"Deduct/01/03-Sub-Var-Func.qmd", etching:"VARIABLES & FUNCTIONS · 03",
-        offsetY:-132, height:250,
+        parentSource:"Deduct/01/03-Sub-Var-Func.qmd",
+        horizontal:true, offsetX:-330, offsetY:-45, width:230, height:110,
         entries:[
-          { title:"Curry–Howard–Lambek", source:"Deduct/01/03/Curry-Howard-Lambek.qmd", href:"Deduct/01/03/Curry-Howard-Lambek.html", icon:"fa-solid fa-diagram-project" },
+          { title:"CHL", source:"Deduct/01/03/Curry-Howard-Lambek.qmd", href:"Deduct/01/03/Curry-Howard-Lambek.html", icon:"fa-solid fa-diagram-project", route:"around-board" },
           { title:"Combinators", source:"Deduct/01/03/08-Combinators.qmd", href:"Deduct/01/03/08-Combinators.html", icon:"fa-solid fa-microchip" }
         ]
       }
@@ -829,29 +840,35 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       const parent = board.querySelector(`[data-home-source="${config.parentSource}"]`);
       if (!parent) return;
       const subboard = document.createElement("section");
-      subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--detail";
-      subboard.style.left = `${parent.offsetLeft + parent.offsetWidth + 42}px`;
+      subboard.className = `home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--detail${config.horizontal ? " home-circuit-subboard--horizontal" : ""}`;
+      subboard.style.left = `${config.horizontal || config.west ? parent.offsetLeft + config.offsetX : parent.offsetLeft + parent.offsetWidth + (config.offsetX || 42)}px`;
       subboard.style.top = `${parent.offsetTop + config.offsetY}px`;
-      subboard.style.width = "390px";
+      subboard.style.width = `${config.width || 390}px`;
       subboard.style.height = `${config.height}px`;
-      subboard.setAttribute("aria-label", config.etching.replace(" · ", ", folder "));
-      const etching = document.createElement("span");
-      etching.className = "home-circuit-subboard__etching";
-      etching.textContent = config.etching;
-      subboard.appendChild(etching);
+      subboard.setAttribute("aria-label", `${parent.getAttribute("aria-label") || "Detail"} reference board`);
       config.entries.forEach((entry, index) => {
         const boardLabel = document.createElement("span");
-        boardLabel.className = "home-circuit-smd-label";
-        boardLabel.style.top = `${84 + index * 94}px`;
+        boardLabel.className = `home-circuit-smd-label${config.horizontal ? " home-circuit-smd-label--horizontal" : ""}`;
+        if (config.horizontal) {
+          boardLabel.style.left = `${config.entries.length === 1 ? 65 : 11 + index * 108}px`;
+          boardLabel.style.top = "92px";
+        } else {
+          boardLabel.style.top = `${89 + index * 94}px`;
+        }
         boardLabel.setAttribute("aria-hidden", "true");
         boardLabel.textContent = entry.title;
         subboard.appendChild(boardLabel);
         const link = document.createElement("a");
-        link.className = "home-circuit-smd home-circuit-smd--detail";
+        link.className = `home-circuit-smd home-circuit-smd--detail${config.horizontal ? " home-circuit-smd--horizontal" : ""}`;
         link.dataset.homeSource = entry.source;
         link.href = new URL(entry.href, siteRoot()).href;
         link.setAttribute("aria-label", `${entry.title}. Open topic.`);
-        link.style.top = `${55 + index * 94}px`;
+        if (config.horizontal) {
+          link.style.left = `${config.entries.length === 1 ? 74 : 20 + index * 108}px`;
+          link.style.top = "18px";
+        } else {
+          link.style.top = `${16 + index * 94}px`;
+        }
         const icon = document.createElement("span");
         icon.className = "home-circuit-smd__icon";
         icon.setAttribute("aria-hidden", "true");
@@ -859,10 +876,56 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
         link.append(icon);
         appendGeneratedPins(link, ["left", "right"]);
         subboard.appendChild(link);
-        board.homeDetailEdges.push({ from:parent, to:link });
+        board.homeDetailEdges.push({ from:parent, to:link, horizontal:Boolean(config.horizontal || config.west), route:entry.route || null });
       });
+      if ((config.horizontal || config.west) && !parent.querySelector(".home-circuit-generated-pin--left")) {
+        appendGeneratedPins(parent, ["left"]);
+      }
       board.appendChild(subboard);
     });
+  }
+
+  function buildPrefaceSmdBoard(board) {
+    board.querySelectorAll(".home-circuit-subboard--preface,.home-circuit-preface-smd").forEach(node => node.remove());
+    board.homePrefaceEdges = [];
+    const cpu = board.querySelector(".home-circuit-cpu");
+    const author = board.querySelector(".home-circuit-author");
+    if (!cpu || !author) return;
+    const subboard = document.createElement("section");
+    subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--preface";
+    subboard.style.left = `${author.offsetLeft + 10}px`;
+    subboard.style.top = `${author.offsetTop + author.offsetHeight + 30}px`;
+    subboard.style.width = "230px";
+    subboard.style.height = "110px";
+    subboard.setAttribute("aria-label", "Preface topics circuit board");
+    [
+      { title:"Technology", source:"00/01-Technology.qmd", href:"00/01-Technology.html", icon:"fa-solid fa-microchip", route:"west" },
+      { title:"Stories", source:"00/02-Stories.qmd", href:"00/02-Stories.html", icon:"fa-solid fa-book-open", route:"east" }
+    ].forEach((entry, index) => {
+      const boardLabel = document.createElement("span");
+      boardLabel.className = "home-circuit-smd-label home-circuit-smd-label--library";
+      boardLabel.style.left = `${20 + index * 108}px`;
+      boardLabel.style.top = "92px";
+      boardLabel.setAttribute("aria-hidden", "true");
+      boardLabel.textContent = entry.title;
+      subboard.appendChild(boardLabel);
+      const link = document.createElement("a");
+      link.className = `home-circuit-smd home-circuit-smd--library home-circuit-preface-smd home-circuit-preface-smd--${entry.route}`;
+      link.dataset.homeSource = entry.source;
+      link.href = new URL(entry.href, siteRoot()).href;
+      link.setAttribute("aria-label", `${entry.title}. Open topic.`);
+      link.style.left = `${20 + index * 108}px`;
+      link.style.top = "18px";
+      const icon = document.createElement("span");
+      icon.className = "home-circuit-smd__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = `<i class="${entry.icon}"></i>`;
+      link.append(icon);
+      appendGeneratedPins(link, ["left", "right"]);
+      subboard.appendChild(link);
+      board.homePrefaceEdges.push({ from:cpu, to:link, route:entry.route });
+    });
+    board.appendChild(subboard);
   }
 
   function firstDescendantPage(directory, pagesByDirectory, foldersByParent) {
@@ -1064,6 +1127,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     });
     buildLibrarySmdBoard(board);
     buildDeductDetailBoards(board);
+    buildPrefaceSmdBoard(board);
     board.homeReadingEdges = readingPathEdges(board, circuitData, roots);
     return edgeSpecs.map(edge => ({
       from:edge.from.element || edge.from,
@@ -1079,10 +1143,6 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       if (source && element) sourceElements.set(canonicalSource(source), element);
     };
     register("00/preface.qmd", board.querySelector(".home-circuit-cpu"));
-    [
-      ["00/01-Technology.qmd", ".home-circuit-artifact--technology"],
-      ["00/02-Stories.qmd", ".home-circuit-artifact--stories"]
-    ].forEach(([source, selector]) => register(source, board.querySelector(selector)));
     [
       ["Deduct/index.qmd", ".home-circuit-branch--deduct"],
       ["Induct/index.qmd", ".home-circuit-branch--induct"],
@@ -1139,6 +1199,57 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     return `M ${start.x} ${start.y} C ${start.x} ${start.y + Math.sign(dy) * bend}, ${end.x} ${end.y - Math.sign(dy) * bend}, ${end.x} ${end.y}`;
   }
 
+  // Library references are deliberately orthogonal nets.  Their right-angle
+  // fan-out makes the destination lead on Context or Judgment unambiguous.
+  function libraryLeadPath(edge, pinUsage) {
+    if (edge.route === "below-board") {
+      const start = pinSocket(edge.from, center(edge.to), pinUsage, "left");
+      const end = pinSocket(edge.to, center(edge.from), pinUsage, "left");
+      const subboard = edge.to.offsetParent;
+      const board = boardPosition(subboard);
+      const gapLane = board.x + subboard.offsetWidth + 20;
+      const bottomLane = board.y + subboard.offsetHeight + 20;
+      const westLane = board.x - 20;
+      return `M ${start.x} ${start.y} H ${gapLane} V ${bottomLane} H ${westLane} V ${end.y} H ${end.x}`;
+    }
+    const start = pinSocket(edge.from, center(edge.to), pinUsage, "left");
+    const end = pinSocket(edge.to, center(edge.from), pinUsage, "right");
+    const lane = Math.round((start.x + end.x) / (2 * BOARD_PITCH)) * BOARD_PITCH;
+    return `M ${start.x} ${start.y} H ${lane} V ${end.y} H ${end.x}`;
+  }
+
+  function detailLeadPath(edge, pinUsage, obstacles, routeBounds) {
+    if (edge.route !== "around-board") {
+      return curvedConnection(edge.from, edge.to, pinUsage,
+        edge.horizontal ? "left" : null, edge.horizontal ? "right" : null, true, obstacles, routeBounds);
+    }
+    const start = pinSocket(edge.from, center(edge.to), pinUsage, "left");
+    const end = pinSocket(edge.to, center(edge.from), pinUsage, "left");
+    const subboard = edge.to.offsetParent;
+    const board = boardPosition(subboard);
+    const gapLane = board.x + subboard.offsetWidth + 20;
+    const topLane = board.y - 20;
+    const westLane = board.x - 20;
+    return `M ${start.x} ${start.y} H ${gapLane} V ${topLane} H ${westLane} V ${end.y} H ${end.x}`;
+  }
+
+  // Preface leads leave separate bottom pins on the CPU and travel around the
+  // author readout before entering the Technology and Stories board.
+  function prefaceLeadPath(edge, pinUsage) {
+    const start = pinSocket(edge.from, center(edge.to), pinUsage, "bottom");
+    const side = edge.route === "west" ? "left" : "right";
+    const end = pinSocket(edge.to, center(edge.from), pinUsage, side);
+    const subboard = edge.to.offsetParent;
+    const board = boardPosition(subboard);
+    const laneX = edge.route === "west"
+      ? board.x - 20
+      : board.x + subboard.offsetWidth + 20;
+    const author = edge.from.parentElement?.querySelector?.(".home-circuit-author");
+    const authorPosition = author ? boardPosition(author) : null;
+    const upperLane = authorPosition ? authorPosition.y - 20 : start.y;
+    return `M ${start.x} ${start.y} V ${upperLane} H ${laneX} V ${end.y} H ${end.x}`;
+  }
+
   function draw(board) {
     const svg = board.querySelector(".home-circuit-wires");
     const units = [...board.querySelectorAll(".home-circuit-unit")].sort((a, b) => Number(a.dataset.unit) - Number(b.dataset.unit));
@@ -1166,11 +1277,15 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
         `home-circuit-wire--capacitor${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : capacitorPalette);
     });
     (board.homeLibraryEdges || []).forEach(edge => {
-      svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
+      svgPath(svg, libraryLeadPath(edge, pinUsage),
         "home-circuit-wire--library", libraryPalette);
     });
     (board.homeDetailEdges || []).forEach(edge => {
-      svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
+      svgPath(svg, detailLeadPath(edge, pinUsage, obstacles, routeBounds),
+        "home-circuit-wire--library", libraryPalette);
+    });
+    (board.homePrefaceEdges || []).forEach(edge => {
+      svgPath(svg, prefaceLeadPath(edge, pinUsage),
         "home-circuit-wire--library", libraryPalette);
     });
     const readingPinUsage = new Map();
@@ -1273,8 +1388,6 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     const board = document.getElementById("home-circuit-board");
     if (!board) return;
     buildTrenches(board);
-    board.querySelectorAll(".home-circuit-artifact").forEach(node =>
-      appendGeneratedPins(node, ["top", "right", "bottom", "left"]));
     try {
       const [manifest, circuitData] = await Promise.all([navigation(), circuitBoards()]);
       board.homeTopologyEdges = buildTopology(board, manifest, circuitData);

@@ -343,6 +343,7 @@
 .sidebar-schematic-wire { fill:none;stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-wire--survey { stroke:var(--schematic-survey);stroke-width:var(--schematic-survey-width); }
 .sidebar-schematic-wire--detour { stroke:var(--schematic-detour);stroke-width:var(--schematic-detour-width); }
+.sidebar-schematic-junction { fill:var(--schematic-detour);stroke:var(--schematic-background);stroke-width:1px; }
 .sidebar-schematic-resistor path { fill:none;stroke:var(--schematic-detour);stroke-width:1.5;stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-diode path { stroke-linecap:square;stroke-linejoin:miter; }
 .sidebar-schematic-diode path:first-of-type { fill:var(--schematic-background,#edf0e8);stroke-width:1.5; }
@@ -350,11 +351,6 @@
 .sidebar-schematic-diode--survey path { stroke:var(--schematic-survey); }
 .sidebar-schematic-diode--detour path { stroke:var(--schematic-detour); }
 .sidebar-schematic-ground path { fill:none;stroke:var(--schematic-detour);stroke-width:1.5;stroke-linecap:square; }
-.sidebar-schematic-npn path { stroke-linecap:square;stroke-linejoin:miter; }
-.sidebar-schematic-npn__base { fill:none;stroke:#111;stroke-width:2.2; }
-.sidebar-schematic-npn__collector { fill:none;stroke:#111;stroke-width:1.8; }
-.sidebar-schematic-npn__emitter { fill:none;stroke:#111;stroke-width:2.2; }
-.sidebar-schematic-npn__arrow { fill:#111;stroke:none; }
 .sidebar-schematic-node {
   position:absolute;
   z-index:2;
@@ -385,18 +381,18 @@
 }
 .sidebar-schematic-transistor {
   position:absolute;
-  top:52px;
-  left:50px;
-  display:grid;
-  width:27px;
-  height:27px;
-  place-items:center;
-  color:#effff1 !important;
+  box-sizing:border-box;
+  top:66px;
+  left:42px;
+  display:block;
+  width:36px;
+  height:36px;
+  color:#111 !important;
   text-decoration:none !important;
-  border:2px solid #172b1f;
+  border:2px solid currentColor;
   border-radius:50%;
-  background:radial-gradient(circle at 35% 28%,#f5ffe9 0 8%,#8eaa94 22%,#214e32 59%,#10281b 100%);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 2px 4px rgba(32,40,35,.28);
+  background:transparent;
+  box-shadow:none;
   transition:opacity .14s ease,transform .14s ease,filter .14s ease,box-shadow .14s ease;
 }
 .sidebar-schematic-unit:not(.is-open) .sidebar-schematic-transistor {
@@ -405,22 +401,22 @@
   transform:scale(.72);
 }
 .sidebar-schematic-transistor span,
-.sidebar-schematic-transistor span::before,
-.sidebar-schematic-transistor span::after {
+.sidebar-schematic-transistor i {
   position:absolute;
   display:block;
   box-sizing:border-box;
-  content:"";
 }
-.sidebar-schematic-transistor span { width:11px;height:2px;background:currentColor;transform:rotate(-45deg); }
-.sidebar-schematic-transistor span::before { width:8px;height:2px;top:4px;left:6px;background:currentColor;transform:rotate(45deg);transform-origin:left center; }
-.sidebar-schematic-transistor span::after { width:2px;height:10px;top:-8px;left:5px;background:currentColor; }
+.sidebar-schematic-transistor__radial { top:5px;left:5px;width:18px;height:2px;background:#111;transform:rotate(45deg);transform-origin:left center; }
+.sidebar-schematic-transistor__base { top:16px;left:4px;width:28px;height:3px;background:currentColor;transform:rotate(-45deg);transform-origin:center; }
+.sidebar-schematic-transistor__collector { top:16px;left:18px;width:18px;height:2px;background:currentColor; }
+.sidebar-schematic-transistor__emitter { top:18px;left:17px;width:2px;height:18px;background:currentColor; }
+/* The only arrow sits on the bottom vertical terminal and points down. */
+.sidebar-schematic-transistor__emitter i { top:9px;left:-5px;width:0;height:0;border-top:8px solid currentColor;border-right:6px solid transparent;border-left:6px solid transparent; }
 .sidebar-schematic-transistor:hover,.sidebar-schematic-transistor:focus-visible {
-  color:#183126 !important;
+  color:#087329 !important;
   outline:0;
-  border-color:#b7ff8a;
-  background:radial-gradient(circle at 35% 28%,#fffbd7 0 8%,#b9ff78 24%,#43dd69 57%,#087329 100%);
-  box-shadow:0 0 7px #77f787,0 0 16px rgba(40,215,83,.76),inset 0 0 0 1px rgba(255,255,255,.55);
+  background:transparent;
+  box-shadow:0 0 7px rgba(119,247,135,.75);
   filter:brightness(1.16);
 }
 .sidebar-schematic-branch { position:absolute;inset:0; }
@@ -436,6 +432,24 @@
   background:#14241d;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 2px 4px rgba(32,40,35,.25);
   font-size:16.8pt;
+}
+/* The three method nodes are disclosure controls. Leave them hollow until
+   their selected branch is open, then energize the matching icon. */
+.sidebar-schematic-node--deduct .sidebar-schematic-node__icon,
+.sidebar-schematic-node--communications .sidebar-schematic-node__icon,
+.sidebar-schematic-node--abduct .sidebar-schematic-node__icon {
+  color:var(--schematic-detour);
+  border-color:var(--schematic-detour);
+  background:transparent;
+  box-shadow:inset 0 0 0 1px rgba(33,104,165,.16),0 2px 4px rgba(32,40,35,.18);
+}
+.sidebar-schematic-unit.is-open .sidebar-schematic-node--deduct .sidebar-schematic-node__icon,
+.sidebar-schematic-unit.is-open .sidebar-schematic-node--communications .sidebar-schematic-node__icon,
+.sidebar-schematic-unit.is-open .sidebar-schematic-node--abduct .sidebar-schematic-node__icon {
+  color:#effff1;
+  border-color:#72e895;
+  background:#14241d;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 0 7px rgba(47,220,115,.55);
 }
 .sidebar-schematic-node__label {
   position:absolute;

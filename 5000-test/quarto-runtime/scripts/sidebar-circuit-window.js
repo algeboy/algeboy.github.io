@@ -234,6 +234,11 @@
   function circuitNode(spec, position, root, current, kind, icons, options = {}) {
     const node = document.createElement(options.toggle ? "button" : "a");
     node.className = `sidebar-schematic-node sidebar-schematic-node--${kind}`;
+    if (options.disclosureKind) {
+      node.classList.add("sidebar-schematic-node--disclosure", `sidebar-schematic-node--${options.disclosureKind}`);
+      node.dataset.disclosure = options.disclosureKind;
+      node.dataset.disclosureState = "closed";
+    }
     if (options.toggle) {
       node.type = "button";
       node.classList.add("sidebar-schematic-node--toggle");
@@ -271,7 +276,7 @@
     transistor.href = sourceHref(spec.source, root);
     transistor.setAttribute("aria-label", `Open ${spec.label}`);
     transistor.title = `Open ${spec.label}`;
-    transistor.innerHTML = '<span aria-hidden="true"></span>';
+    transistor.innerHTML = '<span class="sidebar-schematic-transistor__radial" aria-hidden="true"></span><span class="sidebar-schematic-transistor__base" aria-hidden="true"></span><span class="sidebar-schematic-transistor__collector" aria-hidden="true"></span><span class="sidebar-schematic-transistor__emitter" aria-hidden="true"><i></i></span>';
     unit.append(node, transistor);
     options.onToggle?.(node, unit);
     return unit;
@@ -348,6 +353,14 @@
     svgRoot.appendChild(group);
   }
 
+  function junction(svgRoot, x, y, label) {
+    const dot = svg("circle", { class: "sidebar-schematic-junction", cx:x, cy:y, r:3 });
+    const title = svg("title");
+    title.textContent = `${label}: electrical junction`;
+    dot.appendChild(title);
+    svgRoot.appendChild(dot);
+  }
+
   function ground(svgRoot, x, y, label) {
     const group = svg("g", { class: "sidebar-schematic-ground" });
     const title = svg("title");
@@ -363,37 +376,36 @@
   }
 
   function npnPorts(position, sourceHeight = 48) {
-    // Place the transistor at the source icon's south-east corner.  Its two
-    // outgoing leads are deliberately orthogonal: collector to the east for
-    // the detail detour, emitter to the south for the Survey circuit.
+    // The selector sits below and to the right of the communications icon.
+    // Its upper base endpoint is exactly one 45-degree (135-degree screen
+    // bearing) step from the icon's lower centre. The conventional symbol is
+    // rotated clockwise: its base descends to the right, collector exits east,
+    // and emitter exits south.
     const baseX = position.x + 60;
-    const baseY = position.y + sourceHeight + 12;
+    const baseY = position.y + sourceHeight + 36;
     return {
       baseX,
       baseY,
+      inputX: baseX - 12,
+      inputY: baseY - 12,
       baseEntryX: baseX - 12,
-      baseEntryY: baseY + 12,
-      emitterX: baseX - 4,
-      emitterY: baseY + 24,
-      collectorX: baseX + 24,
-      collectorY: baseY - 4
+      baseEntryY: baseY - 12,
+      emitterX: baseX,
+      emitterY: baseY + 18,
+      collectorX: baseX + 18,
+      collectorY: baseY
     };
   }
 
   function npnTransition(svgRoot, ports, label) {
-    const { baseX: x, baseY: y } = ports;
     const group = svg("g", { class: "sidebar-schematic-npn" });
     const title = svg("title");
-    title.textContent = `${label}: NPN branch selector; the emitter arrow points out from the base toward the preferred Survey path`;
-    group.append(
-      title,
-      // Rotate the conventional symbol 45° counter-clockwise.  The collector
-      // leaves horizontally to the resistor; the emitter leaves vertically.
-      svg("path", { class: "sidebar-schematic-npn__base", d: `M ${x - 12} ${y + 12} L ${x + 12} ${y - 12}` }),
-      svg("path", { class: "sidebar-schematic-npn__collector", d: `M ${x + 4} ${y - 4} L ${x + 24} ${y - 4}` }),
-      svg("path", { class: "sidebar-schematic-npn__emitter", d: `M ${x - 4} ${y + 4} L ${x - 4} ${y + 24}` }),
-      svg("path", { class: "sidebar-schematic-npn__arrow", d: `M ${x - 4} ${y + 24} L ${x + 2} ${y + 12} L ${x - 10} ${y + 18} Z` })
-    );
+    // The DOM disclosure control is the single authoritative visible
+    // transistor: it owns the circular hit area and the internal glyph. The
+    // SVG layer intentionally carries only its attached wires, preventing a
+    // second, overlapping symbol from being painted underneath the control.
+    title.textContent = `${label}: transistor branch selector`;
+    group.append(title);
     svgRoot.appendChild(group);
   }
 
@@ -402,6 +414,8 @@
     const sidebar = panel.closest("#quarto-sidebar") || panel.parentElement;
     const drawing = panel.querySelector(".sidebar-schematic-drawing");
     const heading = panel.querySelector(".sidebar-schematic-heading");
+    const listenerAbort = new AbortController();
+    panel.schematicExpansionCleanup = () => listenerAbort.abort();
     let drag = null;
     let fitTimer = null;
     let pointerInteracted = false;
@@ -456,44 +470,46 @@
       if (event.target instanceof Node && sidebar?.contains(event.target)) return;
       collapseForPointer();
     };
-    panel.addEventListener("pointerenter", expand);
-    panel.addEventListener("focusin", expand);
-    panel.addEventListener("focusout", collapse);
-    sidebar?.addEventListener("pointerdown", () => { pointerInteracted = true; }, { capture:true, passive:true });
-    sidebar?.addEventListener("pointerleave", collapseForPointer);
-    document.addEventListener("pointermove", collapseIfPointerOutside, { passive:true });
+    panel.addEventListener("pointerenter", expand, { signal:listenerAbort.signal });
+    panel.addEventListener("focusin", expand, { signal:listenerAbort.signal });
+    panel.addEventListener("focusout", collapse, { signal:listenerAbort.signal });
+    sidebar?.addEventListener("pointerdown", () => { pointerInteracted = true; }, { capture:true, passive:true, signal:listenerAbort.signal });
+    sidebar?.addEventListener("pointerleave", collapseForPointer, { signal:listenerAbort.signal });
+    document.addEventListener("pointermove", collapseIfPointerOutside, { passive:true, signal:listenerAbort.signal });
     window.addEventListener("blur", () => {
       pointerInteracted = false;
       collapse();
-    });
+    }, { signal:listenerAbort.signal });
     drawing.addEventListener("pointerdown", event => {
-      if (event.button !== 0 || event.target.closest?.("a")) return;
+      // Disclosure junctions are buttons, not links.  Do not turn their
+      // pointer sequence into a canvas drag before the click can expand.
+      if (event.button !== 0 || event.target.closest?.("a,button")) return;
       expand(false);
       drag = { pointerId:event.pointerId, x:event.clientX, y:event.clientY };
       drawing.setPointerCapture(event.pointerId);
       panel.classList.add("is-dragging");
       event.preventDefault();
-    });
+    }, { signal:listenerAbort.signal });
     drawing.addEventListener("pointermove", event => {
       if (!drag || event.pointerId !== drag.pointerId) return;
       panel.scrollLeft -= event.clientX - drag.x;
       panel.scrollTop -= event.clientY - drag.y;
       drag.x = event.clientX;
       drag.y = event.clientY;
-    });
+    }, { signal:listenerAbort.signal });
     const stopDragging = event => {
       if (!drag || event.pointerId !== drag.pointerId) return;
       if (drawing.hasPointerCapture(event.pointerId)) drawing.releasePointerCapture(event.pointerId);
       drag = null;
       panel.classList.remove("is-dragging");
     };
-    drawing.addEventListener("pointerup", stopDragging);
-    drawing.addEventListener("pointercancel", stopDragging);
+    drawing.addEventListener("pointerup", stopDragging, { signal:listenerAbort.signal });
+    drawing.addEventListener("pointercancel", stopDragging, { signal:listenerAbort.signal });
     document.addEventListener("keydown", event => {
       if (event.key !== "Escape" || panel.hidden || event.target.matches?.("input,textarea,select")) return;
       showWholeDiagram();
       event.preventDefault();
-    });
+    }, { signal:listenerAbort.signal });
   }
 
   function installSidebarHoverSounds(sidebar) {
@@ -513,7 +529,7 @@
     });
   }
 
-  async function schematicPanel(root) {
+  async function schematicPanel(root, requestedOpenBranch = undefined) {
     const panel = document.createElement("section");
     panel.className = "sidebar-circuit-panel sidebar-circuit-panel--schematic";
     panel.dataset.mode = "schematic";
@@ -528,6 +544,14 @@
         return group ? [node, ...group.members.map(id => graph.nodes.get(id))] : [node];
       })
       .some(node => nodeIsCurrent(node.source, current));
+    // A collapsed junction contributes only a single list row.  The expanded
+    // branch alone reserves room for its local circuit, so reopening the
+    // panel after a disclosure click produces a compact title spine instead
+    // of leaving hidden detail space behind.
+    const activeBranch = requestedOpenBranch === undefined
+      ? topology.branches.find(branchContainsCurrent)?.from.id || null
+      : requestedOpenBranch;
+    const isBranchOpen = branch => activeBranch === branch.from.id;
     const branchControls = new Map();
     const drawing = document.createElement("div");
     drawing.className = "sidebar-schematic-drawing";
@@ -585,11 +609,14 @@
       const next = topology.survey[index + 2];
       if (positions.has(next.id)) return;
       const branch = topology.branches.find(candidate => candidate.from.id === node.id);
-      positions.set(next.id, { x: 60, y: positions.get(node.id).y + (branch ? branchSpan(branch) : surveyNodeHeight(node) + 24) });
+      positions.set(next.id, { x: 60, y: positions.get(node.id).y +
+        (branch && isBranchOpen(branch) ? branchSpan(branch) : surveyNodeHeight(node) + 24) });
     });
-    const finalBranchBottom = Math.max(...topology.branches.map(branch =>
-      detailLayout(branch, positions.get(branch.from.id).y, surveyNodeHeight(branch.from)).at(-1)?.bottomY || 0));
-    const drawingHeight = Math.max(504, finalBranchBottom + 96);
+    const finalBranchBottom = Math.max(0, ...topology.branches
+      .filter(isBranchOpen)
+      .map(branch => detailLayout(branch, positions.get(branch.from.id).y, surveyNodeHeight(branch.from)).at(-1)?.bottomY || 0));
+    const compactBottom = Math.max(...topology.survey.map(node => positions.get(node.id).y + surveyNodeHeight(node)));
+    const drawingHeight = Math.max(504, finalBranchBottom + 96, compactBottom + 72);
     const wires = svg("svg", { viewBox: `0 0 ${schematicWidth} ${drawingHeight}`, "aria-hidden": "true" });
     drawing.appendChild(wires);
     drawing.style.height = `${drawingHeight}px`;
@@ -610,6 +637,7 @@
       } else if (branch) {
         drawing.appendChild(circuitNode(node, position, root, current, "survey", icons, {
           toggle: true,
+          disclosureKind: ({ Deduct:"deduct", Induct:"communications", Abduct:"abduct" })[node.id] || null,
           onToggle: (toggle, unit) => branchControls.set(node.id, { toggle, unit, current: branchContainsCurrent(branch) })
         }));
       } else {
@@ -626,10 +654,15 @@
       const ports = branch ? npnPorts(fromPosition, fromHeight) : null;
       if (toPosition.y > fromPosition.y) {
         if (ports) {
-          npnTransition(wires, ports, branch.label);
-          wire(wires, `M ${ports.baseEntryX} ${fromPosition.y + fromHeight} L ${ports.baseEntryX} ${ports.baseEntryY}`, "survey", `${connection.from.label} enters the NPN base`);
-          wire(wires, `M ${ports.emitterX} ${ports.emitterY} L ${ports.emitterX} ${targetEntryY - 12} L 84 ${targetEntryY - 12} L 84 ${targetEntryY}`, "survey", `${connection.from.label} to ${connection.to.label}`);
-          diode(wires, ports.emitterX, (ports.emitterY + targetEntryY - 12) / 2, 90, "survey", `${connection.from.label} to ${connection.to.label}`);
+          const transition = svg("g", { class: "sidebar-schematic-transition" });
+          const bypass = svg("g", { class: "sidebar-schematic-bypass" });
+          wires.append(transition, bypass);
+          npnTransition(transition, ports, branch.label);
+          wire(transition, `M ${fromPosition.x + 24} ${fromPosition.y + fromHeight} L ${ports.inputX} ${ports.inputY}`, "survey", `${connection.from.label} enters the top of the NPN at 135 degrees`);
+          wire(transition, `M ${ports.emitterX} ${ports.emitterY} H 84 V ${targetEntryY}`, "survey", `${connection.from.label} to ${connection.to.label}`);
+          diode(transition, 84, (ports.emitterY + targetEntryY) / 2, 90, "survey", `${connection.from.label} to ${connection.to.label}`);
+          wire(bypass, `M 84 ${fromPosition.y + fromHeight} L 84 ${targetEntryY}`, "survey", `${connection.from.label} continues directly to ${connection.to.label}`);
+          Object.assign(branchControls.get(connection.from.id), { transition, bypass });
         } else {
           wire(wires, `M 84 ${fromPosition.y + fromHeight} L 84 ${targetEntryY}`, "survey", `${connection.from.label} to ${connection.to.label}`);
           diode(wires, 84, (fromPosition.y + fromHeight + targetEntryY) / 2, 90, "survey", `${connection.from.label} to ${connection.to.label}`);
@@ -637,9 +670,14 @@
       } else {
         const returnX = 12 + connectionIndex * 12;
         if (ports) {
-          npnTransition(wires, ports, branch.label);
-          wire(wires, `M ${ports.baseEntryX} ${fromPosition.y + fromHeight} L ${ports.baseEntryX} ${ports.baseEntryY}`, "survey", `${connection.from.label} enters the NPN base`);
-          wire(wires, `M ${ports.emitterX} ${ports.emitterY} L ${returnX} ${ports.emitterY} L ${returnX} ${targetEntryY + 24} L 60 ${targetEntryY + 24}`, "survey", `${connection.from.label} returns to ${connection.to.label}`);
+          const transition = svg("g", { class: "sidebar-schematic-transition" });
+          const bypass = svg("g", { class: "sidebar-schematic-bypass" });
+          wires.append(transition, bypass);
+          npnTransition(transition, ports, branch.label);
+          wire(transition, `M ${fromPosition.x + 24} ${fromPosition.y + fromHeight} L ${ports.inputX} ${ports.inputY}`, "survey", `${connection.from.label} enters the top of the NPN at 135 degrees`);
+          wire(transition, `M ${ports.emitterX} ${ports.emitterY} L ${returnX} ${ports.emitterY} L ${returnX} ${targetEntryY + 24} L 60 ${targetEntryY + 24}`, "survey", `${connection.from.label} returns to ${connection.to.label}`);
+          wire(bypass, `M 60 ${fromPosition.y + fromHeight / 2} L ${returnX} ${fromPosition.y + fromHeight / 2} L ${returnX} ${targetEntryY + 24} L 60 ${targetEntryY + 24}`, "survey", `${connection.from.label} continues directly to ${connection.to.label}`);
+          Object.assign(branchControls.get(connection.from.id), { transition, bypass });
         } else {
           wire(wires, `M 60 ${fromPosition.y + fromHeight / 2} L ${returnX} ${fromPosition.y + fromHeight / 2} L ${returnX} ${targetEntryY + 24} L 60 ${targetEntryY + 24}`, "survey", `${connection.from.label} returns to ${connection.to.label}`);
         }
@@ -686,15 +724,15 @@
         wire(branchWires, `M ${finalDetail.centerX} ${finalDetail.exitY} L ${finalDetail.centerX} ${groundY}`, "detour", `${branch.label} enters its grounded terminal`);
         ground(branchWires, finalDetail.centerX, groundY, branch.label);
       } else if (toPosition.y > fromPosition.y) {
-        // Survey nodes use a 48px circular icon. Aim the incoming detail
-        // trace at its upper-right 45-degree perimeter mark, rather than at
-        // the node box's top-left corner.
-        const circleOffset = Math.round(24 / Math.sqrt(2));
-        const targetX = toPosition.x + 24 + circleOffset;
-        const targetY = toPosition.y + 24 - circleOffset;
-        wire(branchWires, `M ${finalDetail.leftX} ${finalDetail.centerY} L 132 ${finalDetail.centerY}`, "detour", `${branch.label} leaves the final detail component`);
-        diode(branchWires, 120, finalDetail.centerY, 180, "detour", `${branch.label} rejoins ${branch.to.label}`);
-        wire(branchWires, `M 108 ${finalDetail.centerY} L ${targetX} ${targetY}`, "detour", `${branch.label} enters ${branch.to.label} at the 45-degree icon edge`);
+        // Sets returns to the already-visible green Survey spine, rather than
+        // running into the Induct icon or its transistor. Drop below Sets,
+        // turn west through the diode, then join the spine with a clear dot.
+        const returnY = finalDetail.bottomY + 12;
+        const surveySpineX = 84;
+        wire(branchWires, `M ${finalDetail.centerX} ${finalDetail.bottomY} V ${returnY} H 132`, "detour", `${branch.label} leaves the bottom of the final detail component westbound`);
+        diode(branchWires, 120, returnY, 180, "detour", `${branch.label} returns toward the Survey spine`);
+        wire(branchWires, `M 108 ${returnY} H ${surveySpineX}`, "detour", `${branch.label} joins the Survey spine`);
+        junction(branchWires, surveySpineX, returnY, `${branch.label} joins the Survey spine`);
       } else {
         const laneX = 420 - branchIndex * 12;
         const inletY = toPosition.y + 24;
@@ -711,15 +749,32 @@
         const isOpen = branchId === id && open;
         control.unit.classList.toggle("is-open", isOpen);
         control.toggle.setAttribute("aria-expanded", String(isOpen));
+        control.toggle.dataset.disclosureState = isOpen ? "open" : "closed";
         control.content.hidden = !isOpen;
         control.wires.setAttribute("display", isOpen ? "inline" : "none");
+        control.transition?.setAttribute("display", isOpen ? "inline" : "none");
+        control.bypass?.setAttribute("display", isOpen ? "none" : "inline");
       });
     };
     branchControls.forEach((control, id) => {
-      control.toggle.addEventListener("click", () => setBranchOpen(id, control.toggle.getAttribute("aria-expanded") !== "true"));
+      control.toggle.addEventListener("click", () => {
+        const next = control.toggle.getAttribute("aria-expanded") !== "true" ? id : null;
+        // Rebuild the small SVG scene with the selected branch's actual
+        // height. This keeps Deduct → Induct → Abduct contiguous when Deduct
+        // is closed, while preserving the transistor and detail geometry when
+        // it is open.
+        void schematicPanel(root, next).then(replacement => {
+          // Keep the original mode-panel element in place: the mode tabs hold
+          // that element by identity. Only its schematic scene is replaced.
+          const host = panel.schematicHost || panel;
+          replacement.schematicHost = host;
+          host.schematicExpansionCleanup?.();
+          host.replaceChildren(...replacement.childNodes);
+          installSchematicExpansion(host);
+        }).catch(error => console.error("Sidebar schematic could not reflow", error));
+      });
     });
-    const currentBranch = [...branchControls.entries()].find(([, control]) => control.current)?.[0];
-    setBranchOpen(currentBranch, Boolean(currentBranch));
+    setBranchOpen(activeBranch, Boolean(activeBranch));
 
     panel.appendChild(drawing);
     return panel;
