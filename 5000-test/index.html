@@ -263,6 +263,15 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       </span>
     </a>
 
+    <a class="home-circuit-page home-circuit-artifact home-circuit-artifact--technology" data-home-source="00/01-Technology.qmd" data-palette="2" href="00/01-Technology.html" aria-label="Technology. Open topic.">
+      <span class="home-circuit-page__icon" aria-hidden="true"><i class="fa-solid fa-microchip"></i></span>
+      <span class="home-circuit-page__title">Technology</span>
+    </a>
+    <a class="home-circuit-page home-circuit-artifact home-circuit-artifact--stories" data-home-source="00/02-Stories.qmd" data-palette="3" href="00/02-Stories.html" aria-label="Stories. Open topic.">
+      <span class="home-circuit-page__icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span>
+      <span class="home-circuit-page__title">Stories</span>
+    </a>
+
     <a class="home-circuit-author" href="https://pleasedistribute.org" target="_blank" rel="noopener noreferrer" aria-label="Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University">
       <span class="home-circuit-author__display" aria-hidden="true">
         <span class="home-circuit-author__track"><span>Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University</span><span>Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University</span></span>
@@ -346,6 +355,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   // their capacitor chains in blue.
   const innerChipPalette = palettes[0];
   const capacitorPalette = palettes[2];
+  // The two Library reference chips are a red local-detail circuit.
+  const libraryPalette = palettes[1];
   const activePalette = { jacket: "#087329", highlight: "#a6ff8c" };
   const readingPalette = { jacket: "#111310", highlight: "#5d625b" };
   // Mermaid's thick Survey links (==>) are the main circuit's blue bus.
@@ -723,7 +734,10 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     link.style.top = `${spec.y}px`;
     link.setAttribute("aria-label", `${spec.title}. Open topic.`);
     if (spec.kind === "page") {
-      link.dataset.palette = String(stableHash(spec.key) % 5);
+      // Mermaid subgraphs are the conceptual groupings on the board.  Their
+      // capacitors share one body colour; ungrouped fallback pages retain a
+      // stable per-page colour.
+      link.dataset.palette = spec.palette ?? String(stableHash(spec.key) % 5);
       link.dataset.leadSide = spec.leadSide;
     }
     if (spec.source) link.dataset.homeSource = canonicalSource(spec.source);
@@ -747,6 +761,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
   // rather than another vertical link in the main Logic sequence.
   function buildLibrarySmdBoard(board) {
     board.querySelectorAll(".home-circuit-subboard--library,.home-circuit-smd").forEach(node => node.remove());
+    board.homeLibraryEdges = [];
     const library = board.querySelector('[data-home-source="Deduct/01/01-Logic-Library.qmd"]');
     if (!library) return;
 
@@ -763,11 +778,18 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     subboard.appendChild(label);
 
     [
-      { title:"Context", href:"Deduct/01/01/01-Context.html", icon:"fa-solid fa-chalkboard" },
-      { title:"Logical Judgments", href:"Deduct/01/01/02-Judgment.html", icon:"fa-solid fa-gavel" }
+      { title:"Context", source:"Deduct/01/01/01-Context.qmd", href:"Deduct/01/01/01-Context.html", icon:"fa-solid fa-chalkboard" },
+      { title:"Judgment", source:"Deduct/01/01/02-Judgment.qmd", href:"Deduct/01/01/02-Judgment.html", icon:"fa-solid fa-gavel" }
     ].forEach((entry, index) => {
+      const boardLabel = document.createElement("span");
+      boardLabel.className = "home-circuit-smd-label";
+      boardLabel.style.top = `${84 + index * 94}px`;
+      boardLabel.setAttribute("aria-hidden", "true");
+      boardLabel.textContent = entry.title;
+      subboard.appendChild(boardLabel);
       const link = document.createElement("a");
       link.className = "home-circuit-smd";
+      link.dataset.homeSource = entry.source;
       link.href = new URL(entry.href, siteRoot()).href;
       link.setAttribute("aria-label", `${entry.title}. Open topic.`);
       link.style.top = `${55 + index * 94}px`;
@@ -775,13 +797,72 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       icon.className = "home-circuit-smd__icon";
       icon.setAttribute("aria-hidden", "true");
       icon.innerHTML = `<i class="${entry.icon}"></i>`;
-      const title = document.createElement("span");
-      title.className = "home-circuit-smd__title";
-      title.textContent = entry.title;
-      link.append(icon, title);
+      link.append(icon);
+      appendGeneratedPins(link, ["left", "right"]);
       subboard.appendChild(link);
+      board.homeLibraryEdges.push({ from:library, to:link });
     });
     board.appendChild(subboard);
+  }
+
+  // The next two capacitor pages have compact local folders of their own.
+  // Keep these boards east of the northbound capacitor chain, in parallel
+  // vertical stacks, so their red detail wires stay short and legible.
+  function buildDeductDetailBoards(board) {
+    board.querySelectorAll(".home-circuit-subboard--detail,.home-circuit-smd--detail").forEach(node => node.remove());
+    board.homeDetailEdges = [];
+    [
+      {
+        parentSource:"Deduct/01/02-Writing-down-a-logic.qmd", etching:"WRITING A LOGIC · 02",
+        offsetY:-58, height:156,
+        entries:[{ title:"Trees", source:"Deduct/01/02/01-Trees.qmd", href:"Deduct/01/02/01-Trees.html", icon:"fa-solid fa-share-nodes" }]
+      },
+      {
+        parentSource:"Deduct/01/03-Sub-Var-Func.qmd", etching:"VARIABLES & FUNCTIONS · 03",
+        offsetY:-132, height:250,
+        entries:[
+          { title:"Curry–Howard–Lambek", source:"Deduct/01/03/Curry-Howard-Lambek.qmd", href:"Deduct/01/03/Curry-Howard-Lambek.html", icon:"fa-solid fa-diagram-project" },
+          { title:"Combinators", source:"Deduct/01/03/08-Combinators.qmd", href:"Deduct/01/03/08-Combinators.html", icon:"fa-solid fa-microchip" }
+        ]
+      }
+    ].forEach(config => {
+      const parent = board.querySelector(`[data-home-source="${config.parentSource}"]`);
+      if (!parent) return;
+      const subboard = document.createElement("section");
+      subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--detail";
+      subboard.style.left = `${parent.offsetLeft + parent.offsetWidth + 42}px`;
+      subboard.style.top = `${parent.offsetTop + config.offsetY}px`;
+      subboard.style.width = "390px";
+      subboard.style.height = `${config.height}px`;
+      subboard.setAttribute("aria-label", config.etching.replace(" · ", ", folder "));
+      const etching = document.createElement("span");
+      etching.className = "home-circuit-subboard__etching";
+      etching.textContent = config.etching;
+      subboard.appendChild(etching);
+      config.entries.forEach((entry, index) => {
+        const boardLabel = document.createElement("span");
+        boardLabel.className = "home-circuit-smd-label";
+        boardLabel.style.top = `${84 + index * 94}px`;
+        boardLabel.setAttribute("aria-hidden", "true");
+        boardLabel.textContent = entry.title;
+        subboard.appendChild(boardLabel);
+        const link = document.createElement("a");
+        link.className = "home-circuit-smd home-circuit-smd--detail";
+        link.dataset.homeSource = entry.source;
+        link.href = new URL(entry.href, siteRoot()).href;
+        link.setAttribute("aria-label", `${entry.title}. Open topic.`);
+        link.style.top = `${55 + index * 94}px`;
+        const icon = document.createElement("span");
+        icon.className = "home-circuit-smd__icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.innerHTML = `<i class="${entry.icon}"></i>`;
+        link.append(icon);
+        appendGeneratedPins(link, ["left", "right"]);
+        subboard.appendChild(link);
+        board.homeDetailEdges.push({ from:parent, to:link });
+      });
+      board.appendChild(subboard);
+    });
   }
 
   function firstDescendantPage(directory, pagesByDirectory, foldersByParent) {
@@ -850,7 +931,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
           const spec = {
             kind:"page",key:`page:${canonical}`,title,icon:page?.titleIcon || page?.icon,
             href:sourceToPublishedHref(canonical),depth:index + 1,
-            orientation:root.orientation,parentRef:rootElement,source:canonical
+            orientation:root.orientation,parentRef:rootElement,source:canonical,
+            palette:String(stableHash(group.id) % 5)
           };
           if (root.orientation === "north") {
             spec.x = rootElement.offsetLeft + (rootElement.offsetWidth - EXTENSION.pageWidth) / 2;
@@ -981,6 +1063,7 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       board.appendChild(backplane);
     });
     buildLibrarySmdBoard(board);
+    buildDeductDetailBoards(board);
     board.homeReadingEdges = readingPathEdges(board, circuitData, roots);
     return edgeSpecs.map(edge => ({
       from:edge.from.element || edge.from,
@@ -996,6 +1079,10 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       if (source && element) sourceElements.set(canonicalSource(source), element);
     };
     register("00/preface.qmd", board.querySelector(".home-circuit-cpu"));
+    [
+      ["00/01-Technology.qmd", ".home-circuit-artifact--technology"],
+      ["00/02-Stories.qmd", ".home-circuit-artifact--stories"]
+    ].forEach(([source, selector]) => register(source, board.querySelector(selector)));
     [
       ["Deduct/index.qmd", ".home-circuit-branch--deduct"],
       ["Induct/index.qmd", ".home-circuit-branch--induct"],
@@ -1077,6 +1164,14 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
       const active = board.homeCurrentEdges?.has(edge);
       svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
         `home-circuit-wire--capacitor${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : capacitorPalette);
+    });
+    (board.homeLibraryEdges || []).forEach(edge => {
+      svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
+        "home-circuit-wire--library", libraryPalette);
+    });
+    (board.homeDetailEdges || []).forEach(edge => {
+      svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
+        "home-circuit-wire--library", libraryPalette);
     });
     const readingPinUsage = new Map();
     (board.homeReadingEdges || []).forEach(edge => {
@@ -1178,6 +1273,8 @@ window.typesetDynamicMath = function (roots, attempts = 50) {
     const board = document.getElementById("home-circuit-board");
     if (!board) return;
     buildTrenches(board);
+    board.querySelectorAll(".home-circuit-artifact").forEach(node =>
+      appendGeneratedPins(node, ["top", "right", "bottom", "left"]));
     try {
       const [manifest, circuitData] = await Promise.all([navigation(), circuitBoards()]);
       board.homeTopologyEdges = buildTopology(board, manifest, circuitData);
