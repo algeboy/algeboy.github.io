@@ -1,0 +1,136 @@
+/* Circuit-motif treatments for reader-facing content headings and rules. */
+
+.fa-brass-icon:not(.topic-graph-node__badge) {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 34px;
+  height: 34px;
+  margin: 7px 0.4rem 7px 7px;
+  color: #e7e4d0;
+  font-size: 1rem;
+  line-height: 1;
+  vertical-align: middle;
+  border: 2px solid #3d4541;
+  border-radius: 5px;
+  background: linear-gradient(145deg, #303a35, #111714 62%, #29332e);
+  box-shadow: inset 0 1px rgba(255,255,255,.18), 0 2px 5px rgba(42,35,24,.32);
+}
+
+.fa-brass-icon:not(.topic-graph-node__badge)::before {
+  position: absolute;
+  z-index: -1;
+  inset: -7px;
+  content: "";
+  background:
+    linear-gradient(to right, transparent 0 16px, #999589 16px 20px, transparent 20px 28px, #999589 28px 32px, transparent 32px) top / 100% 7px no-repeat,
+    linear-gradient(to right, transparent 0 16px, #999589 16px 20px, transparent 20px 28px, #999589 28px 32px, transparent 32px) bottom / 100% 7px no-repeat,
+    linear-gradient(to bottom, transparent 0 16px, #999589 16px 20px, transparent 20px 28px, #999589 28px 32px, transparent 32px) left / 7px 100% no-repeat,
+    linear-gradient(to bottom, transparent 0 16px, #999589 16px 20px, transparent 20px 28px, #999589 28px 32px, transparent 32px) right / 7px 100% no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(35,31,25,.28));
+}
+
+.fa-brass-icon:not(.topic-graph-node__badge) > i {
+  width: 0.78em;
+  height: 0.78em;
+  font-size: 1em;
+}
+
+.quarto-title h1.title {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.quarto-title h1.title .fa-brass-icon,
+main.content h1 .fa-brass-icon {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 64px;
+  width: 64px;
+  height: 64px;
+  margin: 10px 0.35rem 10px 10px;
+  color: #e7e4d0;
+  font-size: 2rem;
+  border: 2px solid #3d4541;
+  border-radius: 7px;
+  background: linear-gradient(145deg, #303a35, #111714 62%, #29332e);
+  box-shadow: inset 0 1px rgba(255,255,255,.18), 0 3px 7px rgba(42,35,24,.34);
+}
+
+.quarto-title h1.title .fa-brass-icon::before,
+main.content h1 .fa-brass-icon::before {
+  position: absolute;
+  z-index: -1;
+  inset: -10px;
+  content: "";
+  background:
+    repeating-linear-gradient(to right, transparent 0 5px, #999589 5px 11px, transparent 11px 16px) top center / calc(100% - 32px) 10px no-repeat,
+    repeating-linear-gradient(to right, transparent 0 5px, #999589 5px 11px, transparent 11px 16px) bottom center / calc(100% - 32px) 10px no-repeat,
+    repeating-linear-gradient(to bottom, transparent 0 5px, #999589 5px 11px, transparent 11px 16px) center left / 10px calc(100% - 32px) no-repeat,
+    repeating-linear-gradient(to bottom, transparent 0 5px, #999589 5px 11px, transparent 11px 16px) center right / 10px calc(100% - 32px) no-repeat;
+  filter: drop-shadow(0 1px 1px rgba(35,31,25,.3));
+}
+
+.quarto-title h1.title .fa-brass-icon > i,
+main.content h1 .fa-brass-icon > i {
+  width: 0.82em;
+  height: 0.82em;
+  font-size: 1em;
+}
+
+main.content hr {
+  position: relative;
+  height: 20px;
+  margin-block: 1.65rem;
+  overflow: visible;
+  opacity: 1;
+  border: 0;
+  background:
+    radial-gradient(circle at 7% 50%, #252921 0 2px, #c87838 2.5px 5px, #174a27 5.5px 7px, transparent 7.5px),
+    radial-gradient(circle at 23% 50%, #252921 0 2px, #c87838 2.5px 5px, #174a27 5.5px 7px, transparent 7.5px),
+    radial-gradient(circle at 46% 50%, #252921 0 2px, #c87838 2.5px 5px, #174a27 5.5px 7px, transparent 7.5px),
+    radial-gradient(circle at 72% 50%, #252921 0 2px, #c87838 2.5px 5px, #174a27 5.5px 7px, transparent 7.5px),
+    radial-gradient(circle at 91% 50%, #252921 0 2px, #c87838 2.5px 5px, #174a27 5.5px 7px, transparent 7.5px),
+    linear-gradient(to bottom, transparent 0 7px, #164721 7px 8px, #26853c 8px 12px, #123b1d 12px 13px, transparent 13px);
+}
+
+main.content hr::after {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  width: 16px;
+  height: 16px;
+  content: "";
+  transform: translate(-50%, -50%);
+  border: 2px solid #4dbb64;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #eaffdf 0 9%, #8dff91 23%, #32c858 57%, #087329 100%);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,.86), inset 0 -2px 3px rgba(0,72,24,.38), 0 0 7px #65ef7d, 0 0 14px rgba(40,215,83,.7);
+}
+
+@media (max-width: 600px) {
+  .quarto-title h1.title .fa-brass-icon,
+  main.content h1 .fa-brass-icon {
+    flex-basis: 52px;
+    width: 52px;
+    height: 52px;
+    font-size: 1.65rem;
+  }
+}
+
+@media (forced-colors: active) {
+  .fa-brass-icon:not(.topic-graph-node__badge),
+  .quarto-title h1.title .fa-brass-icon,
+  main.content h1 .fa-brass-icon {
+    color: CanvasText;
+    border-color: CanvasText;
+    background: Canvas;
+    box-shadow: none;
+  }
+  main.content hr { background: linear-gradient(transparent 8px, CanvasText 8px 12px, transparent 12px); }
+  main.content hr::after { border-color: Highlight; background: Highlight; box-shadow: none; }
+}

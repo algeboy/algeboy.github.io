@@ -1,0 +1,1186 @@
+{
+  "00/01-Technology.html": {
+    "icon": "fa-solid fa-compass-drafting",
+    "titleIcon": "fa-solid fa-compass-drafting"
+  },
+  "00/02-Stories.html": {
+    "icon": "fa-solid fa-microchip",
+    "titleIcon": "fa-solid fa-microchip"
+  },
+  "00/Acknowledgments.html": {
+    "icon": "fa-solid fa-building-columns",
+    "titleIcon": null
+  },
+  "00/preface.html": {
+    "icon": "fa-solid fa-calculator",
+    "titleIcon": "fa-solid fa-calculator"
+  },
+  "AA/references.html": {
+    "icon": "fa-solid fa-book-open fa-la",
+    "titleIcon": "fa-solid fa-book-open fa-la"
+  },
+  "Abduct/09/1-what-does-it-mean-to-be-close.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/1/cauchys-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/1/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/2-accumulation-and-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/2/asymptotics-and-long-term-behavior.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/3-approximating-functions-and-power-series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/3/functions-as-limits-of-sums-taylor-series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/a/limits-and-accumulation.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/approximation-and-errors.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/explaining-most-of-the-evidence-with-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/index.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": "fa-solid fa-taxi"
+  },
+  "Abduct/09/l/getting-close-is-not-enough.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/1/cauchys-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/2/asymptotics-and-long-term-behavior.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/3/functions-as-limits-of-sums-taylor-series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/a/limits-and-accumulation.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/approximation-and-errors.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/explaining-most-of-the-evidence-with-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/l/getting-close-is-not-enough.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/overview-9.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/part-1-cauchys-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/part-2-asymptotics-and-long-term-behavior.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/part-3-functions-as-limits-of-sums-taylor-series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/sequences.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/mwe/series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/overview-9.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/part-1-cauchys-limits.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/part-2-asymptotics-and-long-term-behavior.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/part-3-functions-as-limits-of-sums-taylor-series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/sequences.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/09/series.html": {
+    "icon": "fa-solid fa-taxi",
+    "titleIcon": null
+  },
+  "Abduct/10/0-measurable-the-whole-is-the-sum-of-its-parts-lebesgue.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/0/measurement-overview.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/1-what-makes-data-measurable.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/1/a-20mins-distributive-measurements.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/1/b-20mins-measurable-functions.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/1/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/12-dot-1-b-20mins-measurable-functions.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2-discrete-continuous-and-probability-measures.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2/a-15-mins-from-multiplication-to-the-integral.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2/b-changing-measures-the-derivative.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2/b-the-derivative.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2/c-30-mins-where-distributive-measurement-comes-from.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2/c-exploting-integrals-and-derivatives-together.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/2/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/3-measurements-in-theory-computation-and-practice.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/3/calculus-with-sums-products-and-powers-copy.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/3/calculus-with-sums-products-and-powers.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/3/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/Measure-overview.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/index.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": "fa-solid fa-ruler-combined"
+  },
+  "Abduct/10/l/features-in-signals.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/measurement-overview.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/0/measurement-overview.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/1/a-20mins-distributive-measurements.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/1/b-20mins-measurable-functions.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/12-dot-1-b-20mins-measurable-functions.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/2/c-30-mins-where-distributive-measurement-comes-from.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/Measure-overview.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/from-12/12-dot-1-b-20mins-measurable-functions.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/measurement-overview.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/part-1-dot-a-20mins-distributive-measurements.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/part-1-dot-b-30-mins-where-distributive-measurement-comes-from.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/mwe/s/summary.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/overview-10.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/part-1-dot-a-20mins-distributive-measurements.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/part-1-dot-b-30-mins-where-distributive-measurement-comes-from.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/10/s/summary.html": {
+    "icon": "fa-solid fa-ruler-combined",
+    "titleIcon": null
+  },
+  "Abduct/11/0-features-are-integrals-reisz-representation-theorem.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/0/overview-what-is-a-feature.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/1-features.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/1/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/1/linear-features-are-integrals-riesz-representation-theorem.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/2-features-are-integrals-now-what.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/2/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/2/moving-averages-and-mean-value-theorems.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/2linear/features-are-integrals-riesz-representation-theorem-copy.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/3-integrals-properties-in-different-measures.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/3/critical-points-increases-and-decreases.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/3/learning-materials-and-resources.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/a/index.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/distributive-qualities.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/index.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": "fa-solid fa-umbrella-beach"
+  },
+  "Abduct/11/integrals.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/l/features-in-audio.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/lab-12-sales-volumes-of-a-distributor.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/0/overview-what-is-a-feature.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/1/linear-features-are-integrals-riesz-representation-theorem.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/2/moving-averages-and-mean-value-theorems.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/2linear/features-are-integrals-riesz-representation-theorem-copy.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/3/critical-points-increases-and-decreases.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/distributive-qualities.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/from-10/2/a-15-mins-from-multiplication-to-the-integral.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/from-10/l/features-in-signals.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/integrals.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/l/features-in-audio.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/lab-12-sales-volumes-of-a-distributor.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/mwe/part-2-dot-a-15-mins-from-multiplication-to-the-integral.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/11/part-2-dot-a-15-mins-from-multiplication-to-the-integral.html": {
+    "icon": "fa-solid fa-umbrella-beach",
+    "titleIcon": null
+  },
+  "Abduct/12/0-learning-through-trial-and-error-hinton.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/0/overview-machine-learning.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/1-derivative-and-newton-leibniz.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/1/chain-rule-for-change-upon-change.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/12-dot-1-b-20mins-measurable-functions.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/12-dot-2-b-the-derivative.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/12-dot-2-c-exploting-integrals-and-derivatives-together.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/12-dot-3-calculus-with-sums-products-and-powers-copy.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/12-dot-s-summary.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/2-taking-derivatives-by-induction.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/2/back-propogation-for-learning.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/3-derivatives-other-uses.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/3/equations-of-change.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/a/index.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/derivative-patterns.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/fundamental-theorem-of-calculus.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/index.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": "fa-solid fa-bullseye"
+  },
+  "Abduct/12/l/learning-from-trades.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/0/overview-machine-learning.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/1/chain-rule-for-change-upon-change.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/12-dot-2-b-the-derivative.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/12-dot-2-c-exploting-integrals-and-derivatives-together.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/12-dot-3-calculus-with-sums-products-and-powers-copy.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/12-dot-s-summary.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/2/back-propogation-for-learning.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/3/equations-of-change.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/derivative-patterns.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/from-10/2/b-changing-measures-the-derivative.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/from-10/2/b-the-derivative.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/from-10/2/c-exploting-integrals-and-derivatives-together.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/from-10/3/calculus-with-sums-products-and-powers-copy.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/from-10/3/calculus-with-sums-products-and-powers.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/fundamental-theorem-of-calculus.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/l/learning-from-trades.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/part-2-dot-b-rates-of-change-the-derivative.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/mwe/part-3-calculus-with-sums-products-and-powers.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/part-2-dot-b-rates-of-change-the-derivative.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/12/part-3-calculus-with-sums-products-and-powers.html": {
+    "icon": "fa-solid fa-bullseye",
+    "titleIcon": null
+  },
+  "Abduct/index.html": {
+    "icon": "fa-solid fa-car-burst",
+    "titleIcon": "fa-solid fa-car-burst"
+  },
+  "Deduct/01/01-Logic-Library.html": {
+    "icon": "fa-solid fa-gamepad fa-la",
+    "titleIcon": null
+  },
+  "Deduct/01/01/01-Context.html": {
+    "icon": "fa-solid fa-chalkboard",
+    "titleIcon": null
+  },
+  "Deduct/01/01/02-Judgment.html": {
+    "icon": "fa-solid fa-gavel",
+    "titleIcon": null
+  },
+  "Deduct/01/02-Writing-down-a-logic.html": {
+    "icon": "fa-solid fa-scroll fa-la",
+    "titleIcon": null
+  },
+  "Deduct/01/02/01-Trees.html": {
+    "icon": "fa-solid fa-share-nodes",
+    "titleIcon": null
+  },
+  "Deduct/01/03-Sub-Var-Func.html": {
+    "icon": "fa-solid fa-square-root-variable",
+    "titleIcon": null
+  },
+  "Deduct/01/03/08-Combinators.html": {
+    "icon": "fa-solid fa-microchip",
+    "titleIcon": null
+  },
+  "Deduct/01/03/Curry-Howard-Lambek.html": {
+    "icon": "fa-solid fa-gamepad",
+    "titleIcon": null
+  },
+  "Deduct/01/09-Chp-Summary.html": {
+    "icon": "fa-solid fa-clipboard-list",
+    "titleIcon": null
+  },
+  "Deduct/01/index.html": {
+    "icon": "fa-solid fa-gamepad",
+    "titleIcon": null
+  },
+  "Deduct/02/01-Falsify-Elim.html": {
+    "icon": "fa-solid fa-triangle-exclamation",
+    "titleIcon": null
+  },
+  "Deduct/02/01/for-all-as-repeated-ands.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/01/implications-lead-to-functions.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/01/necessary-slash-slash-box-slash-possible-slash-slash-diamond-slash-and-modal-logic.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/02-Verify-Intro.html": {
+    "icon": "fa-solid fa-check",
+    "titleIcon": null
+  },
+  "Deduct/02/02/exists-as-repeated-ors.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03-Full-Logic.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03/Duality.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03/ImplicationalLogics.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03/Logics.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03/Qualifiers.html": {
+    "icon": "fa-solid fa-toggle-off",
+    "titleIcon": null
+  },
+  "Deduct/02/03/Quantifiers.html": {
+    "icon": "fa-solid fa-exclamation",
+    "titleIcon": null
+  },
+  "Deduct/02/03/Summary.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03/logical-syntax-semantics.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/03/refactoring-code-and-logical-equivalence.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": null
+  },
+  "Deduct/02/index.html": {
+    "icon": "fa-solid fa-flag",
+    "titleIcon": "fa-solid fa-flag"
+  },
+  "Deduct/03/0-when-context-collide-abstract-all-over-again-martin-lof.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/1-the-basics-of-data-types.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/2-diagrams-for-types.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/3-exponential-and-dependent-types.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/MakingTypes.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/data-together-with-co-cones.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/dual-logic-and-programs.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/equations-from-flow-charts.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/higher-order-logic-by-data-types-slash-a-slash-times-b-slash.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/03/index.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": "fa-solid fa-screwdriver-wrench"
+  },
+  "Deduct/03/sets-types-and-other-higher-order-logic.html": {
+    "icon": "fa-solid fa-screwdriver-wrench",
+    "titleIcon": null
+  },
+  "Deduct/04/0-subsets-and-partitions-overview-and-objectives.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/1-Boubaki-Functions.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/1-solving-y=f-x-organizes-data-types.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/2-membership.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/20-mins-what-is-a-subset.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/3-partitions.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/Club-Membership.html": {
+    "icon": "fa-solid fa-id-card fa-la",
+    "titleIcon": null
+  },
+  "Deduct/04/Set-Function-overview.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/Subsets-Quotient-overview.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/Summary.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/bijective-when-slash-y=f-x-slash-has-exactly-one-solution.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/bijective.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/data-sets.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/equality-resonance.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/how-and-and-or-appear-in-sets-and-types.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/index.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": "fa-solid fa-address-card"
+  },
+  "Deduct/04/injective.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/m-15-mins-injective.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/optional-10-mins-practical-images.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/optional-15-mins-images.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/optional-20-mins-classical-sets.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/partitions.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/refactoring-code-and-logical-equivalence.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/solving-slash-y=f-x-slash.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/surjective-functions.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/the-membership-spectrum.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/what-is-a-subset.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/04/when-slash-y=f-x-slash-has-at-most-one-solution.html": {
+    "icon": "fa-solid fa-address-card",
+    "titleIcon": null
+  },
+  "Deduct/index.html": {
+    "icon": "fa-solid fa-bicycle",
+    "titleIcon": "fa-solid fa-bicycle"
+  },
+  "Induct/05/0-patterns-and-induction-overview.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/1-pattern-matching.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/2-lists-trees-and-formulas.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/2-pattern-matching-and-its-operators.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/3-infinite-loops-recursion-and-fixed-points.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/Inductive-overview-2.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/Inductive-overview.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/Inductive.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/Pattern-Making.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/Pattern-Matching.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/index.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": "fa-solid fa-code-branch"
+  },
+  "Induct/05/mwe/2-pattern-matching-and-its-operators.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/Inductive-overview-2.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/Inductive-overview.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/Inductive.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/Pattern-Making.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/Pattern-Matching.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/pattern-making-and-its-co-operators.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/mwe/recursion-and-fixed-points.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/pattern-making-and-its-co-operators.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/05/recursion-and-fixed-points.html": {
+    "icon": "fa-solid fa-code-branch",
+    "titleIcon": null
+  },
+  "Induct/06/0-turning-data-into-judgment-relations.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/1-relations.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/2-orders-and-equivalence.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/3-maxima-minima-inf-and-sup.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/describing-relations.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/index.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": "fa-solid fa-users"
+  },
+  "Induct/06/minimums-maximums-and-well-founded-orders.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/describing-relations.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/from-07/relations-and-orders.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/from-07/w-orders-and-transitivity.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/from-07/week-7-day-1-relations-and-orders.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/from-07/week-7-day-2-describing-relations.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/minimums-maximums-and-well-founded-orders.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/mwe/relations-and-orders.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/06/relations-and-orders.html": {
+    "icon": "fa-solid fa-users",
+    "titleIcon": null
+  },
+  "Induct/07/0-changing-your-judgment.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/1-finding-you-were-wrong.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/2-default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/3-adaptive-and-dynamic-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/Adapative-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/Changing-your-answers.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/Default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/day-2-using-default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/day-3-using-adapative-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/index.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": "fa-solid fa-kiwi-bird"
+  },
+  "Induct/07/mwe/Adapative-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/Changing-your-answers.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/Default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/day-2-using-default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/day-3-using-adapative-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/overview-when-reasons-beyond-evidence-are-wrong.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/using-adapative-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/mwe/using-default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/overview-when-reasons-beyond-evidence-are-wrong.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/relations-and-orders.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/using-adapative-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/using-default-logic.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/w-orders-and-transitivity.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/week-7-day-1-relations-and-orders.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/07/week-7-day-2-describing-relations.html": {
+    "icon": "fa-solid fa-kiwi-bird",
+    "titleIcon": null
+  },
+  "Induct/08/0-probability-ranking-hypotheses-kolmogorov.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/1-proportions-towards-probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/2-induction-with-probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/3-probabilistic-data-types.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/Abduction-Probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/day-2-deductions-with-probabilities.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/day-3-probabilistic-data-types.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/deductions-with-probabilities.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/index.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": "fa-solid fa-dice"
+  },
+  "Induct/08/mwe/1-proportions-towards-probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/3-probabilistic-data-types.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/Abduction-Probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/day-2-deductions-with-probabilities.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/day-3-probabilistic-data-types.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/deductions-with-probabilities.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/probabilistic-data-types.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/proportions-towards-probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/mwe/should-you-modify-your-priors-or-your-reasoning.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/probabilistic-data-types.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/proportions-towards-probability.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/08/should-you-modify-your-priors-or-your-reasoning.html": {
+    "icon": "fa-solid fa-dice",
+    "titleIcon": null
+  },
+  "Induct/index.html": {
+    "icon": "fa-solid fa-tower-cell",
+    "titleIcon": "fa-solid fa-tower-cell"
+  },
+  "TopicMap.html": {
+    "icon": "fa-solid fa-building-columns",
+    "titleIcon": null
+  },
+  "index.html": {
+    "icon": "fa-solid fa-building-columns",
+    "titleIcon": "fa-solid fa-building-columns"
+  }
+}

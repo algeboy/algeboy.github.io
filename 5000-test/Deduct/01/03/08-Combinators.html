@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>combinators – 5000 Years of Modern Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+/*
+ * Quarto loads MathJax after this header.  Keep \text{...} in mathematical
+ * expressions in the document's native text face rather than MathJax's
+ * fallback math text face, whose metrics can make mixed text/math rows look
+ * vertically uneven.
+ */
+window.MathJax = {
+	chtml: {
+		mtextInheritFont: true
+	}
+};
+
+/* Circuit labels are inserted after Quarto's initial MathJax pass. Wait for
+ * startup, then typeset only the newly generated circuit region. */
+window.typesetDynamicMath = function (roots, attempts = 50) {
+	const targets = Array.from(roots || []).filter(Boolean);
+	if (!targets.length) return Promise.resolve();
+	const mathJax = window.MathJax;
+	if (mathJax?.startup?.promise) {
+		return mathJax.startup.promise
+			.then(() => mathJax.typesetPromise?.(targets))
+			.catch(() => undefined);
+	}
+	if (typeof mathJax?.typesetPromise === 'function') {
+		return mathJax.typesetPromise(targets).catch(() => undefined);
+	}
+	if (attempts <= 0) return Promise.resolve();
+	return new Promise(resolve => {
+		setTimeout(() => resolve(window.typesetDynamicMath(targets, attempts - 1)), 100);
+	});
+};
+</script>
+<script>
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/study-time.js' },
+		{ src: 'scripts/book-enhancements.js' },
+		{ src: 'scripts/link-icons.js' },
+		{ src: 'scripts/topic-graph.js' },
+		{ src: 'scripts/inline-compass.js' },
+		{ src: 'scripts/toc-compass.js' },
+		{ src: 'scripts/navigation-score.js' },
+		{ src: 'scripts/sidebar-circuit-window.js' },
+		{ src: 'assets/quick-check.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/sidebar-circuit-window.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/inline-compass.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/topic-graph.css">
+<link rel="stylesheet" href="../../../quarto-runtime/styles/circuit-content.css">
+<link rel="stylesheet" href="../../../quarto-runtime/assets/quick-check.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      5000 Years of Modern Computing
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../">5000 Years of Modern Computing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../Deduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../Induct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../Abduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../TopicMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic Map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#gates-combinators-and-turing-and-kleene" id="toc-gates-combinators-and-turing-and-kleene" class="nav-link active" data-scroll-target="#gates-combinators-and-turing-and-kleene"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-microchip"></i></span> Gates, Combinators, and Turing and Kleene</a>
+  <ul class="collapse">
+  <li><a href="#gates-and-combinators" id="toc-gates-and-combinators" class="nav-link" data-scroll-target="#gates-and-combinators"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Gates and Combinators</a></li>
+  <li><a href="#emergent-logic" id="toc-emergent-logic" class="nav-link" data-scroll-target="#emergent-logic"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Emergent logic</a></li>
+  <li><a href="#turing-complete-computers" id="toc-turing-complete-computers" class="nav-link" data-scroll-target="#turing-complete-computers"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Turing Complete Computers</a>
+  <ul class="collapse">
+  <li><a href="#applied-combinators-and-modern-hardware" id="toc-applied-combinators-and-modern-hardware" class="nav-link" data-scroll-target="#applied-combinators-and-modern-hardware"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Applied Combinators and modern hardware</a></li>
+  </ul></li>
+  <li><a href="#higher-computing-models" id="toc-higher-computing-models" class="nav-link" data-scroll-target="#higher-computing-models"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Higher Computing Models</a>
+  <ul class="collapse">
+  <li><a href="#applicative-structures" id="toc-applicative-structures" class="nav-link" data-scroll-target="#applicative-structures"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Applicative structures</a></li>
+  </ul></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<section id="gates-combinators-and-turing-and-kleene" class="level1" data-fa-icon="fa-solid fa-microchip">
+<h1 data-fa-icon="fa-solid fa-microchip"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-microchip"></i></span> Gates, Combinators, and Turing and Kleene</h1>
+<p>One idea that occurred to Schönfinkel and was explored extensively by Curry and Feys is to get rid of the use of variables entirely. Instead focus on a list of allowed operations that can be applied to data. When you think about computation you might realize variables are there as placeholders for data, but that in a physical machine those placeholders hold something, perhaps a voltage that is random, or a voltage that signals all 0s. If we used Turing’s vision of a machine reading paper tape, that tape could have no marks on it. Blanks are still data. So in the concept of a machine there are really no variables at all. Just data of one sort or another. So if a machine is to take on the rule of evaluation functions and it has no variables, then mathematics and computation ought to be describable without variables as well. Such a description of functions is as <strong>combinators</strong> but most people today will know them as <strong>gates</strong> and these are the gateway <span class="fa-brass-icon" aria-hidden="true"><i class="fa-regular fa-face-grin-beam-sweat"></i></span> between Software and Hardware. We can explore this with some examples.</p>
+<section id="gates-and-combinators" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="gates-and-combinators"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Gates and Combinators</h2>
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
+<p>In the Konstants restaraunts, <span class="math inline">\(K\)</span> is the combinator. When followed by two pieces of data (which can be grouped in parentheses) it yields the first of the two ignoring the second.</p>
+<ul>
+<li><code>K "Curry" "Fries"</code> yields <code>"Curry"</code>.</li>
+<li><code>K 3 7</code> yields <code>3</code>.</li>
+<li><code>K (3 7) 5</code> yields <code>3 7</code>. The parentheses around <code>(3 7)</code> forced us to treat that as one piece of data and so it was the first of the two pieces and thus returned.</li>
+<li>Working from the outside in, <code>K (K 3 7) 5</code> yields <code>K 3 7</code> (the first term to the outermost <span class="math inline">\(K\)</span>) which in turn yields <code>3</code>.</li>
+<li>Now working from the inside-out, <code>K (K 3 7) 5</code> yields <code>K 3 5</code> (the second <span class="math inline">\(K\)</span> was applied first to <code>3 7</code>) which still yields <code>3</code>.</li>
+</ul>
+</div>
+<p>Viewed form the perspective of the second term, this is a constant function.</p>
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
+<p>The <strong>identity</strong> combinator <code>I</code> is defined by <code>I x</code> yields <code>x</code>. It simply returns its argument unchanged.</p>
+</div>
+<p>It is worth acknowledging that we are using variables, <span class="math inline">\(x\)</span>, to talk about a system that avoids variables! Well to that we can remark two things. First the use of variables here has no concept of scope, free/bound, local/global. These are variables in their simplest “fill-in-the-blank” form we always felt was logical. Secondly, we can if we want simply use words to avoid the concept of variables. Instead of <code>I x</code> yields <code>x</code> we can say “A machine that outputs whatever it is given.” Brevity and history are the sole reasons to revert to variable language.</p>
+</section>
+<section id="emergent-logic" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="emergent-logic"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Emergent logic</h2>
+<p>The game now is to list a number of combinators that can assist you in building a program. It may surprise you to learn how powerful <code>K</code> together with <code>I</code> can be. For example, the next exercise asks you to confirm that combining <code>K</code> and <code>I</code> is already enough to make a program that manages the concept of <code>if a then b else c</code>.</p>
+<div class="callout-caution exercise callout-exercise" title="Conditional combinator" data-callout-family="exercise">
+<p>Let <code>K</code> be represent <code>True</code> and <code>K I</code> represent <code>False</code> (True and false are not something new, just names for <code>K</code> and <code>K I</code>). Next, define a new combinator <code>IF</code> by <code>IF a b c = I a b c</code>. Show that:</p>
+<ul>
+<li><code>IF True 3 7</code> yields <code>3</code></li>
+<li><code>IF False 3 7</code> yields <code>7</code></li>
+</ul>
+<p>Because of this behavior, the <code>IF</code> combinator is usually called a <strong>conditional combinator</strong> and instead of <code>IF a b c</code> we write it:</p>
+<pre><code>if a then b else c</code></pre>
+</div>
+<p>So far we chain together our combinators as lists, but once we make a clever little program like <code>if-then-else</code> we might want to compose it with other little programs without physically rewriting all the lines of instructions. We can do that with a combinator specially built to combine two programs into one and apply them in a specified order.</p>
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
+The <span class="math inline">\(S\)</span> combinator (for Schonfinkle) is defined so that <span class="math inline">\(S~f~g~x\)</span> yields <span class="math inline">\(f~x~(g~x)\)</span>. It allows us to apply a function to an argument and then apply another function to the same argument, combining the results.
+<p style="margin-left: 2em;">
+<code>S f g x</code> yields <code>f x (g x)</code>.<br> <code>S K K 3</code> yields <code>K 3 (K 3)</code> which in turn yields <code>K 3 3</code> which finally yields <code>3</code>.<br>
+</p>
+</div>
+<div class="callout-tip example callout-example" title="" data-callout-family="example">
+<p>Set <code>B</code> to be <code>S (K S) K</code>. Show that <code>B f g x</code> yields <code>f (g x)</code>. That is, <code>B</code> behaves like the <strong>composition combinator</strong>, it applies the program <code>f</code> to the output of the program <code>g</code>.</p>
+</div>
+<p>When you think of the operations of combinators like <code>K</code>, <code>I</code>, and <code>S</code> it may strike you as highly mechanical. That is the right picture to have. And perhaps you are also convinced that in combination they begin to make a tiny bit of sophistication, such as if-then-else, counting, possibly more. Well in fact they can do everything any computer can do.</p>
+<div class="callout-tip thm callout-thm" title="SKI is Turing complete" data-callout-family="thm">
+<p>A system <span class="math inline">\(\mathcal{A}\)</span> of gates that has gates <code>S</code>, <code>K</code>, and <code>I</code> where for any gates <code>f,g,h</code></p>
+<ul>
+<li><code>K f g</code> yields <code>f</code></li>
+<li><code>I f</code> yields <code>f</code></li>
+<li><code>S f g</code> is always defined</li>
+<li><code>S f g h</code> yields <code>f h (g h)</code> when either is defined.</li>
+</ul>
+<p>is capable of carrying out any computation that could be described by substitution of variables. In other words it is a universal computing system, what we call <strong>Turing Complete</strong>.</p>
+</div>
+<p>Notice the complete absence of substitution and variables so the trapped variable problem just does not exist in computations. Gone also is the requirement that we are secretly depending on infinity to get substitution to work. It was only ever a mistake in vague mathematics and the programming languages used to bridge humans to machines. Put another way, humans who can imagine a place for infinity are beyond what a machine can imagine for itself.</p>
+<div class="callout-caution exercise callout-exercise" title="" data-callout-family="exercise">
+<p><span class="math inline">\(S~K~K~x\)</span> yields <span class="math inline">\(x\)</span>. In this sense <span class="math inline">\(S~K~K\)</span> behaves like the identity combinator <span class="math inline">\(I\)</span>.</p>
+</div>
+</section>
+<section id="turing-complete-computers" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="turing-complete-computers"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Turing Complete Computers</h2>
+<p>Alan Turing is famous for having invented a description of computing that captures the notion of programming.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Turing Complete">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Turing Complete
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>Turing Machine</strong> is a model for a machine</p>
+<p>A computer is <strong>Turing Complete</strong> if it can simulate all Turing Machines.</p>
+</div>
+</div>
+<section id="applied-combinators-and-modern-hardware" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="applied-combinators-and-modern-hardware"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Applied Combinators and modern hardware</h3>
+<p>Unfortunately it is not the case that using just these three combinators <code>S</code>, <code>K</code>, and <code>I</code> is a <em>fast</em> way to write practical programs. For example we saw we do not really need <code>I</code> because we can get the same behavior as <code>S K K</code>. But doing three operations instead of one is silly. Modern day CPUs therefore boast over a thousand additional instructions (called applied combinators) and GPUs use a few hundred each designed to better use the time and energy we have to achieve a computation.</p>
+<p>As another exercise you can invent counting, additions, binary numbers, decimal numbers and on and on. But those will be very slow. Instead you are better off adding many more combinators to your list to give yourself a solid start.</p>
+<div class="callout-tip example callout-example" title="Applied Combinator" data-callout-family="example">
+<p>In the Intel x86 instruction set there is a command to add two numbers. <code>ADD</code>. It takes the next to terms and adds them.</p>
+<ul>
+<li><code>ADD 3 7</code> yields <code>10</code>.</li>
+<li>Working from the inside-out, <code>ADD (ADD 3 7) 5</code> yields <code>ADD 10 5</code> which in turn yields <code>15</code>.</li>
+<li>Working from the outside in, <code>ADD (ADD 3 7) 5</code> gets stuck! Based on work from the outside we have not yet computed <code>ADD 3 7</code> and so the outside <code>ADD</code> is stuck waiting on that number before it can continue.</li>
+</ul>
+<p>Notice how the <code>ADD</code> operation is not as straight-forward as the <code>K</code> and <code>I</code> or even the <code>IF</code> combinator in that <code>ADD</code> really only makes sense when followed by numbers. This is why it got stuck when working outside-in instead of inside-out. It is striking that something as basic as adding can run into trouble based purely on how we ask the question. To get unstuck we would need to go into the design of the hardware and rewrite the order of operations. This highlights the difference between pure combinators like <span class="math inline">\(K\)</span> and applied combinators like <code>ADD</code>. This is what is known as an “Applied Combinator”.</p>
+</div>
+<div class="callout-tip example callout-example" title="Fixed-point combinator" data-callout-family="example">
+<p>A <strong>fixed-point combinator</strong> <span class="math inline">\(F\)</span> is one where <span class="math inline">\(F~g\)</span> yields <span class="math inline">\(g~(F~g)\)</span>. We call this a fixed-point because <span class="math inline">\(g\)</span> applied to <span class="math inline">\(F~g\)</span> yields the same result as <span class="math inline">\(F~g\)</span> itself, so the “point” <span class="math inline">\(F~g\)</span> is fixed. When introduced as an option for computation they give the programmer a way to have an operation applied to itself repeatedly in a process known as <strong>recursion</strong>. That is an essential power in modern programming so the ability to create such a combinator (or gate) is highly valuable. The mathematician <a href="https://en.wikipedia.org/wiki/Alonzo_Church">Alanzo Church (1903-1995)</a> found one such operator he called <span class="math inline">\(Y\)</span> and <a href="https://en.wikipedia.org/wiki/Alan_Turing">Alan Turing (1912-1954)</a> discovered another called <span class="math inline">\(\Theta\)</span>.</p>
+<blockquote class="blockquote">
+<p>There is a tech incubator launched in 2005 called the “<a href="https://www.ycombinator.com">Y Combinator</a>” which also hosts “Hacker News”, a website dedicated to articles and announcements on cutting edge technology.</p>
+</blockquote>
+</div>
+</section>
+</section>
+<section id="higher-computing-models" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="higher-computing-models"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Higher Computing Models</h2>
+<p>Many readers stop at “Turing Complete” and missunderstand this to mean every computer, given enough time and energy, can do all computations. This is misleading. Think of the job of a sound amplifier. Sounds waves are analog signals which means they use decimal numbers like <span class="math inline">\(\pi/4\)</span> and <span class="math inline">\(\sqrt{2}/2\)</span> which are both numbers that use an infinite number of decimal places. The amplifier does not seem to care. It takes in the signal and makes a new signal (also of infinite decimal places) that is louder. It is not possible to explain this simple task using finite strings and substitution rules on a Turing Machine. And yet, clearly sound amplifiers perform their operations without trouble.</p>
+<p>It is not only discrete versus analog that seems to separate levels of computing. Increasingly studies of brains and neural networks in cognitive science suggest to researchers that thinking in liveing organisms is not well described by Turing Machines. The subject of <strong>realizibility</strong> now explores that frontier. If that were not enough, not long after Turing’s work, the mathematician/logician Kleene discovered mathematical consequences that force their to be more computing models beyond what Turing had imagined. While it might have been guessed that Kleene’s higher computing models would also be interchangeable like Turing’s, that turned out to be false. When it comes to computing in its full generality, there really isn’t one computer to rule them all. It is only the most basic level of computing that is interchangeable.</p>
+<div class="callout-tip thm callout-thm" title="Kleene's higher computing models" data-callout-family="thm">
+
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Kleene's need for higher computing">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Kleene’s need for higher computing
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Kleene’s goal was to explain how it is possible to have a claim such as</p>
+<blockquote class="blockquote">
+<p>Proposition P: “There exists a number with some a fixed property.”</p>
+</blockquote>
+<p>where <span class="math inline">\(P\)</span> is true but <em>doesn’t have a proof</em>. That may sound impossible. Obviously if you have specific value <span class="math inline">\(c\)</span> that works, then you just have the you, or a computer, return <span class="math inline">\(c\)</span> as evidence for that property. It seemed that was the only way for such a proposition to be true. However, years earlier a mathemitician Hilbert had made a lot of claims about points existing in geometry that seemed to give no process to explaining what the point even was. And a few years later, the mathematician/logician Godel had shown that in any sufficiently robust theory (such as natural numbers, what we call “PA” for Peano Arithmetic) there are some properties <span class="math inline">\(P\)</span> which are true but are impossible to prove. Put together in the right way this mean there are some claims of the form “there exists a number <span class="math inline">\(x\)</span> with property <span class="math inline">\(P\)</span>” that are true but have knowable value <span class="math inline">\(c\)</span> for which <span class="math inline">\(P(c)\)</span> holds. Weird for sure, but lets not follow that tangent.</p>
+<p>What Kleene realized is that a proof is just a computation (back to our Curry-Howard-Lambek correspondence). And there is a way to turn anything that is true but not provable into something provable by moving to a more specific logic, “Con(PA)” in the case of natural numbers. So knowing that there is a logic that can prove the previously unprovable claim, there should be a computing model that can compute it. So Kleene built it.</p>
+<p>Note, once you build a more specific logic like Con(PA) there will be new Godel exceptions that are true but not provable. So you will need a Con(Con(PA)), and so on. Likewise we get larger and larger models of computing.</p>
+</div>
+</div>
+<p>A remarkable consequence of Kleene’s effort was the ability to produce a picture of undecideable problems. Through the work of Mandelbrot who invented fractals, nobel laurate Penrose who studied them, and the mathematicians Dude, and Braverman-Yampolsky were able to show that the whether or not a point lies in Julia set (the fractal below) is undecidable in a decimal number computing system. The ability to photograph what we don’t know is to this author far more remarkable than Event Horizon’s photographs of black holes. Bring the topic up with your friends in physics and write to me about how that interaction goes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../960px-Julia_set_(highres_01).jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Julia set fractal, Solkoll, Public Domian</figcaption>
+</figure>
+</div>
+<section id="applicative-structures" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="applicative-structures"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Applicative structures</h3>
+<p>Let us think of a computation as a collection of gates <span class="math inline">\(\mathcal{A}\)</span>, which can includes constants such as a gate the sets a voltage to 0, or a gate that sets a voltage to 1. A computation is to have some gate <span class="math inline">\(x\)</span> applies to some get <span class="math inline">\(y\)</span>, <span class="math display">\[
+x\cdot y  \text{ means apply gate $x$ to gate $y$}
+\]</span> For example, <code>I 0</code> yields <code>0</code> and <code>K 1 0</code>, understood as <code>(K 1) 0</code>, yields <code>1</code>.</p>
+<p>, or a gate that adds two voltages together. We can also include combinators like <span class="math inline">\(S\)</span>, <span class="math inline">\(K\)</span>, and <span class="math inline">\(I\)</span>. The collection of all such gates is called a <strong>universal computing tower</strong>. A universal computing tower is a collection of gates that can be combined to perform any computation that can be described by substitution of variables. In other words, it is a universal computing system, what we call <strong>Turing Complete</strong>.</p>
+<p>What we have actually said is that a computer that takes in a string of finite tokens and applies rules of substitutions is no different to providing gates <code>S</code>, <code>K</code>, and <code>I</code>. There however many examples of analog computing: decimal numbers inputs (which may have infinitely many decimal places) output other decimal numbers. Think of an amplifier on a sound system which takes in sound waves, makes them louder by altering the amplitude, and returns a new wave. There are also studies of neural networks and brains in cognitive science that do not sit comfortably in the Turing computational model because of a similar context where it is best to think of infinite sequences of data being modified to infinite sequences of output.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Deflating infinity">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Deflating infinity
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A reader like my younger self might point out that sound waves are moving a finite number of air molecules and thus are ultimately discrete finite problems. Therefore Turing computation is ultimately enough. My older wiser self would now answer that this misses the point.</p>
+<p>An analog computer (like an amplifier) can be built from a few gates (some gears or a few electronic parts). Meanwhile, a model of all the air molecules in a concert venue is so vast and chaotic that it would take a computer simulation with roughly as many transistors as air molecules to run. Such a system could never be built or even properly analyzed in theory. Even a digital amplifier will ultimately transfer the process from software to some devices that moves a speaker diaphragm as bulk analog instrument to move the quintillion-trillion molecules of air in a stadium. So the model of 2nd, and higher order computation is meant to capture the reality that we will need to explore and control computations that are not practically described as Turing machines.</p>
+<p>Scientist call these sort of separation of models “emergence” where the behavior at some scale becomes so much better explained by a simple model that return to its constituent parts is not useful. A theory that works at different scales is called a <strong>Gauge Theory</strong>, from the term for trains that work on differently spaced tracks. Computation is a Gauge theory, and Turing Complete computation is the lowest scale of this gauge.</p>
+</div>
+</div>
+<p>where computations are devised as recieving decimal numbers (which may go on forever) and outputing decimal numbers as their answer. Think by waves and singles vary between all decimal numbers (not a finite set of tokens) and neurologist and so the rules of substitution are not enough to describe the computations. In fact, there are many different ways to compute that are not Turing Complete. The Turing Machine is a very small family of computations.</p>
+<p>That is a very small family of computations. It is a misimpression to think that Turing Machines are the only way to compute. In fact, there are many other ways to compute that are not Turing Complete. For example, if we have a machine that takes in a string of finite tokens and applies rules of substitutions but also has the ability to take in an infinite string of tokens and apply rules of substitutions then we have a machine that is more powerful than a Turing Machine. This is known as <strong>second order universal computing</strong> and it is not uniquely universal. There are many different ways to achieve second order universal computing, each with its own set of rules and limitations.</p>
+<p>what any other with misimpression that everything about computation not takes place in a Turing Machine. In reality Turing Machines are successful at only a small family of computations. When we work with data that is analog (signals, waves, etc.) we do not have just counting numbers as input but instead we have such things as decimal numbers.</p>
+<p>Second order universal computing is not uniquely universal.</p>
+</section>
+</section>
+<section id="summary" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="summary"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Summary</h2>
+<ul>
+<li>Combinators are operations that can be applied to data.</li>
+<li>The <span class="math inline">\(K\)</span> combinator is a constant function that returns its first argument.</li>
+<li>The <span class="math inline">\(I\)</span> combinator is the identity function that returns its argument unchanged.</li>
+<li>The <span class="math inline">\(S\)</span> combinator allows for the application of two functions to the same argument and combines the results.</li>
+<li>The <span class="math inline">\(B\)</span> combinator behaves like function composition, applying one function to the output of another.</li>
+<li>The S, K, I combinators together are sufficient for universal computation.</li>
+<li>Applied combinators, like <code>ADD</code>, can be more efficient for specific tasks but may have limitations based on their context.</li>
+<li>Fixed-point combinators enable recursion by allowing a function to be applied to itself.</li>
+</ul>
+<hr>
+<div class="circuit this">
+
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

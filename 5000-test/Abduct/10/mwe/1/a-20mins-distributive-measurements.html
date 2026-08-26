@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>a-20mins-distributive-measurements – 5000 Years of Modern Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-a2a938b4dd5711f7a799c87bd16ba44c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+/*
+ * Quarto loads MathJax after this header.  Keep \text{...} in mathematical
+ * expressions in the document's native text face rather than MathJax's
+ * fallback math text face, whose metrics can make mixed text/math rows look
+ * vertically uneven.
+ */
+window.MathJax = {
+	chtml: {
+		mtextInheritFont: true
+	}
+};
+
+/* Circuit labels are inserted after Quarto's initial MathJax pass. Wait for
+ * startup, then typeset only the newly generated circuit region. */
+window.typesetDynamicMath = function (roots, attempts = 50) {
+	const targets = Array.from(roots || []).filter(Boolean);
+	if (!targets.length) return Promise.resolve();
+	const mathJax = window.MathJax;
+	if (mathJax?.startup?.promise) {
+		return mathJax.startup.promise
+			.then(() => mathJax.typesetPromise?.(targets))
+			.catch(() => undefined);
+	}
+	if (typeof mathJax?.typesetPromise === 'function') {
+		return mathJax.typesetPromise(targets).catch(() => undefined);
+	}
+	if (attempts <= 0) return Promise.resolve();
+	return new Promise(resolve => {
+		setTimeout(() => resolve(window.typesetDynamicMath(targets, attempts - 1)), 100);
+	});
+};
+</script>
+<script>
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/study-time.js' },
+		{ src: 'scripts/book-enhancements.js' },
+		{ src: 'scripts/link-icons.js' },
+		{ src: 'scripts/topic-graph.js' },
+		{ src: 'scripts/inline-compass.js' },
+		{ src: 'scripts/toc-compass.js' },
+		{ src: 'scripts/navigation-score.js' },
+		{ src: 'scripts/sidebar-circuit-window.js' },
+		{ src: 'assets/quick-check.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/sidebar-circuit-window.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/inline-compass.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/topic-graph.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/styles/circuit-content.css">
+<link rel="stylesheet" href="../../../../quarto-runtime/assets/quick-check.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      5000 Years of Modern Computing
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../../../">5000 Years of Modern Computing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../Deduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../Induct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../Abduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../../../TopicMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic Map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#a" id="toc-a" class="nav-link active" data-scroll-target="#a"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *12.1.a</a>
+  <ul class="collapse">
+  <li><a href="#an-illusion-with-a-lesson" id="toc-an-illusion-with-a-lesson" class="nav-link" data-scroll-target="#an-illusion-with-a-lesson"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *An illusion with a Lesson</a></li>
+  <li><a href="#explanation-of-the-puzzle" id="toc-explanation-of-the-puzzle" class="nav-link" data-scroll-target="#explanation-of-the-puzzle"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Explanation of the puzzle</a></li>
+  <li><a href="#integral-measurements-the-details-and-examples" id="toc-integral-measurements-the-details-and-examples" class="nav-link" data-scroll-target="#integral-measurements-the-details-and-examples"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Integral measurements: The details and Examples</a></li>
+  <li><a href="#measures-measurable-sets" id="toc-measures-measurable-sets" class="nav-link" data-scroll-target="#measures-measurable-sets"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Measures &amp; Measurable sets</a></li>
+  <li><a href="#example-measurements" id="toc-example-measurements" class="nav-link" data-scroll-target="#example-measurements"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Example Measurements</a></li>
+  <li><a href="#example-1-lebesgues-interval-distance-measurement-latex-." id="toc-example-1-lebesgues-interval-distance-measurement-latex-." class="nav-link" data-scroll-target="#example-1-lebesgues-interval-distance-measurement-latex-."><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 1**: Lebesgue’s Interval Distance measurement <img src="https://colostate.instructure.com/equation_images/%255Clambda?scale=1.125" class="img-fluid" alt="LaTeX: ">.</a></li>
+  <li><a href="#example-2-lebesgues-area-measure-latex" id="toc-example-2-lebesgues-area-measure-latex" class="nav-link" data-scroll-target="#example-2-lebesgues-area-measure-latex"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 2**: Lebesgue’s Area Measure <img src="https://colostate.instructure.com/equation_images/%255Clambda%255Ctimes%2520%255Clambda?scale=1.125" class="img-fluid" alt="LaTeX: "></a></li>
+  <li><a href="#example-3-counting-measure-latex" id="toc-example-3-counting-measure-latex" class="nav-link" data-scroll-target="#example-3-counting-measure-latex"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 3:** Counting Measure <img src="https://colostate.instructure.com/equation_images/%255Czeta?scale=1.125" class="img-fluid" alt="LaTeX: "></a></li>
+  <li><a href="#example-4-kolmogorovs-probability-measures-latex-a-coin-flip-example" id="toc-example-4-kolmogorovs-probability-measures-latex-a-coin-flip-example" class="nav-link" data-scroll-target="#example-4-kolmogorovs-probability-measures-latex-a-coin-flip-example"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 4:** Kolmogorov’s Probability Measures <img src="https://colostate.instructure.com/equation_images/%255Ckappa?scale=1.125" class="img-fluid" alt="LaTeX: ">, a coin flip example</a></li>
+  <li><a href="#first-flip-is-heads" id="toc-first-flip-is-heads" class="nav-link" data-scroll-target="#first-flip-is-heads"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> First flip is heads</a></li>
+  <li><a href="#first-flip-is-tails-second-heads" id="toc-first-flip-is-tails-second-heads" class="nav-link" data-scroll-target="#first-flip-is-tails-second-heads"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> First flip is tails, second heads</a></li>
+  <li><a href="#every-even-flip-is-tails" id="toc-every-even-flip-is-tails" class="nav-link" data-scroll-target="#every-even-flip-is-tails"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Every even flip is tails</a></li>
+  <li><a href="#disjoint-events" id="toc-disjoint-events" class="nav-link" data-scroll-target="#disjoint-events"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Disjoint events</a></li>
+  <li><a href="#overlapping-events" id="toc-overlapping-events" class="nav-link" data-scroll-target="#overlapping-events"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Overlapping events</a></li>
+  <li><a href="#example-5-gaussians-probability-measure-latex" id="toc-example-5-gaussians-probability-measure-latex" class="nav-link" data-scroll-target="#example-5-gaussians-probability-measure-latex"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 5**: Gaussian’s Probability Measure <img src="https://colostate.instructure.com/equation_images/%255Cgamma?scale=1.125" class="img-fluid" alt="LaTeX: "></a></li>
+  <li><a href="#calculations-implications" id="toc-calculations-implications" class="nav-link" data-scroll-target="#calculations-implications"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Calculations &amp; Implications</a></li>
+  <li><a href="#quick-check" id="toc-quick-check" class="nav-link" data-scroll-target="#quick-check"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Quick Check</a></li>
+  <li><a href="#fill-in-the-blank" id="toc-fill-in-the-blank" class="nav-link" data-scroll-target="#fill-in-the-blank"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Fill-in-the-Blank</a></li>
+  <li><a href="#quick-check-1" id="toc-quick-check-1" class="nav-link" data-scroll-target="#quick-check-1"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Quick Check</a></li>
+  <li><a href="#what-else-can-be-measured" id="toc-what-else-can-be-measured" class="nav-link" data-scroll-target="#what-else-can-be-measured"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> What else can be measured?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+
+
+
+
+<p>10.1.a (20mins): Distributive Measurements</p>
+<section id="a" class="level2" data-fa-icon="fa-solid fa-book-open">
+<h2 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="a"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *12.1.a</h2>
+<p>** Measurements</p>
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/10-Measurement-Distributes.png" class="img-fluid" alt="A measuring stick."> In a ruler the whole is the sum of its parts… or is it? Sometimes illusions deserve attention.</p>
+<section id="an-illusion-with-a-lesson" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="an-illusion-with-a-lesson"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *An illusion with a Lesson</h3>
+<p>There is an illusion so convincing it has earned its own Wikipedia <a href="https://en.wikipedia.org/wiki/Missing_square_puzzle">article.</a> It takes a triangle, cuts it into polygons, and rearranges them. Yet once re-arranged, the parts no longer cover the original area! These diagrams of curtesy of Original: <a href="https://commons.wikimedia.org/w/index.php?curid=127930605">CC-BY Krauss</a>. </p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Missing_square_puzzle-AB.svg" class="img-fluid figure-img"></p>
+<figcaption>The missing area puzzle.</figcaption>
+</figure>
+</div>
+<p><strong>Does the surprise you? </strong>While this is an illusion (explained below) the reason it works as a brain teaser is that we are conditioned to understand area does not get lost amongst the parts. Our mind hunts for an explanation. This should not be possible, we believe.</p>
+</section>
+<section id="explanation-of-the-puzzle" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="explanation-of-the-puzzle"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Explanation of the puzzle</h3>
+<p>The main clue to offer to the illusion is to point out that the first triangle is not actually a triangle, but a pentagon. So the lower triangle has slightly different angles than the upper one. So put together they do not make one large triangle but a polygon. You can detect this better if we exaggerate the difference in angle.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Missing_square_puzzle_simple.svg" class="img-fluid figure-img"></p>
+<figcaption>Missing square puzzle</figcaption>
+</figure>
+</div>
+<p>So what appears as a hypotenuse of a large triangle is in fact dented, and thus looses a small amount of area which our eyes fail to detect. When we rearrange the parts we do not see the an area disappear. In fact the opposite. By rearranging the parts we gather the missing area form the dent into one place where its far more noticeable. Area, as we think of it, truly is the sum of its parts.</p>
+</section>
+<section id="integral-measurements-the-details-and-examples" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="integral-measurements-the-details-and-examples"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Integral measurements: The details and Examples</h3>
+<p>So as seen in the video the world around us has dozens of natural way to glue data together. Whether that be a sum like (x+y) or a disjoint union (XY), addition of resistance, pressure, sales prices and so much more. These quite often behave in just the way the need for the whole to be the sum of its parts. And it introduces an opportunity to use common stories of length and area as metaphors for the often complicated seeming calculations we find ourselves doing. So for the next three parts we explore this technology. We begin by formally declare what is a measurement.</p>
+<p>Recall that subsets (E) are a membership test (: ), denoted (xE), which decide if when elements are in the subset. The nuance of which logical context we are in changes what counts as a decision, e.g.&nbsp;classical we have 2 options true of false and so we often write (2) instead of () but in a computer Prop will be the data and in practice Prop may have some intermediates cases like missing evidence or contradictory evidence for membership. The type of all subsets of () is denoted (^{}).</p>
+</section>
+<section id="measures-measurable-sets" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="measures-measurable-sets"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Measures &amp; Measurable sets</h3>
+<p>Let () be a set of data. A <strong>(positive)measure</strong> on () is function defined on various subsets called “<strong>measurable subsets</strong>” with the quality</p>
+<ul>
+<li><strong>Whole is the sum of its parts</strong>. Given a possibly unending list of measurable subsets (X_1,X_2,) then the union is measurable. In fact, if they are pairwise disjoint (no two have a point in common) then their measure is precisely</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cmu(X_1%2520%255Csqcup%2520X_2%255Csqcup%2520%255Ccdots)%2520%253D%2520%255Cmu(X_1)%2520%252B%2520%255Cmu(X_2)%252B%255Ccdots%255Cin%2520%255B0%252C%255Cinfty%255D?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: (X_1 X_2) = (X_1) + (X_2)+</figcaption>
+</figure>
+</div>
+<ul>
+<li><strong>The measuring of nothing is 0.</strong> The empty subset ({}=) should be measurable with measure (()=0).</li>
+<li><strong>Complements are measurable</strong>. If a subset (X) is measurable then so is its complement (-X={X}).</li>
+</ul>
+<p>If we want to think of () in function terms then</p>
+<ul>
+<li>The domain is the power set <img src="https://colostate.instructure.com/equation_images/%255Ctext%257BProp%257D%255E%257B%255COmega%257D?scale=1.png" class="img-fluid" alt="LaTeX: ^{}"> (or simply <img src="https://colostate.instructure.com/equation_images/2%255E%257B%255COmega%257D?scale=1.png" class="img-fluid" alt="LaTeX: 2^{}"> in classical mathematics).</li>
+<li>The codomain is <img src="https://colostate.instructure.com/equation_images/%255B0%252C%255Cinfty%255D%255E%253F%253D%255Ctext%257Bdecimal%2520number%257D%252C%2520%255Cpm%255Cinfty%252C%255Ctext%257B%2520or%2520%257D%2520%255Ctext%257Bnon-measurable%257D?scale=1.png" class="img-fluid" alt="LaTeX: [0,]^?=, , ">.</li>
+</ul>
+<p>We may write <img src="https://colostate.instructure.com/equation_images/%255Cmu%253A%255Ctext%257BProp%257D%255E%257B%255COmega%257D%255Cto%2520%255B0%252C%255Cinfty%255D%255E%253F?scale=1.png" class="img-fluid" alt="LaTeX: :^{}^?"> or in software something akin to <code>def measure( as : Collection[A] ) : Float?</code> the precise collection may be something like <code>List</code>, <code>Array</code>, <code>Set</code>, <code>Tree</code>, <code>HashTable</code> etc. and the name of the function will typically depicts its role, e.g.&nbsp;<code>length</code>, <code>weight</code>, <code>word_count</code>, etc.</p>
+</section>
+<section id="example-measurements" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-measurements"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Example Measurements</h3>
+</section>
+<section id="example-1-lebesgues-interval-distance-measurement-latex-." class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-1-lebesgues-interval-distance-measurement-latex-."><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 1**: Lebesgue’s Interval Distance measurement <img src="https://colostate.instructure.com/equation_images/%255Clambda?scale=1.125" class="img-fluid" alt="LaTeX: ">.</h3>
+<p>The most common measurement by far is to consider a line interval <img src="https://colostate.instructure.com/equation_images/I?scale=1.png" class="img-fluid" alt="LaTeX: I"> from a point <img src="https://colostate.instructure.com/equation_images/x_0?scale=1.png" class="img-fluid" alt="LaTeX: x_0"> to a point <img src="https://colostate.instructure.com/equation_images/x_1?scale=1.png" class="img-fluid" alt="LaTeX: x_1">. This actually has many flavors including:</p>
+<p>![LaTeX: \begin{aligned} (x_0,x_1) &amp; = { xx_0xx_1} &amp; (x_0,x_1] &amp; = { xx_0xx_1}\ <a href="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A(x_0%252Cx_1)%2520%2526%2520%253D%2520%255C%257B%2520x%255Cmid%2520x_0%255Clt%2520x%255Clt%2520x_1%255C%257D%2520%2526%2520(x_0%252Cx_1%255D%2520%2526%2520%253D%2520%255C%257B%2520x%255Cmid%2520x_0%255Clt%2520x%255Cleq%2520x_1%255C%257D%255C%255C%250A%255Bx_0%252Cx_1)%2520%2526%2520%253D%2520%255C%257B%2520x%255Cmid%2520x_0%255Cleq%2520x%255Clt%2520x_1%255C%257D%2520%2526%2520%255Bx_0%252Cx_1%255D%2520%2526%2520%253D%2520%255C%257B%2520x%255Cmid%2520x_0%255Cleq%2520x%255Cleq%2520x_1%255C%257D%250A%255Cend%257Baligned%257D?scale=1">x_0,x_1) &amp; = { xx_0xx_1} &amp; [x_0,x_1] &amp; = { xx_0xx_1} \end{aligned}</a></p>
+<p>Whether you include the final point at the end of an interval doesn’t mean much to the length of the interval, after all a point has negligible thickness in most context. So to each of these intervals we assign a single measurement which is so important that instead of () it gets its own special name (m) and is called the Lebesgue measure.</p>
+<p>Each of the above intervals we assign “<strong>Lebesgue Measure</strong>”: <img src="https://colostate.instructure.com/equation_images/%255Clambda(I)%2520%253D%2520%257C%2520x_1-x_0%2520%257C?scale=1.png" class="img-fluid" alt="LaTeX: (I) = | x_1-x_0 |"></p>
+<p>[Strictly speaking by convention intervals should have (x_0x_1) so that the difference is never negative and the absolute value is unnecessary, but because we want to emphasize the measure is positive we have added it for extra clarity.]</p>
+<p>Now this is not yet a measure until we allow for multiple disjoint intervals <img src="https://colostate.instructure.com/equation_images/I_1%255Csqcup%2520I_2%255Csqcup%255Ccdots?scale=1.png" class="img-fluid" alt="LaTeX: I_1I_2"></p>
+<p>General Unsigned Distance “<strong>Lebesgue Measure</strong>”: <img src="https://colostate.instructure.com/equation_images/%255Clambda(I_1%255Csqcup%2520I_2%255Csqcup%2520%255Ccdots%2520)%2520%253D%2520%255Csum_i%2520%255Clambda(I_i)%2520%253D%2520%255Clambda%2520(I_1)%252B%255Clambda(I_2)%252B%255Ccdots%2520?scale=1.png" class="img-fluid" alt="LaTeX: (I_1I_2) = _i (I_i) = (I_1)+(I_2)+"></p>
+<p>So to measure the shaded regions below we first measure the disjoint parts, <img src="https://colostate.instructure.com/equation_images/%255Clambda(I_1)%253D%257C(-1.5)-(-3)%257C%253D1.5?scale=1" class="img-fluid" alt="LaTeX: (I_1)=|(-1.5)-(-3)|=1.5">, <img src="https://colostate.instructure.com/equation_images/%255Clambda(I_2)%253D%257C2-1%257C%253D1?scale=1.png" class="img-fluid" alt="LaTeX: (I_2)=|2-1|=1">, and add them together to get <img src="https://colostate.instructure.com/equation_images/%255Clambda(I_1%255Csqcup%2520I_2)%253D%255Clambda(I_1)%252B%255Clambda(I_2)%253D1.5%252B1%253D2.5?scale=1" class="img-fluid" alt="LaTeX: (I_1I_2)=(I_1)+(I_2)=1.5+1=2.5">.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Borel-Measure.png" class="img-fluid figure-img"></p>
+<figcaption>Number line with blue shading between -3 and -1.5 and red shading between 1 and 2.</figcaption>
+</figure>
+</div>
+<hr>
+<p>As a weird quirk in history, the sets that can be measured as intervals are called “Borel sets” and they are “Lebesgue measurable”. Both these mathematicians made great contributions to the details of measurement. But if we are honest, this measurement was known to stone masons and carpenters and perhaps even some species of dogs long before their involvement. So while the honor is appropriate don’t let the names let you think it is complicated idea.</p>
+</section>
+<section id="example-2-lebesgues-area-measure-latex" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-2-lebesgues-area-measure-latex"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 2**: Lebesgue’s Area Measure <img src="https://colostate.instructure.com/equation_images/%255Clambda%255Ctimes%2520%255Clambda?scale=1.125" class="img-fluid" alt="LaTeX: "></h3>
+<p>The concept of distance generalizes to area, and then volumes. Obviously the measure of a rectangle is width times height.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Borel-D2-3.png" class="img-fluid figure-img"></p>
+<figcaption>2-D measure of a rectangle and an oval.</figcaption>
+</figure>
+</div>
+<p>If we expect a measure then the total shaded area is the sum of the disjoint shaded areas, i.e.&nbsp;our square (I_1) in blue on the left and our ellipse (I_2) on the right. We will call this the Lebesque measure as well, only now in 2-D. So what is this measure? The shaded rectangle is partitioned into 9 blue sub-squares. So the whole being the sum of its parts, we should declare that measure to be 9.</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520(%255Clambda%255Ctimes%2520%255Clambda)%255CBig(%2520(a%252Cb)%255Ctimes%2520(c%252Cd)%2520%255CBig)%2520%253D%2520%255Clambda%255CBig((a%252Cb)%255CBig)%2520%255Ccdot%2520%255Clambda%255CBig(%2520(c%252Cd)%255CBig)%253D%257Cb-a%257C%255Ccdot%2520%257Cd-c%257C?scale=1.png" class="img-fluid" alt="LaTeX: ()( (a,b)(c,d) ) = ((a,b)) ( (c,d))=|b-a||d-c|">.</p>
+<p>This is part of general strategy we can combine two measures () and () as a product.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520(%255Cmu%255Ctimes%2520%255Cnu)(%2520I%255Ctimes%2520J)%2520%2520%253D%2520%255Cmu(I)%255Ctimes%2520%255Cnu(J)?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: ()( IJ) = (I)(J)</figcaption>
+</figure>
+</div>
+<p>Now the ellipse posses a problem. So far we have only considered rectangles as having area. But this is not a rectangle. Yet we do get some clear clues about the way to make an approximation of the area. We can count rectangles that approximate the ellipse. That number here is at least 4 and at most 8. We could get a better estimate by looking at a finer grid and eventually looking for a limit.</p>
+<hr>
+<p><strong>Warning:</strong> When don’t we have a measure? Suppose instead of area we looked at the picture above and asked to measure “how tall is the shaded region?”</p>
+<ul>
+<li><strong>Option 1.</strong> Suppose we understand this sentence as asking how many boxes high is enough to fit both pictures, and we can count the blue box as 3 high and the ellipse as 2. So 3 is enough. If we did this we would be answering the question correctly but also demonstrating we do not have a measure. That is the whole has measure 3, and the parts have measures 3 and 2 but (3+2). If we really wanted to include this as a measure then we would need to revisit the idea that the two shapes are disjoint. While they are disjoint in the xy-plane they are not disjoint in the y direction alone. And so in that sense this is not a violation of measurement rules, just a misunderstanding about the meaning of disjoint for this case. An “illusion” as we have been warned about already.</li>
+<li><strong>Option 2</strong>. An alternative reading of this question is to ask if we stack up the shapes how tall would they be? Here we would in fact add 3 to 2 to get 5. This would be a measure as the whole would be the sum of the parts.</li>
+</ul>
+<p>It is crucially important to be precise in our language of measurement. Many times a miscommunication or imprecise phrasing can lead to errors in measurement.</p>
+</section>
+<section id="example-3-counting-measure-latex" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-3-counting-measure-latex"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 3:** Counting Measure <img src="https://colostate.instructure.com/equation_images/%255Czeta?scale=1.125" class="img-fluid" alt="LaTeX: "></h3>
+<p>Given (E), the number of integers in (E) is the counting measure. As formula:</p>
+<p>[ (E) := |E| ]</p>
+<p>Notice this often does take different values on intervals</p>
+<p><span class="math display">\[
+\begin{aligned}
+\zeta\Big((0,1)\Big) &amp;= |\{n\in\mathbb{Z}\mid 0&lt;n&lt;1\}| = |\varnothing| = 0 \\
+\zeta\Big([0,1)\Big) &amp;= |\{n\in\mathbb{Z}\mid 0\leq n&lt;1\}| = |\{0\}| = 1 \\
+\zeta\Big((0,1]\Big) &amp;= |\{n\in\mathbb{Z}\mid 0&lt;n\leq 1\}| = |\{1\}| = 1 \\
+\zeta\Big([0,1]\Big) &amp;= |\{n\in\mathbb{Z}\mid 0\leq n\leq 1\}| = |\{0,1\}| = 2
+\end{aligned}
+\]</span></p>
+<p>Some common places to encounter a counting measure like this include:</p>
+<ul>
+<li>Counting the number of steps in a loop, e.g.&nbsp;<code>for i in [a...b]</code> Use <img src="https://colostate.instructure.com/equation_images/%255Czeta(%255Ba%252Cb%255D)?scale=1.png" class="img-fluid" alt="LaTeX: ([a,b])">.</li>
+<li>Counting the number of steps in a loop, e.g.&nbsp;<code>for i in [a...b] step 2</code> Use <img src="https://colostate.instructure.com/equation_images/%255Czeta(%255C%257B%25202m%252Bj%2520%255Cmid%25200%255Cleq%2520m%255Cleq%2520b-a%255C%257D)?scale=1.png" class="img-fluid" alt="LaTeX: ({ 2m+j mb-a})">.</li>
+<li>You need to count steps of two nested loops, use <img src="https://colostate.instructure.com/equation_images/%255Czeta%255Ctimes%2520%255Czeta?scale=1.png" class="img-fluid" alt="LaTeX: ">.</li>
+</ul>
+</section>
+<section id="example-4-kolmogorovs-probability-measures-latex-a-coin-flip-example" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-4-kolmogorovs-probability-measures-latex-a-coin-flip-example"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 4:** Kolmogorov’s Probability Measures <img src="https://colostate.instructure.com/equation_images/%255Ckappa?scale=1.125" class="img-fluid" alt="LaTeX: ">, a coin flip example</h3>
+<p>Suppose you have a coin with Heads H and tails T. The simplest thing to measure is the probability of the two individual outcomes. Here space (={H,T}) and the measure is the uniform measure: <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Ckappa%253D%255Cfrac%257B%257CX%257C%257D%257B%257C%255COmega%257C%257D?scale=1.png" class="img-fluid" alt="LaTeX: =">. That is:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Ckappa%2520(%255C%257B%255C%257D)%2520%2526%2520%253D%25200%2520%2520%2526%2520%255Ckappa(%255C%257BH%255C%257D)%2520%2526%2520%253D%255Cfrac%257B1%257D%257B2%257D%2520%2526%2520%255Ckappa(%255C%257BT%255C%257D)%2520%2526%2520%253D%2520%255Cfrac%257B1%257D%257B2%257D%2520%2526%2520%255Ckappa(%255C%257BH%252CT%255C%257D)%253D%255Cfrac%257B2%257D%257B2%257D%253D1.%250A%255Cend%257Baligned%257D?scale=1" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+<p>Now the more interesting probability is to continue coin flips and see what patterns emerge.</p>
+</section>
+<section id="first-flip-is-heads" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="first-flip-is-heads"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> First flip is heads</h3>
+<p>.The first flip is heads: ({EE_1=H}). This covers half the options and its measure is 1/2.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/tikz_picture_1-1.png" class="img-fluid figure-img"></p>
+<figcaption>Probability tree of coin flips with the branches that start with heads highlighted.</figcaption>
+</figure>
+</div>
+</section>
+<section id="first-flip-is-tails-second-heads" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="first-flip-is-tails-second-heads"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> First flip is tails, second heads</h3>
+<p>The first flip is tails and second flip is heads: ({EE_1=T, E_2=H}). This covers 1/4 of the options and its measure is 1/4.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/tikz_picture_2.png" class="img-fluid figure-img"></p>
+<figcaption>Probability tree of coin flips with the branches that start with tails and then heads highlighted.</figcaption>
+</figure>
+</div>
+</section>
+<section id="every-even-flip-is-tails" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="every-even-flip-is-tails"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Every even flip is tails</h3>
+<p>Every even flip is tails: (C={EE_{2n}=T}).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/tikz_picture_3.png" class="img-fluid figure-img"></p>
+<figcaption>Probability of coin flips with branches highlighted if every even flip is tails.</figcaption>
+</figure>
+</div>
+<p>As flips continue the ones that survive are spread out and do not form a customary length. So the right measure here has to come from our understanding of probability laws instead. We can talk of this measure by considering the limit of the proportion, which decreases by 2 every time we reach an even flip (because only half of those are T). In fact, while somewhat boring to do by hand, a computer can just move the symbols around according to the formal rules to get the same answer.</p>
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Ctext%257BProb%257D(%255C%257BE%255Cmid%2520%255Cforall%2520n.(E_%257B2n%257D%253DT)%255C%257D)%2520%2526%2520%253D%255Ctext%257BProb%257D%255Cleft(%255Cbigcap_%257Bn%257D%2520%255C%257BE%255Cmid%2520E_%257B2n%257D%253DT%255C%257D%255Cright)%255C%255C%250A%2520%2526%2520%253D%2520%255Cprod_%257Bn%257D%2520%255Ctext%257BProb%257D(%255C%257BE%255Cmid%2520E_%257B2n%257D%253D0%255C%257D)%2520%2526%2520%255Ctext%257BConditional%2520Probability%257D%255C%255C%250A%2520%2526%2520%253D%2520%255Cprod_%257Bn%253D0%257D%255E%255Cinfty%2520%255Cfrac%257B1%257D%257B2%257D%2520%253D%2520%255Clim_%257Bk%255Cto%2520%255Cinfty%257D%255Cprod_%257Bn%253D1%257D%255Ek%2520%255Cfrac%257B1%257D%257B2%257D%255C%255C%250A%2526%2520%253D%2520%255Clim_%257Bk%255Cto%2520%255Cinfty%257D%255Cfrac%257B1%257D%257B2%255Ek%257D%250A%2520%253D0%250A%255Cend%257Baligned%257D?scale=1" class="img-fluid" alt="LaTeX:">.</p>
+</section>
+<section id="disjoint-events" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="disjoint-events"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Disjoint events</h3>
+<p>Disjoint events in probability add their probabilities. This the same rule as measures. The following illustration with coin flips demonstrates this.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Probability-Disjoint.png" class="img-fluid figure-img"></p>
+<figcaption>Coin flips with two independent events. The blue start with heads, the red begin tails-heads.</figcaption>
+</figure>
+</div>
+<p>We can turn this measurement over to computers.</p>
+<ul>
+<li>(A={EE_1=H}) is the set of coin flips where the first flip lands H.</li>
+<li>(B={EE_1=T E_{2}=H}) is the set of coin flips where the first flip is T and the second flip lands H.</li>
+</ul>
+<p>Notice (AB={}) (because the first flip cannot be both heads and tails). So these two are disjoint.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Ctext%257BProb%257D(A%255Csqcup%2520B)%2520%2520%2526%2520%253D%2520%255Ctext%257BProb%257D(A)%252B%255Ctext%257BProb%257D(B)%255C%255C%250A%2520%2526%2520%253D%2520%255Ctext%257BProb%257D(E_1%253DH)%2520%252B%2520%255Ctext%257BProb%257D(E_%257B1%257D%253DT)%255Ccdot%2520%255Ctext%257BProb%257D(E_2%253DH)%255C%255C%250A%2520%2526%253D%2520%255Cfrac%257B1%257D%257B2%257D%2520%252B%255Cfrac%257B1%257D%257B2%257D%255Ccdot%2520%255Cfrac%257B1%257D%257B2%257D%2520%253D%2520%2520%255Cfrac%257B3%257D%257B4%257D%250A%255Cend%257Baligned%257D%25C2%25A0?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+</section>
+<section id="overlapping-events" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="overlapping-events"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Overlapping events</h3>
+<p>Non-disjoint sets measures are not directly defined. But probabilities are not just any measure, and these have a solution directly.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/Probability-Overlap.png" class="img-fluid figure-img"></p>
+<figcaption>Overlapping events cannot be measured as their sum because they are not disjoint.</figcaption>
+</figure>
+</div>
+<p>This would be a good place to pause and notice the essential role of disjoint unions. Suppose we used (C={EE_2=T}) instead of (B). Now</p>
+<p>(AC ={EE_1=H, E_2=T})</p>
+<p>So now (A) and (C) are not disjoint, and this affects our probability measure</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cbegin%257Baligned%257D%250A%255Ctext%257BProb%257D(A%255Ccup%2520C)%2520%2520%250A%2526%2520%253D%2520%255Ctext%257BProb%257D(%255C%257BE%255Cmid%2520E_1%253DH%2520%255Ctext%257B%2520or%2520%257DE_2%253DT%255C%257D)%255C%255C%250A%2526%2520%253D%2520%255Ctext%257BProb%257D(%255C%257BE%255Cmid%2520E_1%253DH%255C%257D%255Csqcup%2520%255C%257B%2520E%255Cmid%2520E_1%253DT%252C%2520E_2%253DT%255C%257D)%255C%255C%250A%2526%2520%253D%2520%255Cfrac%257B1%257D%257B2%257D%252B%255Cfrac%257B1%257D%257B4%257D%253D%255Cfrac%257B3%257D%257B4%257D%255C%255C%250A%255Ctext%257BProb%257D(A)%252B%255Ctext%257BProb%257D(C)%2520%2526%2520%253D%2520%255Cfrac%257B1%257D%257B2%257D%252B%255Cfrac%257B1%257D%257B2%257D%253D1%255Cneq%2520%255Cfrac%257B3%257D%257B4%257D%250A%255Cend%257Baligned%257D%25C2%25A0?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX:</figcaption>
+</figure>
+</div>
+<p>So be careful to check on the disjoint condition when using measures and if measures alone are not enough information, look at your context to see something else will help.</p>
+</section>
+<section id="example-5-gaussians-probability-measure-latex" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-5-gaussians-probability-measure-latex"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example 5**: Gaussian’s Probability Measure <img src="https://colostate.instructure.com/equation_images/%255Cgamma?scale=1.125" class="img-fluid" alt="LaTeX: "></h3>
+<p>Recall the second distribution for probability was useful when data had a target value but would wobble off target with some predictable variation. This was known as Gaussian distribution. See more here <a href="$WIKI_REFERENCE$/pages/g06ac86d31a935d36d8af2106169e0ce9">Probability unit</a>. The <strong>Gaussian Measure </strong>applies to decimal numbers (x) and measures them on the “Bell curve” by the following formula.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cgamma(X)%2520%253D%2520%255Cfrac%257B1%257D%257B%255Csigma%2520%255Csqrt%257B2%255Cpi%257D%257D%2520e%255E%257B-%255Cfrac%257B1%257D%257B2%257D%255Cleft(%255Cfrac%257Bx-%255Cmu%257D%257B%255Csigma%257D%255Cright)%255E2%257D?scale=1.png" class="img-fluid figure-img"></p>
+<figcaption>LaTeX: (X) = e<sup>{-()</sup>2}</figcaption>
+</figure>
+</div>
+<p>where () is the average value “center of the bell curve” (not a measure!) and () is the standard deviation (how wide the bell is). Below we plot the curve for a bell with deviation () and mean ().</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="$IMS-CC-FILEBASE$/Uploaded Media 2/desmos-graph-2-1.png" class="img-fluid figure-img"></p>
+<figcaption>A bell curve centered at mean 0 with deviation 1.</figcaption>
+</figure>
+</div>
+<p>For most people it is not important that you memorize this formula, but notice it is qualitatively different from both the distance and uniform measures.</p>
+</section>
+<section id="calculations-implications" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="calculations-implications"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Calculations &amp; Implications</h3>
+<p>Suppose that () is a positive measure. Then all of the following are true.</p>
+<ol type="1">
+<li>Bigger subsets get bigger measures: If <img src="https://colostate.instructure.com/equation_images/A%255Csubset%2520B?scale=1.png" class="img-fluid" alt="LaTeX: AB"> and both are measurable then <img src="https://colostate.instructure.com/equation_images/%255Cmu(A)%255Cleq%2520%255Cmu(B)?scale=1.png" class="img-fluid" alt="LaTeX: (A)(B)">.</li>
+<li>If you steadily approximate a measure from below you will reach the measure. If <img src="https://colostate.instructure.com/equation_images/A_1%255Csubset%2520A_2%255Csubset%255Ccdots?scale=1.png" class="img-fluid" alt="LaTeX: A_1A_2"> are all measurable then <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cmu%255CBig(%255Cbigcup_i%2520A_i%255CBig)%253D%255Clim_%257Bi%255Cto%255Cinfty%257D%2520%255Cmu(A_i)%253D%255Csup_%257Bi%257D%2520%255Cmu(A_i)?scale=1.png" class="img-fluid" alt="LaTeX: (i A_i)={i} (A_i)=_{i} (A_i)">.</li>
+<li>If you steadily approximate a finite measure from above you will reach it. If <img src="https://colostate.instructure.com/equation_images/A_1%255Csupset%2520A_2%255Csupset%255Ccdots?scale=1.png" class="img-fluid" alt="LaTeX: A_1A_2"> are all measurable and <img src="https://colostate.instructure.com/equation_images/%255Cinfty%255Cgt%2520%255Cmu(A_1)?scale=1.png" class="img-fluid" alt="LaTeX: (A_1)"> then <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Cmu%255CBig(%255Cbigcap_i%2520A_i%255CBig)%253D%255Clim_%257Bi%255Cto%255Cinfty%257D%2520%255Cmu(A_i)%253D%255Cinf_i%2520%255C%257B%255Cmu(A_i)%255C%257D?scale=1.png" class="img-fluid" alt="LaTeX: (i A_i)={i} (A_i)=_i {(A_i)}">.</li>
+</ol>
+<section id="example-calculation-of-measures." class="level4" data-fa-icon="fa-solid fa-book-open">
+<h4 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="example-calculation-of-measures."><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> Example Calculation of Measures.</h4>
+<ul>
+<li>Using the Lebesgue interval measure () from above, to compute (((1,3)) and measure this as (((1,4])=4-1=3).</li>
+<li>Using the Lebesgue interval measure () from above, to compute (({1})) first find a way to write this as an interval, e.g.&nbsp;([1,1]). Then (([1,1])=|1-1|=0)</li>
+<li><img src="https://colostate.instructure.com/equation_images/%255Cmu(E)%253D7?scale=1.png" class="img-fluid" alt="LaTeX: (E)=7"> and <img src="https://colostate.instructure.com/equation_images/%255Cmu(F)%253D8?scale=1.png" class="img-fluid" alt="LaTeX: (F)=8"> so is <img src="https://colostate.instructure.com/equation_images/%255Cmu(E%255Ccup%2520F)%255Cgeq%25208?scale=1.png" class="img-fluid" alt="LaTeX: (EF)">? Well since <img src="https://colostate.instructure.com/equation_images/F%255Csubset%2520E%255Ccup%2520F?scale=1.png" class="img-fluid" alt="LaTeX: FEF"> then <img src="https://colostate.instructure.com/equation_images/8%253D%255Cmu(F)%255Cleq%2520%255Cmu(E%255Ccup%2520F)?scale=1.png" class="img-fluid" alt="LaTeX: 8=(F)(EF)"> so yes.</li>
+<li><strong>[Hard]</strong> To compute <img src="https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Clambda%255CBig(%255Cbigcap_n%2520%255Cleft(0%252C%255Cfrac%257B1%257D%257Bn%257D%255Cright)%255CBig)?scale=1.png" class="img-fluid" alt="LaTeX: (_n (0,))"> first notice <img src="https://colostate.instructure.com/equation_images/%255Clambda((0%252C1))%253D%257C1-0%257C%253D1%2520%255Clt%2520%255Cinfty?scale=1.png" class="img-fluid" alt="LaTeX: ((0,1))=|1-0|=1 ">. So by the rule 3. above, ![LaTeX: (<em>n (0,1/n))=</em>{n} ((0,1/n)=_{n} =0](https://colostate.instructure.com/equation_images/%255Cdisplaystyle%2520%255Clambda%255CBig(%255Cbigcap_n%2520(0%252C1%252Fn)%255CBig)%253D%255Clim_%257Bn%255Cto%2520%255Cinfty%257D%2520%255Clambda((0%252C1%252Fn)%253D%255Clim_%257Bn%255Cto%255Cinfty%257D%2520%255Cfrac%257B1%257D%257Bn%257D%253D0?scale=1).</li>
+</ul>
+</section>
+</section>
+<section id="quick-check" class="level3 quick-check" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="quick-check"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> *Quick Check</h3>
+<div class="quick-check-question">
+<p>What is the signed measure ![LaTeX: (-,1]](https://colostate.instructure.com/equation_images/%255CDelta%2520(-%255Cinfty%252C1%255D?scale=1). - It is <img src="https://colostate.instructure.com/equation_images/%255Cinfty?scale=1.png" class="img-fluid" alt="LaTeX: "> *</p>
+</div>
+<div class="quick-check-answer">
+<p><strong>Correct: <img src="https://colostate.instructure.com/equation_images/%255CDelta(-%255Cinfty%252C1)%253D1-(-%255Cinfty)%253D1%252B%255Cinfty%253D%255Cinfty?scale=1.png" class="img-fluid" alt="LaTeX: (-,1)=1-(-)=1+="></strong> - It is <img src="https://colostate.instructure.com/equation_images/-%255Cinfty?scale=1.png" class="img-fluid" alt="LaTeX: -"> *<img src="https://colostate.instructure.com/equation_images/%255CDelta(-%255Cinfty%252C1)%253D1-(-%255Cinfty)%253D1%252B%255Cinfty%253D%255Cinfty?scale=1.png" class="img-fluid" alt="LaTeX: (-,1)=1-(-)=1+="></p>
+</div>
+</section>
+<section id="fill-in-the-blank" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="fill-in-the-blank"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Fill-in-the-Blank</h3>
+<ul>
+<li>Lebesgue’s Interval Measure ![LaTeX: ((1,3)(4,7])=](https://colostate.instructure.com/equation_images/%255Clambda((1%252C3)%255Csqcup%2520(4%252C7%255D)%253D?scale=1)5 .</li>
+<li>Lebesgue’s Interval Measure ![LaTeX: ((1,4)(3,7])=](https://colostate.instructure.com/equation_images/%255Clambda((1%252C4)%255Ccup%2520(3%252C7%255D)%253D?scale=1)6 .</li>
+<li>Counting Measure ![LaTeX: ((1,3)(4,7])=](https://colostate.instructure.com/equation_images/%255Czeta((1%252C3)%255Csqcup%2520(4%252C7%255D)%253D?scale=1)4</li>
+<li>Lebesgue’s Interval Measure ![LaTeX: ((1,4)(3,7])=](https://colostate.instructure.com/equation_images/%255Clambda((1%252C4)%255Ccup%2520(3%252C7%255D)%253D?scale=1)6 .</li>
+</ul>
+</section>
+<section id="quick-check-1" class="level3 quick-check" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="quick-check-1"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> * Quick Check</h3>
+<div class="quick-check-question">
+<p>If <img src="https://colostate.instructure.com/equation_images/%255Cmu(E)%253D0?scale=1.png" class="img-fluid" alt="LaTeX: (E)=0"> then <img src="https://colostate.instructure.com/equation_images/E%253D%255Cemptyset?scale=1.png" class="img-fluid" alt="LaTeX: E="> - True *</p>
+<p>No, while <img src="https://colostate.instructure.com/equation_images/%255Cmu(%255Cemptyset)%253D0?scale=1.png" class="img-fluid" alt="LaTeX: ()=0"> that is on the only way, consider any one of <img src="https://colostate.instructure.com/equation_images/%255Clambda(%255C%257B3%255C%257D)%253D0?scale=1.png" class="img-fluid" alt="LaTeX: ({3})=0"> or <img src="https://colostate.instructure.com/equation_images/%255Czeta((0%252C1))%253D0?scale=1.png" class="img-fluid" alt="LaTeX: ((0,1))=0"> - False *</p>
+</div>
+<div class="quick-check-answer">
+<p><strong>Correct: consider any one of <img src="https://colostate.instructure.com/equation_images/%255Clambda(%255C%257B3%255C%257D)%253D0?scale=1.png" class="img-fluid" alt="LaTeX: ({3})=0"> or <img src="https://colostate.instructure.com/equation_images/%255Czeta((0%252C1))%253D0?scale=1.png" class="img-fluid" alt="LaTeX: ((0,1))=0"></strong></p>
+</div>
+</section>
+<section id="what-else-can-be-measured" class="level3" data-fa-icon="fa-solid fa-book-open">
+<h3 data-fa-icon="fa-solid fa-book-open" class="anchored" data-anchor-id="what-else-can-be-measured"><span class="fa-brass-icon" aria-hidden="true"><i class="fa-solid fa-book-open"></i></span> What else can be measured?</h3>
+<p>Geometry offered our first measures as line segments. Probability took us further letting use measure points that might spread out but still have a clear notion of measurement. To everyone’s surprise, in 1970 Robert Solovay discovered a logical context (by making an additional Set Theory axiom about so-called “Large Cardinals”) where <strong>every subset of decimal numbers is measurable!</strong> Not many people today are versed in those methods so it’s not a practical solution to Galileo’s dream, but the fact that this is possible proves that if you really need to measure a shape, you probably can, but perhaps with a lot of work! Icon Progress Bar (browser only)</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

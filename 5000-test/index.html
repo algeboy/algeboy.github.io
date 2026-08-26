@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title> 5000 Years of Modern Computing</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d814eda269f4b1522e97d8ee6030875f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script>
+/*
+ * Quarto loads MathJax after this header.  Keep \text{...} in mathematical
+ * expressions in the document's native text face rather than MathJax's
+ * fallback math text face, whose metrics can make mixed text/math rows look
+ * vertically uneven.
+ */
+window.MathJax = {
+	chtml: {
+		mtextInheritFont: true
+	}
+};
+
+/* Circuit labels are inserted after Quarto's initial MathJax pass. Wait for
+ * startup, then typeset only the newly generated circuit region. */
+window.typesetDynamicMath = function (roots, attempts = 50) {
+	const targets = Array.from(roots || []).filter(Boolean);
+	if (!targets.length) return Promise.resolve();
+	const mathJax = window.MathJax;
+	if (mathJax?.startup?.promise) {
+		return mathJax.startup.promise
+			.then(() => mathJax.typesetPromise?.(targets))
+			.catch(() => undefined);
+	}
+	if (typeof mathJax?.typesetPromise === 'function') {
+		return mathJax.typesetPromise(targets).catch(() => undefined);
+	}
+	if (attempts <= 0) return Promise.resolve();
+	return new Promise(resolve => {
+		setTimeout(() => resolve(window.typesetDynamicMath(targets, attempts - 1)), 100);
+	});
+};
+</script>
+<script>
+(() => {
+	const offset = document.querySelector('meta[name="quarto:offset"]')?.content || './';
+	const assets = [
+		{ src: 'assets/mermaid.min.js' },
+		{ src: 'assets/webllm-chat.js', type: 'module' },
+		{ src: 'scripts/study-time.js' },
+		{ src: 'scripts/book-enhancements.js' },
+		{ src: 'scripts/link-icons.js' },
+		{ src: 'scripts/topic-graph.js' },
+		{ src: 'scripts/inline-compass.js' },
+		{ src: 'scripts/toc-compass.js' },
+		{ src: 'scripts/navigation-score.js' },
+		{ src: 'scripts/sidebar-circuit-window.js' },
+		{ src: 'assets/quick-check.js' }
+	];
+
+	for (const asset of assets) {
+		const script = document.createElement('script');
+		if (asset.type) {
+			script.type = asset.type;
+		}
+		script.async = false;
+		script.src = `${offset}quarto-runtime/${asset.src}`;
+		document.head.appendChild(script);
+	}
+})();
+</script>
+
+
+<link rel="stylesheet" href="quarto-runtime/styles/webllm-chat.css">
+<link rel="stylesheet" href="quarto-runtime/styles/book-content.css">
+<link rel="stylesheet" href="quarto-runtime/styles/Homepage.css">
+<link rel="stylesheet" href="quarto-runtime/styles/Matrix.css">
+<link rel="stylesheet" href="quarto-runtime/styles/toc-compass.css">
+<link rel="stylesheet" href="quarto-runtime/styles/sidebar-circuit-window.css">
+<link rel="stylesheet" href="quarto-runtime/styles/inline-compass.css">
+<link rel="stylesheet" href="quarto-runtime/styles/topic-graph.css">
+<link rel="stylesheet" href="quarto-runtime/styles/circuit-content.css">
+<link rel="stylesheet" href="quarto-runtime/assets/quick-check.css">
+</head>
+
+<body class="nav-sidebar docked homepage quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      5000 Years of Modern Computing
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">5000 Years of Modern Computing</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Deduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Deductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Induct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Inductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Abduct/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Abductive Reasoning</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendix</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./TopicMap.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Topic Map</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"><span class="fa-brass-icon" aria-hidden="true" data-title-icon="fa-solid fa-building-columns"><i class="fa-solid fa-building-columns"></i></span> 5000 Years of Modern Computing</h1></header>
+
+<header id="title-block-header">
+
+
+</header>
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<script src="quarto-runtime/scripts/circuit-link-navigation.js"></script>
+
+<section class="home-circuit-viewport" aria-label="5000 Years of Modern Computing topic map. Escape toggles the complete-board overview; arrow keys move between components." aria-keyshortcuts="Escape ArrowLeft ArrowRight ArrowUp ArrowDown Home">
+  <div id="home-circuit-board" class="home-circuit-board">
+    <span class="home-circuit-trench home-circuit-trench--h" style="--track:120px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--h" style="--track:340px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--h" style="--track:560px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--h" style="--track:780px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--h" style="--track:1000px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--v" style="--track:180px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--v" style="--track:420px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--v" style="--track:660px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--v" style="--track:900px" aria-hidden="true"></span>
+    <span class="home-circuit-trench home-circuit-trench--v" style="--track:1140px" aria-hidden="true"></span>
+
+    <span class="home-circuit-memory-card home-circuit-memory-card--deduct" aria-hidden="true"><span>DEDUCT MEMORY</span></span>
+    <span class="home-circuit-memory-card home-circuit-memory-card--induct" aria-hidden="true"><span>INDUCT MEMORY</span></span>
+    <span class="home-circuit-memory-card home-circuit-memory-card--abduct" aria-hidden="true"><span>ABDUCT MEMORY</span></span>
+
+    <svg class="home-circuit-wires" width="7200" height="3300" viewbox="0 0 7200 3300" aria-hidden="true"></svg>
+    <a class="home-circuit-cpu" href="00/preface.html" aria-label="Read the preface to 5000 Years of Modern Computing">
+      <span class="home-circuit-cpu__face">
+        <span class="home-circuit-cpu__icon" aria-hidden="true"><i class="fa-solid fa-building-columns"></i></span>
+        <span class="home-circuit-cpu__title">5000 Years of<br>Modern Computing</span>
+        <span class="home-circuit-cpu__mark">CC BY 4.0</span>
+      </span>
+    </a>
+
+    <a class="home-circuit-author" href="https://pleasedistribute.org" target="_blank" rel="noopener noreferrer" aria-label="Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University">
+      <span class="home-circuit-author__display" aria-hidden="true">
+        <span class="home-circuit-author__track"><span>Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University</span><span>Algeboy ... James B. Wilson, Professor of Mathematics, The Colorado State University</span></span>
+      </span>
+    </a>
+
+    <a class="home-circuit-branch home-circuit-branch--deduct" data-branch="deduct" data-units="1,2,3,4" style="--x:535px;--y:295px" href="Deduct/index.html">
+      <span class="home-circuit-branch__face"><span class="home-circuit-branch__icon"><i class="fa-solid fa-bicycle"></i></span><span class="home-circuit-branch__title">Deduction</span></span>
+    </a>
+    <a class="home-circuit-branch home-circuit-branch--induct" data-branch="induct" data-units="5,6,7,8" style="--x:815px;--y:425px" href="Induct/index.html">
+      <span class="home-circuit-branch__face"><span class="home-circuit-branch__icon"><i class="fa-solid fa-tower-cell"></i></span><span class="home-circuit-branch__title">Induction</span></span>
+    </a>
+    <a class="home-circuit-branch home-circuit-branch--abduct" data-branch="abduct" data-units="9,10,11,12" style="--x:405px;--y:425px" href="Abduct/index.html">
+      <span class="home-circuit-branch__face"><span class="home-circuit-branch__icon"><i class="fa-solid fa-car-burst"></i></span><span class="home-circuit-branch__title">Abduction</span></span>
+    </a>
+
+    <a class="home-circuit-unit" data-unit="1" style="--x:205px;--y:50px" href="Deduct/01/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-gamepad"></i></span><span class="home-circuit-unit__title">Logic and Computation</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="2" style="--x:445px;--y:50px" href="Deduct/02/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-flag"></i></span><span class="home-circuit-unit__title">Logical Operators</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="3" style="--x:685px;--y:50px" href="Deduct/03/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-screwdriver-wrench"></i></span><span class="home-circuit-unit__title">Types of Data</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="4" style="--x:925px;--y:50px" href="Deduct/04/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-id-card"></i></span><span class="home-circuit-unit__title">Sets and Partitions</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="5" style="--x:970px;--y:260px" href="Induct/05/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-folder-tree"></i></span><span class="home-circuit-unit__title">Pattern Matching</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="6" style="--x:970px;--y:410px" href="Induct/06/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-users"></i></span><span class="home-circuit-unit__title">Relations</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="7" style="--x:970px;--y:560px" href="Induct/07/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-kiwi-bird"></i></span><span class="home-circuit-unit__title">Adaptive Logic</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="8" style="--x:970px;--y:710px" href="Induct/08/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-dice"></i></span><span class="home-circuit-unit__title">Probability</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="9" style="--x:160px;--y:260px" href="Abduct/09/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-taxi"></i></span><span class="home-circuit-unit__title">Approximation</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="10" style="--x:160px;--y:410px" href="Abduct/10/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-ruler-combined"></i></span><span class="home-circuit-unit__title">Measurements</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="11" style="--x:160px;--y:560px" href="Abduct/11/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-umbrella-beach"></i></span><span class="home-circuit-unit__title">Features</span>
+    </a>
+    <a class="home-circuit-unit" data-unit="12" style="--x:160px;--y:710px" href="Abduct/12/index.html">
+      <span class="home-circuit-unit__icon"><i class="fa-solid fa-bullseye"></i></span><span class="home-circuit-unit__title">Machine Learning</span>
+    </a>
+  </div>
+</section>
+
+<script>
+(() => {
+  "use strict";
+
+  const NS = "http://www.w3.org/2000/svg";
+  // All packages and traces share the board's 10px hole grid.  The gold legs
+  // begin 26px from a package corner and repeat every 20px (see Homepage.css).
+  const BOARD_PITCH = 10;
+  const PIN_PITCH = 20;
+  const FIRST_PIN_CENTER = 26;
+  const PIN_ROW_OFFSET = BOARD_PITCH;
+  const WIRE_ROW_OFFSET = PIN_ROW_OFFSET + BOARD_PITCH;
+  const JACKET_PATH_LENGTH = 100;
+  const END_GAP = 4;
+  const JACKET_DASH = JACKET_PATH_LENGTH - END_GAP * 2;
+  const JACKET_PATTERN = `0 ${END_GAP} ${JACKET_DASH} ${END_GAP}`;
+  const INTERACTIVE_SELECTOR = ".home-circuit-cpu,.home-circuit-author,.home-circuit-branch,.home-circuit-unit,.home-circuit-page,.home-circuit-folder,.home-circuit-smd";
+  const palettes = [
+    { jacket: "#165d2d", highlight: "#c9e95a" },
+    { jacket: "#8f2420", highlight: "#ff9a32" },
+    { jacket: "#174f91", highlight: "#4de3f2" },
+    { jacket: "#8b6500", highlight: "#ffe46b" }
+  ];
+  // Physical hierarchy colors: the inner Deduct/Induct/Abduct chips feed
+  // their surrounding unit chips in green; those outer unit chips extend to
+  // their capacitor chains in blue.
+  const innerChipPalette = palettes[0];
+  const capacitorPalette = palettes[2];
+  const activePalette = { jacket: "#087329", highlight: "#a6ff8c" };
+  const readingPalette = { jacket: "#111310", highlight: "#5d625b" };
+  // Mermaid's thick Survey links (==>) are the main circuit's blue bus.
+  // Keep the ordinary --> reading links black so the authored distinction is
+  // visible on the board instead of being lost during rendering.
+  const surveyPalette = { jacket: "#125aa0", highlight: "#68d8ff" };
+  const EXTENSION = Object.freeze({
+    boardWidth: 7200,
+    boardHeight: 3300,
+    coreX: 2880,
+    coreY: 1980,
+    pageWidth: 210,
+    pageHeight: 60,
+    folderWidth: 180,
+    folderHeight: 80
+  });
+
+  function siteRoot() {
+    const offset = document.querySelector('meta[name="quarto:offset"]')?.content || "./";
+    return new URL(offset, document.baseURI);
+  }
+
+  function comparablePath(value) {
+    return decodeURIComponent(new URL(value, document.baseURI).pathname)
+      .replace(/index\.html$/, "")
+      .replace(/\/$/, "");
+  }
+
+  function canonicalSource(value) {
+    return decodeURIComponent(String(value || ""))
+      .replace(/^\.?\//, "")
+      .replace(/\\/g, "/")
+      .replace(/\.html(?=$|[?#])/, ".qmd")
+      .replace(/[?#].*$/, "");
+  }
+
+  function sourceToPublishedHref(source) {
+    return canonicalSource(source).replace(/\.qmd$/i, ".html");
+  }
+
+  async function navigation() {
+    const url = new URL("quarto-runtime/assets/book-navigation.json", siteRoot());
+    const response = await fetch(url, { cache: "no-cache" });
+    if (!response.ok) throw new Error(`Navigation manifest returned ${response.status}`);
+    return response.json();
+  }
+
+  async function circuitBoards() {
+    const response = await fetch(new URL("book-circuit.md", siteRoot()), { cache:"no-cache" });
+    if (!response.ok) return [];
+    const groups = new Map();
+    const stack = [];
+    const links = new Map();
+    const readingLinks = [];
+    const subgraphPattern = /^subgraph\s+([A-Za-z][\w-]*)(?:\s*\[\s*["']([^"']+)["']\s*\])?\s*$/i;
+    const nodePattern = /^\s*([A-Za-z][\w-]*)\s*\[/;
+    const clickPattern = /^\s*click\s+([A-Za-z][\w-]*)\s+(?:href\s+)?["']([^"']+\.qmd)["']/;
+    const readingLinkPattern = /^([A-Za-z][\w-]*)\s*(-->|==>)\s*([A-Za-z][\w-]*)(?:\s|$)/;
+    String(await response.text()).split(/\r?\n/).forEach(original => {
+      const line = original.replace(/%%.*$/, "").trim();
+      const subgraph = line.match(subgraphPattern);
+      if (subgraph) {
+        groups.set(subgraph[1], { id:subgraph[1], label:(subgraph[2] || subgraph[1]).trim(), members:[] });
+        stack.push(subgraph[1]);
+        return;
+      }
+      if (/^end$/i.test(line)) { stack.pop(); return; }
+      const node = line.match(nodePattern);
+      if (node && stack.length) groups.get(stack.at(-1))?.members.push(node[1]);
+      const click = line.match(clickPattern);
+      if (click) links.set(click[1], click[2]);
+      const readingLink = line.match(readingLinkPattern);
+      if (readingLink) readingLinks.push({ from:readingLink[1], operator:readingLink[2], to:readingLink[3] });
+    });
+    const boards = [...groups.values()].map(group => ({
+      id:group.id,
+      label:group.label,
+      source:links.get(group.id) || null,
+      members:group.members.map(id => links.get(id)).filter(Boolean)
+    })).filter(group => group.source && group.members.length > 1);
+    return {
+      boards,
+      allowedSources:new Set(boards.flatMap(group => group.members.map(canonicalSource))),
+      nodeSources:links,
+      readingLinks
+    };
+  }
+
+  function buildTrenches(board) {
+    board.querySelectorAll(".home-circuit-trench").forEach(trench => trench.remove());
+    for (let y = 120; y < EXTENSION.boardHeight; y += 220) {
+      const trench = document.createElement("span");
+      trench.className = "home-circuit-trench home-circuit-trench--h";
+      trench.style.setProperty("--track", `${y}px`);
+      trench.setAttribute("aria-hidden", "true");
+      board.prepend(trench);
+    }
+    for (let x = 180; x < EXTENSION.boardWidth; x += 240) {
+      const trench = document.createElement("span");
+      trench.className = "home-circuit-trench home-circuit-trench--v";
+      trench.style.setProperty("--track", `${x}px`);
+      trench.setAttribute("aria-hidden", "true");
+      board.prepend(trench);
+    }
+    const wires = board.querySelector(".home-circuit-wires");
+    wires.setAttribute("width", EXTENSION.boardWidth);
+    wires.setAttribute("height", EXTENSION.boardHeight);
+    wires.setAttribute("viewBox", `0 0 ${EXTENSION.boardWidth} ${EXTENSION.boardHeight}`);
+  }
+
+  function svgPath(svg, d, className, palette) {
+    const copper = document.createElementNS(NS, "path");
+    copper.setAttribute("d", d);
+    copper.setAttribute("class", "home-circuit-wire home-circuit-wire--copper");
+    svg.appendChild(copper);
+
+    const jacket = document.createElementNS(NS, "path");
+    jacket.setAttribute("d", d);
+    jacket.setAttribute("class", `home-circuit-wire home-circuit-wire--jacket ${className}`);
+    jacket.setAttribute("pathLength", JACKET_PATH_LENGTH);
+    // A zero-length first dash followed by gap/jacket/gap guarantees equal
+    // bare-copper sections at both path endpoints without offset ambiguity.
+    jacket.setAttribute("stroke-dasharray", JACKET_PATTERN);
+    jacket.style.stroke = palette.jacket;
+    svg.appendChild(jacket);
+
+    const highlight = document.createElementNS(NS, "path");
+    highlight.setAttribute("d", d);
+    highlight.setAttribute("class", `home-circuit-wire home-circuit-wire--highlight ${className}`);
+    highlight.setAttribute("pathLength", JACKET_PATH_LENGTH);
+    highlight.setAttribute("stroke-dasharray", JACKET_PATTERN);
+    highlight.setAttribute("transform", "translate(0 -2)");
+    highlight.style.stroke = palette.highlight;
+    svg.appendChild(highlight);
+  }
+
+  function detailPath(svg, d, palette) {
+    const layers = [
+      ["home-circuit-detail-wire--copper", "#b7652d", null],
+      ["home-circuit-detail-wire--jacket", palette.jacket, null],
+      ["home-circuit-detail-wire--highlight", palette.highlight, "translate(0 -1)"]
+    ];
+    layers.forEach(([className, color, transform], index) => {
+      const path = document.createElementNS(NS, "path");
+      path.setAttribute("d", d);
+      path.setAttribute("class", `home-circuit-detail-wire ${className}`);
+      if (index) {
+        path.setAttribute("pathLength", JACKET_PATH_LENGTH);
+        path.setAttribute("stroke-dasharray", JACKET_PATTERN);
+      }
+      if (transform) path.setAttribute("transform", transform);
+      path.style.stroke = color;
+      svg.appendChild(path);
+    });
+  }
+
+  function chipBodyObstacles(board) {
+    const selector = ".home-circuit-cpu,.home-circuit-author,.home-circuit-branch,.home-circuit-unit,.home-circuit-folder";
+    return [...board.querySelectorAll(selector)].flatMap(node => {
+      const left = node.offsetLeft, top = node.offsetTop;
+      const right = left + node.offsetWidth, bottom = top + node.offsetHeight;
+      const corner = Math.min(24, node.offsetWidth * .2, node.offsetHeight * .28);
+      // Two overlapping bars form a cross-shaped forbidden body. The four
+      // corner squares remain open, so a late-installed jumper may visibly
+      // cross a package corner without ever traversing its main case.
+      return [
+        { left:left + corner,right:right - corner,top:top + 3,bottom:bottom - 3 },
+        { left:left + 3,right:right - 3,top:top + corner,bottom:bottom - corner }
+      ];
+    });
+  }
+
+  function segmentBlocked(from, to, obstacles) {
+    if (from.x === to.x) {
+      const top = Math.min(from.y,to.y), bottom = Math.max(from.y,to.y);
+      return obstacles.some(box => from.x > box.left && from.x < box.right && bottom > box.top && top < box.bottom);
+    }
+    if (from.y === to.y) {
+      const left = Math.min(from.x,to.x), right = Math.max(from.x,to.x);
+      return obstacles.some(box => from.y > box.top && from.y < box.bottom && right > box.left && left < box.right);
+    }
+    return true;
+  }
+
+  function simplifyRoute(points) {
+    const unique = points.filter((point,index) => !index || point.x !== points[index-1].x || point.y !== points[index-1].y);
+    return unique.filter((point,index) => {
+      if (!index || index === unique.length - 1) return true;
+      const before = unique[index-1], after = unique[index+1];
+      return !((before.x === point.x && point.x === after.x) || (before.y === point.y && point.y === after.y));
+    });
+  }
+
+  function routeClear(points, obstacles) {
+    return points.slice(0,-1).every((point,index) => !segmentBlocked(point,points[index+1],obstacles));
+  }
+
+  function roundedRoute(points) {
+    const route = simplifyRoute(points);
+    if (route.length < 2) return "";
+    let path = `M ${route[0].x} ${route[0].y}`;
+    for (let index=1;index<route.length-1;index+=1) {
+      const before=route[index-1],corner=route[index],after=route[index+1];
+      const incoming=Math.hypot(corner.x-before.x,corner.y-before.y);
+      const outgoing=Math.hypot(after.x-corner.x,after.y-corner.y);
+      const radius=Math.min(30,incoming/2,outgoing/2);
+      const enter={x:corner.x-((corner.x-before.x)/incoming)*radius,y:corner.y-((corner.y-before.y)/incoming)*radius};
+      const leave={x:corner.x+((after.x-corner.x)/outgoing)*radius,y:corner.y+((after.y-corner.y)/outgoing)*radius};
+      path += ` L ${enter.x} ${enter.y} Q ${corner.x} ${corner.y} ${leave.x} ${leave.y}`;
+    }
+    const last=route[route.length-1];
+    return `${path} L ${last.x} ${last.y}`;
+  }
+
+  function obstacleRoute(start, end, obstacles, bounds) {
+    const normal = side => ({ top:[0,-1],right:[1,0],bottom:[0,1],left:[-1,0] })[side];
+    const [startX,startY]=normal(start.side),[endX,endY]=normal(end.side);
+    const lead=30;
+    const first={x:start.x+startX*lead,y:start.y+startY*lead};
+    const last={x:end.x+endX*lead,y:end.y+endY*lead};
+    const nearby=obstacles.filter(box =>
+      box.right >= Math.min(first.x,last.x)-180 && box.left <= Math.max(first.x,last.x)+180 &&
+      box.bottom >= Math.min(first.y,last.y)-180 && box.top <= Math.max(first.y,last.y)+180);
+    const pitch=value => Math.round(value/BOARD_PITCH)*BOARD_PITCH;
+    const baseXLanes=[first.x,last.x,pitch((first.x+last.x)/2),bounds.left+20,bounds.right-20];
+    const baseYLanes=[first.y,last.y,pitch((first.y+last.y)/2),bounds.top+20,bounds.bottom-20];
+    const obstacleLanes = boxes => {
+      const xLanes=new Set(baseXLanes),yLanes=new Set(baseYLanes);
+      boxes.forEach(box => {
+        xLanes.add(pitch(box.left-BOARD_PITCH));xLanes.add(pitch(box.right+BOARD_PITCH));
+        yLanes.add(pitch(box.top-BOARD_PITCH));yLanes.add(pitch(box.bottom+BOARD_PITCH));
+      });
+      return { xLanes,yLanes };
+    };
+    const scoreLanes = ({ xLanes,yLanes }) => {
+      const candidates=[];
+      xLanes.forEach(x => {
+        if (x>bounds.left && x<bounds.right) candidates.push([first,{x,y:first.y},{x,y:last.y},last]);
+      });
+      yLanes.forEach(y => {
+        if (y>bounds.top && y<bounds.bottom) candidates.push([first,{x:first.x,y},{x:last.x,y},last]);
+      });
+      return candidates.map(points => simplifyRoute([start,...points,end]))
+        .filter(points => routeClear(points,obstacles))
+        .map(points => ({
+          points,
+          score:points.slice(0,-1).reduce((sum,point,index) => sum+Math.abs(points[index+1].x-point.x)+Math.abs(points[index+1].y-point.y),0)+(points.length-2)*35
+        })).sort((a,b) => a.score-b.score);
+    };
+    // Nearby lanes keep ordinary connections short. If a dense chip bank
+    // blocks those, retry against every chip edge before using the perimeter.
+    let scored=scoreLanes(obstacleLanes(nearby));
+    if (!scored.length && nearby.length !== obstacles.length) scored=scoreLanes(obstacleLanes(obstacles));
+    if (scored.length) return roundedRoute(scored[0].points);
+
+    const perimeter=[
+      [first,{x:bounds.left+10,y:first.y},{x:bounds.left+10,y:bounds.top+10},{x:bounds.right-10,y:bounds.top+10},{x:bounds.right-10,y:last.y},last],
+      [first,{x:bounds.left+10,y:first.y},{x:bounds.left+10,y:bounds.bottom-10},{x:bounds.right-10,y:bounds.bottom-10},{x:bounds.right-10,y:last.y},last],
+      [first,{x:first.x,y:bounds.top+10},{x:bounds.left+10,y:bounds.top+10},{x:bounds.left+10,y:bounds.bottom-10},{x:last.x,y:bounds.bottom-10},last],
+      [first,{x:first.x,y:bounds.top+10},{x:bounds.right-10,y:bounds.top+10},{x:bounds.right-10,y:bounds.bottom-10},{x:last.x,y:bounds.bottom-10},last]
+    ].map(points => simplifyRoute([start,...points,end])).filter(points => routeClear(points,obstacles));
+    if (perimeter.length) return roundedRoute(perimeter.sort((a,b) => a.length-b.length)[0]);
+    throw new Error(`No chip-safe wire route from ${start.x},${start.y} to ${end.x},${end.y}`);
+  }
+
+  function pinSides(node) {
+    if (node.classList.contains("home-circuit-cpu")) return ["top", "right", "bottom", "left"];
+    if (node.classList.contains("home-circuit-page")) {
+      // Capacitor chips are daisy-chain links: reserve an inlet and outlet on
+      // opposite ends so each link can line up with its neighboring lead.
+      const leadSide = node.dataset.leadSide || "left";
+      return [leadSide, { left:"right", right:"left", top:"bottom", bottom:"top" }[leadSide]];
+    }
+    if (node.classList.contains("home-circuit-folder")) return ["top", "right", "bottom", "left"];
+    if (node.classList.contains("home-circuit-branch--induct") ||
+        node.classList.contains("home-circuit-branch--abduct")) return ["left", "right"];
+    return ["top", "bottom"];
+  }
+
+  function pinCenters(length) {
+    const centers = [];
+    for (let coordinate = FIRST_PIN_CENTER; coordinate <= length - FIRST_PIN_CENTER; coordinate += PIN_PITCH) {
+      centers.push(coordinate);
+    }
+    return centers;
+  }
+
+  function facingSide(node, toward) {
+    const x = node.offsetLeft;
+    const y = node.offsetTop;
+    const width = node.offsetWidth;
+    const height = node.offsetHeight;
+    const dx = toward.x - (x + width / 2);
+    const dy = toward.y - (y + height / 2);
+    const directions = {
+      top: -dy,
+      right: dx,
+      bottom: dy,
+      left: -dx
+    };
+    return pinSides(node).reduce((best, side) => directions[side] > directions[best] ? side : best);
+  }
+
+  function pinSocket(node, toward, pinUsage, sideOverride) {
+    const x = node.offsetLeft;
+    const y = node.offsetTop;
+    const width = node.offsetWidth;
+    const height = node.offsetHeight;
+    const nodeKey = node.dataset.unit || node.dataset.branch ||
+      node.dataset.homeNodeKey || (node.classList.contains("home-circuit-cpu") ? "cpu" : "author");
+    const preferred = facingSide(node, toward);
+    const sides = sideOverride ? [sideOverride] : [preferred, ...pinSides(node).filter(side => side !== preferred)];
+    let side = sides[0], coordinate = null, used = null, usageKey = null;
+    for (const candidateSide of sides) {
+      const coordinates = generatedPinCoordinates(node, candidateSide);
+      const desired = candidateSide === "top" || candidateSide === "bottom" ? toward.x - x : toward.y - y;
+      const key = `${nodeKey}:${candidateSide}`;
+      const candidateUsed = pinUsage.get(key) || new Set();
+      const available = [...coordinates]
+        .sort((a, b) => Math.abs(a - desired) - Math.abs(b - desired) || a - b)
+        .find(candidate => !candidateUsed.has(candidate));
+      if (available == null) continue;
+      side = candidateSide;
+      coordinate = available;
+      used = candidateUsed;
+      usageKey = key;
+      break;
+    }
+    if (coordinate == null) throw new Error(`No unused ${nodeKey} pin remains for a homepage wire`);
+    used.add(coordinate);
+    pinUsage.set(usageKey, used);
+
+    if (side === "top") return { x: x + coordinate, y: y - WIRE_ROW_OFFSET, side, pin: { x: x + coordinate, y: y - PIN_ROW_OFFSET } };
+    if (side === "bottom") return { x: x + coordinate, y: y + height + WIRE_ROW_OFFSET, side, pin: { x: x + coordinate, y: y + height + PIN_ROW_OFFSET } };
+    if (side === "left") return { x: x - WIRE_ROW_OFFSET, y: y + coordinate, side, pin: { x: x - PIN_ROW_OFFSET, y: y + coordinate } };
+    return { x: x + width + WIRE_ROW_OFFSET, y: y + coordinate, side, pin: { x: x + width + PIN_ROW_OFFSET, y: y + coordinate } };
+  }
+
+  function center(node) {
+    return { x: node.offsetLeft + node.offsetWidth / 2, y: node.offsetTop + node.offsetHeight / 2 };
+  }
+
+  function stableHash(value) {
+    let hash = 2166136261;
+    for (const character of String(value)) {
+      hash ^= character.charCodeAt(0);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function generatedPinCoordinates(node, side) {
+    if (node.classList.contains("home-circuit-page")) return [18, 42];
+    return pinCenters(side === "top" || side === "bottom" ? node.offsetWidth : node.offsetHeight);
+  }
+
+  function appendGeneratedPins(node, sides) {
+    sides.forEach(side => generatedPinCoordinates(node, side).forEach(coordinate => {
+      const pin = document.createElement("span");
+      pin.className = `home-circuit-generated-pin home-circuit-generated-pin--${side}`;
+      if (side === "top" || side === "bottom") pin.style.left = `${coordinate}px`;
+      else pin.style.top = `${coordinate}px`;
+      pin.setAttribute("aria-hidden", "true");
+      node.appendChild(pin);
+    }));
+  }
+
+  function generatedEntryElement(spec) {
+    const link = document.createElement("a");
+    link.className = spec.kind === "page" ? "home-circuit-page" : "home-circuit-folder";
+    link.dataset.homeNodeKey = spec.key;
+    link.dataset.orientation = spec.orientation;
+    link.href = new URL(spec.href, siteRoot()).href;
+    link.style.left = `${spec.x}px`;
+    link.style.top = `${spec.y}px`;
+    link.setAttribute("aria-label", `${spec.title}. Open topic.`);
+    if (spec.kind === "page") {
+      link.dataset.palette = String(stableHash(spec.key) % 5);
+      link.dataset.leadSide = spec.leadSide;
+    }
+    if (spec.source) link.dataset.homeSource = canonicalSource(spec.source);
+    const icon = document.createElement("span");
+    icon.className = spec.kind === "page" ? "home-circuit-page__icon" : "home-circuit-folder__icon";
+    icon.setAttribute("aria-hidden", "true");
+    const iconGlyph = document.createElement("i");
+    iconGlyph.className = spec.icon || (spec.kind === "page" ? "fa-solid fa-file-lines" : "fa-solid fa-folder-tree");
+    icon.appendChild(iconGlyph);
+    const title = document.createElement("span");
+    title.className = spec.kind === "page" ? "home-circuit-page__title" : "home-circuit-folder__title";
+    title.textContent = spec.title;
+    link.append(icon, title);
+    appendGeneratedPins(link, spec.kind === "page" ? pinSides(link) : ["top", "right", "bottom", "left"]);
+    spec.element = link;
+    return link;
+  }
+
+  // The Library page has two short, foundational follow-ups. Keep them on a
+  // separate blue PCB so they read as a nearby expansion of that capacitor,
+  // rather than another vertical link in the main Logic sequence.
+  function buildLibrarySmdBoard(board) {
+    board.querySelectorAll(".home-circuit-subboard--library,.home-circuit-smd").forEach(node => node.remove());
+    const library = board.querySelector('[data-home-source="Deduct/01/01-Logic-Library.qmd"]');
+    if (!library) return;
+
+    const subboard = document.createElement("section");
+    subboard.className = "home-circuit-subboard home-circuit-subboard--circuit home-circuit-subboard--library";
+    subboard.style.left = `${library.offsetLeft - 430}px`;
+    subboard.style.top = `${library.offsetTop - 130}px`;
+    subboard.style.width = "390px";
+    subboard.style.height = "250px";
+    subboard.setAttribute("aria-label", "A Library of Logic circuit board");
+    const label = document.createElement("span");
+    label.className = "home-circuit-subboard__etching";
+    label.textContent = "A LIBRARY OF LOGIC · 01";
+    subboard.appendChild(label);
+
+    [
+      { title:"Context", href:"Deduct/01/01/01-Context.html", icon:"fa-solid fa-chalkboard" },
+      { title:"Logical Judgments", href:"Deduct/01/01/02-Judgment.html", icon:"fa-solid fa-gavel" }
+    ].forEach((entry, index) => {
+      const link = document.createElement("a");
+      link.className = "home-circuit-smd";
+      link.href = new URL(entry.href, siteRoot()).href;
+      link.setAttribute("aria-label", `${entry.title}. Open topic.`);
+      link.style.top = `${55 + index * 94}px`;
+      const icon = document.createElement("span");
+      icon.className = "home-circuit-smd__icon";
+      icon.setAttribute("aria-hidden", "true");
+      icon.innerHTML = `<i class="${entry.icon}"></i>`;
+      const title = document.createElement("span");
+      title.className = "home-circuit-smd__title";
+      title.textContent = entry.title;
+      link.append(icon, title);
+      subboard.appendChild(link);
+    });
+    board.appendChild(subboard);
+  }
+
+  function firstDescendantPage(directory, pagesByDirectory, foldersByParent) {
+    const direct = (pagesByDirectory.get(directory) || []).find(page => !page.isIndex);
+    if (direct) return direct;
+    for (const folder of foldersByParent.get(directory) || []) {
+      const page = firstDescendantPage(folder.key, pagesByDirectory, foldersByParent);
+      if (page) return page;
+    }
+    return null;
+  }
+
+  function buildTopology(board, manifest, circuitData = {}) {
+    const circuitBoardGroups = circuitData.boards || [];
+    const allowedSources = circuitData.allowedSources || new Set();
+    board.querySelectorAll(".home-circuit-page,.home-circuit-folder,.home-circuit-subboard").forEach(node => node.remove());
+    const foldersByParent = new Map();
+    manifest.folders.forEach(folder => {
+      if (!foldersByParent.has(folder.parent)) foldersByParent.set(folder.parent, []);
+      foldersByParent.get(folder.parent).push(folder);
+    });
+    foldersByParent.forEach(folders => folders.sort((a, b) => a.order - b.order));
+    const pagesByDirectory = new Map();
+    manifest.pages.forEach(page => {
+      if (!pagesByDirectory.has(page.directory)) pagesByDirectory.set(page.directory, []);
+      pagesByDirectory.get(page.directory).push(page);
+    });
+    pagesByDirectory.forEach(pages => pages.sort((a, b) => a.order - b.order));
+    const indexByDirectory = new Map(manifest.pages.filter(page => page.isIndex).map(page => [page.directory, page]));
+    const roots = [
+      { unit:1,key:"Deduct/01",orientation:"north",sector:0 },
+      { unit:2,key:"Deduct/02",orientation:"north",sector:1 },
+      { unit:3,key:"Deduct/03",orientation:"north",sector:2 },
+      { unit:4,key:"Deduct/04",orientation:"north",sector:3 },
+      { unit:5,key:"Induct/05",orientation:"east",sector:0 },
+      { unit:6,key:"Induct/06",orientation:"east",sector:1 },
+      { unit:7,key:"Induct/07",orientation:"east",sector:2 },
+      { unit:8,key:"Induct/08",orientation:"east",sector:3 },
+      { unit:9,key:"Abduct/09",orientation:"west",sector:0 },
+      { unit:10,key:"Abduct/10",orientation:"west",sector:1 },
+      { unit:11,key:"Abduct/11",orientation:"west",sector:2 },
+      { unit:12,key:"Abduct/12",orientation:"west",sector:3 }
+    ];
+    const specs = [];
+    const edgeSpecs = [];
+    const folderGroups = [];
+    const stem = source => source.split("/").pop().replace(/\.qmd$/, "");
+    const segment = key => key.split("/").pop();
+
+    // The Mermaid circuit is the publication boundary for the homepage map.
+    // Its subgraph is already represented by the matching memory-card unit.
+    // Link that one chip directly to its pages, rendered as a capacitor chain.
+    // The older manifest walk remains as a fallback for previews that do not
+    // yet ship book-circuit.md.
+    if (allowedSources.size) {
+      const pagesBySource = new Map(manifest.pages.map(page => [canonicalSource(page.source), page]));
+      roots.forEach(root => {
+        const rootElement = board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`);
+        if (!rootElement) return;
+        const group = circuitBoardGroups.find(candidate => canonicalSource(candidate.source) === `${root.key}/index.qmd`);
+        if (!group) return;
+        const pageSpecs = group.members.map((source,index) => {
+          const canonical = canonicalSource(source);
+          const page = pagesBySource.get(canonical);
+          const title = page?.title || canonical.split("/").pop().replace(/\.qmd$/, "").replace(/-/g, " ");
+          const spec = {
+            kind:"page",key:`page:${canonical}`,title,icon:page?.titleIcon || page?.icon,
+            href:sourceToPublishedHref(canonical),depth:index + 1,
+            orientation:root.orientation,parentRef:rootElement,source:canonical
+          };
+          if (root.orientation === "north") {
+            spec.x = rootElement.offsetLeft + (rootElement.offsetWidth - EXTENSION.pageWidth) / 2;
+            spec.y = rootElement.offsetTop - 150 - 110 * index;
+          } else {
+            const direction = root.orientation === "east" ? 1 : -1;
+            spec.x = rootElement.offsetLeft + direction * (240 * (index + 1) + 20) +
+              (direction < 0 ? rootElement.offsetWidth - EXTENSION.pageWidth : 0);
+            spec.y = rootElement.offsetTop + (rootElement.offsetHeight - EXTENSION.pageHeight) / 2;
+          }
+          return spec;
+        });
+        specs.push(...pageSpecs);
+        let chainParent = rootElement;
+        pageSpecs.forEach(spec => {
+          edgeSpecs.push({ from:chainParent,to:spec,palette:capacitorPalette });
+          chainParent = spec;
+        });
+      });
+    } else roots.forEach(root => {
+      const rootElement = board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`);
+      if (!rootElement) return;
+      const groupMap = new Map();
+      const walk = (directory, parentRef, parentDepth) => {
+        const directPages = (pagesByDirectory.get(directory) || []).filter(page => !page.isIndex);
+        const childFolders = foldersByParent.get(directory) || [];
+        const landingByFolder = new Map(childFolders.map(folder => [folder.key,
+          directPages.find(page => stem(page.source) === segment(folder.key) || stem(page.source).startsWith(`${segment(folder.key)}-`)) || null]));
+        const pageSpecs = directPages.map(page => ({
+          kind:"page",key:`page:${page.source}`,title:page.title,icon:page.titleIcon || page.icon,
+          href:page.href,depth:parentDepth + 1,orientation:root.orientation,parentRef,source:page.source
+        }));
+        specs.push(...pageSpecs);
+        const pageBySource = new Map(pageSpecs.map(spec => [spec.source, spec]));
+        let chainParent = parentRef;
+        directPages.forEach(page => {
+          const pageSpec = pageBySource.get(page.source);
+          edgeSpecs.push({ from:chainParent,to:pageSpec,palette:chainParent === parentRef ? palettes[1] : palettes[0] });
+          const isLanding = [...landingByFolder.values()].some(landing => landing?.source === page.source);
+          chainParent = isLanding ? parentRef : pageSpec;
+        });
+        const childFolderSpecs = childFolders.map(folder => {
+          const landing = landingByFolder.get(folder.key);
+          const indexPage = indexByDirectory.get(folder.key);
+          const firstPage = firstDescendantPage(folder.key, pagesByDirectory, foldersByParent);
+          const spec = {
+            kind:"folder",key:`folder:${folder.key}`,folderKey:folder.key,
+            title:indexPage?.title || landing?.title || folder.title || segment(folder.key),
+            icon:indexPage?.titleIcon || indexPage?.icon || landing?.titleIcon || landing?.icon || folder.titleIcon || folder.icon || "fa-solid fa-folder-tree",
+            href:indexPage?.href || folder.href || firstPage?.href || "index.html",
+            depth:parentDepth + (landing ? 2 : 1),orientation:root.orientation,
+            parentRef:landing ? pageBySource.get(landing.source) : parentRef
+          };
+          specs.push(spec);
+          edgeSpecs.push({ from:spec.parentRef,to:spec,palette:palettes[2] });
+          return spec;
+        });
+        if (childFolderSpecs.length > 1) folderGroups.push({ parent:parentRef,key:directory,specs:childFolderSpecs });
+        childFolderSpecs.forEach(spec => walk(spec.folderKey, spec, spec.depth));
+      };
+      walk(root.key, rootElement, 0);
+
+      const rootSpecs = specs.filter(spec => spec.key.startsWith("page:") || spec.key.startsWith("folder:"))
+        .filter(spec => {
+          let ref = spec;
+          while (ref && !(ref instanceof Element)) ref = ref.parentRef;
+          return ref === rootElement;
+        });
+      const levels = new Map();
+      rootSpecs.forEach(spec => {
+        if (!levels.has(spec.depth)) levels.set(spec.depth, []);
+        levels.get(spec.depth).push(spec);
+      });
+      let outward = root.orientation === "north" ? EXTENSION.coreY - 180 :
+        root.orientation === "east" ? EXTENSION.coreX + 1500 : EXTENSION.coreX - 180;
+      [...levels.keys()].sort((a,b) => a-b).forEach(depth => {
+        const level = levels.get(depth).sort((a,b) => (a.kind === "folder" ? -1 : 1) - (b.kind === "folder" ? -1 : 1));
+        if (root.orientation === "north") {
+          const columns = 7;
+          const left = root.sector * 1800 + 100;
+          level.forEach((spec,index) => {
+            const row = Math.floor(index / columns), column = index % columns;
+            spec.x = left + column * 235 + (spec.kind === "folder" ? 15 : 0);
+            spec.y = outward - row * 100;
+          });
+          outward -= Math.ceil(level.length / columns) * 100 + 130;
+        } else {
+          const rows = 7;
+          const bandTop = root.sector * 800 + 45;
+          level.forEach((spec,index) => {
+            const column = Math.floor(index / rows), row = index % rows;
+            const width = spec.kind === "page" ? EXTENSION.pageWidth : EXTENSION.folderWidth;
+            spec.x = root.orientation === "east" ? outward + column * 235 : outward - width - column * 235;
+            spec.y = bandTop + row * 100;
+          });
+          const columns = Math.ceil(level.length / rows);
+          outward += (root.orientation === "east" ? 1 : -1) * (columns * 235 + 130);
+        }
+      });
+    });
+
+    specs.forEach(spec => {
+      if (spec.kind === "page") {
+        if (spec.orientation === "east") spec.leadSide = "left";
+        else if (spec.orientation === "west") spec.leadSide = "right";
+        else spec.leadSide = "bottom";
+      }
+      board.appendChild(generatedEntryElement(spec));
+    });
+    folderGroups.forEach(group => {
+      const placed = group.specs.filter(spec => spec.element);
+      if (placed.length < 2) return;
+      const padding = 28;
+      const minX = Math.min(...placed.map(spec => spec.x)) - padding;
+      const minY = Math.min(...placed.map(spec => spec.y)) - padding;
+      const maxX = Math.max(...placed.map(spec => spec.x + EXTENSION.folderWidth)) + padding;
+      const maxY = Math.max(...placed.map(spec => spec.y + EXTENSION.folderHeight)) + padding;
+      const backplane = document.createElement("span");
+      backplane.className = "home-circuit-subboard";
+      backplane.style.left = `${minX}px`;
+      backplane.style.top = `${minY}px`;
+      backplane.style.width = `${maxX - minX}px`;
+      backplane.style.height = `${maxY - minY}px`;
+      backplane.setAttribute("aria-hidden", "true");
+      const label = document.createElement("span");
+      label.textContent = `${group.key.split("/").pop().toUpperCase()} FOLDER BUS`;
+      backplane.appendChild(label);
+      board.appendChild(backplane);
+    });
+    buildLibrarySmdBoard(board);
+    board.homeReadingEdges = readingPathEdges(board, circuitData, roots);
+    return edgeSpecs.map(edge => ({
+      from:edge.from.element || edge.from,
+      to:edge.to.element || edge.to,
+      palette:edge.palette
+    })).filter(edge => edge.from && edge.to);
+  }
+
+  function readingPathEdges(board, circuitData, roots) {
+    const nodeSources = circuitData.nodeSources || new Map();
+    const sourceElements = new Map();
+    const register = (source, element) => {
+      if (source && element) sourceElements.set(canonicalSource(source), element);
+    };
+    register("00/preface.qmd", board.querySelector(".home-circuit-cpu"));
+    [
+      ["Deduct/index.qmd", ".home-circuit-branch--deduct"],
+      ["Induct/index.qmd", ".home-circuit-branch--induct"],
+      ["Abduct/index.qmd", ".home-circuit-branch--abduct"]
+    ].forEach(([source, selector]) => register(source, board.querySelector(selector)));
+    roots.forEach(root => register(`${root.key}/index.qmd`,
+      board.querySelector(`.home-circuit-unit[data-unit="${root.unit}"]`)));
+    board.querySelectorAll(".home-circuit-page[data-home-source],.home-circuit-folder[data-home-source]")
+      .forEach(element => register(element.dataset.homeSource, element));
+
+    return (circuitData.readingLinks || []).map(link => ({
+      from:sourceElements.get(canonicalSource(nodeSources.get(link.from))),
+      to:sourceElements.get(canonicalSource(nodeSources.get(link.to))),
+      operator:link.operator
+    })).filter(link => link.from && link.to && link.from !== link.to);
+  }
+
+  function readingWireStyle(edge) {
+    // The authored thick Survey arrows remain a distinct blue bus.
+    if (edge.operator === "==>") {
+      return { className:"home-circuit-wire--survey", palette:surveyPalette };
+    }
+    // Directed routes leaving an inner method chip are its green feed. A
+    // route arriving at a capacitor belongs to the blue outer-chip circuit.
+    if (edge.from.classList.contains("home-circuit-branch")) {
+      return { className:"home-circuit-wire--inner", palette:innerChipPalette };
+    }
+    if (edge.to.classList.contains("home-circuit-page")) {
+      return { className:"home-circuit-wire--capacitor", palette:capacitorPalette };
+    }
+    return { className:"home-circuit-wire--reading", palette:readingPalette };
+  }
+
+  function curvedConnection(from, to, pinUsage, fromSide, toSide, tangentToPins = false, obstacles = null, bounds = null) {
+    const fromCenter = center(from);
+    const toCenter = center(to);
+    const start = pinSocket(from, toCenter, pinUsage, fromSide);
+    const end = pinSocket(to, fromCenter, pinUsage, toSide);
+    if (obstacles && bounds) return obstacleRoute(start,end,obstacles,bounds);
+    if (tangentToPins) {
+      const normal = side => ({ top:[0,-1],right:[1,0],bottom:[0,1],left:[-1,0] })[side];
+      const [startX,startY] = normal(start.side);
+      const [endX,endY] = normal(end.side);
+      const reach = Math.max(45, Math.min(150, Math.hypot(end.x-start.x,end.y-start.y) * .28));
+      return `M ${start.x} ${start.y} C ${start.x+startX*reach} ${start.y+startY*reach}, ${end.x+endX*reach} ${end.y+endY*reach}, ${end.x} ${end.y}`;
+    }
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
+    if (Math.abs(dx) >= Math.abs(dy)) {
+      const bend = Math.max(35, Math.abs(dx) * 0.42);
+      return `M ${start.x} ${start.y} C ${start.x + Math.sign(dx) * bend} ${start.y}, ${end.x - Math.sign(dx) * bend} ${end.y}, ${end.x} ${end.y}`;
+    }
+    const bend = Math.max(35, Math.abs(dy) * 0.42);
+    return `M ${start.x} ${start.y} C ${start.x} ${start.y + Math.sign(dy) * bend}, ${end.x} ${end.y - Math.sign(dy) * bend}, ${end.x} ${end.y}`;
+  }
+
+  function draw(board) {
+    const svg = board.querySelector(".home-circuit-wires");
+    const units = [...board.querySelectorAll(".home-circuit-unit")].sort((a, b) => Number(a.dataset.unit) - Number(b.dataset.unit));
+    const unitByNumber = new Map(units.map(unit => [Number(unit.dataset.unit), unit]));
+    const branches = [...board.querySelectorAll(".home-circuit-branch")];
+    const cpu = board.querySelector(".home-circuit-cpu");
+    const author = board.querySelector(".home-circuit-author");
+    const pinUsage = new Map();
+    const obstacles = chipBodyObstacles(board);
+    const routeBounds = { left:10,right:board.offsetWidth-10,top:10,bottom:board.offsetHeight-10 };
+    svg.replaceChildren();
+    branches.forEach(branch => {
+      branch.dataset.units.split(",").map(Number).forEach(unitNumber => {
+        const unit = unitByNumber.get(unitNumber);
+        if (unit) {
+          const active = branch.classList.contains("is-current-path") && unit.classList.contains("is-current-path");
+          svgPath(svg, curvedConnection(branch, unit, pinUsage, null, null, false, obstacles, routeBounds),
+            `home-circuit-wire--inner${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : innerChipPalette);
+        }
+      });
+    });
+    (board.homeTopologyEdges || []).forEach(edge => {
+      const active = board.homeCurrentEdges?.has(edge);
+      svgPath(svg, curvedConnection(edge.from, edge.to, pinUsage, null, null, true, obstacles, routeBounds),
+        `home-circuit-wire--capacitor${active ? " home-circuit-wire--current" : ""}`, active ? activePalette : capacitorPalette);
+    });
+    const readingPinUsage = new Map();
+    (board.homeReadingEdges || []).forEach(edge => {
+      const style = readingWireStyle(edge);
+      svgPath(svg, curvedConnection(edge.from, edge.to, readingPinUsage, null, null, true, obstacles, routeBounds),
+        style.className, style.palette);
+    });
+  }
+
+  function currentPath(board, currentNode) {
+    board.querySelectorAll(".is-current,.is-current-path").forEach(node => node.classList.remove("is-current", "is-current-path"));
+    const activeEdges = new Set();
+    let cursor = currentNode;
+    while (cursor) {
+      cursor.classList.add("is-current-path");
+      const edge = (board.homeTopologyEdges || []).find(candidate => candidate.to === cursor);
+      if (!edge) break;
+      activeEdges.add(edge);
+      cursor = edge.from;
+    }
+    const unit = cursor?.classList.contains("home-circuit-unit") ? cursor :
+      currentNode?.classList.contains("home-circuit-unit") ? currentNode : null;
+    if (unit) {
+      const number = Number(unit.dataset.unit);
+      const branch = [...board.querySelectorAll(".home-circuit-branch")]
+        .find(candidate => candidate.dataset.units.split(",").map(Number).includes(number));
+      branch?.classList.add("is-current-path");
+    }
+    currentNode?.classList.add("is-current", "is-current-path");
+    board.homeCurrentEdges = activeEdges;
+  }
+
+  function requestedFocus(board) {
+    const parameters = new URLSearchParams(location.search);
+    const requested = parameters.get("focus");
+    if (!requested) return null;
+    const path = comparablePath(new URL(requested, siteRoot()));
+    return [...board.querySelectorAll(INTERACTIVE_SELECTOR)]
+      .find(node => node.href && comparablePath(node.href) === path) || null;
+  }
+
+  function sidebarOpen(sidebar) {
+    return Boolean(sidebar && (sidebar.classList.contains("show") ||
+      (sidebar.classList.contains("circuit-sidebar") && sidebar.matches(":hover, :focus-within"))));
+  }
+
+  function centerViewportOnCpu(viewport, cpu) {
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const maxScrollY = Math.max(0, viewport.scrollHeight - viewport.clientHeight);
+    const cpuCenter = cpu.offsetLeft + cpu.offsetWidth / 2;
+    const cpuCenterY = cpu.offsetTop + cpu.offsetHeight / 2;
+    viewport.scrollLeft = Math.max(0, Math.min(maxScroll, cpuCenter - viewport.clientWidth / 2));
+    viewport.scrollTop = Math.max(0, Math.min(maxScrollY, cpuCenterY - viewport.clientHeight / 2));
+  }
+
+  function centerViewportOnNode(viewport, node, verticalOffset = 0) {
+    if (!viewport || !node) return;
+    const maxScrollX = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    const maxScrollY = Math.max(0, viewport.scrollHeight - viewport.clientHeight);
+    const nodeCenter = center(node);
+    viewport.scrollLeft = Math.max(0, Math.min(maxScrollX, nodeCenter.x - viewport.clientWidth / 2));
+    viewport.scrollTop = Math.max(0, Math.min(maxScrollY, nodeCenter.y - viewport.clientHeight / 2 - verticalOffset));
+  }
+
+  function overviewScale(viewport, board) {
+    const inset = 20;
+    return Math.max(.01, Math.min(1,
+      (viewport.clientWidth - inset) / board.offsetWidth,
+      (viewport.clientHeight - inset) / board.offsetHeight));
+  }
+
+  function spatialTarget(current, candidates, direction) {
+    const origin = center(current);
+    const vector = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] }[direction];
+    if (!vector) return null;
+    const [axisX, axisY] = vector;
+    return candidates
+      .filter(candidate => candidate !== current)
+      .map(candidate => {
+        const target = center(candidate);
+        const dx = target.x - origin.x;
+        const dy = target.y - origin.y;
+        const forward = dx * axisX + dy * axisY;
+        const sideways = Math.abs(dx * axisY - dy * axisX);
+        return { candidate, forward, sideways, score: forward + sideways * 2 };
+      })
+      .filter(result => result.forward > 0)
+      .sort((a, b) => a.score - b.score || a.sideways - b.sideways || a.forward - b.forward)[0]?.candidate || null;
+  }
+
+  function nearestNodeToPoint(nodes, point) {
+    return nodes.map(node => {
+      const target = center(node);
+      return { node, distance: Math.hypot(target.x - point.x, target.y - point.y) };
+    }).sort((a, b) => a.distance - b.distance)[0]?.node || null;
+  }
+
+  async function init() {
+    const board = document.getElementById("home-circuit-board");
+    if (!board) return;
+    buildTrenches(board);
+    try {
+      const [manifest, circuitData] = await Promise.all([navigation(), circuitBoards()]);
+      board.homeTopologyEdges = buildTopology(board, manifest, circuitData);
+    } catch (error) {
+      console.error("Homepage topic topology could not load", error);
+      board.homeTopologyEdges = [];
+      board.homeReadingEdges = [];
+    }
+    const parameters = new URLSearchParams(location.search);
+    const windowMode = parameters.has("circuit-window");
+    if (windowMode) {
+      document.body.classList.add("home-circuit-window");
+      board.querySelectorAll(INTERACTIVE_SELECTOR).forEach(node => {
+        try {
+          if (new URL(node.href, document.baseURI).origin === location.origin) node.target = "_top";
+        } catch { /* Ignore a malformed optional link. */ }
+      });
+    }
+    const viewport = board.closest(".home-circuit-viewport");
+    const sidebar = document.getElementById("quarto-sidebar");
+    const cpu = board.querySelector(".home-circuit-cpu");
+    let focalNode = requestedFocus(board) || cpu;
+    currentPath(board, focalNode);
+    let isOverview = false;
+    let suppressActivation = null;
+    let pan = null;
+    const PAN_THRESHOLD = 6;
+    const interactiveNodes = () => [...board.querySelectorAll(INTERACTIVE_SELECTOR)];
+    const recenter = node => {
+      focalNode = node || focalNode || cpu;
+      if (!isOverview) centerViewportOnNode(viewport, focalNode, focalNode === cpu ? 80 : 0);
+    };
+    const setOverview = (next, focal = focalNode) => {
+      isOverview = next;
+      viewport?.classList.toggle("home-circuit-viewport--overview", next);
+      board.classList.toggle("home-circuit-board--overview", next);
+      if (next) {
+        board.style.setProperty("--overview-scale", overviewScale(viewport, board));
+        viewport.scrollLeft = 0;
+        viewport.scrollTop = 0;
+      } else {
+        board.style.removeProperty("--overview-scale");
+        requestAnimationFrame(() => recenter(focal || cpu));
+      }
+    };
+    const nearestViewportNode = () => nearestNodeToPoint(interactiveNodes(), {
+      x: viewport.scrollLeft + viewport.clientWidth / 2,
+      y: viewport.scrollTop + viewport.clientHeight / 2
+    });
+    const finishPan = event => {
+      if (!pan || event.pointerId !== pan.pointerId) return;
+      const moved = pan.moved;
+      try { viewport.releasePointerCapture?.(pan.pointerId); } catch { /* Pointer capture can end before cancellation. */ }
+      viewport.classList.remove("home-circuit-viewport--panning");
+      pan = null;
+      if (!moved) return;
+      focalNode = nearestViewportNode() || focalNode;
+      suppressActivation = "drag";
+      window.setTimeout(() => { if (suppressActivation === "drag") suppressActivation = null; }, 500);
+    };
+    const sync = () => {
+      board.classList.toggle("home-circuit-board--sidebar-open", sidebarOpen(sidebar));
+      requestAnimationFrame(() => {
+        if (isOverview) board.style.setProperty("--overview-scale", overviewScale(viewport, board));
+        else recenter(focalNode || cpu);
+        // The board itself is useful even when a single decorative route cannot
+        // be found.  Never leave the whole map hidden because one optional
+        // wire failed to route through a dense part of the topology.
+        try {
+          draw(board);
+        } catch (error) {
+          console.error("Homepage circuit wires could not be fully drawn", error);
+        }
+        board.classList.add("is-ready");
+      });
+    };
+    board.addEventListener("focusin", event => {
+      const node = event.target.closest?.(INTERACTIVE_SELECTOR);
+      if (!node) return;
+      if (pan) {
+        focalNode = node;
+        return;
+      }
+      // Do not change the board transform while an overview link is being
+      // activated.  Browsers determine an anchor's click target after its
+      // pointer/focus sequence; zooming here moves that target out from under
+      // the pointer and turns the first click into a no-op.
+      if (isOverview) {
+        focalNode = node;
+        return;
+      }
+      recenter(node);
+    });
+    viewport.addEventListener("pointerdown", event => {
+      const node = event.target.closest?.(INTERACTIVE_SELECTOR);
+      if (isOverview) {
+        if (!node) return;
+        // Keep the board stable until the anchor's native click completes.
+        // This lets every visible component navigate on its first click.
+        focalNode = node;
+        return;
+      }
+      // Preserve the anchor's native click sequence. Capturing a pointer that
+      // began on a circuit node retargets its later click to the viewport,
+      // which prevents the link from activating.
+      if (node) return;
+      if (!event.isPrimary || event.button !== 0) return;
+      pan = {
+        pointerId: event.pointerId,
+        startX: event.clientX,
+        startY: event.clientY,
+        scrollLeft: viewport.scrollLeft,
+        scrollTop: viewport.scrollTop,
+        moved: false
+      };
+    });
+    viewport.addEventListener("pointermove", event => {
+      if (!pan || event.pointerId !== pan.pointerId) return;
+      const dx = event.clientX - pan.startX;
+      const dy = event.clientY - pan.startY;
+      if (!pan.moved && Math.hypot(dx, dy) < PAN_THRESHOLD) return;
+      if (!pan.moved) {
+        pan.moved = true;
+        viewport.setPointerCapture?.(event.pointerId);
+      }
+      event.preventDefault();
+      viewport.classList.add("home-circuit-viewport--panning");
+      viewport.scrollLeft = pan.scrollLeft - dx;
+      viewport.scrollTop = pan.scrollTop - dy;
+    });
+    window.addEventListener("pointerup", finishPan);
+    window.addEventListener("pointercancel", finishPan);
+    viewport.addEventListener("dragstart", event => {
+      if (pan) event.preventDefault();
+    });
+    board.addEventListener("click", event => {
+      const node = event.target.closest?.(INTERACTIVE_SELECTOR);
+      if (suppressActivation === "drag" || (node && node === suppressActivation)) {
+        event.preventDefault();
+        suppressActivation = null;
+        return;
+      }
+      const target = window.HomepageCircuitNavigation?.internalTarget(
+        event, node, document.baseURI, location.origin
+      );
+      if (!target) return;
+      // Navigate explicitly rather than relying on the native default action:
+      // the board may have been scaled, focused, or embedded in a sidebar
+      // frame during the pointer sequence. Modifier and new-tab clicks were
+      // deliberately left to the browser by internalTarget().
+      event.preventDefault();
+      if (windowMode && window.parent !== window) {
+        window.parent.postMessage({ type: "homepage-navigate", href: target.href }, location.origin);
+      } else {
+        window.location.assign(target.href);
+      }
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOverview(!isOverview, focalNode || cpu);
+        return;
+      }
+      const active = document.activeElement?.closest?.(INTERACTIVE_SELECTOR);
+      if (!active || !board.contains(active)) return;
+      if (event.key === "Home") {
+        event.preventDefault();
+        cpu?.focus({ preventScroll: true });
+        recenter(cpu);
+        return;
+      }
+      const target = spatialTarget(active, interactiveNodes(), event.key);
+      if (!target) return;
+      event.preventDefault();
+      if (isOverview) setOverview(false, target);
+      target.focus({ preventScroll: true });
+      recenter(target);
+    });
+    sync();
+    window.addEventListener("resize", sync, { passive: true });
+    ["mouseenter", "mouseleave", "focusin", "focusout", "shown.bs.collapse", "hidden.bs.collapse"]
+      .forEach(event => sidebar?.addEventListener(event, sync));
+    if (sidebar) new MutationObserver(sync).observe(sidebar, { attributes: true, attributeFilter: ["class"] });
+    document.addEventListener("custom-book-sidebar-ready", sync);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();
+</script>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
