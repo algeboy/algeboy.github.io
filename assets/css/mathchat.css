@@ -1,0 +1,115 @@
+/* MathChat layout only. The host's main.css owns backgrounds, frame, fonts and colors. */
+.mathchat-page { --board: var(--chalkboard-dark); --chalk: var(--chalk-white); --muted: var(--chalk-dust); --yellow: var(--chalk-yellow); --line: rgba(248,248,240,.25); }
+.mathchat-page .intro { margin-bottom: 1.5rem; }
+.mathchat-page .map-section { margin-bottom: 2rem; }
+.mathchat-page .plot-scroll { overflow-x: auto; }
+.mathchat-page #chart { display: block; width: 100%; min-width: 650px; height: auto; }
+.mathchat-page #chart text { fill: var(--chalk-white); }
+.mathchat-page .grid { stroke: rgba(248,248,240,.18); }
+.mathchat-page .axis { stroke: var(--chalk-white); }
+.mathchat-page .point { stroke: var(--chalk-white); stroke-width: 2; }
+.mathchat-page .label { font-size: 11px; }
+.mathchat-page .mathchat-plot-wrap { margin: 1rem 0; }
+.mathchat-page .mathchat-key { gap: .75rem 1.25rem; margin-bottom: 2rem; }
+.mathchat-page .mathchat-key button, .mathchat-page .mathchat-key span { font-size: 1rem; margin: 0; }
+.mathchat-page .source-tool { border: 1px solid #ffffff45; border-radius: 4px 9px 5px 7px; padding: 28px 32px; background: #ffffff03; margin: 0 0 40px; }
+.mathchat-page .tabs { display: flex; gap: 24px; border-bottom: 1px solid var(--line); margin: 20px 0 24px; }
+.mathchat-page button, .mathchat-page input, .mathchat-page textarea { font: inherit; }
+.mathchat-page button { cursor: pointer; }
+.mathchat-page .tabs [role=tab] { position: relative; padding: 10px 2px 14px; border: 0; color: var(--muted); background: transparent; white-space: nowrap; }
+.mathchat-page .tabs [aria-selected=true] { color: var(--yellow); }
+.mathchat-page .tabs [aria-selected=true]::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: var(--yellow); border-radius: 40% 20% 45% 15%; transform: rotate(-1deg); box-shadow: 0 1px 2px #f1da8a40; }
+.mathchat-page label { display: block; margin: 12px 0 6px; }
+.mathchat-page input:not([type=checkbox]):not([type=file]), .mathchat-page textarea { display: block; width: 100%; border: 1px solid #baccc266; border-radius: 3px; padding: 12px 14px; background: #0c261e80; color: var(--chalk); }
+.mathchat-page input::placeholder, .mathchat-page textarea::placeholder { color: #a4b9ad; opacity: 1; }
+.mathchat-page textarea { min-height: 180px; resize: vertical; }
+.mathchat-page input[type=file] { max-width: 100%; margin: 4px 0 12px; }
+.mathchat-page input[type=checkbox] { accent-color: var(--yellow); }
+.mathchat-page .source-tool button:not([role=tab]) { padding: 10px 24px; border: 1px solid var(--yellow); border-radius: 3px 5px 4px 3px; background: transparent; color: var(--chalk-white); font-weight: 700; margin: 16px 0 8px; }
+.mathchat-page .source-tool button:not([role=tab]):hover { background: var(--eraser-smudge); color: var(--chalk-yellow); }
+.mathchat-page .source-tool button:disabled { cursor: not-allowed; opacity: .5; }
+.mathchat-page :focus-visible { outline: 2px solid var(--yellow); outline-offset: 4px; }
+.mathchat-page [hidden], .mathchat-page .hidden { display: none !important; }
+.mathchat-page details { margin: 16px 0; }
+.mathchat-page summary { cursor: pointer; color: var(--muted); }
+.mathchat-page .scores { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 20px 0; }
+.mathchat-page .score { border-top: 1px solid var(--line); padding: 16px 0; }
+.mathchat-page .score b { display: block; font-size: 2rem; color: var(--yellow); }
+.mathchat-page .card { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 24px; }
+
+.mathchat-page .source-tool { background: transparent; padding: 1.25rem; }
+.mathchat-page .source-tool h2 { margin-top: 0; }
+.mathchat-page .source-tool p, .mathchat-page .source-tool small { font-size: 1rem; line-height: 1.6; }
+.mathchat-page .source-tool input, .mathchat-page .source-tool textarea, .mathchat-page .source-tool button { font-family: inherit; font-size: 1rem; }
+.mathchat-page .source-tool label { font-size: 1rem; }
+.mathchat-page .source-tool .score { font-size: 1rem; }
+.mathchat-page .source-tool .note { color: var(--chalk-dust); }
+.mathchat-page .tabs { gap: 1.5rem; }
+.mathchat-page .histogram { display: grid; gap: .75rem; }
+.mathchat-page .histogram-row { display: grid; grid-template-columns: minmax(8rem, 1fr) 2fr auto; gap: 1rem; align-items: center; }
+.mathchat-page .bar-track { height: 1rem; background: var(--eraser-smudge); }
+.mathchat-page .bar { height: 100%; background: var(--chalk-blue); }
+.mathchat-page .coverage, .mathchat-page .site-footer { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 2rem; }
+@media (max-width: 700px) {
+  .mathchat-page .source-tool { padding: 1rem .6rem; }
+  .mathchat-page .tabs { gap: .4rem; justify-content: space-between; }
+  .mathchat-page .tabs [role=tab] { font-size: .85rem; }
+  .mathchat-page .scores { grid-template-columns: 1fr; gap: 0; }
+}
+/* Keep the host's fixed classroom header clear of in-page navigation. */
+.mathchat-page #source-tool { scroll-margin-top: 80px; }
+.mathchat-page .tabs [role=tab] { box-shadow: none; border-radius: 0; transform: none; }
+.mathchat-page .source-tool button:not([role=tab]) { box-shadow: none; }
+
+/* Source directory: typography and backgrounds remain owned by main.css. */
+.mathchat-source-directory .mathchat-source-list { display: grid; gap: 1.5rem; }
+.mathchat-source-directory .mathchat-source-entry { border-top: 1px solid var(--line); padding: 1.25rem 0 .5rem; overflow-wrap: anywhere; scroll-margin-top: 80px; }
+.mathchat-source-directory .mathchat-source-entry h3 { font-family: inherit; color: var(--chalk-blue); font-size: 1.35rem; margin: 0 0 .5rem; }
+.mathchat-source-directory .mathchat-source-entry p { font-size: 1rem; margin: .5rem 0; }
+.mathchat-source-directory .mathchat-source-entry a { max-width: 100%; }
+.mathchat-source-directory .mathchat-source-entry .mathchat-source-kind,
+.mathchat-source-directory .mathchat-source-entry .mathchat-source-scope { color: var(--chalk-dust); }
+.mathchat-source-directory .mathchat-source-entry details { font-size: 1rem; margin: .75rem 0; }
+.mathchat-source-directory .mathchat-source-entry .statement-excerpt { white-space: pre-wrap; }
+
+/* Existing plot styles shared by the individual chart pages. */
+
+.mathchat-plot-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; }
+.mathchat-plot { display: block; width: 100%; min-width: 760px; height: auto; }
+.mathchat-plot .grid { stroke: rgba(255,255,255,.18); stroke-width: 1; }
+.mathchat-plot .frame { fill: none; stroke: var(--chalk-white); stroke-width: 1.25; }
+.mathchat-plot .axis-label { fill: var(--chalk-white); font: 15px system-ui, sans-serif; }
+.mathchat-plot .tick { fill: var(--chalk-white); font: 12px system-ui, sans-serif; }
+.mathchat-plot .point { stroke: var(--chalk-white); stroke-width: 2; opacity: .94; }
+.mathchat-plot .point-label { fill: var(--chalk-white); font: 12px system-ui, sans-serif; paint-order: stroke; stroke: #1f2625; stroke-width: 3px; stroke-linejoin: round; }
+.mathchat-key { display: flex; flex-wrap: wrap; gap: .55rem 1rem; margin: .4rem 0 1rem; }
+.mathchat-key span { white-space: nowrap; }
+.mathchat-key i { display: inline-block; width: .8rem; height: .8rem; margin-right: .3rem; border-radius: 50%; vertical-align: -.05rem; }
+.mathchat-key button { color: inherit; background: transparent; border: 0; padding: 0; cursor: pointer; font: inherit; }
+.mathchat-key button[aria-pressed="false"] { opacity: .38; text-decoration: line-through; }
+.mathchat-actions { display:flex; flex-wrap:wrap; gap:.8rem; margin:1.5rem 0 2.5rem; }
+.mathchat-actions a { display:inline-block; padding:.55rem .85rem; color:var(--chalk-white); text-decoration:none; border:2px solid var(--chalk-white); border-radius:.35rem; }
+.mathchat-actions a:hover { color:var(--chalk-yellow); border-color:var(--chalk-yellow); }
+#current-review-map + table th:last-child,
+#current-review-map + table td:last-child { padding-left: 1.25rem; }
+
+.mathchat-page .mathchat-chart-nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; margin: 1.25rem 0 2rem; }
+.mathchat-page .mathchat-chart-nav a, .mathchat-page .mathchat-chart-nav span { font-size: 1rem; margin: 0; }
+.mathchat-page .mathchat-chart-nav a:last-child { justify-self: end; text-align: right; }
+.mathchat-page .mathchat-chart-nav a:first-child { justify-self: start; }
+.mathchat-page .mathchat-topic-chart { width: 100%; min-width: 700px; display: block; }
+.mathchat-page .mathchat-topic-chart text { fill: var(--chalk-white); font: 15px system-ui, sans-serif; }
+.mathchat-page .mathchat-topic-chart .topic-row { stroke: rgba(248,248,240,.12); }
+.mathchat-page .mathchat-topic-chart .topic-recorded { fill: var(--chalk-yellow); }
+.mathchat-page .mathchat-topic-chart .topic-pending { fill: none; stroke: var(--chalk-dust); stroke-width: 2; }
+.mathchat-page .mathchat-topic-notes article { border-top: 1px solid var(--line); padding: 1rem 0; }
+.mathchat-page .mathchat-topic-notes h3 { font: inherit; margin: 0; }
+.mathchat-page .mathchat-topic-notes p { font-size: 1rem; }
+@media(max-width: 600px) { .mathchat-page .mathchat-chart-nav { gap: .5rem; } .mathchat-page .mathchat-chart-nav a, .mathchat-page .mathchat-chart-nav span { font-size: .85rem; } }
+
+.mathchat-page .mathchat-timing-chart { min-width: 850px; }
+.mathchat-page .mathchat-timing-chart .timing-after { fill: none; stroke: var(--chalk-blue); stroke-width: 2.5; }
+.mathchat-page .mathchat-timing-chart .timing-unknown { font-size: 21px; font-weight: bold; }
+.mathchat-page .mathchat-timing-key span { font-size: 1rem; }
+.mathchat-page .mathchat-timing-key span:first-child { color: var(--chalk-yellow); }
+.mathchat-page .mathchat-timing-key span:nth-child(2) { color: var(--chalk-blue); }

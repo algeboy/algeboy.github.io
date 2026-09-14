@@ -1,0 +1,24 @@
+{% assign total = site.data.mathchat_source_topics.size %}
+{% assign recorded = site.data.mathchat_source_topics | where: topic_field, 'recorded' | size %}
+<p>{{ recorded }} of {{ total }} sources have a recorded position.</p>
+<div class="mathchat-plot-wrap" tabindex="0" role="region" aria-label="Source positions; scroll horizontally on small screens">
+{% assign chart_height = total | times: 28 | plus: 64 %}
+<svg class="mathchat-topic-chart" viewBox="0 0 900 {{ chart_height }}" role="img" aria-labelledby="topic-title topic-desc">
+<title id="topic-title">{{ page.title | escape }} by source</title>
+<desc id="topic-desc">{{ recorded }} recorded positions out of {{ total }} sources. Filled markers indicate recorded positions; hollow markers mean not yet recorded. Source details follow the chart.</desc>
+<text x="20" y="32">Source</text>
+<text x="485" y="32" text-anchor="middle">Recorded</text>
+<text x="735" y="32" text-anchor="middle">Not yet recorded</text>
+{% assign sources = site.data.mathchat_sources | sort: 'author_or_source' %}
+{% for source in sources %}
+{% assign topic = site.data.mathchat_source_topics | where: 'id', source.id | first %}
+{% assign y = forloop.index0 | times: 28 | plus: 64 %}
+<g class="topic-source" data-source="{{ source.id | escape }}" data-status="{{ topic[topic_field] | default: 'not_recorded' }}">
+<line class="topic-row" x1="20" x2="875" y1="{{ y | plus: 12 }}" y2="{{ y | plus: 12 }}" />
+<text x="20" y="{{ y | plus: 5 }}">{{ source.author_or_source | escape }}</text>
+{% if topic[topic_field] == 'recorded' %}<circle class="topic-recorded" cx="485" cy="{{ y }}" r="7"><title>{{ source.author_or_source | escape }}: {{ topic[summary_field] | escape }}</title></circle>
+{% else %}<circle class="topic-pending" cx="735" cy="{{ y }}" r="6"><title>{{ source.author_or_source | escape }}: no position recorded in the current review</title></circle>{% endif %}
+</g>
+{% endfor %}
+</svg>
+</div>
