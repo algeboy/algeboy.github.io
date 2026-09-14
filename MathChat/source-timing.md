@@ -16,7 +16,7 @@ permalink: /MathChat/source-timing/
 
 <div class="mathchat-plot-wrap" tabindex="0" role="region" aria-label="Publication dates; scroll horizontally on small screens">
 {% assign chart_height = dates.size | times: 30 | plus: 100 %}
-<svg class="mathchat-topic-chart mathchat-timing-chart" viewBox="0 0 1100 {{ chart_height }}" role="img" aria-labelledby="timing-title timing-desc">
+<svg class="mathchat-topic-chart mathchat-timing-chart" data-source-count="{{ dates.size }}" viewBox="0 0 1100 {{ chart_height }}" role="img" aria-labelledby="timing-title timing-desc">
 <title id="timing-title">Source publication dates relative to summer and the Navier–Stokes announcement</title>
 <desc id="timing-desc">Each source has two independent comparisons. A filled yellow circle means before the cutoff, a blue ring means on or after, and a question mark means the available date is too broad to decide.</desc>
 <text x="16" y="30">Source</text><text x="450" y="30" text-anchor="middle">Date recorded</text>

@@ -15,7 +15,7 @@ description: People, publications, and source material used in the MathChat view
 
 
 
-<div class="mathchat-source-list">
+<div class="mathchat-source-list" data-source-count="{{ site.data.mathchat_sources.size }}">
 {% assign sources = site.data.mathchat_sources | sort: 'author_or_source' %}
 {% for source in sources %}
 <article class="mathchat-source-entry" id="source-{{ source.id | escape }}">

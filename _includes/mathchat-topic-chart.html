@@ -3,7 +3,7 @@
 <p>{{ recorded }} of {{ total }} sources have a recorded position.</p>
 <div class="mathchat-plot-wrap" tabindex="0" role="region" aria-label="Source positions; scroll horizontally on small screens">
 {% assign chart_height = total | times: 28 | plus: 64 %}
-<svg class="mathchat-topic-chart" viewBox="0 0 900 {{ chart_height }}" role="img" aria-labelledby="topic-title topic-desc">
+<svg class="mathchat-topic-chart" data-source-count="{{ total }}" viewBox="0 0 900 {{ chart_height }}" role="img" aria-labelledby="topic-title topic-desc">
 <title id="topic-title">{{ page.title | escape }} by source</title>
 <desc id="topic-desc">{{ recorded }} recorded positions out of {{ total }} sources. Filled markers indicate recorded positions; hollow markers mean not yet recorded. Source details follow the chart.</desc>
 <text x="20" y="32">Source</text>
