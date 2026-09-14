@@ -12,7 +12,7 @@ description: Public Viewpoints on AI in mathematics and mathematics education.
 
 What are people saying about AI & Math?
 
-[Add your own](#source-tool) · [People and sources](/MathChat/sources/) · [Join the discussion](#leave-a-message)
+[Add your own](#source-tool) · [Current review map](/MathChat/review-map/) · [People and sources](/MathChat/sources/) · [Join the discussion](#leave-a-message)
 
 
 
@@ -57,32 +57,9 @@ Each source is reviewed along three provisional dimensions:
 
 ## Current review map
 
-| Source | Outlook | Evidence basis | Reliability | Main contribution |
-|---|---:|---:|---:|---|
-| Stephen Wolfram | 78 | 55 | 74 | Computation-augmented AI: pair generative models with exact computation. |
-| Conrad Wolfram | 72 | 68 | 78 | Mathematics-education reform for the AI age. |
-| Geordie Williamson | 78 | 62 | 80 | AI may contribute to mathematical discovery. |
-| Max Weinreich | 12 | 48 | 65 | Argues against AI-generated mathematics. |
-| Jacob Tsimerman | 88 | 55 | 76 | Strongly future-facing research-mathematics forecast. |
-| Terence Tao | 61 | 78 | 88 | Conditional analysis of mathematical values, verification, and practice. |
-| Steven Strogatz (Quanta) | 60 | 70 | 84 | Podcast interview on black-box models, uncertainty, and statistical reasoning. |
-| Francis Su | 82 | 35 | 60 | Humanistic case for mathematics and learning. |
-| Emily Riehl | 56 | 86 | 90 | Tests and verification for meaningful AI contribution to mathematics. |
-| Gary Marcus | 32 | 65 | 84 | LLM reasoning can be brittle; plausible output is not robust abstraction. |
-| Yann LeCun | 65 | 65 | 84 | Broad-AI baseline: limits of current language models and future architectures. |
-| Leiden Declaration | 24 | 72 | 82 | Governance, responsibility, and peer-review proposals. |
-| Jaron Lanier | 60 | 36 | 64 | Immersive mathematical visualization, paired with cautions about treating learners as data. |
-| Brian Keating | 61 | 58 | 74 | Tao interview on AI as a complementary research tool requiring verification. |
-| Curt Jaimungal | 76 | 55 | 70 | Yang-Hui He interview on AI-assisted mathematical discovery and its limits. |
-| Sabine Hossenfelder | 58 | 45 | 64 | Explainer on claimed AI mathematics breakthroughs; full transcript pending public access. |
-| Timothy Gowers | 58 | 82 | 90 | Separates verified mathematical progress from AI hype. |
-| The Economist | 28 | 86 | 72 | Reports recent evidence on AI use and secondary-school learning. |
-| Jordana Cepelewicz (Quanta) | 64 | 76 | 82 | Quanta's reported synthesis of AI-assisted proof and changing mathematical practice. |
-| Sean Carroll | 55 | 54 | 76 | Podcast discussion of neural-network mathematics and the limits of data-hungry models. |
-| David Bessis | 54 | 38 | 68 | Mathematical understanding matters beyond theorem production. |
-| Jeremy Avigad | 64 | 76 | 88 | Formalization, proof, and responsible mathematical practice. |
-| AI Snake Oil | 38 | 78 | 82 | Evidence-oriented education baseline, not mathematics-specific. |
-| Yahoo report | 30 | 70 | 55 | Secondary reporting on student-learning evidence. |
+Every source in the review, with its provisional scores and a link to the source itself, is on a page of its own.
+
+[Open the current review map](/MathChat/review-map/)
 
 ## Explore, challenge, or extend the review
 
@@ -93,10 +70,6 @@ The complete public record includes the source ledger, scoring methodology, prom
 ### A note on evidence
 
 “Evidence basis” is not a measure of author prestige. It asks whether the source's central claim is directly supported by relevant data, transparent methods, primary sources, and appropriate caution about uncertainty and causation. A thoughtful philosophical essay can be valuable while still scoring lower on this particular axis.
-
-### Add an author or correct the map
-
-Please use the [author or source suggestion form](https://github.com/algeboy/MathChat/issues/new?template=author-suggestion.yml) to propose a specific source, challenge a score, or point to better evidence. Keep submissions tidy, polite, and apolitical. Source snapshots in the repository preserve links, access notes, and review summaries without republishing third-party articles.
 
 ## Leave a message
 
