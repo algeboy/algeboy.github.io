@@ -33,7 +33,7 @@ description: People, publications, and source material used in the MathChat view
 <div id="mathchat-local-sources"></div>
 <noscript>Enable JavaScript to view submissions saved in this browser. The current map’s source list above is available without JavaScript.</noscript>
 
-[Review your submission details](/MathChat/appendix/) · [Suggest a source or correction](https://github.com/algeboy/MathChat/issues/new?template=author-suggestion.yml)
+[Review your submission details](/MathChat/appendix/) · [Add a source](/MathChat/#source-tool)
 
 ## About these sources
 
